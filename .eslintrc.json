@@ -13,6 +13,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "jsx-a11y/anchor-is-valid": "off",
     "prettier/prettier": "error",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
