@@ -28,3 +28,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Custom files
+src/pages/components.jsx
