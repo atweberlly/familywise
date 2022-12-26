@@ -1,10 +1,11 @@
 import Title from '@components/Title'
+import Header from '@components/Header'
 
 export default function Home() {
   return (
-    <div>
+    <div className="min-h-screen bg-azure text-dark-400">
       <Title>Family Fortunate</Title>
-      <div />
+      <Header />
     </div>
   )
 }
