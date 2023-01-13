@@ -69,6 +69,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        display: ['Telma', ...defaultTheme.fontFamily.serif],
       },
       minWidth: {
         xs: '320px',

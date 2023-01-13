@@ -15,3 +15,12 @@
   src: url('/fonts/Inter-italic.var.woff2') format('woff2');
   font-display: swap;
 }
+
+@font-face {
+  font-weight: 300 900;
+  font-family: 'Telma';
+  font-style: normal;
+  src: url('/fonts/Telma-Regular.woff') format('woff'),
+    url('/fonts/Telma-Regular.woff2') format('woff2');
+  font-display: swap;
+}
