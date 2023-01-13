@@ -21,11 +21,11 @@
 3. Install dependencies
 
    ```
-   yarn install
+   npm install
    ```
 
 4. Start the local server
 
    ```
-   yarn dev
+   npm run dev
    ```
