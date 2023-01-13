@@ -54,6 +54,18 @@ module.exports = {
           800: '#2d4a5d',
           900: '#263a49', // Default color
         },
+        'black-pearl': {
+          50: '#f1fafe',
+          100: '#e1f4fd',
+          200: '#bdeafa',
+          300: '#83daf6',
+          400: '#41c8ef',
+          500: '#18b0df',
+          600: '#0b8fbe',
+          700: '#0a729a',
+          800: '#0d607f',
+          900: '#07222d', // Default color
+        },
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
