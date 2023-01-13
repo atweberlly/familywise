@@ -38,6 +38,23 @@ export default function Home() {
             </a>
           </div>
         </div>
+
+        <div className="mx-auto max-w-lg px-6 py-32 md:px-0">
+          <h1 className="mb-4 text-center font-display text-5xl">Family Fortunate</h1>
+          <p className=" mb-8 text-center text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae auctor id at nam felis.
+            Vitae sit dictumst eu lacinia.
+          </p>
+
+          <div className="text-center">
+            <a
+              className="inline-block rounded-lg bg-malachite-600 px-6 py-3 font-semibold text-white"
+              href=""
+            >
+              Buy now
+            </a>
+          </div>
+        </div>
       </header>
     </div>
   )
