@@ -16,7 +16,7 @@ export default function Home() {
           </div>
 
           <nav className="hidden lg:flex lg:items-center lg:gap-6 lg:text-sm xl:gap-8">
-            <a className="font-semibold text-malachite-600" href="">
+            <a className="font-semibold text-primary-600" href="">
               Home
             </a>
             <a href="">How it works</a>
@@ -30,11 +30,11 @@ export default function Home() {
           </button>
 
           <div className="hidden lg:flex lg:items-center lg:gap-4 lg:text-sm">
-            <a className="font-semibold text-malachite-600" href="">
+            <a className="font-semibold text-primary-600" href="">
               Log in
             </a>
 
-            <a className="rounded-lg bg-malachite-600 px-4 py-3 font-medium text-white" href="">
+            <a className="rounded-lg bg-primary-600 px-4 py-3 font-medium text-white" href="">
               Create an account
             </a>
           </div>
@@ -49,7 +49,7 @@ export default function Home() {
 
           <div className="text-center">
             <a
-              className="inline-block rounded-lg bg-malachite-600 px-6 py-3 font-semibold text-white"
+              className="inline-block rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white"
               href=""
             >
               Buy now
