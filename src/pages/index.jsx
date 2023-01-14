@@ -58,6 +58,50 @@ export default function Home() {
         </div>
       </header>
 
+      <div className="relative overflow-hidden pt-16 pb-48 md:pt-24">
+        <picture className="pointer-events-none absolute inset-0 select-none">
+          <source media="(min-width: 640px)" srcSet="/images/background-newsletter@2x.jpg" />
+          <source media="(min-width: 768px)" srcSet="/images/background-newsletter@3x.jpg" />
+          <source media="(min-width: 1024px)" srcSet="/images/background-newsletter@4x.jpg" />
+          <img
+            className="h-full w-full object-cover object-center"
+            src="/images/background-newsletter@1x.jpg"
+            alt=""
+          />
+        </picture>
+
+        <img
+          className="pointer-events-none absolute -right-16 bottom-0 w-full select-none sm:-right-8 sm:w-8/12 lg:-right-16 lg:w-6/12"
+          src="/svg/illustration-newsletter.svg"
+          alt=""
+        />
+
+        <div className="container relative">
+          <div className="max-w-sm">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight">Subscribe to our Newsletter</h2>
+            <p className="mb-4 text-gray-500">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab sapiente sit odio,
+              maiores quasi perferendis et.
+            </p>
+            <form action="">
+              <div className="relative">
+                <input
+                  className="block w-full rounded-lg border bg-white px-4 py-3"
+                  type="email"
+                  placeholder="Email address"
+                />
+                <button
+                  className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md bg-primary-600 px-3 py-2 text-sm font-medium text-white"
+                  type="submit"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </div>
   )
