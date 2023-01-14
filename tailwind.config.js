@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        malachite: {
+        primary: {
           50: '#effef5',
           100: '#d9ffe9',
           200: '#b6fcd4',
@@ -18,7 +18,7 @@ module.exports = {
           800: '#0f6c3a',
           900: '#0f5832',
         },
-        goblin: {
+        secondary: {
           50: '#f5f9f4',
           100: '#e5f3e5',
           200: '#cce6cc',
@@ -30,7 +30,7 @@ module.exports = {
           800: '#2c4f2d',
           900: '#264127',
         },
-        'dodger-blue': {
+        accent: {
           50: '#eef3ff',
           100: '#dae3ff',
           200: '#bdceff',
@@ -42,19 +42,7 @@ module.exports = {
           800: '#1920b4',
           900: '#1a218e',
         },
-        'pickled-bluewood': {
-          50: '#f1f9fa',
-          100: '#dbecf2',
-          200: '#bbdbe6',
-          300: '#8cc1d4',
-          400: '#559dbb',
-          500: '#3a81a0',
-          600: '#336a87',
-          700: '#2f576f',
-          800: '#2d4a5d',
-          900: '#263a49', // Default color
-        },
-        'black-pearl': {
+        dark: {
           50: '#f1fafe',
           100: '#e1f4fd',
           200: '#bdeafa',
@@ -75,6 +63,15 @@ module.exports = {
         xs: '320px',
       },
     },
+  },
+  corePlugins: {
+    backdropOpacity: false,
+    backgroundOpacity: false,
+    borderOpacity: false,
+    divideOpacity: false,
+    placeholderOpacity: false,
+    ringOpacity: false,
+    textOpacity: false,
   },
   plugins: [],
 }
