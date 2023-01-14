@@ -12,6 +12,7 @@ module.exports = {
       safelist: ['html', 'body'],
     },
     autoprefixer: {},
+    'postcss-import': {},
     'postcss-sort-media-queries': {},
     tailwindcss: {},
   },
