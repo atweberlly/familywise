@@ -4,6 +4,10 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: ['./src/components/**/*.{js,jsx}', './src/pages/**/*.{js,jsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: '1.5rem',
+    },
     extend: {
       colors: {
         primary: {

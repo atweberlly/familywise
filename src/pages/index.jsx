@@ -8,7 +8,7 @@ export default function Home() {
       <Title>Family Fortunate</Title>
 
       <header>
-        <div className="container absolute inset-x-0 top-0 mx-auto flex w-full items-center justify-between p-6">
+        <div className="container absolute inset-x-0 top-0 flex w-full items-center justify-between py-6">
           <div>
             <a className="font-display text-2xl" href="">
               Family Fortunate
