@@ -7,8 +7,30 @@ export default function Home() {
     <div>
       <Title>Family Fortunate</Title>
 
-      <header>
-        <div className="container absolute inset-x-0 top-0 flex w-full items-center justify-between py-6">
+      <header className="relative overflow-hidden">
+        <picture className="pointer-events-none absolute inset-0 select-none">
+          <source media="(min-width: 640px)" srcSet="/images/background-field@2x.jpg" />
+          <source media="(min-width: 768px)" srcSet="/images/background-field@3x.jpg" />
+          <source media="(min-width: 1024px)" srcSet="/images/background-field@4x.jpg" />
+          <img
+            className="h-full w-full object-cover object-bottom"
+            src="/images/background-field@1x.jpg"
+            alt=""
+          />
+        </picture>
+
+        <img
+          className="pointer-events-none absolute -bottom-2 -left-40 h-80 select-none md:-left-32 lg:h-96 xl:h-[28rem] 2xl:h-[32rem]"
+          src="/images/illustration-01@4x.png"
+          alt=""
+        />
+        <img
+          className="pointer-events-none absolute right-0 bottom-0 w-48 select-none lg:right-8 lg:w-56 xl:w-72 2xl:w-80"
+          src="/images/illustration-02@4x.png"
+          alt=""
+        />
+
+        <div className="container absolute inset-x-0 top-0 z-10 flex w-full items-center justify-between py-6">
           <div>
             <a className="font-display text-2xl" href="">
               Family Fortunate
@@ -40,8 +62,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-lg px-6 py-32 md:px-0">
-          <h1 className="mb-4 text-center font-display text-5xl tracking-tight lg:text-6xl">
+        <div className="relative mx-auto max-w-lg px-6 pt-32 pb-56 md:px-0 md:pb-64 lg:pt-48 xl:pb-72 2xl:pb-96">
+          <h1 className="mb-4 text-center font-display text-5xl tracking-tight lg:text-6xl xl:text-7xl">
             Family Fortunate
           </h1>
           <p className="mb-8 text-center text-lg">
