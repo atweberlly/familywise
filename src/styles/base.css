@@ -24,3 +24,12 @@
     url('/fonts/Telma-Regular.woff2') format('woff2');
   font-display: swap;
 }
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Boska';
+  font-style: normal;
+  src: url('/fonts/Boska-Regular.woff') format('woff'),
+    url('/fonts/Boska-Regular.woff2') format('woff2');
+  font-display: swap;
+}
