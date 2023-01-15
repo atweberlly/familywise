@@ -133,6 +133,68 @@ export default function Home() {
         </ul>
       </div>
 
+      <div className="overflow-hidden bg-[#f7ffff] py-8 sm:py-16 lg:py-20 xl:py-24">
+        <div className="container space-y-16">
+          <div className="grid grid-cols-1 gap-8 md:gap-0 lg:grid-cols-2 lg:items-end">
+            <div className="sm:ml-auto sm:max-w-md lg:order-2 lg:ml-0 lg:pb-40">
+              <h2 className="mb-4 font-display text-4xl tracking-tight lg:mb-8 lg:text-5xl">
+                Family Fortunate lorem ipsum dolor sit amet
+              </h2>
+              <p className="mb-4 text-gray-500 lg:mb-8 lg:text-lg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi adipisci
+                laboriosam quibusdam id, facilis provident, saepe ut officia blanditiis tenetur
+                illum repellat, reprehenderit autem!
+              </p>
+              <div>
+                <a
+                  className="inline-block rounded-lg bg-dark-900 px-4 py-3 font-medium text-white"
+                  href="#"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+
+            <div className="-ml-24 sm:max-w-md lg:order-1 lg:-ml-32 lg:max-w-none xl:-ml-40 2xl:-ml-52">
+              <img
+                className="pointer-events-none select-none"
+                src="/images/illustration-planting-a-tree@4x.png"
+                alt="Planting a tree"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-end">
+            <div className="sm:max-w-md lg:order-1 lg:max-w-md lg:pb-40">
+              <h2 className="mb-4 font-display text-4xl tracking-tight lg:mb-8 lg:text-5xl">
+                Family Fortunate lorem ipsum dolor sit amet
+              </h2>
+              <p className="mb-4 text-gray-500 lg:mb-8 lg:text-lg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi adipisci
+                laboriosam quibusdam id, facilis provident, saepe ut officia blanditiis tenetur
+                illum repellat, reprehenderit autem!
+              </p>
+              <div>
+                <a
+                  className="inline-block rounded-lg bg-dark-900 px-4 py-3 font-medium text-white"
+                  href="#"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+
+            <div className="-mr-24 ml-auto sm:max-w-md md:-mr-16 lg:order-2 lg:-mr-32 lg:max-w-none xl:-mr-40 2xl:-mr-52">
+              <img
+                className="pointer-events-none select-none"
+                src="/images/illustration-proposal@4x.png"
+                alt="Proposal"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="relative overflow-hidden pt-16 pb-48 md:pt-24">
         <picture className="pointer-events-none absolute inset-0 select-none">
           <source media="(min-width: 640px)" srcSet="/images/background-newsletter@2x.jpg" />
