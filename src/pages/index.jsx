@@ -61,9 +61,9 @@ export default function Home() {
       </header>
 
       <div className="container py-8 sm:py-16 lg:py-20 xl:py-24">
-        <div className="mx-auto mb-8 max-w-lg text-center">
+        <div className="mx-auto mb-8 max-w-lg text-center md:mb-12 lg:mb-16">
           <h2 className="mb-4 font-display text-4xl tracking-tight lg:text-5xl">How it works</h2>
-          <p>Think of Family Fortunate like a conversation</p>
+          <p className="text-lg">Think of Family Fortunate like a conversation.</p>
         </div>
 
         <ul className="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-3">
