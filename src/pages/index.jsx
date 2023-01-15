@@ -41,8 +41,10 @@ export default function Home() {
         </div>
 
         <div className="mx-auto max-w-lg px-6 py-32 md:px-0">
-          <h1 className="mb-4 text-center font-display text-5xl">Family Fortunate</h1>
-          <p className=" mb-8 text-center text-lg">
+          <h1 className="mb-4 text-center font-display text-5xl tracking-tight lg:text-6xl">
+            Family Fortunate
+          </h1>
+          <p className="mb-8 text-center text-lg">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae auctor id at nam felis.
             Vitae sit dictumst eu lacinia.
           </p>
@@ -57,6 +59,57 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      <div className="container py-8 sm:py-16 lg:py-20 xl:py-24">
+        <div className="mx-auto mb-8 max-w-lg text-center">
+          <h2 className="mb-4 font-display text-4xl tracking-tight lg:text-5xl">How it works</h2>
+          <p>Think of Family Fortunate like a conversation</p>
+        </div>
+
+        <ul className="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-3">
+          <li>
+            <img
+              className="mx-auto mb-4 w-48 rounded-xl border shadow-lg"
+              src="/images/illustration-step-one@4x.jpg"
+              alt="Step One"
+            />
+            <div className="mx-auto w-56 text-center">
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide">Step 1</h3>
+              <p className="text-gray-500">
+                Once a week, choose a question to inspire them to write.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <img
+              className="mx-auto mb-4 w-48 rounded-xl border shadow-lg"
+              src="/images/illustration-step-two@4x.jpg"
+              alt="Step Two"
+            />
+            <div className="mx-auto w-56 text-center">
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide">Step 2</h3>
+              <p className="text-gray-500">
+                They&apos;ll simply reply with an email, which is shared with you.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <img
+              className="mx-auto mb-4 w-48 rounded-xl border shadow-lg"
+              src="/images/illustration-step-three@4x.jpg"
+              alt="Step Three"
+            />
+            <div className="mx-auto w-56 text-center">
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide">Step 3</h3>
+              <p className="text-gray-500">
+                At the end of a year, their stories are bound into a beautiful keepsake book.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
 
       <div className="relative overflow-hidden pt-16 pb-48 md:pt-24">
         <picture className="pointer-events-none absolute inset-0 select-none">
