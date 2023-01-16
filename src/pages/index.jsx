@@ -20,7 +20,7 @@ export default function Home() {
         </picture>
 
         <img
-          className="pointer-events-none absolute -bottom-2 -left-40 h-80 select-none md:-left-32 lg:h-96 xl:h-[28rem] 2xl:h-[32rem]"
+          className="pointer-events-none absolute -bottom-2 -left-40 h-80 min-w-min select-none md:-left-32 lg:h-96 xl:h-[28rem] 2xl:h-[32rem]"
           src="/images/illustration-01@4x.png"
           alt=""
         />
