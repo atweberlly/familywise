@@ -6,6 +6,7 @@
     "export": "next build && next export",
     "format": "prettier --write .",
     "lint": "next lint",
+    "preview": "next build && next start",
     "start": "next start"
   },
   "browserslist": {
