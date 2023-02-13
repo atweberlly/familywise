@@ -1,8 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const files = require('./files')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/components/**/*.{js,jsx}', './src/pages/**/*.{js,jsx}'],
+  content: [...files],
+  future: {
+    disableColorOpacityUtilitiesByDefault: true,
+  },
   theme: {
     container: {
       center: true,
@@ -67,15 +71,6 @@ module.exports = {
         xs: '320px',
       },
     },
-  },
-  corePlugins: {
-    backdropOpacity: false,
-    backgroundOpacity: false,
-    borderOpacity: false,
-    divideOpacity: false,
-    placeholderOpacity: false,
-    ringOpacity: false,
-    textOpacity: false,
   },
   plugins: [],
 }
