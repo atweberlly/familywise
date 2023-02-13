@@ -3,15 +3,13 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "export": "next build && next export",
     "format": "prettier --write .",
     "lint": "next lint",
     "prepare": "husky install",
-    "preview": "next build && next start",
-    "start": "next start"
+    "preview": "next build && next start"
   },
   "lint-staged": {
-    "*.{css,js,jsx,md}": "prettier --write .",
+    "*.{css,js,jsx,md}": "prettier --write",
     "*.{js,jsx}": "next lint"
   },
   "browserslist": {
