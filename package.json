@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
-    "@ianvs/prettier-plugin-sort-imports": "^3.7.1",
     "@prettier/plugin-xml": "^2.2.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
     "eslint-config-airbnb": "^19.0.4",
