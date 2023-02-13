@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 const files = require('./files')
 
 /** @type {import('tailwindcss').Config} */
@@ -65,12 +66,20 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-        display: ['Boska', ...defaultTheme.fontFamily.serif],
+        serif: ['Freight Big Pro', ...defaultTheme.fontFamily.serif],
       },
       minWidth: {
         xs: '320px',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addBase }) => {
+      addBase({
+        body: {
+          fontSize: '16px',
+        },
+      })
+    }),
+  ],
 }
