@@ -10,7 +10,7 @@
   },
   "lint-staged": {
     "*.{css,js,jsx,md}": "prettier --write",
-    "*.{js,jsx}": "next lint"
+    "*.{js,jsx}": "eslint --fix"
   },
   "browserslist": {
     "development": [
