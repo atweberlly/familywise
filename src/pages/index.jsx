@@ -1,6 +1,6 @@
-import Title from '@components/Title'
+import Title from '~/components/Title'
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import Footer from '@components/Footer'
+import Footer from '~/components/Footer'
 
 export default function Home() {
   return (
