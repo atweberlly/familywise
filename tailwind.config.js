@@ -7,6 +7,7 @@ module.exports = {
   content: [...files],
   future: {
     disableColorOpacityUtilitiesByDefault: true,
+    hoverOnlyWhenSupported: true,
   },
   theme: {
     container: {
