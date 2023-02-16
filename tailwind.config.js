@@ -15,6 +15,9 @@ module.exports = {
       padding: '1.5rem',
     },
     extend: {
+      boxShadow: {
+        xl: '0 24px 48px -12px rgba(16, 24, 40, 0.25)',
+      },
       colors: {
         vanilla: '#d6c7b2',
         'black-pearl': '#07222d',
