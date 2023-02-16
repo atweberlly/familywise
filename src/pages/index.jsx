@@ -1,4 +1,4 @@
-import { Bars3Icon } from '@heroicons/react/24/outline'
+import { Bars3Icon, ArrowLongDownIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Title from '~/components/Title'
 
@@ -21,45 +21,64 @@ export default function Home() {
               <a href="">FAQ</a>
               <a href="">Contact</a>
             </nav>
-
-            <button className="h-8 w-8" type="button">
-              <Bars3Icon />
-            </button>
           </div>
+
+          <button className="h-8 w-8" type="button">
+            <Bars3Icon />
+          </button>
         </div>
 
-        <div className="mx-auto mt-16 h-screen max-w-screen-lg px-10">
+        <div className="mx-auto max-w-screen-lg px-10 pt-16">
           <div className="relative">
             <Image
-              className="absolute left-1/2 h-[272px] w-[192px] -translate-x-1/2 shadow-xl"
+              className="absolute top-0 left-1/2 z-0 -translate-x-1/2 shadow-xl"
               src="/images/hero/hero-image-1@4x.jpg"
               alt=""
               width="184"
               height="264"
             />
             <Image
-              className="absolute top-48 left-0 h-[208px] w-[144px] shadow-xl"
+              className="absolute top-48 left-0 z-10 shadow-xl"
               src="/images/hero/hero-image-2@4x.jpg"
               alt=""
               width="144"
               height="208"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 h-[192px] w-[128px] shadow-xl"
+              className="absolute top-[calc(12rem+6px)] right-0 z-10 shadow-xl"
               src="/images/hero/hero-image-3@4x.jpg"
               alt=""
               width="128"
               height="192"
             />
 
-            <div className="relative pt-80">
-              <h1 className="text-center font-serif text-[3.25rem] font-bold leading-none">
-                Capturing Life&apos;s Priceless <span className="italic">Moments</span>
+            <div className="relative z-20 pt-80">
+              <h1 className="text-center font-serif text-[3.25rem] leading-none">
+                <span className="font-bold">Capturing Life&apos;s Priceless</span>{' '}
+                <span className="font-semibold italic">Moments</span>
               </h1>
               <p className="mt-5 text-center text-xl font-medium">
                 We all carry amazing life stories with us, many untold.
               </p>
             </div>
+          </div>
+        </div>
+
+        <button className="mx-auto mt-20 flex flex-col items-center" type="button">
+          <div className="text-sm uppercase tracking-wide">Learn more</div>
+          <ArrowLongDownIcon className="h-6 w-6" />
+        </button>
+
+        <div className="mt-12 px-10">
+          <p className="text-center font-serif text-[1.75rem] leading-8">
+            &quot;Family Fortunate sends you a question each week & your stories are compiled into
+            your very own book of memories.&quot;
+          </p>
+        </div>
+
+        <div className="mt-32 overflow-x-hidden px-10">
+          <div className="text-center font-serif text-[3.25rem] font-bold leading-none">
+            How it works
           </div>
         </div>
       </header>
