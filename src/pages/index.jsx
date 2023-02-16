@@ -82,32 +82,34 @@ export default function Home() {
             How it works
           </div>
 
-          <Image
-            className="mx-auto mt-8 h-[328px] w-[248px] shadow-xl"
-            src="/images/hero/hero-book-cover@4x.jpg"
-            alt="A Happy Life by Alex Green"
-            width="248"
-            height="328"
-          />
+          <div className="grid grid-cols-1 gap-16">
+            <Image
+              className="mx-auto mt-8 h-[328px] w-[248px] shadow-xl"
+              src="/images/hero/hero-book-cover@4x.jpg"
+              alt="A Happy Life by Alex Green"
+              width="248"
+              height="328"
+            />
 
-          <div className="mt-16 space-y-4">
-            <div className="flex items-center">
-              <FeatherIcon className="shrink-0" />
-              <p className="ml-4 grow text-lg">Each week we&apos;ll email a question to you.</p>
-            </div>
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <FeatherIcon className="shrink-0" />
+                <p className="ml-4 grow text-lg">Each week we&apos;ll email a question to you.</p>
+              </div>
 
-            <div className="flex items-center">
-              <FeatherIcon className="shrink-0" />
-              <p className="ml-4 grow text-lg">
-                Your answers can be as long or short as you like. Add photos if you&apos;d like
-              </p>
-            </div>
+              <div className="flex items-center">
+                <FeatherIcon className="shrink-0" />
+                <p className="ml-4 grow text-lg">
+                  Your answers can be as long or short as you like. Add photos if you&apos;d like
+                </p>
+              </div>
 
-            <div className="flex items-center">
-              <FeatherIcon className="shrink-0" />
-              <p className="ml-4 grow text-lg">
-                When you&apos;re ready, you can print a single book or as many copies as you want
-              </p>
+              <div className="flex items-center">
+                <FeatherIcon className="shrink-0" />
+                <p className="ml-4 grow text-lg">
+                  When you&apos;re ready, you can print a single book or as many copies as you want
+                </p>
+              </div>
             </div>
           </div>
         </div>
