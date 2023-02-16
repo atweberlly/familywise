@@ -32,21 +32,21 @@ export default function Home() {
         <div className="mx-auto max-w-screen-lg px-10 pt-16">
           <div className="relative">
             <Image
-              className="absolute top-0 left-1/2 z-0 -translate-x-1/2 shadow-xl"
+              className="absolute top-0 left-1/2 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl"
               src="/images/hero/hero-image-1@4x.jpg"
               alt=""
               width="184"
               height="264"
             />
             <Image
-              className="absolute top-48 left-0 z-10 shadow-xl"
+              className="absolute top-48 left-0 z-10 h-[208px] w-[144px] shadow-xl"
               src="/images/hero/hero-image-2@4x.jpg"
               alt=""
               width="144"
               height="208"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 z-10 shadow-xl"
+              className="absolute top-[calc(12rem+6px)] right-0 z-10 h-[192px] w-[128px] shadow-xl"
               src="/images/hero/hero-image-3@4x.jpg"
               alt=""
               width="128"
@@ -110,6 +110,15 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="relative h-80">
+          <Image
+            className="object-cover object-center"
+            src="/images/hero/hero-video-placeholder@4x.jpg"
+            alt=""
+            fill
+          />
         </div>
       </header>
     </div>
