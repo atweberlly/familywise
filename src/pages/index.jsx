@@ -1,5 +1,6 @@
 import { Bars3Icon, ArrowLongDownIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import FeatherIcon from '~/components/FeatherIcon'
 import Title from '~/components/Title'
 
 export default function Home() {
@@ -76,9 +77,38 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-32 overflow-x-hidden px-10">
+        <div className="px-10 pt-32 pb-14">
           <div className="text-center font-serif text-[3.25rem] font-bold leading-none">
             How it works
+          </div>
+
+          <Image
+            className="mx-auto mt-8 h-[328px] w-[248px] shadow-xl"
+            src="/images/hero/hero-book-cover@4x.jpg"
+            alt="A Happy Life by Alex Green"
+            width="248"
+            height="328"
+          />
+
+          <div className="mt-16 space-y-4">
+            <div className="flex items-center">
+              <FeatherIcon className="shrink-0" />
+              <p className="ml-4 grow text-lg">Each week we&apos;ll email a question to you.</p>
+            </div>
+
+            <div className="flex items-center">
+              <FeatherIcon className="shrink-0" />
+              <p className="ml-4 grow text-lg">
+                Your answers can be as long or short as you like. Add photos if you&apos;d like
+              </p>
+            </div>
+
+            <div className="flex items-center">
+              <FeatherIcon className="shrink-0" />
+              <p className="ml-4 grow text-lg">
+                When you&apos;re ready, you can print a single book or as many copies as you want
+              </p>
+            </div>
           </div>
         </div>
       </header>
