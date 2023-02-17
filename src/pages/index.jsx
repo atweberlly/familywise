@@ -125,6 +125,54 @@ export default function Home() {
         </div>
       </header>
 
+      <div className="bg-black-pearl px-10 pt-14 pb-12 text-white">
+        <div className="grid grid-cols-1 gap-10">
+          <div>
+            <h2 className="font-serif text-[3.25rem] font-bold leading-none">
+              <span className="block text-white/30">Start</span>{' '}
+              <span className="-mt-2 ml-16 block">right away</span>
+            </h2>
+            <p className="mt-2 ml-8 text-sm uppercase tracking-wide text-white/70">
+              Capture the stories of your lifetime
+            </p>
+          </div>
+
+          <div>
+            <p className="text-lg text-white/70">
+              Your stories are worth sharing. Get started in minutes & with an email each week,
+              you&apos;ll preserve your meaningful moments into a keepsake book to pass on to future
+              generations.
+            </p>
+            <p className="mt-2.5 text-lg text-white/70">
+              Receive immediate access - your first question will arrive in minutes.
+            </p>
+
+            <div className="mt-5">
+              <a
+                className="inline-block rounded bg-sunglow px-4 py-3 font-bold uppercase tracking-wider text-black"
+                href=""
+              >
+                Get started
+              </a>
+            </div>
+          </div>
+
+          <div className="relative -mx-10 h-48">
+            <Image src="/images/get-started/the-perfect-gift@4x.jpg" alt="The Perfect Gift" fill />
+          </div>
+
+          <div>
+            <Image
+              className="h-[416px] w-full object-cover object-center"
+              src="/images/get-started/get-started-image@4x.jpg"
+              alt="Get Started"
+              width="312"
+              height="416"
+            />
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </div>
   )
