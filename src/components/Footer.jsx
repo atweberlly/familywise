@@ -11,11 +11,17 @@ export default function Footer() {
         height="96"
       />
       <p className="italic">Capturing Life&apos;s Priceless Moments</p>
+      <div className="mt-4 text-sm font-medium uppercase tracking-wide text-primary-600">
+        Follow us
+      </div>
+      <div>{/* TODO: Add social media icons */}</div>
 
       <div className="mt-24 grid grid-cols-1 gap-8">
         <div>
-          <div className="text-lg uppercase">Information</div>
-          <ul className="mt-4 space-y-2 text-[#92b9b5]">
+          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+            Information
+          </div>
+          <ul className="mt-4 space-y-2 text-primary-50">
             <li>
               <a href="">About</a>
             </li>
@@ -35,32 +41,25 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-lg uppercase">Social</div>
-          <ul className="mt-4 space-y-2 text-[#92b9b5]">
-            <li>
-              <a href="">Facebook</a>
-            </li>
+          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+            Address
+          </div>
+          <div className="mt-4 text-primary-50">61-63 Parry St Newcastle, NSW Australia</div>
+        </div>
 
-            <li>
-              <a href="">Instagram</a>
-            </li>
-          </ul>
+        <div>
+          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+            Email us
+          </div>
+          <a className="mt-4 inline-block text-primary-50" href="mailto:hello@familyfortunate.us">
+            hello@familyfortunate.us
+          </a>
         </div>
       </div>
 
-      <hr className="mt-16 mb-6 border-[#92b9b5]" />
+      <hr className="mt-16 mb-6 border-primary-900" />
 
-      <div className="flex items-center space-x-8 text-sm">
-        <a className="underline" href="">
-          Terms &amp; Conditions
-        </a>
-
-        <a className="underline" href="">
-          Cookies Policy
-        </a>
-      </div>
-
-      <p className="mt-6 text-sm text-[#7a7a7a]">
+      <p className="mt-6 text-sm text-gray-500">
         Copyright 2023 Family Fortunate. All right reserved.
       </p>
     </footer>
