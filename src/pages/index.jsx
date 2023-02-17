@@ -158,7 +158,12 @@ export default function Home() {
           </div>
 
           <div className="relative -mx-10 h-48">
-            <Image src="/images/get-started/the-perfect-gift@4x.jpg" alt="The Perfect Gift" fill />
+            <Image
+              className="object-cover object-center"
+              src="/images/get-started/the-perfect-gift@4x.jpg"
+              alt="The Perfect Gift"
+              fill
+            />
           </div>
 
           <div>
