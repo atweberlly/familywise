@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <hr className="border-primary-900 mt-16 mb-6" />
+      <hr className="mt-16 mb-6 border-gray-600" />
 
       <p className="mt-6 text-sm text-gray-500">
         Copyright 2023 Family Fortunate. All right reserved.
