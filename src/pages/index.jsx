@@ -244,7 +244,7 @@ export default function Home() {
               {[...Array(3).keys()].map((i) => (
                 <div className="swiper-slide" key={i}>
                   <div className="rounded-lg bg-white p-4 text-center">
-                    <div className="font-serif text-2xl font-black text-warning-600">
+                    <div className="font-serif text-2xl font-bold text-warning-600">
                       Nancy L. - Greenwood, Indiana
                     </div>
 
@@ -256,7 +256,7 @@ export default function Home() {
 
                     <div className="mt-4 flex items-center justify-center space-x-1">
                       {[...Array(5).keys()].map((x) => (
-                        <StarIcon className="h-6 w-6 text-warning-300" key={x} />
+                        <StarIcon className="h-6 w-6 text-warning-600" key={x} />
                       ))}
                     </div>
                   </div>
