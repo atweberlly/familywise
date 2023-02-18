@@ -11,6 +11,7 @@ export default function Footer() {
         height="96"
       />
       <p className="italic">Capturing Life&apos;s Priceless Moments</p>
+
       <div className="mt-4 text-sm font-medium uppercase tracking-wide text-primary-600">
         Follow us
       </div>
@@ -21,7 +22,7 @@ export default function Footer() {
           <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
             Information
           </div>
-          <ul className="mt-4 space-y-2 text-primary-50">
+          <ul className="mt-4 space-y-2 text-primary-100">
             <li>
               <a href="">About</a>
             </li>
@@ -44,20 +45,20 @@ export default function Footer() {
           <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
             Address
           </div>
-          <div className="mt-4 text-primary-50">61-63 Parry St Newcastle, NSW Australia</div>
+          <div className="mt-4 text-primary-100">61-63 Parry St Newcastle, NSW Australia</div>
         </div>
 
         <div>
           <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
             Email us
           </div>
-          <a className="mt-4 inline-block text-primary-50" href="mailto:hello@familyfortunate.us">
+          <a className="mt-4 inline-block text-primary-100" href="mailto:hello@familyfortunate.us">
             hello@familyfortunate.us
           </a>
         </div>
       </div>
 
-      <hr className="mt-16 mb-6 border-primary-900" />
+      <hr className="border-primary-900 mt-16 mb-6" />
 
       <p className="mt-6 text-sm text-gray-500">
         Copyright 2023 Family Fortunate. All right reserved.
