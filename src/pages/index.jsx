@@ -1,10 +1,25 @@
 import { Bars3Icon, ArrowLongDownIcon } from '@heroicons/react/24/outline'
+import { StarIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import Swiper, { Pagination } from 'swiper'
 import FeatherIcon from '~/components/FeatherIcon'
 import Footer from '~/components/Footer'
 import Title from '~/components/Title'
 
 export default function Home() {
+  useEffect(() => {
+    const swiper = new Swiper('.swiper', {
+      modules: [Pagination],
+      spaceBetween: 16,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    })
+
+    return () => swiper.init()
+  }, [])
+
   return (
     <div>
       <Title>Family Fortunate</Title>
@@ -219,6 +234,41 @@ export default function Home() {
               <div className="mt-1 text-lg font-medium">Founder</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-vanilla px-10 pt-12 pb-8 text-white">
+        <div className="relative pb-10">
+          <div className="swiper">
+            <div className="swiper-wrapper">
+              {[...Array(3).keys()].map((i) => (
+                <div className="swiper-slide" key={i}>
+                  <div className="rounded-lg bg-white p-4 text-center">
+                    <div className="font-serif text-2xl font-black text-warning-600">
+                      Nancy L. - Greenwood, Indiana
+                    </div>
+
+                    <p className="mt-4 text-black">
+                      Family Fortunate guided me every week to gather my memoirs into a keepsake
+                      book. All my children have a copy now, which will last for generations to
+                      come.
+                    </p>
+
+                    <div className="mt-4 flex items-center justify-center space-x-1">
+                      {[...Array(5).keys()].map((x) => (
+                        <StarIcon className="h-6 w-6 text-warning-300" key={x} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="swiper-pagination"
+            style={{ '--swiper-pagination-color': '#393c51' }}
+          ></div>
         </div>
       </div>
 
