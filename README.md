@@ -1,21 +1,22 @@
 # Family Fortunate
 
-<!-- TODO: Write a project description -->
+TODO:
 
-<!-- Create Table of Contents -->
+- Add project description
+- List down technologies used
 
 ## Run Locally
 
 1. Download or clone the project
 
    ```
-   git clone https://github.com/joaquinvaldezzz/familyfortunate.git
+   git clone https://github.com/atweberlly/familyfortunate-v2.git
    ```
 
 2. Go to the project directory
 
    ```
-   cd familyfortunate
+   cd familyfortunate-v2
    ```
 
 3. Install dependencies
