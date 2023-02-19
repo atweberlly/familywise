@@ -6,8 +6,8 @@ export default function Title({ suffix, children }) {
   return (
     <Head>
       <title>{title}</title>
-      <meta key="og:title" property="og:title" content={title} />
-      <meta key="twitter:title" name="twitter:title" content={title} />
+      <meta property="og:title" content={title} />
+      <meta name="twitter:title" content={title} />
     </Head>
   )
 }

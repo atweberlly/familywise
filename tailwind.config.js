@@ -1,81 +1,88 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
+const files = require('./files')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/components/**/*.{js,jsx}', './src/pages/**/*.{js,jsx}'],
+  content: [...files],
+  future: {
+    disableColorOpacityUtilitiesByDefault: true,
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     container: {
       center: true,
       padding: '1.5rem',
     },
     extend: {
+      boxShadow: {
+        xl: '0 24px 48px -12px rgba(16, 24, 40, 0.25)',
+      },
       colors: {
+        vanilla: '#d6c7b2',
+        'black-pearl': '#07222d',
+        sunglow: '#fec339',
+
         primary: {
-          50: '#effef5',
-          100: '#d9ffe9',
-          200: '#b6fcd4',
-          300: '#7df8b5',
-          400: '#3eea8c',
-          500: '#14d36b',
-          600: '#0bbc5c', // Default color
-          700: '#0c8946',
-          800: '#0f6c3a',
-          900: '#0f5832',
+          100: '#f9f8f8',
+          200: '#b9f4ed',
+          300: '#c4f3d9',
+          400: '#21c0ad',
+          500: '#2ba193',
+          600: '#3a776f',
         },
         secondary: {
-          50: '#f5f9f4',
-          100: '#e5f3e5',
-          200: '#cce6cc',
-          300: '#a4d1a4',
-          400: '#74b474',
-          500: '#509751',
-          600: '#438544', // Default color
-          700: '#336234',
-          800: '#2c4f2d',
-          900: '#264127',
+          100: '#f5f6f8',
+          200: '#e6e9ed',
+          300: '#b1c3d2',
+          400: '#95afc6',
+          500: '#6c92b2',
+          600: '#3f5f78',
         },
-        accent: {
-          50: '#eef3ff',
-          100: '#dae3ff',
-          200: '#bdceff',
-          300: '#90afff',
-          400: '#507cff', // Default color
-          500: '#355afc',
-          600: '#1f38f1',
-          700: '#1724de',
-          800: '#1920b4',
-          900: '#1a218e',
+        success: {
+          100: '#e7faf0',
+          200: '#c4f3d9',
+          300: '#89e7b3',
+          400: '#4eda8c',
+          500: '#2bd375',
+          600: '#13ce66',
+        },
+        warning: {
+          600: '#ca8e22',
+        },
+        danger: {
+          100: '#ffe5e7',
+          200: '#ffbfc3',
+          300: '#ff8086',
+          400: '#ff4049',
+          500: '#ff1925',
+          600: '#e5000c',
         },
         dark: {
-          50: '#f1fafe',
-          100: '#e1f4fd',
-          200: '#bdeafa',
-          300: '#83daf6',
-          400: '#41c8ef',
-          500: '#18b0df',
-          600: '#0b8fbe',
-          700: '#0a729a',
-          800: '#0d607f',
-          900: '#07222d', // Default color
+          100: '#e7e8ea',
+          200: '#757785',
+          300: '#393c51',
+          400: '#11142d',
+          500: '#0c0e1f',
+          600: '#0a0c1b',
         },
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-        display: ['Boska', ...defaultTheme.fontFamily.serif],
+        serif: ['Freight Big Pro', ...defaultTheme.fontFamily.serif],
       },
       minWidth: {
         xs: '320px',
       },
     },
   },
-  corePlugins: {
-    backdropOpacity: false,
-    backgroundOpacity: false,
-    borderOpacity: false,
-    divideOpacity: false,
-    placeholderOpacity: false,
-    ringOpacity: false,
-    textOpacity: false,
-  },
-  plugins: [],
+  plugins: [
+    plugin(({ addBase }) => {
+      addBase({
+        body: {
+          fontSize: '16px',
+        },
+      })
+    }),
+  ],
 }

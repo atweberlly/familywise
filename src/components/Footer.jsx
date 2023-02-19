@@ -1,94 +1,68 @@
+import Image from 'next/image'
+
 export default function Footer() {
   return (
-    <footer className="bg-dark-900 py-16 text-white">
-      <div className="container">
-        <div className="flex flex-col gap-8 md:flex-row">
-          <div className="md:w-4/12">
-            <h2 className="mb-2 font-display text-3xl">Family Fortunate</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+    <footer className="bg-black-pearl px-10 pt-12 pb-8 text-white">
+      <Image
+        className="h-[96px] w-[152px]"
+        src="/svg/family-fortunate-logotype-white.svg"
+        alt="Family Fortunate"
+        width="152"
+        height="96"
+      />
+      <p className="italic">Capturing Life&apos;s Priceless Moments</p>
+
+      <div className="mt-4 text-sm font-medium uppercase tracking-wide text-primary-600">
+        Follow us
+      </div>
+      <div>{/* TODO: Add social media icons */}</div>
+
+      <div className="mt-24 grid grid-cols-1 gap-8">
+        <div>
+          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+            Information
           </div>
+          <ul className="mt-4 space-y-2 text-primary-100">
+            <li>
+              <a href="">About</a>
+            </li>
 
-          <div className="flex flex-col gap-8 text-sm md:w-8/12 md:flex-row md:justify-center lg:gap-16">
-            <div>
-              <h3 className="mb-4 font-bold">Company</h3>
-              <ul className="flex flex-col gap-4 text-gray-400">
-                <li>
-                  <a className="hover:text-white" href="#">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Support
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <li>
+              <a href="">Membership Options</a>
+            </li>
 
-            <div>
-              <h3 className="mb-4 font-bold">Quick Links</h3>
-              <ul className="flex flex-col gap-4 text-gray-400">
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Share Location
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Orders Tracking
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Size Guide
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white" href="#">
-                    FAQ
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <li>
+              <a href="">FAQs</a>
+            </li>
 
-            <div>
-              <h3 className="mb-4 font-bold">Legal</h3>
-              <ul className="flex flex-col gap-4 text-gray-400">
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white" href="#">
-                    Terms &amp; Conditions
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+            <li>
+              <a href="">Contact us</a>
+            </li>
+          </ul>
         </div>
 
-        <hr className="my-8 border-gray-600" />
-
-        <div className="flex flex-col gap-2 text-sm text-gray-400 md:flex-row md:justify-between">
-          <p>Copyright &copy; 2023 Family Fortune. All right reserved.</p>
-
-          <div className="flex flex-row gap-4">
-            <a className="underline hover:text-white" href="#">
-              Privacy Policy
-            </a>
-            <a className="underline hover:text-white" href="#">
-              Terms &amp; Conditions
-            </a>
+        <div>
+          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+            Address
           </div>
+          <div className="mt-4 text-primary-100">61-63 Parry St Newcastle, NSW Australia</div>
+        </div>
+
+        <div>
+          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+            Email us
+          </div>
+          <a className="mt-4 inline-block text-primary-100" href="mailto:hello@familyfortunate.us">
+            hello@familyfortunate.us
+          </a>
         </div>
       </div>
+
+      <hr className="mt-16 mb-6 border-gray-600" />
+
+      <p className="mt-6 text-sm text-gray-500">
+        Copyright 2023 Family Fortunate. All right reserved.
+      </p>
     </footer>
   )
 }

@@ -1,2 +1,5 @@
 @import 'tailwindcss/components';
+
+/*! purgecss start ignore */
 @import 'swiper/swiper-bundle';
+/*! purgecss end ignore */

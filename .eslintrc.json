@@ -13,9 +13,8 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "@next/next/no-img-element": "off",
-    "jsx-a11y/anchor-is-valid": "off",
     "prettier/prettier": "error",
+    "jsx-a11y/anchor-is-valid": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
@@ -31,9 +30,9 @@
     "import/resolver": {
       "eslint-import-resolver-custom-alias": {
         "alias": {
-          "@components": "src/components/",
-          "@pages": "src/pages/",
-          "@styles": "src/styles/"
+          "~/components": "src/components/",
+          "~/pagess": "src/pages/",
+          "~/styles": "src/styles/"
         },
         "extensions": [".css", ".js", ".jsx"]
       }
