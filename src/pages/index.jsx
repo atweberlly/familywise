@@ -294,7 +294,7 @@ export default function Home() {
       </div>
 
       <div className="bg-vanilla px-10 pt-12 pb-8 text-white">
-        <div className="relative pb-10">
+        <div className="relative mx-auto max-w-screen-md pb-10">
           <div className="swiper">
             <div className="swiper-wrapper">
               {[...Array(3).keys()].map((i) => (
