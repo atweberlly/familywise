@@ -194,6 +194,62 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="px-10 pt-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+          <div className="md:order-2">
+            <h2 className="font-serif text-3xl font-bold text-warning-600">
+              Your story starts here
+            </h2>
+            <p className="mt-1.5 italic">Bringing families together</p>
+
+            <div className="mt-10">
+              <div className="flex items-end">
+                <div className="flex items-center space-x-1">
+                  {[...Array(5).keys()].map((x) => (
+                    <StarIcon className="h-6 w-6 text-yellow-500" key={x} />
+                  ))}
+                </div>
+                <span className="ml-2 text-sm">50 reviews</span>
+              </div>
+
+              <ul className="mt-4 space-y-2">
+                {[...Array(3).keys()].map((x) => (
+                  <li className="flex" key={x}>
+                    <svg
+                      className="h-6 w-6 shrink-0 text-red-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="m9.973 14.175 5.9-5.9a.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275a.948.948 0 0 1 .275.7.948.948 0 0 1-.275.7l-6.6 6.6c-.2.2-.433.3-.7.3a.96.96 0 0 1-.7-.3l-2.6-2.6a.948.948 0 0 1-.275-.7.95.95 0 0 1 .275-.7.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275l1.9 1.9Z"
+                      />
+                    </svg>
+                    <p className="ml-2 font-medium">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    </p>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-4 space-y-4"></div>
+            </div>
+          </div>
+
+          <div className="md:order-1">
+            <Image
+              className="w-full"
+              src="/images/cover@4x.jpg"
+              alt="Cover"
+              width="304"
+              height="352"
+              priority="false"
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="px-10 pt-14 pb-6">
         <div className="grid grid-cols-1 gap-8">
           <div>
@@ -256,7 +312,7 @@ export default function Home() {
 
                     <div className="mt-4 flex items-center justify-center space-x-1">
                       {[...Array(5).keys()].map((x) => (
-                        <StarIcon className="h-6 w-6 text-warning-600" key={x} />
+                        <StarIcon className="h-6 w-6 text-yellow-500" key={x} />
                       ))}
                     </div>
                   </div>
