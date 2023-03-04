@@ -14,8 +14,9 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "@next/next/no-img-element": "off",
-    "prettier/prettier": "error",
     "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "prettier/prettier": "error",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",

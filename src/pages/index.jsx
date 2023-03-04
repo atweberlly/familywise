@@ -328,6 +328,65 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="relative overflow-hidden pt-64 pb-12 md:pb-24">
+        <img
+          className="absolute inset-0 h-full w-full select-none object-cover"
+          src="/images/image.jpg"
+          alt=""
+          loading="lazy"
+        />
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-white"></div>
+
+        <div className="container relative">
+          <div className="text-center">
+            <div className="text-sm font-medium uppercase tracking-wide">
+              Make every moment count!
+            </div>
+            <h2 className="mt-6 font-serif text-4xl font-bold">
+              Receive inspiration in your inbox
+            </h2>
+          </div>
+
+          <form
+            className="mx-auto mt-8 grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2"
+            action=""
+          >
+            <input
+              className="rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+              type="text"
+              placeholder="First name"
+            />
+
+            <input
+              className="rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+              type="text"
+              placeholder="Last name"
+            />
+
+            <input
+              className="rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+              type="email"
+              placeholder="Email address (required)"
+            />
+
+            <div className="flex">
+              <div className="flex h-6 items-center">
+                <input
+                  className="form-radio rounded-full border-gray-300 text-primary-600 transition focus:ring-primary-600"
+                  id="comments"
+                  name="comments"
+                  type="checkbox"
+                />
+              </div>
+
+              <label className="ml-3" htmlFor="comments">
+                I&apos;m happy to receive emails from Family Fortunate
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+
       <Footer />
     </div>
   )

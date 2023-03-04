@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 const files = require('./files')
@@ -83,6 +84,9 @@ module.exports = {
           fontSize: '16px',
         },
       })
+    }),
+    require('@tailwindcss/forms')({
+      strategy: 'class',
     }),
   ],
 }
