@@ -1,4 +1,10 @@
-import { ArrowLongDownIcon, ArrowLongRightIcon, Bars3Icon } from '@heroicons/react/24/outline'
+import {
+  ArrowLongDownIcon,
+  ArrowLongRightIcon,
+  Bars3Icon,
+  LockClosedIcon,
+  ReceiptRefundIcon,
+} from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { useEffect } from 'react'
@@ -256,10 +262,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="px-10 pt-8">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+      <div className="container py-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="md:order-2">
-            <h2 className="font-serif text-3xl font-bold text-warning-600">
+            <h2 className="font-serif text-4xl font-bold text-warning-600">
               Your story starts here
             </h2>
             <p className="mt-1.5 italic">Bringing families together</p>
@@ -298,7 +304,84 @@ export default function Home() {
                 ))}
               </ul>
 
-              <div className="mt-4 space-y-4"></div>
+              <form className="mt-4 space-y-4">
+                <div className="relative flex">
+                  <input
+                    className="peer absolute inset-0 h-full w-full appearance-none focus:outline-none"
+                    id="basic-plan"
+                    name="plan"
+                    type="radio"
+                    value="basic"
+                  />
+                  <label
+                    className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
+                    htmlFor="basic-plan"
+                  >
+                    <div>
+                      <div className="text-lg font-bold">Basic</div>
+                      <div className="text-sm">Basic plan</div>
+                    </div>
+
+                    <div className="">
+                      <span className="text-3xl font-semibold">$97</span>{' '}
+                      <span className="text-sm">per year</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="relative flex">
+                  <input
+                    className="peer absolute inset-0 h-full w-full appearance-none focus:outline-none"
+                    id="premium-plan"
+                    name="plan"
+                    type="radio"
+                    value="premium"
+                  />
+                  <label
+                    className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
+                    htmlFor="premium-plan"
+                  >
+                    <div>
+                      <div className="text-lg font-bold">Premium</div>
+                      <div className="text-sm">Most popular</div>
+                    </div>
+
+                    <div className="">
+                      <span className="text-3xl font-semibold">$97</span>{' '}
+                      <span className="text-sm">per year</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="flex">
+                  <button
+                    className="flex-1 rounded-md bg-secondary-600 p-3 text-sm uppercase tracking-wider text-white"
+                    type="submit"
+                  >
+                    Choose plan
+                  </button>
+                </div>
+
+                <div className="flex items-center justify-center space-x-8">
+                  <div className="flex flex-col items-center text-primary-600">
+                    <LockClosedIcon className="mx-auto h-6 w-6" />
+                    <div className="mt-1 text-center text-sm">
+                      Secured
+                      <br />
+                      Checkout
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center text-primary-600">
+                    <ReceiptRefundIcon className="mx-auto h-6 w-6" />
+                    <div className="mt-1 text-center text-sm">
+                      Money-Back
+                      <br />
+                      Guarantee
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
 

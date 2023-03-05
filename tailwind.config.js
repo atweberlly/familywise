@@ -90,6 +90,8 @@ module.exports = {
           fontSize: '16px',
         },
       })
+
+      // addVariant('peer-choice', '.peer-choice:checked ~ * &')
     }),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms')({
