@@ -1,4 +1,4 @@
-import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
           <div className="mt-4 flex items-center space-x-2.5">
             <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faFacebook} className="h-6 w-6" />
+              <FontAwesomeIcon icon={faFacebookF} className="h-6 w-6" />
             </a>
 
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
@@ -34,10 +34,6 @@ export default function Footer() {
           </div>
           <ul className="mt-4 space-y-2 text-primary-100">
             <li>
-              <a href="">About</a>
-            </li>
-
-            <li>
               <a href="">Membership Options</a>
             </li>
 
@@ -46,7 +42,10 @@ export default function Footer() {
             </li>
 
             <li>
-              <a href="">Contact us</a>
+              <a href="">Terms & Conditions</a>
+            </li>
+            <li>
+              <a href="">Privacy Policy</a>
             </li>
           </ul>
         </div>
