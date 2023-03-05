@@ -120,35 +120,41 @@ export default function Home() {
             How it works
           </div>
 
-          <div className="grid grid-cols-1 gap-16">
+          <div className="mt-8 grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-8">
             <Image
-              className="mx-auto mt-8 h-[328px] w-[248px] shadow-xl"
+              className="mx-auto h-[328px] w-[248px] shadow-xl"
               src="/images/hero/hero-book-cover@4x.jpg"
               alt="A Happy Life by Alex Green"
               width="248"
               height="328"
             />
 
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <FeatherIcon className="shrink-0" />
+            <ul className="space-y-4">
+              <li className="flex">
+                <div className="flex h-10 items-center">
+                  <FeatherIcon className="h-8 w-8 shrink-0" />
+                </div>
                 <p className="ml-4 grow text-lg">Each week we&apos;ll email a question to you.</p>
-              </div>
+              </li>
 
-              <div className="flex items-center">
-                <FeatherIcon className="shrink-0" />
+              <li className="flex">
+                <div className="flex h-10 items-center">
+                  <FeatherIcon className="h-8 w-8 shrink-0" />
+                </div>
                 <p className="ml-4 grow text-lg">
                   Your answers can be as long or short as you like. Add photos if you&apos;d like
                 </p>
-              </div>
+              </li>
 
-              <div className="flex items-center">
-                <FeatherIcon className="shrink-0" />
+              <li className="flex">
+                <div className="flex h-10 items-center">
+                  <FeatherIcon className="h-8 w-8 shrink-0" />
+                </div>
                 <p className="ml-4 grow text-lg">
                   When you&apos;re ready, you can print a single book or as many copies as you want
                 </p>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
 
