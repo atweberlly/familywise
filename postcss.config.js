@@ -11,7 +11,7 @@ module.exports = {
       },
       keyframes: true,
       variables: true,
-      safelist: ['html', 'body'],
+      safelist: ['html', 'body', "marker:content-['']"],
     },
     autoprefixer: {},
     'postcss-import': {},
