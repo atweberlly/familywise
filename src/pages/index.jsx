@@ -48,7 +48,7 @@ export default function Home() {
         <div className="mx-auto max-w-screen-lg px-10 pt-16">
           <div className="relative">
             <Image
-              className="absolute top-0 left-1/2 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl"
+              className="absolute top-0 left-1/2 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0"
               src="/images/hero/hero-image-1@4x.jpg"
               alt=""
               width="184"
@@ -62,19 +62,41 @@ export default function Home() {
               height="208"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 z-10 h-[192px] w-[128px] shadow-xl"
+              className="absolute top-[calc(12rem+6px)] right-0 z-10 h-[192px] w-[128px] shadow-xl md:left-28"
               src="/images/hero/hero-image-3@4x.jpg"
               alt=""
               width="128"
               height="192"
             />
 
-            <div className="relative z-20 pt-80">
-              <h1 className="text-center font-serif text-[3.25rem] leading-none">
+            <Image
+              className="absolute top-0 right-8 z-10 hidden h-[264px] w-[184px] shadow-xl md:block"
+              src="/images/hero/hero-image-4.jpg"
+              alt=""
+              width="328"
+              height="456"
+            />
+            <Image
+              className="absolute top-48 right-28 z-20 hidden h-[208px] w-[144px] shadow-xl md:block"
+              src="/images/hero/hero-image-5.jpg"
+              alt=""
+              width="192"
+              height="284"
+            />
+            <Image
+              className="absolute top-[calc(12rem+6px)] right-0 z-30 hidden h-[192px] w-[128px] shadow-xl md:block"
+              src="/images/hero/hero-image-6.jpg"
+              alt=""
+              width="296"
+              height="432"
+            />
+
+            <div className="relative z-50 mx-auto max-w-xs pt-80">
+              <h1 className="text-center font-serif text-[3.25rem] leading-none md:text-left">
                 <span className="font-bold">Capturing Life&apos;s Priceless</span>{' '}
                 <span className="font-semibold italic">Moments</span>
               </h1>
-              <p className="mt-5 text-center text-xl font-medium">
+              <p className="mt-5 text-center text-xl font-medium md:text-left">
                 We all carry amazing life stories with us, many untold.
               </p>
             </div>
