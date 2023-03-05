@@ -3,12 +3,15 @@ import {
   ArrowLongRightIcon,
   Bars3Icon,
   LockClosedIcon,
+  MinusIcon,
+  PlusIcon,
   ReceiptRefundIcon,
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import Swiper, { Navigation, Pagination } from 'swiper'
+import CheckIcon from '~/components/CheckIcon'
 import FeatherIcon from '~/components/FeatherIcon'
 import Footer from '~/components/Footer'
 import Title from '~/components/Title'
@@ -262,7 +265,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container py-8">
+      <div className="mx-auto max-w-screen-lg px-10 py-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="md:order-2">
             <h2 className="font-serif text-4xl font-bold text-warning-600">
@@ -395,6 +398,149 @@ export default function Home() {
               priority="false"
             />
           </div>
+
+          <dl className="order-3 space-y-4 divide-y divide-secondary-200 md:col-span-2 lg:mx-auto lg:w-full lg:max-w-prose">
+            <details className="open-details cursor-pointer">
+              <summary className="marker:content-['']">
+                <div className="flex items-center justify-between text-secondary-600">
+                  <div className="text-xl font-medium">Product information</div>
+                  <PlusIcon className="h-6 w-6 open-details:hidden" />
+                  <MinusIcon className="hidden h-6 w-6 open-details:block" />
+                </div>
+              </summary>
+
+              <div className="hidden py-4 open-details:block">
+                <ul className="space-y-3">
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">100 questions to choose from</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Include up to 52 stories in your book</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Choose a different question from your bank of questions</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Unlimited editing of your stories</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Full suite of design options for your printed book</p>
+                  </li>
+                </ul>
+
+                <h3 className="my-4 font-medium text-primary-400">All memberships receive</h3>
+
+                <ul className="space-y-3">
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">
+                      Emails with your question of the week for the duration of your membership
+                    </p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Technical support by email, business hours AEST</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Member access to offers & upgrades throughout the year</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Lifetime access to your stories</p>
+                  </li>
+                </ul>
+
+                <h3 className="my-4 font-medium text-primary-400">
+                  Full suite design options for book printing
+                </h3>
+
+                <ul className="space-y-3">
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Black &amp; white or colour printing</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Book size is A5 (14.85x21cm)</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Paper options including matte, semi-gloss, or high-gloss</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Paper weights 90gsm, 115gsm, 170gsm</p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">
+                      Binding options - Perfect Bound soft cover, Hardcover with Dust Jacket or
+                      Hardcover Casewrap
+                    </p>
+                  </li>
+                  <li className="flex">
+                    <div className="flex h-6 items-center">
+                      <CheckIcon className="text-primary-600" />
+                    </div>
+                    <p className="ml-2">Print 1 single copy, or as many as you want</p>
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <details className="open-details cursor-pointer pt-4">
+              <summary className="marker:content-['']">
+                <div className="flex items-center justify-between text-secondary-600">
+                  <div className="text-xl font-medium">Money-Back Guarantee</div>
+                  <PlusIcon className="h-6 w-6 open-details:hidden" />
+                  <MinusIcon className="hidden h-6 w-6 open-details:block" />
+                </div>
+              </summary>
+
+              <div className="hidden py-4 open-details:block">
+                <p>
+                  The My Life in a Book experience is risk-free, with a 30 day money back guarantee.
+                  If for any reason you or your relative are not satisfied by the experience or the
+                  result, simply send us an email and we will give you a full refund, no questions
+                  asked.
+                </p>
+              </div>
+            </details>
+          </dl>
         </div>
       </div>
 

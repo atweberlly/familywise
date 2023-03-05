@@ -84,7 +84,7 @@ module.exports = {
     aspectRatio: false,
   },
   plugins: [
-    plugin(({ addBase }) => {
+    plugin(({ addBase, addVariant }) => {
       addBase({
         body: {
           fontSize: '16px',
@@ -92,6 +92,7 @@ module.exports = {
       })
 
       // addVariant('peer-choice', '.peer-choice:checked ~ * &')
+      addVariant('open-details', '.open-details[open] &')
     }),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms')({
