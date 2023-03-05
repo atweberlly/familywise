@@ -316,7 +316,7 @@ export default function Home() {
               <form className="mt-4 space-y-4">
                 <div className="relative flex">
                   <input
-                    className="peer absolute inset-0 h-full w-full appearance-none focus:outline-none"
+                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
                     id="basic-plan"
                     name="plan"
                     type="radio"
@@ -340,7 +340,7 @@ export default function Home() {
 
                 <div className="relative flex">
                   <input
-                    className="peer absolute inset-0 h-full w-full appearance-none focus:outline-none"
+                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
                     id="premium-plan"
                     name="plan"
                     type="radio"
