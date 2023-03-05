@@ -29,8 +29,8 @@ export default function Home() {
 
     const speed = 0.25
 
-    Marquee('.how-it-works', speed)
     Marquee('.gift', speed)
+    Marquee('.how-it-works', speed)
 
     const presentation = new Swiper('.swiper.presentation', {
       modules: [Navigation],
