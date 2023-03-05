@@ -156,23 +156,29 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="px-10 pt-32 pb-14">
-          <div className="marquee how-it-works flex overflow-hidden whitespace-nowrap">
-            <div className="mr-4 text-center font-serif text-[3.25rem] font-bold leading-none">
+        <div className="relative mx-auto max-w-screen-lg overflow-hidden px-10 pt-32 pb-14">
+          <div className="marquee how-it-works absolute top-1/2 hidden -translate-y-1/2 whitespace-nowrap lg:flex">
+            <div className="mr-4 select-none text-center font-serif text-8xl font-bold">
               How it works?
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-8">
-            <Image
-              className="mx-auto h-[328px] w-[248px] shadow-xl"
-              src="/images/hero/hero-book-cover@4x.jpg"
-              alt="A Happy Life by Alex Green"
-              width="248"
-              height="328"
-            />
+          <div className="mr-4 text-center font-serif text-[3.25rem] font-bold leading-none lg:hidden">
+            How it works?
+          </div>
 
-            <ul className="space-y-4">
+          <div className="relative z-50 mt-8 grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-5">
+              <Image
+                className="mx-auto h-[328px] w-[248px] shadow-xl md:h-auto md:w-full"
+                src="/images/hero/hero-book-cover@4x.jpg"
+                alt="A Happy Life by Alex Green"
+                width="248"
+                height="328"
+              />
+            </div>
+
+            <ul className="space-y-4 lg:col-span-6 lg:col-start-7">
               <li className="flex">
                 <div className="flex h-10 items-center">
                   <FeatherIcon className="h-8 w-8 shrink-0" />
