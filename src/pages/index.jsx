@@ -1,15 +1,46 @@
-import { Bars3Icon, ArrowLongDownIcon } from '@heroicons/react/24/outline'
+import { ArrowLongDownIcon, ArrowLongRightIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import Swiper, { Pagination } from 'swiper'
+import Swiper, { Navigation, Pagination } from 'swiper'
 import FeatherIcon from '~/components/FeatherIcon'
 import Footer from '~/components/Footer'
 import Title from '~/components/Title'
 
 export default function Home() {
   useEffect(() => {
-    const swiper = new Swiper('.swiper', {
+    function Marquee(selector, speed) {
+      const parentSelector = document.querySelector(selector)
+      const clone = parentSelector.innerHTML
+      const firstElement = parentSelector.children[0]
+      let i = 0
+
+      parentSelector.insertAdjacentHTML('beforeend', clone)
+      parentSelector.insertAdjacentHTML('beforeend', clone)
+
+      setInterval(() => {
+        firstElement.style.marginLeft = `-${i}px`
+        if (i > firstElement.clientWidth) {
+          i = 0
+        }
+        i += speed
+      }, 0)
+    }
+
+    const speed = 0.25
+
+    Marquee('.how-it-works', speed)
+    Marquee('.gift', speed)
+
+    const presentation = new Swiper('.swiper.presentation', {
+      modules: [Navigation],
+      spaceBetween: 16,
+      navigation: {
+        nextEl: '.swiper-next',
+      },
+    })
+
+    const testimonials = new Swiper('.swiper.testimonials', {
       modules: [Pagination],
       spaceBetween: 16,
       pagination: {
@@ -17,7 +48,8 @@ export default function Home() {
       },
     })
 
-    return () => swiper.init()
+    presentation.init()
+    testimonials.init()
   }, [])
 
   return (
@@ -116,8 +148,10 @@ export default function Home() {
         </div>
 
         <div className="px-10 pt-32 pb-14">
-          <div className="text-center font-serif text-[3.25rem] font-bold leading-none">
-            How it works
+          <div className="marquee how-it-works flex overflow-hidden whitespace-nowrap">
+            <div className="mr-4 text-center font-serif text-[3.25rem] font-bold leading-none">
+              How it works?
+            </div>
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-8">
@@ -281,6 +315,72 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="bg-black-pearl pt-32 pb-16 text-white">
+        <div className="container">
+          <div className="marquee gift flex overflow-hidden whitespace-nowrap">
+            <h2 className="mr-4 bg-texture bg-clip-text pb-2 font-serif text-8xl font-bold text-transparent">
+              The gift that lasts a lifetime.
+            </h2>
+          </div>
+
+          <div className="swiper presentation">
+            <div className="swiper-wrapper mt-8 pb-4">
+              <div className="swiper-slide flex flex-col items-center">
+                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
+                  <span className="block text-white/40">Preserve family memories to</span>
+                  <span className="block sm:ml-4 md:ml-8">Pass on to future generations</span>
+                </h3>
+
+                <Image
+                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
+                  src="/images/slide-images/slide-image-1@1x.jpg"
+                  alt=""
+                  width="1060"
+                  height="660"
+                />
+              </div>
+
+              <div className="swiper-slide flex flex-col items-center">
+                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
+                  <span className="block text-white/40">Give a gift to someone who&apos;s</span>
+                  <span className="block sm:ml-4 md:ml-8">story you&apos;d like to hear</span>
+                </h3>
+
+                <Image
+                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
+                  src="/images/slide-images/slide-image-2@1x.jpg"
+                  alt=""
+                  width="1060"
+                  height="660"
+                />
+              </div>
+
+              <div className="swiper-slide flex flex-col items-center">
+                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
+                  <span className="block text-white/40">Choose the date you&apos;d</span>
+                  <span className="block sm:ml-4 md:ml-8">like your gift to commence</span>
+                </h3>
+
+                <Image
+                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
+                  src="/images/slide-images/slide-image-3@1x.jpg"
+                  alt=""
+                  width="1060"
+                  height="660"
+                />
+              </div>
+            </div>
+
+            <button
+              className="swiper-next top-1/2 right-0 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2"
+              type="button"
+            >
+              <ArrowLongRightIcon className="h-4 w-4 md:h-8 md:w-8 " />
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="overflow-hidden px-10 pt-14 pb-6">
         <div className="relative mx-auto grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
           <div className="relative z-10">
@@ -337,7 +437,7 @@ export default function Home() {
 
       <div className="bg-vanilla px-10 pt-12 pb-8 text-white">
         <div className="relative mx-auto max-w-screen-md pb-10">
-          <div className="swiper">
+          <div className="swiper testimonials">
             <div className="swiper-wrapper">
               {[...Array(3).keys()].map((i) => (
                 <div className="swiper-slide" key={i}>

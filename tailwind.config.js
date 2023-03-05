@@ -16,6 +16,9 @@ module.exports = {
       padding: '2.5rem',
     },
     extend: {
+      backgroundImage: {
+        texture: "url('/images/hero/hero-video-placeholder@4x.jpg')",
+      },
       boxShadow: {
         xl: '0 24px 48px -12px rgba(16, 24, 40, 0.25)',
       },
