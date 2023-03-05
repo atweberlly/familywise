@@ -150,7 +150,7 @@ export default function Home() {
         </button>
 
         <div className="mt-12 px-10">
-          <p className="text-center font-serif text-[1.75rem] leading-8">
+          <p className="text-center font-serif text-[1.75rem] leading-8 md:text-5xl">
             &quot;Family Fortunate sends you a question each week & your stories are compiled into
             your very own book of memories.&quot;
           </p>
