@@ -243,17 +243,20 @@ export default function Home() {
               <ul className="mt-4 space-y-2">
                 {[...Array(3).keys()].map((x) => (
                   <li className="flex" key={x}>
-                    <svg
-                      className="h-6 w-6 shrink-0 text-red-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="m9.973 14.175 5.9-5.9a.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275a.948.948 0 0 1 .275.7.948.948 0 0 1-.275.7l-6.6 6.6c-.2.2-.433.3-.7.3a.96.96 0 0 1-.7-.3l-2.6-2.6a.948.948 0 0 1-.275-.7.95.95 0 0 1 .275-.7.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275l1.9 1.9Z"
-                      />
-                    </svg>
+                    <div className="flex h-6 items-center">
+                      <svg
+                        className="h-6 w-6 shrink-0 text-red-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="m9.973 14.175 5.9-5.9a.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275a.948.948 0 0 1 .275.7.948.948 0 0 1-.275.7l-6.6 6.6c-.2.2-.433.3-.7.3a.96.96 0 0 1-.7-.3l-2.6-2.6a.948.948 0 0 1-.275-.7.95.95 0 0 1 .275-.7.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275l1.9 1.9Z"
+                        />
+                      </svg>
+                    </div>
+
                     <p className="ml-2 font-medium">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     </p>
