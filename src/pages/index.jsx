@@ -168,10 +168,10 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="bg-black-pearl px-10 pt-14 pb-12 text-white">
-        <div className="grid grid-cols-1 gap-10">
-          <div>
-            <h2 className="font-serif text-[3.25rem] font-bold leading-none">
+      <div className="bg-black-pearl px-10 pt-14 pb-12 text-white md:pt-16 md:pb-14">
+        <div className="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16">
+          <div className="md:order-1 md:col-span-2">
+            <h2 className="font-serif text-[3.25rem] font-bold leading-none lg:text-6xl">
               <span className="block text-white/30">Start</span>{' '}
               <span className="-mt-2 ml-16 block">right away</span>
             </h2>
@@ -180,7 +180,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div>
+          <div className="md:order-3">
             <p className="text-lg text-white/70">
               Your stories are worth sharing. Get started in minutes & with an email each week,
               you&apos;ll preserve your meaningful moments into a keepsake book to pass on to future
@@ -190,7 +190,7 @@ export default function Home() {
               Receive immediate access - your first question will arrive in minutes.
             </p>
 
-            <div className="mt-5">
+            <div className="mt-6 md:mt-12">
               <a
                 className="inline-block rounded bg-sunglow px-4 py-3 font-bold uppercase tracking-wider text-black"
                 href=""
@@ -200,7 +200,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative -mx-10 h-48">
+          <div className="relative -mx-10 h-48 md:order-4 md:mx-0 lg:mt-auto lg:h-64">
             <Image
               className="object-cover object-center"
               src="/images/get-started/the-perfect-gift@4x.jpg"
@@ -209,9 +209,9 @@ export default function Home() {
             />
           </div>
 
-          <div>
+          <div className="md:order-2 md:row-span-2">
             <Image
-              className="h-[416px] w-full object-cover object-center"
+              className="h-[416px] w-full object-cover object-center md:h-full"
               src="/images/get-started/get-started-image@4x.jpg"
               alt="Get Started"
               width="312"
