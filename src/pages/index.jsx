@@ -149,10 +149,10 @@ export default function Home() {
           <ArrowLongDownIcon className="h-6 w-6" />
         </button>
 
-        <div className="mt-12 px-10">
+        <div className="mx-auto mt-12 max-w-3xl px-10">
           <p className="text-center font-serif text-[1.75rem] leading-8 md:text-5xl">
-            &quot;Family Fortunate sends you a question each week & your stories are compiled into
-            your very own book of memories.&quot;
+            &quot;Family Fortunate sends you a question each week &amp; your stories are compiled
+            into your very own book of memories.&quot;
           </p>
         </div>
 
