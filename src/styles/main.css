@@ -4,3 +4,10 @@
 
 @import 'components';
 @import 'tailwindcss/utilities';
+
+@layer base {
+  summary *::marker,
+  summary::marker {
+    content: '';
+  }
+}

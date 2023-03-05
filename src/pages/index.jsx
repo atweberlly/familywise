@@ -401,7 +401,7 @@ export default function Home() {
 
           <dl className="order-3 space-y-4 divide-y divide-secondary-200 md:col-span-2 lg:mx-auto lg:w-full lg:max-w-prose">
             <details className="open-details cursor-pointer">
-              <summary className="marker:content-['']">
+              <summary>
                 <div className="flex items-center justify-between text-secondary-600">
                   <div className="text-xl font-medium">Product information</div>
                   <PlusIcon className="h-6 w-6 open-details:hidden" />
@@ -523,7 +523,7 @@ export default function Home() {
             </details>
 
             <details className="open-details cursor-pointer pt-4">
-              <summary className="marker:content-['']">
+              <summary>
                 <div className="flex items-center justify-between text-secondary-600">
                   <div className="text-xl font-medium">Money-Back Guarantee</div>
                   <PlusIcon className="h-6 w-6 open-details:hidden" />
