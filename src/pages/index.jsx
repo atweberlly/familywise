@@ -14,6 +14,7 @@ import Swiper, { Navigation, Pagination } from 'swiper'
 import CheckIcon from '~/components/CheckIcon'
 import FeatherIcon from '~/components/FeatherIcon'
 import Footer from '~/components/Footer'
+import Payin4 from '~/components/Payin4'
 import Title from '~/components/Title'
 
 export default function Home() {
@@ -286,7 +287,7 @@ export default function Home() {
                     <StarIcon className="h-6 w-6 text-yellow-500" key={x} />
                   ))}
                 </div>
-                <span className="ml-2 text-sm">50 reviews</span>
+                <span className="ml-2 text-sm">Reviews</span>
               </div>
 
               <ul className="mt-4 space-y-2">
@@ -332,7 +333,7 @@ export default function Home() {
                     </div>
 
                     <div className="">
-                      <span className="text-3xl font-semibold">$97</span>{' '}
+                      <span className="text-3xl font-semibold">$147</span>{' '}
                       <span className="text-sm">per year</span>
                     </div>
                   </label>
@@ -371,7 +372,12 @@ export default function Home() {
                   </button>
                 </div>
 
-                <div className="flex items-center justify-center space-x-8">
+                <div className="flex items-start justify-center space-x-8">
+                  {/* PLACE PAY IN 4 LOGO HERE */}
+                  <div className="flex flex-col items-center text-primary-600">
+                    <Payin4 className="mx-auto" />
+                    <div className="mt-1 text-center text-sm">Pay in 4</div>
+                  </div>
                   <div className="flex flex-col items-center text-primary-600">
                     <LockClosedIcon className="mx-auto h-6 w-6" />
                     <div className="mt-1 text-center text-sm">
@@ -507,7 +513,7 @@ export default function Home() {
                     <div className="flex h-6 items-center">
                       <CheckIcon className="text-primary-600" />
                     </div>
-                    <p className="ml-2">Paper weights 90gsm, 115gsm, 170gsm</p>
+                    <p className="ml-2">Paper weight options of 90gsm, 115gsm, 170gsm</p>
                   </li>
                   <li className="flex">
                     <div className="flex h-6 items-center">
@@ -539,7 +545,7 @@ export default function Home() {
 
               <div className="hidden py-4 open-details:block">
                 <p>
-                  The My Life in a Book experience is risk-free, with a 30 day money back guarantee.
+                  The Family Fortunate experience is risk-free, with a 30 day money back guarantee.
                   If for any reason you or your relative are not satisfied by the experience or the
                   result, simply send us an email and we will give you a full refund, no questions
                   asked.
@@ -553,7 +559,7 @@ export default function Home() {
       <div className="bg-black-pearl pt-32 pb-16 text-white">
         <div className="container">
           <div className="marquee gift flex overflow-hidden whitespace-nowrap">
-            <h2 className="mr-4 bg-texture bg-clip-text pb-2 font-serif text-8xl font-bold text-transparent">
+            <h2 className="mr-4 bg-texture bg-clip-text pb-2 font-serif text-[15rem] font-bold text-transparent">
               The gift that lasts a lifetime.
             </h2>
           </div>
