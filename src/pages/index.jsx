@@ -278,9 +278,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="px-10 pt-14 pb-6">
-        <div className="grid grid-cols-1 gap-8">
-          <div>
+      <div className="overflow-hidden px-10 pt-14 pb-6">
+        <div className="relative mx-auto grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
+          <div className="relative z-10">
             <h2 className="font-serif text-6xl font-bold">
               <span className="block text-[#ca8e22]/30">Preserving</span>{' '}
               <span className="ml-16 block italic text-[#ca8e22]">precious memories.</span>
@@ -303,21 +303,32 @@ export default function Home() {
             </p>
           </div>
 
-          <div>
-            <Image
-              className="h-[456px] w-full object-cover object-center"
-              src="/images/founder/rachel-michael-portrait@4x.jpg"
-              alt="Rachel Michael"
-              width="312"
-              height="456"
-              priority="false"
-            />
+          <div className="relative z-10">
+            <div className="aspect-h-4 aspect-w-3">
+              <Image
+                className="object-cover object-center"
+                src="/images/founder/rachel-michael-portrait@4x.jpg"
+                alt="Rachel Michael"
+                width="312"
+                height="456"
+                priority="false"
+              />
+            </div>
 
-            <div className="mt-5">
+            <div className="mt-4">
               <div className="font-serif text-[2rem] font-bold leading-none">Rachel Michael</div>
               <div className="mt-1 text-lg font-medium">Founder</div>
             </div>
           </div>
+
+          <Image
+            className="pointer-events-none absolute top-0 -right-1/2 h-auto w-full select-none object-cover object-left"
+            src="/images/founder/golden-sand-explosion.jpg"
+            alt=""
+            width="1124"
+            height="736"
+            priority="false"
+          />
         </div>
       </div>
 
