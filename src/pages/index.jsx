@@ -81,7 +81,7 @@ export default function Home() {
             </nav>
           </div>
 
-          <button className="h-8 w-8" type="button">
+          <button className="h-8 w-8 md:hidden" type="button">
             <Bars3Icon />
           </button>
         </div>
