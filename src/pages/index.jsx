@@ -86,24 +86,24 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="mx-auto max-w-screen-lg px-10 pt-16">
+        <div className="mx-auto max-w-screen-xl px-10 pt-16">
           <div className="relative">
             <Image
-              className="absolute top-0 left-1/2 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0"
+              className="absolute top-0 left-1/2 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0 lg:h-[524px] lg:w-[356px]"
               src="/images/hero/hero-image-1@4x.jpg"
               alt=""
               width="184"
               height="264"
             />
             <Image
-              className="absolute top-48 left-0 z-10 h-[208px] w-[144px] shadow-xl"
+              className="absolute top-48 left-0 z-10 h-[208px] w-[144px] shadow-xl lg:h-[340px] lg:w-[232px]"
               src="/images/hero/hero-image-2@4x.jpg"
               alt=""
               width="144"
               height="208"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 z-10 h-[192px] w-[128px] shadow-xl md:left-28"
+              className="absolute top-[calc(12rem+6px)] right-0 z-10 h-[192px] w-[128px] shadow-xl md:left-28 lg:top-[calc(12rem+20px)] lg:left-48 lg:h-[284px] lg:w-[192px]"
               src="/images/hero/hero-image-3@4x.jpg"
               alt=""
               width="128"
@@ -111,29 +111,29 @@ export default function Home() {
             />
 
             <Image
-              className="absolute top-0 right-8 z-10 hidden h-[264px] w-[184px] shadow-xl md:block"
+              className="absolute top-0 right-8 z-10 hidden h-[264px] w-[184px] shadow-xl md:block lg:h-[456px] lg:w-[328px]"
               src="/images/hero/hero-image-4.jpg"
               alt=""
               width="328"
               height="456"
             />
             <Image
-              className="absolute top-48 right-28 z-20 hidden h-[208px] w-[144px] shadow-xl md:block"
+              className="absolute top-48 right-28 z-20 hidden h-[208px] w-[144px] shadow-xl md:block lg:right-56 lg:h-[284px] lg:w-[192px]"
               src="/images/hero/hero-image-5.jpg"
               alt=""
               width="192"
               height="284"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 z-30 hidden h-[192px] w-[128px] shadow-xl md:block"
+              className="absolute top-[calc(12rem+6px)] right-0 z-30 hidden h-[192px] w-[128px] shadow-xl md:block lg:h-[432px] lg:w-[296px]"
               src="/images/hero/hero-image-6.jpg"
               alt=""
               width="296"
               height="432"
             />
 
-            <div className="relative z-50 mx-auto max-w-xs pt-80">
-              <h1 className="text-center font-serif text-[3.25rem] leading-none md:text-left">
+            <div className="relative z-50 mx-auto max-w-lg pt-80">
+              <h1 className="text-center font-serif text-[3.25rem] leading-none md:text-left lg:text-6xl">
                 <span className="font-bold">Capturing Life&apos;s Priceless</span>{' '}
                 <span className="font-semibold italic">Moments</span>
               </h1>
@@ -144,12 +144,12 @@ export default function Home() {
           </div>
         </div>
 
-        <button className="mx-auto mt-20 flex flex-col items-center" type="button">
+        <button className="mx-auto mt-20 flex flex-col items-center lg:mt-28" type="button">
           <div className="text-sm uppercase tracking-wide">Learn more</div>
           <ArrowLongDownIcon className="h-6 w-6" />
         </button>
 
-        <div className="mx-auto mt-12 max-w-3xl px-10">
+        <div className="mx-auto mt-12 max-w-3xl px-10 lg:mt-24">
           <p className="text-center font-serif text-[1.75rem] leading-8 md:text-5xl">
             &quot;Family Fortunate sends you a question each week &amp; your stories are compiled
             into your very own book of memories.&quot;
