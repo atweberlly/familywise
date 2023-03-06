@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import Image from 'next/image'
+import Swiper, { Navigation, Pagination } from 'swiper'
 import {
   ArrowLongDownIcon,
   ArrowLongRightIcon,
@@ -8,9 +11,6 @@ import {
   ReceiptRefundIcon,
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image'
-import { useEffect } from 'react'
-import Swiper, { Navigation, Pagination } from 'swiper'
 import CheckIcon from '~/components/CheckIcon'
 import FeatherIcon from '~/components/FeatherIcon'
 import Footer from '~/components/Footer'
