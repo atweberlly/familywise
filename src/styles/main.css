@@ -4,3 +4,14 @@
 
 @import 'components';
 @import 'tailwindcss/utilities';
+
+.swiper-pagination-bullet {
+  background-color: theme('colors.secondary.600');
+}
+
+@layer base {
+  summary *::marker,
+  summary::marker {
+    content: '';
+  }
+}

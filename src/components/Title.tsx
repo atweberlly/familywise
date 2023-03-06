@@ -1,6 +1,11 @@
 import Head from 'next/head'
 
-export default function Title({ suffix, children }) {
+type Props = {
+  suffix?: string
+  children: string
+}
+
+export default function Title({ suffix, children }: Props) {
   const title = children + (suffix ? ` - ${suffix}` : '')
 
   return (

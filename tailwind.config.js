@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 const files = require('./files')
@@ -12,9 +13,12 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '1.5rem',
+      padding: '2.5rem',
     },
     extend: {
+      backgroundImage: {
+        texture: "url('/images/hero/hero-video-placeholder@4x.jpg')",
+      },
       boxShadow: {
         xl: '0 24px 48px -12px rgba(16, 24, 40, 0.25)',
       },
@@ -76,13 +80,23 @@ module.exports = {
       },
     },
   },
+  corePlugins: {
+    aspectRatio: false,
+  },
   plugins: [
-    plugin(({ addBase }) => {
+    plugin(({ addBase, addVariant }) => {
       addBase({
         body: {
           fontSize: '16px',
         },
       })
+
+      // addVariant('peer-choice', '.peer-choice:checked ~ * &')
+      addVariant('open-details', '.open-details[open] &')
+    }),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms')({
+      strategy: 'class',
     }),
   ],
 }
