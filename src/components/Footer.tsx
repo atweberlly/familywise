@@ -55,11 +55,11 @@ export default function Footer() {
             Follow us
           </div>
           <div className="mt-4 flex items-center space-x-2.5">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+            <a href="https://www.facebook.com/familyfortunate" target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faFacebookF} className="h-6 w-6" />
             </a>
 
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <a href="https://www.instagram.com/familyfortunate" target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faInstagram} className="h-6 w-6" />
             </a>
           </div>

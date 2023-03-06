@@ -94,7 +94,7 @@ export default function Faqs() {
             <div className="mt-2 flex items-center space-x-2.5 text-warning-600">
               <a
                 className="flex items-center"
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/familyfortunate"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -103,7 +103,7 @@ export default function Faqs() {
 
               <a
                 className="flex items-center"
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/familyfortunate"
                 target="_blank"
                 rel="noreferrer"
               >
