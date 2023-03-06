@@ -1,11 +1,5 @@
 {
   "printWidth": 100,
   "semi": false,
-  "singleQuote": true,
-  "plugins": [
-    "@prettier/plugin-xml",
-    "@trivago/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss"
-  ],
-  "pluginSearchDirs": false
+  "singleQuote": true
 }
