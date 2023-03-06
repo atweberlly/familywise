@@ -91,6 +91,14 @@ export default function Home() {
     },
   ]
 
+  if (isOpen) {
+    // Set the overflow of the body to hidden when the menu is open
+    document.body.classList.add('overflow-hidden')
+  } else {
+    // Remove the overflow of the body when the menu is closed
+    document.body.classList.remove('overflow-hidden')
+  }
+
   return (
     <div>
       <Title>Family Fortunate</Title>
