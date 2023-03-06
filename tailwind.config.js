@@ -6,10 +6,6 @@ const files = require('./files')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [...files],
-  future: {
-    disableColorOpacityUtilitiesByDefault: true,
-    hoverOnlyWhenSupported: true,
-  },
   theme: {
     container: {
       center: true,
