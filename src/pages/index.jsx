@@ -23,6 +23,30 @@ import Payin4 from '~/components/Payin4'
 import Title from '~/components/Title'
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false)
+  const links = [
+    {
+      href: '#about',
+      label: 'About',
+    },
+    {
+      href: '#how-it-works',
+      label: 'How it works',
+    },
+    {
+      href: '#inspiration',
+      label: 'Inspiration',
+    },
+    {
+      href: '#faq',
+      label: 'FAQ',
+    },
+    {
+      href: '#contact',
+      label: 'Contact',
+    },
+  ]
+
   useEffect(() => {
     function Marquee(selector, speed) {
       const parentSelector = document.querySelector(selector)
@@ -65,39 +89,15 @@ export default function Home() {
 
     presentation.init()
     testimonials.init()
-  }, [])
 
-  const [isOpen, setIsOpen] = useState(false)
-  const links = [
-    {
-      href: '#about',
-      label: 'About',
-    },
-    {
-      href: '#how-it-works',
-      label: 'How it works',
-    },
-    {
-      href: '#inspiration',
-      label: 'Inspiration',
-    },
-    {
-      href: '#faq',
-      label: 'FAQ',
-    },
-    {
-      href: '#contact',
-      label: 'Contact',
-    },
-  ]
-
-  if (isOpen) {
-    // Set the overflow of the body to hidden when the menu is open
-    document.body.classList.add('overflow-hidden')
-  } else {
-    // Remove the overflow of the body when the menu is closed
-    document.body.classList.remove('overflow-hidden')
-  }
+    if (isOpen) {
+      // Set the overflow of the body to hidden when the menu is open
+      document.body.classList.add('overflow-hidden')
+    } else {
+      // Remove the overflow of the body when the menu is closed
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isOpen])
 
   return (
     <div>
