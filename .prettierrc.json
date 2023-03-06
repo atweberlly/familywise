@@ -7,5 +7,14 @@
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "pluginSearchDirs": false
+  "pluginSearchDirs": false,
+  "importOrder": [
+    "^react",
+    "^next/(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@heroicons/(.*)$",
+    "^@fortawesome/(.*)$",
+    "^~/components/(.*)$",
+    "^~/styles/(.*)$"
+  ]
 }
