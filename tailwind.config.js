@@ -77,6 +77,9 @@ module.exports = {
       minWidth: {
         xs: '320px',
       },
+      zIndex: {
+        top: 9999,
+      },
     },
   },
   corePlugins: {
