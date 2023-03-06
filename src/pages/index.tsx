@@ -2,6 +2,7 @@ import Button from '../components/Button'
 import CheckIcon from '../components/CheckIcon'
 import Footer from '../components/Footer'
 import { classic, premium, all_1, all_2 } from '../components/Lib/features'
+import Newsletter from '../components/Newsletter'
 import Payin4 from '../components/Payin4'
 import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
@@ -19,7 +20,6 @@ import { StarIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Swiper, { Navigation, Pagination } from 'swiper'
-import Newsletter from '../components/Newsletter'
 
 export default function Home() {
   const [productInfo, setProductInfo] = useState(classic)
