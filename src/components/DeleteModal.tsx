@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import axios from 'axios'
 import clsx from 'clsx'
 import { Spinner, Alert } from 'flowbite-react'
-import { useState } from 'react'
 
 export default function DeleteModal({ showDelete, setShowDelete, table, id }: any) {
   const [isRemove, setRemove] = useState(false)

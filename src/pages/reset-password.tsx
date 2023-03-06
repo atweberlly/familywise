@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Link from '../components/Link'
@@ -5,9 +8,6 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import axios from 'axios'
 import { Spinner } from 'flowbite-react'
-import { useRouter } from 'next/router'
-import React, { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 
 export default function ResetPassword() {
   const router = useRouter()

@@ -1,14 +1,14 @@
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { RootState } from '../app/store'
 import { setUser } from '../slices/slice'
-import { Bars3Icon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import clsx from 'clsx'
 import { Dropdown, Avatar } from 'flowbite-react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
 import Cookies from 'universal-cookie'
+import { Bars3Icon } from '@heroicons/react/24/outline'
 
 // active state class names: border-primary-400 text-primary-400
 //will integrate dynamic navigation later

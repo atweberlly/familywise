@@ -1,11 +1,11 @@
-import ButtonV2 from '../../components/_member/Button'
-import { CheckIcon } from '@heroicons/react/24/outline'
-import { CloudArrowUpIcon, PencilIcon } from '@heroicons/react/24/solid'
-import axios from 'axios'
-import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { FaCheck } from 'react-icons/fa'
 import { ClipLoader } from 'react-spinners'
+import { useRouter } from 'next/router'
+import ButtonV2 from '../../components/_member/Button'
+import axios from 'axios'
+import { CheckIcon } from '@heroicons/react/24/outline'
+import { CloudArrowUpIcon, PencilIcon } from '@heroicons/react/24/solid'
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   question: string

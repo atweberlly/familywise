@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import NextLink from 'next/link'
+import clsx from 'clsx'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   href: string

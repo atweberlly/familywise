@@ -1,5 +1,5 @@
-import * as jose from 'jose'
 import { NextResponse } from 'next/server'
+import * as jose from 'jose'
 
 const secret = new TextEncoder().encode(`${process.env.JWT_SECRET}`)
 

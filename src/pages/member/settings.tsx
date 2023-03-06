@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Chip from '../../components/Chip'
@@ -6,11 +8,9 @@ import Title from '../../components/Title'
 import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
-import { PencilIcon, Cog8ToothIcon, CloudArrowDownIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import dateFormat from 'dateformat'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import { PencilIcon, Cog8ToothIcon, CloudArrowDownIcon } from '@heroicons/react/24/outline'
 
 const Settings = () => {
   const dispatch = useAppDispatch()

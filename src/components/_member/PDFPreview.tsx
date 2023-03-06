@@ -1,3 +1,13 @@
+import React, {
+  ClassType,
+  Component,
+  ComponentClass,
+  ComponentProps,
+  HTMLProps,
+  ReactNode,
+} from 'react'
+import { useState, useEffect } from 'react'
+import { createTw } from 'react-pdf-tailwind'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import { setUser } from '../../slices/slice'
@@ -9,16 +19,6 @@ import {
   Image,
 } from '@react-pdf/renderer'
 import axios from 'axios'
-import React, {
-  ClassType,
-  Component,
-  ComponentClass,
-  ComponentProps,
-  HTMLProps,
-  ReactNode,
-} from 'react'
-import { useState, useEffect } from 'react'
-import { createTw } from 'react-pdf-tailwind'
 
 // I renamed `Page` to `PdfPage` on import, and here assigning itto a variable named `Page`
 // so that the code here is aligned with `react-pdf` documentation examples,

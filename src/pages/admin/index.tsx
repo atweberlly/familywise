@@ -1,9 +1,9 @@
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
 import axios from 'axios'
 import type { NextPage } from 'next'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
 
 const Administrator: NextPage = () => {
   const [Newsletter, setNewsletter] = useState<Array<any>>([])

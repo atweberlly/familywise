@@ -1,6 +1,6 @@
+import React from 'react'
 import Title from '../../components/Title'
 import MemberLayout from '../../layouts/MemberLayout'
-import React from 'react'
 
 const dashboard = () => {
   return (

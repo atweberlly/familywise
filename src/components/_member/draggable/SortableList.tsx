@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction, useState } from 'react'
 import Draggable from './Draggable'
 import { arrayMove } from './array-move'
-import { Dispatch, SetStateAction, useState } from 'react'
 
 export interface DraggableItem {
   id: string | number

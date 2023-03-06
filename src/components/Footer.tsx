@@ -1,6 +1,6 @@
+import Link from 'next/link'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -21,14 +21,13 @@ export default function Footer() {
           </div>
           <ul className="mt-4 space-y-2 text-primary-100">
             <li>
-              <Link href={'/pricing'}>
-                <a>Membership Options</a>
-              </Link>
+              <Link href={'/pricing'}>Membership Options</Link>
             </li>
             <li>
-              <Link href={'/faqs'}>
-                <a>FAQs</a>
-              </Link>
+              <Link href={'/frequently-asked-questions'}>FAQs</Link>
+            </li>
+            <li>
+              <Link href={'/#testimonials'}>Testimonials</Link>
             </li>
 
             {/*  <li>

@@ -1,40 +1,36 @@
+import uniqueId from '../../utils/uniqueId'
+
 export interface Props {
-  id: number
-  text: string
+  id: string
+  label: string
   href: string
-  isActive?: boolean
 }
 
 const links: Array<Props> = [
   {
-    id: 1,
-    text: 'Home',
-    href: '/',
-    isActive: true,
+    id: uniqueId(),
+    href: '#how-it-works',
+    label: 'How it works',
   },
   {
-    id: 2,
-    text: 'FAQ',
-    href: '/',
-    isActive: false,
+    id: uniqueId(),
+    href: '#founder',
+    label: 'The Founder',
   },
   {
-    id: 3,
-    text: 'Inspiration',
-    href: '/',
-    isActive: false,
+    id: uniqueId(),
+    href: '/frequently-asked-questions',
+    label: 'FAQs',
   },
   {
-    id: 4,
-    text: 'Journals',
-    href: '/',
-    isActive: false,
+    id: uniqueId(),
+    href: '/get-started',
+    label: 'Get Started',
   },
   {
-    id: 5,
-    text: 'Contact',
-    href: '/',
-    isActive: false,
+    id: uniqueId(),
+    href: '/sign-in',
+    label: 'Sign In',
   },
 ]
 

@@ -1,12 +1,12 @@
+import { useState, useEffect, SetStateAction } from 'react'
 import Heading from '../../components/Heading'
 import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import { Table, TextInput } from 'flowbite-react'
-import { useState, useEffect, SetStateAction } from 'react'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Newsletter() {
   const [loading, setLoading] = useState(false)

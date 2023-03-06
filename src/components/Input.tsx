@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import { useState } from 'react'
+import clsx from 'clsx'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   label?: string

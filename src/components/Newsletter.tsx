@@ -1,9 +1,9 @@
-import Button from './Button'
-import axios from 'axios'
-import { Spinner } from 'flowbite-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
+import Button from './Button'
+import axios from 'axios'
+import { Spinner } from 'flowbite-react'
 
 export default function Newsletter() {
   const [isLoading, setLoading] = useState(false)

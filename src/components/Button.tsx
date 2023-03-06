@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import Link from 'next/link'
+import clsx from 'clsx'
 
 const colors = {
   primary: ['bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500/50'],

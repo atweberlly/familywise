@@ -1,3 +1,9 @@
+import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import clsx from 'clsx'
+import { Dropdown, Avatar } from 'flowbite-react'
+import Cookies from 'universal-cookie'
 import {
   Bars3Icon,
   BellIcon,
@@ -10,12 +16,6 @@ import {
   Cog8ToothIcon,
   ChatBubbleLeftRightIcon,
 } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
-import { Dropdown, Avatar } from 'flowbite-react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import Cookies from 'universal-cookie'
 
 // active state class names: border-primary-400 text-primary-400
 //will integrate dynamic navigation later

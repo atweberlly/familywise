@@ -1,3 +1,5 @@
+import { useState, useEffect, SetStateAction } from 'react'
+import { useForm } from 'react-hook-form'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -6,13 +8,11 @@ import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import clsx from 'clsx'
 import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
 import type { NextPage } from 'next'
-import { useState, useEffect, SetStateAction } from 'react'
-import { useForm } from 'react-hook-form'
+import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const FAQManager: NextPage = () => {
   let initialState = {

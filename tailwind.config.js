@@ -7,7 +7,6 @@ const files = require('./files')
 module.exports = {
   content: [...files],
   future: {
-    disableColorOpacityUtilitiesByDefault: true,
     hoverOnlyWhenSupported: true,
   },
   theme: {
@@ -77,6 +76,9 @@ module.exports = {
       },
       minWidth: {
         xs: '320px',
+      },
+      zIndex: {
+        top: 9999,
       },
     },
   },

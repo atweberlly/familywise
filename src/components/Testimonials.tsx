@@ -1,6 +1,6 @@
-import { StarIcon } from '@heroicons/react/24/solid'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { StarIcon } from '@heroicons/react/24/solid'
 
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState([])
@@ -28,7 +28,7 @@ export default function Testimonials() {
     fetchData()
   }, [])
   return (
-    <section className="bg-vanilla px-10 pt-12 pb-8 text-white">
+    <section className="bg-vanilla px-10 pt-12 pb-8 text-white" id="testimonials">
       <div className="relative mx-auto max-w-screen-md pb-10">
         <div className="swiper testimonials">
           <div className="swiper-wrapper">

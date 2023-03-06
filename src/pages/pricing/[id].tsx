@@ -1,10 +1,10 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Heading from '../../components/Heading'
 import { classic, premium } from '../../components/Lib/features'
 import Plans from '../../components/Plans'
 import Title from '../../components/Title'
 import axios from 'axios'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
 export default function Pricing() {
   const router = useRouter()

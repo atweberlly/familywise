@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import {
   PayPalScriptProvider,
@@ -6,8 +8,6 @@ import {
 //import { PayPalButtonsComponentOptions } from '@paypal/paypal-js/types/components/buttons' //defined but never used.
 import axios from 'axios'
 import { Card, Badge } from 'flowbite-react'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 export default function Plans({ name, price, features, isPopular, userId }: any) {
   const router = useRouter()

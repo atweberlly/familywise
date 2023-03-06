@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Heading from '../../components/Heading'
 import Title from '../../components/Title'
 import MemberLayout from '../../layouts/MemberLayout'
-import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
 
 const StoryPDF = dynamic(() => import('../../components/_member/PDFPreview'), {
   ssr: false,

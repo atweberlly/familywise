@@ -1,3 +1,7 @@
+import React, { useState, useEffect } from 'react'
+import ReactFlagsSelect from 'react-flags-select'
+import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import { Radio } from '../components/InputButton'
@@ -6,10 +10,6 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import uniqueId from '../utils/uniqueId'
 import axios from 'axios'
-import { useRouter } from 'next/router'
-import React, { useState, useEffect } from 'react'
-import ReactFlagsSelect from 'react-flags-select'
-import { useForm } from 'react-hook-form'
 
 export default function JoinUs() {
   const router = useRouter()

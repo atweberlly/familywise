@@ -1,8 +1,8 @@
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import clsx from 'clsx'
 import { Spinner } from 'flowbite-react'
-import { useState } from 'react'
-import toast from 'react-hot-toast'
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   showCustom: boolean
