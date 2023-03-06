@@ -344,8 +344,7 @@ export default function Home() {
                     name="plan"
                     type="radio"
                     value="basic"
-                    checked={true}
-                    onChange={() => {
+                    onClick={() => {
                       setProductInfo(classic)
                     }}
                   />
