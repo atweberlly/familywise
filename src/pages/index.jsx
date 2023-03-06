@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import clsx from 'clsx'
 import Swiper, { Navigation, Pagination } from 'swiper'
 import {
   ArrowLongDownIcon,
@@ -9,8 +11,11 @@ import {
   MinusIcon,
   PlusIcon,
   ReceiptRefundIcon,
+  StarIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { StarIcon } from '@heroicons/react/24/solid'
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CheckIcon from '~/components/CheckIcon'
 import FeatherIcon from '~/components/FeatherIcon'
 import Footer from '~/components/Footer'
@@ -62,9 +67,98 @@ export default function Home() {
     testimonials.init()
   }, [])
 
+  const [isOpen, setIsOpen] = useState(false)
+  const links = [
+    {
+      href: '#about',
+      label: 'About',
+    },
+    {
+      href: '#how-it-works',
+      label: 'How it works',
+    },
+    {
+      href: '#inspiration',
+      label: 'Inspiration',
+    },
+    {
+      href: '#faq',
+      label: 'FAQ',
+    },
+    {
+      href: '#contact',
+      label: 'Contact',
+    },
+  ]
+
   return (
     <div>
       <Title>Family Fortunate</Title>
+
+      <div
+        className={clsx(
+          isOpen ? 'visible opacity-100' : 'invisible opacity-0',
+          'absolute inset-0 z-top min-h-screen w-full overflow-hidden bg-white text-dark-300 transition-all'
+        )}
+        aria-expanded={isOpen}
+      >
+        <div className="container relative h-full">
+          <div className="absolute top-10 right-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
+            <button type="button" onClick={() => setIsOpen(false)}>
+              <XMarkIcon className="h-full w-full" />
+            </button>
+          </div>
+
+          <nav className="relative z-40 pt-32" aria-label="Mobile menu">
+            <ul className="space-y-4 lg:space-y-8">
+              {links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    className="inline-block font-serif text-[3.25rem] font-bold leading-none transition hover:text-warning-600 lg:text-8xl"
+                    href={link.href}
+                    arial-label={link.label}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="relative z-40 mt-6 lg:mt-8">
+            <div className="text-sm uppercase tracking-wide lg:text-lg">Follow us on</div>
+            <div className="mt-2 flex items-center space-x-2.5 text-warning-600">
+              <a
+                className="flex items-center"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faFacebook} className="h-6 w-6 lg:h-10 lg:w-10" />
+              </a>
+
+              <a
+                className="flex items-center"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faInstagram} className="h-6 w-6 lg:h-10 lg:w-10" />
+              </a>
+            </div>
+          </div>
+
+          <Image
+            className="pointer-events-none absolute right-0 bottom-0 h-auto w-full select-none object-cover object-left"
+            src="/images/founder/golden-sand-explosion.jpg"
+            alt=""
+            width="1124"
+            height="736"
+            priority="false"
+          />
+        </div>
+      </div>
 
       <header className="bg-vanilla text-white">
         <div className="mx-auto flex max-w-screen-lg items-center justify-between py-4 px-4">
@@ -72,7 +166,7 @@ export default function Home() {
             <Image src="/svg/family-fortunate-logotype.svg" alt="Family Fortunate" fill />
           </a>
 
-          <div className="hidden md:flex md:items-center md:space-x-4">
+          {/* <div className="hidden md:flex md:items-center md:space-x-4">
             <nav className="flex items-center space-x-4 text-sm font-medium uppercase tracking-wide">
               <a href="">Home</a>
               <a href="">How it works</a>
@@ -80,9 +174,9 @@ export default function Home() {
               <a href="">FAQ</a>
               <a href="">Contact</a>
             </nav>
-          </div>
+          </div> */}
 
-          <button className="h-8 w-8 md:hidden" type="button">
+          <button className="h-8 w-8" type="button" onClick={() => setIsOpen(true)}>
             <Bars3Icon />
           </button>
         </div>
