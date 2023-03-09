@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../components/Button'
-import CheckIcon from '../components/CheckIcon'
+//import CheckIcon from '../components/CheckIcon'
 import Footer from '../components/Footer'
 import { classic, premium, all_1, all_2 } from '../components/Lib/features'
 import links from '../components/Lib/links'
@@ -12,15 +12,14 @@ import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
 import TwitchIcon from '../components/TwitchIcon'
 import clsx from 'clsx'
-import Swiper, { Navigation, Pagination } from 'swiper'
+import Swiper, { Navigation, Pagination, Autoplay } from 'swiper'
 import {
   ArrowLongDownIcon,
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
   Bars3Icon,
-  LockClosedIcon,
-  MinusIcon,
-  PlusIcon,
+  LockClosedIcon, //MinusIcon,
+  //PlusIcon,
   ReceiptRefundIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
@@ -29,7 +28,7 @@ import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Home() {
-  const [productInfo, setProductInfo] = useState(classic)
+  //const [productInfo, setProductInfo] = useState(classic)
   const [isOpen, setIsOpen] = useState(false)
   useEffect(() => {
     function Marquee(selector: string, speed: number) {
@@ -66,11 +65,12 @@ export default function Home() {
     })
 
     const testimonials = new Swiper('.swiper.testimonials', {
-      modules: [Pagination],
+      modules: [Pagination, Autoplay],
       spaceBetween: 16,
       pagination: {
         el: '.swiper-pagination',
       },
+      autoplay: true,
     })
 
     presentation.init()
@@ -263,20 +263,20 @@ export default function Home() {
         </div>
 
         <div
-          className="relative mx-auto max-w-screen-lg overflow-hidden px-10 pt-32 pb-14"
+          className="max-w-screen-full relative mx-auto overflow-hidden px-10 pt-32 pb-14"
           id="how-it-works"
         >
           <div className="marquee how-it-works absolute top-1/2 hidden -translate-y-1/2 whitespace-nowrap lg:flex">
-            <div className="mr-4 select-none text-center font-serif text-8xl font-bold">
-              How it works?
+            <div className="mx-8 mr-4 select-none text-center font-serif text-8xl font-bold">
+              How it works...
             </div>
           </div>
 
-          <div className="mr-4 text-center font-serif text-[3.25rem] font-bold leading-none lg:hidden">
-            How it works?
+          <div className="mx-8 mr-4 text-center font-serif text-[3.25rem] font-bold leading-none lg:hidden">
+            How it works...
           </div>
 
-          <div className="relative z-50 mt-8 grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="relative z-50 mx-auto mt-8 grid max-w-screen-lg grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-8 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-5">
               <Image
                 className="mx-auto h-[328px] w-[248px] shadow-xl md:h-auto md:w-full"
@@ -404,7 +404,7 @@ export default function Home() {
                 <span className="ml-2 text-sm">Reviews</span>
               </div>
 
-              <ul className="mt-4 space-y-2">
+              {/*    <ul className="mt-4 space-y-2">
                 {[...Array(3).keys()].map((x) => (
                   <li className="flex" key={x}>
                     <div className="flex h-6 items-center">
@@ -426,27 +426,27 @@ export default function Home() {
                     </p>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
 
               <div className="my-8 space-y-4">
                 <div className="relative flex">
                   <input
                     className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
-                    id="basic-plan"
+                    id="classic-plan"
                     name="plan"
                     type="radio"
-                    value="basic"
-                    onClick={() => {
+                    value="classic"
+                    /* onClick={() => {
                       setProductInfo(classic)
-                    }}
+                    }} */
                   />
                   <label
                     className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
-                    htmlFor="basic-plan"
+                    htmlFor="classic-plan"
                   >
                     <div>
-                      <div className="text-lg font-bold">Basic</div>
-                      <div className="text-sm">Basic plan</div>
+                      <div className="text-lg font-bold">Classic</div>
+                      <div className="text-sm">Classic plan</div>
                     </div>
 
                     <div className="">
@@ -463,9 +463,9 @@ export default function Home() {
                     name="plan"
                     type="radio"
                     value="premium"
-                    onClick={() => {
+                    /* onClick={() => {
                       setProductInfo(premium)
-                    }}
+                    }} */
                   />
                   <label
                     className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
@@ -477,7 +477,7 @@ export default function Home() {
                     </div>
 
                     <div className="">
-                      <span className="text-3xl font-semibold">$147</span>{' '}
+                      <span className="text-3xl font-semibold">$157</span>{' '}
                       <span className="text-sm">per year</span>
                     </div>
                   </label>
@@ -487,10 +487,10 @@ export default function Home() {
                   <Button
                     type="link"
                     color="dark"
-                    href="/get-started"
+                    href="/pricing"
                     className="mb-4 flex-1 rounded-md bg-secondary-600 p-3 text-sm uppercase tracking-wider text-white"
                   >
-                    Choose plan
+                    Membership Options
                   </Button>
                 </div>
 
@@ -519,7 +519,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <hr className="w-full py-2" />
+              {/*  <hr className="w-full py-2" />
               <dl className="order-3 space-y-4 divide-y divide-secondary-200 md:col-span-2 lg:mx-auto lg:w-full lg:max-w-prose">
                 <details className="open-details cursor-pointer">
                   <summary>
@@ -590,7 +590,7 @@ export default function Home() {
                     </p>
                   </div>
                 </details>
-              </dl>
+              </dl> */}
             </div>
           </div>
 
