@@ -9,11 +9,12 @@ const colors = {
   dark: [
     'bg-dark-400 text-white shadow-lg hover:border-dark-400 hover:bg-white hover:text-black focus:ring-dark-500/50',
   ],
+  yellow: ['bg-lemon-curry/90 text-white shadow-lg hover:bg-lemon-curry focus:ring-lemon-curry/50'],
 }
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   type?: 'link' | 'button' | 'submit'
-  color?: 'primary' | 'secondary' | 'dark'
+  color?: 'primary' | 'secondary' | 'dark' | 'yellow'
 }
 
 export default function Button({

@@ -25,6 +25,7 @@ module.exports = {
         vanilla: '#d6c7b2',
         'black-pearl': '#07222d',
         sunglow: '#fec339',
+        'lemon-curry': '#CA8E22',
 
         primary: {
           100: '#f9f8f8',

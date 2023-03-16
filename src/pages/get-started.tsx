@@ -3,6 +3,7 @@ import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import Button from '../components/Button'
+import Heading from '../components/Heading'
 import Input from '../components/Input'
 import { Radio } from '../components/InputButton'
 import Link from '../components/Link'
@@ -13,6 +14,7 @@ import axios from 'axios'
 
 export default function JoinUs() {
   const router = useRouter()
+  const { plan } = router.query
   const [selected, setSelected] = useState('AU')
 
   const blacklistCountries = false
@@ -80,6 +82,7 @@ export default function JoinUs() {
     gift_for: '',
     country: selected,
     book_receiver: 'myself',
+    planType: plan,
   }
 
   // getting the event handlers from our custom hook
@@ -104,7 +107,7 @@ export default function JoinUs() {
       .then((response) => {
         //proceed to pricing table
         const _id = response.data.result._id
-        router.push(`/pricing/${_id}`)
+        router.push(`/checkout/${_id}`)
       })
       .catch((err) => {
         const { message } = err.response.data
@@ -151,7 +154,7 @@ export default function JoinUs() {
       },
     })
     register('cpassword', {
-      required: true,
+      required: 'You must confirm your password',
       validate: (val: string) => val === watch('password', '') || 'The passwords do not match',
     })
   }, [relationVisible, register, watch])
@@ -168,80 +171,17 @@ export default function JoinUs() {
                   <span className="sr-only">Go home</span>
                   <Logo className="mx-auto h-28 w-auto" />
                 </Link>
-                <p className="m-5 text-lg">Family Fortunate is the perfect gift.</p>
               </div>
               <form
                 className="mb-4 grid grid-flow-row gap-6 text-left"
                 method="post"
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <Input
-                    label={'First name'}
-                    type={'text'}
-                    placeholder={'Ex: John'}
-                    name={'firstname'}
-                    error={errors?.firstname?.message}
-                    onChange={(e) => setValue('firstname', (e.target as HTMLInputElement).value)}
-                  ></Input>
-                  <Input
-                    label={'Last name'}
-                    type={'text'}
-                    placeholder={'Ex: Doe'}
-                    name={'lastname'}
-                    error={errors?.lastname?.message}
-                    onChange={(e) => setValue('lastname', (e.target as HTMLInputElement).value)}
-                  ></Input>
-                </div>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <Input
-                    label={'Email Address'}
-                    type={'email'}
-                    placeholder={'johndoe@mail.com'}
-                    name={'email'}
-                    error={errors?.email?.message}
-                    autoComplete={'email'}
-                    onChange={(e) => setValue('email', (e.target as HTMLInputElement).value)}
-                  ></Input>
-                  <div>
-                    <p className="text-sm font-semibold ">Country</p>
-                    <ReactFlagsSelect
-                      selected={selected}
-                      onSelect={onSelect}
-                      searchable={true}
-                      blacklistCountries={blacklistCountries}
-                      className="flag-select mt-3 block w-full"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
-                  <div className="flex w-full items-end justify-evenly">
-                    <Input
-                      label={'Password'}
-                      type={'password'}
-                      placeholder={'•••••••••'}
-                      name={'password'}
-                      autoComplete={'current-password'}
-                      onChange={(e) => setValue('password', (e.target as HTMLInputElement).value)}
-                      error={errors?.password?.message}
-                    ></Input>
-                  </div>
-                  <div className="flex w-full items-end justify-evenly">
-                    <Input
-                      label={'Confirm Password'}
-                      type={'password'}
-                      placeholder={'•••••••••'}
-                      name={'cpassword'}
-                      autoComplete={'current-password'}
-                      onChange={(e) => setValue('cpassword', (e.target as HTMLInputElement).value)}
-                      error={errors?.cpassword?.message}
-                    ></Input>
-                  </div>
-                </div>
                 <div className="flex items-center justify-center">
                   <div>
-                    <p className="text-sm font-bold text-secondary-500">
-                      Are you looking at this for yourself or as a gift?
+                    <p className="m-8 text-center text-lg">
+                      Family Fortunate is the perfect gift. <br /> Are you looking at this for
+                      yourself or as a gift?
                     </p>
                     <div className="mt-3 flex justify-center gap-4">
                       <Radio
@@ -250,7 +190,9 @@ export default function JoinUs() {
                         value={'myself'}
                         defaultChecked
                         onChange={(e) =>
-                          setValue('book_receiver', (e.target as HTMLInputElement).value)
+                          setValue('book_receiver', (e.target as HTMLInputElement).value, {
+                            shouldValidate: true,
+                          })
                         }
                       >
                         Myself
@@ -279,32 +221,120 @@ export default function JoinUs() {
                   </div>
                 </div>
                 {relationVisible && (
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    <Input
-                      label={`I'm buying this as a gift for`}
-                      type={'text'}
-                      placeholder={'Ex: Jane Doe'}
-                      name={'gift_for'}
-                      error={errors?.gift_for?.message}
-                      onChange={(e) => setValue('gift_for', (e.target as HTMLInputElement).value)}
-                    ></Input>
-                    <label className="block">
-                      <p className="text-sm font-semibold">Who is my</p>
-                      <select
-                        id="small"
-                        className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                        defaultValue={'mom'}
-                        name={'gift_relation'}
-                      >
-                        {relationOptions.map(({ id, value }) => (
-                          <option key={id} value={value}>
-                            {value}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
+                  <>
+                    <Heading size={5}>Gift recipient details</Heading>
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                      <Input
+                        label={`I'm buying this as a gift for`}
+                        type={'text'}
+                        placeholder={'Ex: Jane Doe'}
+                        name={'gift_for'}
+                        error={errors?.gift_for?.message}
+                        onChange={(e) => setValue('gift_for', (e.target as HTMLInputElement).value)}
+                      ></Input>
+                      <label className="block">
+                        <p className="text-sm font-semibold">Who is my</p>
+                        <select
+                          id="small"
+                          className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                          defaultValue={'mom'}
+                          name={'gift_relation'}
+                        >
+                          {relationOptions.map(({ id, value }) => (
+                            <option key={id} value={value}>
+                              {value}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
+                  </>
                 )}
+                <hr />
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <Input
+                    label={'First name'}
+                    type={'text'}
+                    placeholder={'Ex: John'}
+                    name={'firstname'}
+                    error={errors?.firstname?.message}
+                    onChange={(e) =>
+                      setValue('firstname', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  ></Input>
+                  <Input
+                    label={'Last name'}
+                    type={'text'}
+                    placeholder={'Ex: Doe'}
+                    name={'lastname'}
+                    error={errors?.lastname?.message}
+                    onChange={(e) =>
+                      setValue('lastname', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  ></Input>
+                </div>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <Input
+                    label={'Email Address'}
+                    type={'email'}
+                    placeholder={'johndoe@mail.com'}
+                    name={'email'}
+                    error={errors?.email?.message}
+                    autoComplete={'email'}
+                    onChange={(e) =>
+                      setValue('email', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  ></Input>
+                  <div>
+                    <p className="text-sm font-semibold ">Country</p>
+                    <ReactFlagsSelect
+                      selected={selected}
+                      onSelect={onSelect}
+                      searchable={true}
+                      blacklistCountries={blacklistCountries}
+                      className="flag-select mt-3 block w-full"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
+                  <div className="flex w-full items-end justify-evenly">
+                    <Input
+                      label={'Password'}
+                      type={'password'}
+                      placeholder={'•••••••••'}
+                      name={'password'}
+                      autoComplete={'current-password'}
+                      onChange={(e) =>
+                        setValue('password', (e.target as HTMLInputElement).value, {
+                          shouldValidate: true,
+                        })
+                      }
+                      error={errors?.password?.message}
+                    ></Input>
+                  </div>
+                  <div className="flex w-full items-end justify-evenly">
+                    <Input
+                      label={'Confirm Password'}
+                      type={'password'}
+                      placeholder={'•••••••••'}
+                      name={'cpassword'}
+                      autoComplete={'current-password'}
+                      onChange={(e) =>
+                        setValue('cpassword', (e.target as HTMLInputElement).value, {
+                          shouldValidate: true,
+                        })
+                      }
+                      error={errors?.cpassword?.message}
+                    ></Input>
+                  </div>
+                </div>
+
                 {registerMessage?.type === 'success' && (
                   <p className="mt-2 text-sm text-success-500">{registerMessage.message}</p>
                 )}
@@ -332,4 +362,18 @@ export default function JoinUs() {
       </div>
     </div>
   )
+}
+export async function getServerSideProps({ query }: any) {
+  if (!query.plan) {
+    return {
+      redirect: {
+        destination: '/pricing',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
