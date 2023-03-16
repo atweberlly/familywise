@@ -19,17 +19,17 @@ const links: Array<Props> = [
   },
   {
     id: uniqueId(),
-    href: '/frequently-asked-questions',
+    href: 'frequently-asked-questions',
     label: 'FAQs',
   },
   {
     id: uniqueId(),
-    href: '/get-started',
+    href: 'get-started',
     label: 'Get Started',
   },
   {
     id: uniqueId(),
-    href: '/sign-in',
+    href: 'sign-in',
     label: 'Sign In',
   },
 ]

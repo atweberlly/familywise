@@ -26,6 +26,8 @@ module.exports = {
         'black-pearl': '#07222d',
         sunglow: '#fec339',
         'lemon-curry': '#CA8E22',
+        eggshell: '#F3E9DB',
+        'ghost-white': '#F9FAFB',
 
         primary: {
           100: '#f9f8f8',

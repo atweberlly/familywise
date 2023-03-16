@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-24 lg:mt-0">
-          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+          <div className="text-sm font-medium uppercase tracking-wide text-lemon-curry">
             Information
           </div>
           <ul className="mt-4 space-y-2 text-primary-100">
@@ -40,18 +40,18 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-sm font-medium uppercase tracking-wide text-primary-600">
+          <div className="text-sm font-medium uppercase tracking-wide text-lemon-curry">
             Address
           </div>
           <div className="mt-4 text-primary-100">61-63 Parry St Newcastle, NSW Australia</div>
 
-          <div className="mt-8 text-sm font-medium uppercase tracking-wide text-primary-600">
+          <div className="mt-8 text-sm font-medium uppercase tracking-wide text-lemon-curry">
             Email us
           </div>
           <a className="mt-4 inline-block text-primary-100" href="mailto:hello@familyfortunate.us">
             hello@familyfortunate.us
           </a>
-          <div className="mt-4 text-sm font-medium uppercase tracking-wide text-primary-600">
+          <div className="tracking-widetext-lemon-curry mt-4 text-sm font-medium uppercase">
             Follow us
           </div>
           <div className="mt-4 flex items-center space-x-2.5">

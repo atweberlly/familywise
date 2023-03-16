@@ -1,93 +1,127 @@
+import Image from 'next/image'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
 import Heading from '../../components/Heading'
 import { classic, premium, all_1, all_2 } from '../../components/Lib/features'
+import Newsletter from '../../components/Newsletter'
+import Payin4 from '../../components/Payin4'
 import Plans from '../../components/Plans'
+import Testimonials from '../../components/Testimonials'
 import Title from '../../components/Title'
-import { Card } from 'flowbite-react'
+import { LockClosedIcon, ReceiptRefundIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
 
 export default function Pricing() {
   return (
-    <div className="relative min-h-screen bg-vanilla">
+    <main>
       <Title suffix="Family Fortunate">Pricing</Title>
-      <div className="relative flex min-h-screen w-max overflow-y-auto">
-        <div className="relative z-20 my-4 w-screen flex-1 px-6 text-center">
-          <div className="m-auto mt-4 block text-center lg:mt-8">
-            <Heading size={2}>Select your membership</Heading>
-          </div>
-          <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 justify-center gap-8 md:grid-cols-2">
-            <Plans
-              planID={'P-79R267483U344940EMOMDAEQ'}
-              name={'Classic'}
-              price={'97'}
-              features={classic}
-              isPopular={false}
-            />
-            <Plans
-              planID={'P-04872244MT241772DMOMDA7Y'}
-              name={'Premium'}
-              price={'157'}
-              features={premium}
-              isPopular={false}
-            />
-          </div>
-          <div className="m-auto mt-5 block text-left md:text-center lg:mt-8">
-            <Heading size={4}>Wanna know more?</Heading>
-          </div>
-          <div className="mx-auto mt-5 grid w-full max-w-4xl grid-cols-1 items-start justify-center gap-8 text-left md:mt-8 md:grid-cols-2">
-            <Card className="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:border-2 hover:border-primary-300 hover:shadow dark:bg-white">
-              <h5 className="mb-4 flex items-center gap-2 text-xl font-medium text-secondary-500">
-                All memberships receive
-              </h5>
-              <ul className="my-4 space-y-4">
-                {all_1?.map(({ id, item }: any) => (
-                  <li className="flex space-x-3" key={id}>
-                    <svg
-                      className="h-5 w-5 shrink-0 text-primary-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-sm font-normal leading-tight text-gray-500 dark:text-gray-400">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-            <Card className="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:border-2 hover:border-primary-300 hover:shadow dark:bg-white">
-              <h5 className="mb-4 flex items-center gap-2 text-xl font-medium text-secondary-500">
-                Full suite design options for book printing
-              </h5>
-              <ul className="my-4 space-y-4">
-                {all_2?.map(({ id, item }: any) => (
-                  <li className="flex space-x-3" key={id}>
-                    <svg
-                      className="h-5 w-5 shrink-0 text-primary-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-sm font-normal leading-tight text-gray-500 dark:text-gray-400">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
+      <header className="relative min-h-screen bg-vanilla pb-16">
+        <Header />
+        <div className="relative flex min-h-screen w-max overflow-y-auto">
+          <div className="relative z-20 my-4 w-screen flex-1 px-6 text-center">
+            <div className="m-auto mt-4 block text-center lg:mt-8">
+              <Heading size={2} eyebrow={'pricing'}>
+                Compare our plans and find yours
+              </Heading>
+              <p className="mt-4 text-xs text-secondary-600 lg:text-sm">
+                Your parent&apos;s stories printed in a beautiful personalized book
+              </p>
+            </div>
+            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 justify-center gap-8 md:grid-cols-2">
+              <Plans name={'Classic'} price={'97'} features={classic} isPopular={false} />
+              <Plans name={'Premium'} price={'157'} features={premium} isPopular={true} />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </header>
+      <section className="bg-black-pearl px-8 py-8 lg:p-16 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <p className="font-semibold text-white">Additional Features</p>
+          <h2 className="mt-2 text-left text-2xl font-bold text-white">All memberships receive</h2>
+          <div className="mt-8 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+            <div>
+              <ul className="flex flex-col gap-4 lg:gap-8">
+                {all_1?.map(({ id, item, icon }: any) => (
+                  <li className="flex items-start space-x-4 lg:items-center" key={id}>
+                    <img
+                      src={`./svg/${icon}`}
+                      alt={item}
+                      className="h-8 w-8 shrink-0 lg:h-12 lg:w-12"
+                    />
+                    <span className="text-white">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex items-start justify-center space-x-16">
+                {/* PLACE PAY IN 4 LOGO HERE */}
+                <div className="flex flex-col items-center text-white">
+                  <Payin4 className="mx-auto" />
+                  <div className="mt-1 text-center text-sm">Pay in 4</div>
+                </div>
+                <div className="flex flex-col items-center text-white">
+                  <LockClosedIcon className="mx-auto h-6 w-6" />
+                  <div className="mt-1 text-center text-sm">
+                    Secure
+                    <br />
+                    Checkout
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center text-white">
+                  <ReceiptRefundIcon className="mx-auto h-6 w-6" />
+                  <div className="mt-1 text-center text-sm">
+                    Money-Back
+                    <br />
+                    Guarantee
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <Image
+                className="w-full"
+                src="/images/pricing/family-image.png"
+                alt="Family"
+                width="548"
+                height="636"
+                priority={false}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-vanilla px-8 py-8 lg:p-16 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mt-8 grid grid-cols-1 items-center gap-16 md:grid-cols-2">
+            <div>
+              <h1 className="text-left text-2xl font-bold text-white">
+                Full suite of design options for your book printing
+              </h1>
+              <ul className="mt-4 flex flex-col gap-4 lg:mt-8">
+                {all_2?.map(({ id, item }: any) => (
+                  <li className="flex items-start gap-x-4" key={id}>
+                    <CheckCircleIcon className="h-6 w-6 shrink-0 text-secondary-600" />
+                    <span className="text-white">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="order-last md:order-first">
+              <Image
+                className="w-full"
+                src="/images/cover@4x.jpg"
+                alt="Cover"
+                width="548"
+                height="636"
+                priority={false}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <Testimonials />
+      <Newsletter />
+      <Footer />
+    </main>
   )
 }

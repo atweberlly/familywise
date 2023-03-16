@@ -3,6 +3,7 @@ import uniqueId from '../../utils/uniqueId'
 export interface Props {
   id: string
   item: string
+  icon?: string | null
 }
 export const classic: Array<Props> = [
   {
@@ -90,18 +91,22 @@ export const all_1: Array<Props> = [
   {
     id: uniqueId(),
     item: 'Emails with your question of the week for the duration of your membership',
+    icon: 'forever.svg',
   },
   {
     id: uniqueId(),
     item: 'Technical support by email, business hours AEST',
+    icon: 'book.svg',
   },
   {
     id: uniqueId(),
     item: 'Member access to offers & upgrades throughout the year',
+    icon: 'database.svg',
   },
   {
     id: uniqueId(),
     item: 'Lifetime access to your stories',
+    icon: 'file.svg',
   },
 ]
 

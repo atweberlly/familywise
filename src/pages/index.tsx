@@ -1,35 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import Button from '../components/Button'
 //import CheckIcon from '../components/CheckIcon'
 import Footer from '../components/Footer'
-import { classic, premium, all_1, all_2 } from '../components/Lib/features'
-import links from '../components/Lib/links'
+import Header from '../components/Header'
 import Newsletter from '../components/Newsletter'
 import Payin4 from '../components/Payin4'
 import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
 import TwitchIcon from '../components/TwitchIcon'
-import clsx from 'clsx'
-import Swiper, { Navigation, Pagination, Autoplay } from 'swiper'
+import Swiper, { Navigation } from 'swiper'
 import {
   ArrowLongDownIcon,
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
-  Bars3Icon,
-  LockClosedIcon, //MinusIcon,
-  //PlusIcon,
+  LockClosedIcon,
   ReceiptRefundIcon,
-  XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
-import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Home() {
   //const [productInfo, setProductInfo] = useState(classic)
-  const [isOpen, setIsOpen] = useState(false)
   useEffect(() => {
     function Marquee(selector: string, speed: number) {
       const parentSelector = document.querySelector(selector) as HTMLElement
@@ -64,26 +55,8 @@ export default function Home() {
       },
     })
 
-    const testimonials = new Swiper('.swiper.testimonials', {
-      modules: [Pagination, Autoplay],
-      spaceBetween: 16,
-      pagination: {
-        el: '.swiper-pagination',
-      },
-      autoplay: true,
-    })
-
     presentation.init()
-    testimonials.init()
-
-    if (isOpen) {
-      // Set the overflow of the body to hidden when the menu is open
-      document.body.classList.add('overflow-hidden')
-    } else {
-      // Remove the overflow of the body when the menu is closed
-      document.body.classList.remove('overflow-hidden')
-    }
-  }, [isOpen])
+  }, [])
 
   const scrollDown = () => {
     const howItWorks = document.getElementById('how-it-works')?.offsetTop
@@ -103,91 +76,8 @@ export default function Home() {
     <div>
       <Title>Family Fortunate</Title>
 
-      <div
-        className={clsx(
-          isOpen ? 'visible opacity-100' : 'invisible opacity-0',
-          'absolute inset-0 z-top min-h-screen w-full overflow-hidden bg-white text-dark-300 transition-all'
-        )}
-        aria-expanded={isOpen}
-      >
-        <div className="container relative h-full">
-          <div className="absolute top-10 right-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
-            <button type="button" onClick={() => setIsOpen(false)}>
-              <XMarkIcon className="h-full w-full" />
-            </button>
-          </div>
-
-          <nav className="relative z-40 pt-32" aria-label="Mobile menu">
-            <ul className="space-y-4 lg:space-y-8">
-              {links.map((link) => (
-                <li key={link.id}>
-                  <Link
-                    className="inline-block font-serif text-[3.25rem] font-bold leading-none transition hover:text-warning-600 lg:text-8xl"
-                    href={link.href}
-                    arial-label={link.label}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="relative z-40 mt-6 lg:mt-8">
-            <div className="text-sm uppercase tracking-wide lg:text-lg">Follow us on</div>
-            <div className="mt-2 flex items-center space-x-2.5 text-warning-600">
-              <a
-                className="flex items-center"
-                href="https://www.facebook.com/familyfortunate"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faFacebookF} className="h-6 w-6 lg:h-8 lg:w-8" />
-              </a>
-
-              <a
-                className="flex items-center"
-                href="https://www.instagram.com/familyfortunate"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faInstagram} className="h-6 w-6 lg:h-8 lg:w-8" />
-              </a>
-            </div>
-          </div>
-
-          <Image
-            className="pointer-events-none absolute right-0 bottom-0 h-auto w-full select-none object-cover object-left"
-            src="/images/founder/golden-sand-explosion.jpg"
-            alt=""
-            width="1124"
-            height="736"
-            priority={false}
-          />
-        </div>
-      </div>
-
       <header className="bg-vanilla text-white">
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between py-4 px-4">
-          <Link className="relative h-28 w-48" href="/">
-            <Image src="/svg/family-fortunate-logotype-white.svg" alt="Family Fortunate" fill />
-          </Link>
-          {/* <div className="hidden md:flex md:items-center md:space-x-4">
-            <nav className="flex items-center space-x-4 text-sm font-medium uppercase tracking-wide">
-              <a href="">Home</a>
-              <a href="">How it works</a>
-              <a href="">Inspiration</a>
-              <a href="">The founder</a>
-              <a href="">Contact</a>
-            </nav>
-          </div> */}
-
-          <button className="h-8 w-8" type="button" onClick={() => setIsOpen(true)}>
-            <Bars3Icon />
-          </button>
-        </div>
-
+        <Header />
         <div className="mx-auto max-w-screen-xl px-10 pt-16">
           <div className="relative">
             <Image
