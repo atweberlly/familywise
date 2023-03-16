@@ -204,7 +204,7 @@ export default function Plans({ name, price, features, isPopular, userId }: any)
             />
           </PayPalScriptProvider>
         ) : (
-          <Button type="link" color="dark" href="/get-started" className="mt-4">
+          <Button type="link" color="dark" href={`/get-started?plan=${name}`} className="mt-4">
             Choose {name}
           </Button>
         )}
