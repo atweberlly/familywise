@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Swiper, { Pagination, Autoplay } from 'swiper'
 import { StarIcon } from '@heroicons/react/24/solid'
 
 export default function Testimonials() {
@@ -26,6 +27,17 @@ export default function Testimonials() {
     }
     // populate data
     fetchData()
+
+    const testimonialsSwiper = new Swiper('.swiper.testimonials', {
+      modules: [Pagination, Autoplay],
+      spaceBetween: 16,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      autoplay: true,
+    })
+
+    testimonialsSwiper.init()
   }, [])
   return (
     <section className="bg-vanilla px-10 pt-12 pb-8 text-white" id="testimonials">

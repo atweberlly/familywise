@@ -21,7 +21,7 @@ export default function Heading({ className, size, eyebrow, children, ...props }
   return (
     <>
       {typeof eyebrow === 'string' && (
-        <div className="text-sm uppercase tracking-wider text-secondary-600">{eyebrow}</div>
+        <div className={clsx('text-sm uppercase tracking-wider text-white')}>{eyebrow}</div>
       )}
       <HeadingTag
         className={clsx('font-serif selection:bg-transparent', sizeClassNames, className)}
