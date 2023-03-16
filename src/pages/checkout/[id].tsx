@@ -11,10 +11,13 @@ import axios from 'axios'
 import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 
 export default function Checkout(props: { ClientToken: any; ClientID: any }) {
+  let initialUser = {
+    planType: '',
+  }
   const { ClientToken, ClientID } = props
   const router = useRouter()
   const { id } = router.query
-  const [user, setUser] = useState<any[]>([])
+  const [user, setUser] = useState(initialUser)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -143,7 +146,6 @@ export async function getServerSideProps({ query }: any) {
       notFound: true,
     }
   }
-
   return {
     props: {
       ClientToken: client_token,

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import router from 'next/router'
 import Heading from './Heading'
+import type { FUNDING_SOURCE } from '@paypal/paypal-js'
 import {
   PayPalScriptProvider, //PayPalHostedFieldsProvider,
   //PayPalHostedField,
@@ -354,7 +355,7 @@ export const PaymentForm = (props: {
 
   const fundingSources = ['paypal', 'card', 'paylater']
   // Remember the amount props is received from the control panel
-  const [selectedFundingSource, setSelectedFundingSource] = useState(fundingSources[0])
+  const [selectedFundingSource, setSelectedFundingSource] = useState<String>(fundingSources[0])
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSelectedFundingSource(event.target.value)
@@ -525,8 +526,8 @@ export const PaymentForm = (props: {
         <br />
 
         <PayPalButtons
-          style={style}
-          fundingSource={selectedFundingSource}
+          style={{ color: 'black' }}
+          fundingSource={selectedFundingSource as FUNDING_SOURCE}
           forceReRender={[selectedFundingSource, style, amount, currency]}
           createOrder={createOrder}
           onApprove={onApprove}
