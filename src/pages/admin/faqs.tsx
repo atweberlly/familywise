@@ -196,9 +196,9 @@ const FAQManager: NextPage = () => {
         <Title>Admin</Title>
         <div>
           <Heading size={3}>Frequently Ask Questions Manager</Heading>
-          <p className="text-base">Manage your faqs content.</p>
+          <p className="text-base">Manage your FAQs content.</p>
           <div className="my-10 text-center">
-            <Title>FAQ Manager</Title>
+            <Title>FAQs Manager</Title>
             <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
               <div className="mt-3 flex justify-between">
                 <TextInput
