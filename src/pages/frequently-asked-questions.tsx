@@ -63,13 +63,13 @@ export default function Faqs() {
           <Button
             color={'yellow'}
             className="mt-8 rounded-md px-4 py-3 lg:px-6 lg:py-4"
-            href="#faqs"
+            href="/pricing"
           >
             Get started
           </Button>
         </div>
       </header>
-      <section className="bg-ghost-white" id="faqs">
+      <section className="bg-ghost-white">
         <div className="p-4 py-20 text-center">
           <Heading size={3} className="text-4xl font-semibold">
             Frequently asked questions
