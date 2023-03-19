@@ -27,8 +27,8 @@ export default function Pricing() {
               </p>
             </div>
             <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 justify-center gap-8 md:grid-cols-2">
-              <Plans name={'Classic'} price={'97'} features={classic} isPopular={false} />
               <Plans name={'Premium'} price={'157'} features={premium} isPopular={true} />
+              <Plans name={'Classic'} price={'97'} features={classic} isPopular={false} />
             </div>
           </div>
         </div>
