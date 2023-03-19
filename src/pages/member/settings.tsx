@@ -4,10 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Chip from '../../components/Chip'
 import Heading from '../../components/Heading'
+import PDFDoc from '../../components/PDFDoc'
 import Title from '../../components/Title'
 import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
+import { PDFDownloadLink } from '@react-pdf/renderer'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { PencilIcon, Cog8ToothIcon, CloudArrowDownIcon } from '@heroicons/react/24/outline'
@@ -97,9 +99,15 @@ const Settings = () => {
                   </p>
                 </div>
               </div>
-              <ButtonV2 text={'Download'} isActive={false} className="inline-flex !rounded-full">
-                {' '}
+
+              <ButtonV2 text={''} isActive={false} className="inline-flex !rounded-full">
                 <CloudArrowDownIcon className="mr-2 inline-block w-5" />
+                <PDFDownloadLink
+                  document={<PDFDoc user_id={user._id} />}
+                  fileName={`${user._id}.pdf`}
+                >
+                  {({ loading }) => (loading ? 'Loading document...' : 'Download')}
+                </PDFDownloadLink>
               </ButtonV2>
             </div>
           </div>
