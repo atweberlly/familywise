@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
@@ -26,6 +26,11 @@ const Settings = () => {
     })()
   }, [dispatch])
   const expiryDate = new Date(user.createdAt)
+
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   return (
     <MemberLayout>
@@ -99,16 +104,15 @@ const Settings = () => {
                   </p>
                 </div>
               </div>
-
-              <ButtonV2 text={''} isActive={false} className="inline-flex !rounded-full">
-                <CloudArrowDownIcon className="mr-2 inline-block w-5" />
+              {isClient && (
                 <PDFDownloadLink
                   document={<PDFDoc user_id={user._id} />}
                   fileName={`${user._id}.pdf`}
+                  className="rounded-full border border-primary-500 bg-none p-3 text-sm font-bold text-primary-500 hover:bg-primary-500 hover:text-white lg:px-4"
                 >
                   {({ loading }) => (loading ? 'Loading document...' : 'Download')}
                 </PDFDownloadLink>
-              </ButtonV2>
+              )}
             </div>
           </div>
         </div>
