@@ -45,6 +45,7 @@
     "clsx": "^1.2.1",
     "dateformat": "^5.0.3",
     "dotenv": "^16.0.3",
+    "flatpickr": "^4.6.13",
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",
     "framer-motion": "^7.6.19",

@@ -38,10 +38,12 @@ export default async function handler(request, response) {
             password: hashedPassword,
             country: request.body.country,
             book_receiver: request.body.book_receiver,
-            gift_for: request.body.gift_for,
-            gift_relation: request.body.gift_relation,
+            giftDate: request.body.giftDate,
+            giftSender: request.body.giftSender,
+            giftRelation: request.body.giftRelation,
+            giftMessage: request.body.giftMessage,
             roles: request.body.roles,
-
+            planType: request.body.planType,
             status: request.body.status,
           }
 
