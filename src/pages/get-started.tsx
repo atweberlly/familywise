@@ -7,72 +7,27 @@ import Button from '../components/Button'
 import Heading from '../components/Heading'
 import Input from '../components/Input'
 import { Radio } from '../components/InputButton'
+import { relationOptions } from '../components/Lib/relations'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
-import uniqueId from '../utils/uniqueId'
 import axios from 'axios'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
+import { Spinner } from 'flowbite-react'
 
 export default function JoinUs() {
   const router = useRouter()
   const { plan } = router.query
   const [selected, setSelected] = useState('AU')
-
   const blacklistCountries = false
   const [relationVisible, setRelationVisible] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
-  const relationOptions = [
-    {
-      id: uniqueId(),
-      value: 'mom',
-    },
-    {
-      id: uniqueId(),
-      value: 'dad',
-    },
-    {
-      id: uniqueId(),
-      value: 'sister',
-    },
-    {
-      id: uniqueId(),
-      value: 'brother',
-    },
-    {
-      id: uniqueId(),
-      value: 'grandmother',
-    },
-    {
-      id: uniqueId(),
-      value: 'grandfather',
-    },
-    {
-      id: uniqueId(),
-      value: 'aunt',
-    },
-    {
-      id: uniqueId(),
-      value: 'uncle',
-    },
-    {
-      id: uniqueId(),
-      value: 'son',
-    },
-    {
-      id: uniqueId(),
-      value: 'daughter',
-    },
-    {
-      id: uniqueId(),
-      value: 'cousin',
-    },
-    {
-      id: uniqueId(),
-      value: 'friend',
-    },
-  ]
+  const destroyDatePicker = () => {
+    const datepicker = document.getElementById('datepicker')
+    flatpickr(datepicker!).destroy()
+  }
 
   // defining the initial state for the form
   const initialState = {
@@ -85,7 +40,7 @@ export default function JoinUs() {
     book_receiver: 'myself',
     giftDate: '',
     giftSender: '',
-    giftRelation: 'mom',
+    giftRelation: relationVisible ? 'mom' : '',
     giftMessage: `I've gifted you a subscription to Family Fortunate so you can write and share your stories with me and the family.`,
     planType: plan,
   }
@@ -100,26 +55,31 @@ export default function JoinUs() {
   } = useForm({ mode: 'onBlur', defaultValues: initialState })
 
   const onSubmit = async (data: any) => {
-    console.log(data)
     const configuration = {
       method: 'post',
       url: '/api/users',
       data: data,
     }
-
+    setLoading(true)
     // make the API call
     await axios(configuration)
       .then((response) => {
         //proceed to pricing table
         const _id = response.data.result._id
-        router.push(`/checkout/${_id}`)
+        destroyDatePicker()
+        setTimeout(() => {
+          router.push(`/checkout/${_id}`)
+          setLoading(false) //remove loader
+        }, 3000)
       })
       .catch((err) => {
         const { error } = err.response
-        console.log(error.code)
-        if (error.code === 11000)
-          toast.error('This email address is already exist. Please provide different account')
-        else toast.error(`We're sorry, something went wring when attempting to sign up.`)
+        setTimeout(() => {
+          if (error.code === 11000)
+            toast.error('This email address is already exist. Please provide different account')
+          else toast.error(`We're sorry, something went wring when attempting to sign up.`)
+          setLoading(false) //remove loader
+        }, 3000)
       })
   }
 
@@ -127,6 +87,25 @@ export default function JoinUs() {
     setSelected(code)
     setValue('country', code)
   }
+
+  useEffect(() => {
+    if (relationVisible) {
+      const initializeDatePicker = () => {
+        const datepicker = document.getElementById('datepicker')
+        flatpickr(datepicker!, {
+          enableTime: false,
+          dateFormat: 'M j, Y',
+          minDate: new Date(),
+          onChange: function (selectedDates) {
+            setValue('giftDate', selectedDates[0].toISOString(), {
+              shouldValidate: true,
+            })
+          },
+        })
+      }
+      initializeDatePicker()
+    }
+  }, [relationVisible, setValue])
 
   useEffect(() => {
     //this will fix the ref issues
@@ -178,22 +157,6 @@ export default function JoinUs() {
       validate: (val: string) => val === watch('password', '') || 'The passwords do not match',
     })
   }, [relationVisible, register, watch])
-
-  useEffect(() => {
-    if (relationVisible) {
-      const datepicker = document.getElementById('datepicker')
-      flatpickr(datepicker!, {
-        enableTime: false,
-        dateFormat: 'M j, Y',
-        minDate: new Date(),
-        onChange: function (selectedDates) {
-          setValue('giftDate', selectedDates[0].toISOString(), {
-            shouldValidate: true,
-          })
-        },
-      })
-    }
-  }, [relationVisible, setValue])
 
   return (
     <main className="flex min-h-screen justify-center bg-gray-100">
@@ -397,8 +360,20 @@ export default function JoinUs() {
               </Link>
               .
             </p>
-            <Button className="mx-auto mt-2 w-full" type={'submit'} color={'dark'}>
-              Buy Now
+            <Button
+              className="mx-auto mt-2 w-full"
+              type={'submit'}
+              color={'dark'}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <Spinner aria-label="loading" />
+                  <span className="pl-3">Processing...</span>
+                </>
+              ) : (
+                'Buy Now'
+              )}
             </Button>
           </form>
         </div>
