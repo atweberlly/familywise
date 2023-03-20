@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { store } from '../app/store'
 import '../styles/main.css'
+import 'flatpickr/dist/themes/light.css'
 
 function App({ Component, pageProps }: AppProps) {
   return (
