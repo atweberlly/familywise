@@ -110,11 +110,16 @@ const Settings = () => {
                   fileName={`${user._id}.pdf`}
                 >
                   {({ loading }) => (
-                     <ButtonV2 text={''} isActive={false} className="inline-flex !rounded-full" disabled={loading}>
+                    <ButtonV2
+                      text={''}
+                      isActive={false}
+                      className="inline-flex !rounded-full"
+                      disabled={loading}
+                    >
                       <CloudArrowDownIcon className="mr-2 inline-block w-5" />
                       {loading ? 'Loading document...' : 'Download'}
-                     </ButtonV2>
-                     )}
+                    </ButtonV2>
+                  )}
                 </PDFDownloadLink>
               )}
             </div>
