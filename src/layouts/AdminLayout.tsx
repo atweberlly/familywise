@@ -6,6 +6,7 @@ import { RootState } from '../app/store'
 import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
+import dateFormat from 'dateformat'
 import { Dropdown, Avatar } from 'flowbite-react'
 import Cookies from 'universal-cookie'
 import {
@@ -19,6 +20,7 @@ import {
   ChatBubbleOvalLeftEllipsisIcon,
   Cog8ToothIcon,
   ChatBubbleLeftRightIcon,
+  UserGroupIcon,
 } from '@heroicons/react/24/outline'
 
 // active state class names: border-primary-400 text-primary-400
@@ -290,6 +292,20 @@ export default function AdminLayout({ children }: any) {
                 </Link>
               </li>
 
+              <li className="flex flex-col" aria-label="Newsletter">
+                <Link
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                    router.pathname === '/admin/subscribed-members' &&
+                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                  }`}
+                  href="/admin/subscribed-members"
+                  onClick={() => setShow(!show)}
+                >
+                  <UserGroupIcon className="h-6 w-6 text-dark-200" />
+                  <span className="">Members</span>
+                </Link>
+              </li>
+
               <li className="flex flex-col" aria-label="Settings">
                 <Link
                   className="-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100"
@@ -313,7 +329,13 @@ export default function AdminLayout({ children }: any) {
           aria-label="Overlay"
         ></div>
 
-        <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">{children}</main>
+        <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">
+          {children}
+
+          <p className="mt-auto text-center">
+            Copyright &copy; familyfortunate {dateFormat(new Date(), 'yyyy')} | Privacy Policy
+          </p>
+        </main>
       </div>
     </div>
   )
