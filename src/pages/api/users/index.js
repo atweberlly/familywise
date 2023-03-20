@@ -9,7 +9,8 @@ export default async function handler(request, response) {
 
   switch (method) {
     case 'GET': //find all users
-      await User.find({})
+      await User.find({ roles: 'subscriber' })
+        .sort({ createdAt: -1 })
         // return success
         .then((result) => {
           response.status(201).send({
