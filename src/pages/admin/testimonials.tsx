@@ -173,10 +173,10 @@ const FAQManager: NextPage = () => {
       <AdminLayout>
         <Title>Admin</Title>
         <div>
-          <Heading size={3}>Frequently Ask Questions Manager</Heading>
-          <p className="text-base">Manage your faqs content.</p>
+          <Heading size={3}>Testimonials Manager</Heading>
+          <p className="text-base">Manage your testimonial content.</p>
           <div className="my-10 text-center">
-            <Title>FAQ Manager</Title>
+            <Title>Testimonials Manager</Title>
             <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
               <div className="mt-3 flex justify-between">
                 <TextInput

@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Chip from '../../components/Chip'
 import Heading from '../../components/Heading'
+import PDFDoc from '../../components/PDFDoc'
 import Title from '../../components/Title'
 import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
+import { PDFDownloadLink } from '@react-pdf/renderer'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { PencilIcon, Cog8ToothIcon, CloudArrowDownIcon } from '@heroicons/react/24/outline'
@@ -24,6 +26,11 @@ const Settings = () => {
     })()
   }, [dispatch])
   const expiryDate = new Date(user.createdAt)
+
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   return (
     <MemberLayout>
@@ -97,10 +104,15 @@ const Settings = () => {
                   </p>
                 </div>
               </div>
-              <ButtonV2 text={'Download'} isActive={false} className="inline-flex !rounded-full">
-                {' '}
-                <CloudArrowDownIcon className="mr-2 inline-block w-5" />
-              </ButtonV2>
+              {isClient && (
+                <PDFDownloadLink
+                  document={<PDFDoc user_id={user._id} />}
+                  fileName={`${user._id}.pdf`}
+                  className="rounded-full border border-primary-500 bg-none p-3 text-sm font-bold text-primary-500 hover:bg-primary-500 hover:text-white lg:px-4"
+                >
+                  {({ loading }) => (loading ? 'Loading document...' : 'Download')}
+                </PDFDownloadLink>
+              )}
             </div>
           </div>
         </div>

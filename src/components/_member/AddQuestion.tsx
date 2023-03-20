@@ -113,7 +113,6 @@ export default function AddQuestion({
                     <Button
                       color="primary"
                       type="button"
-                      className="bg-white"
                       onClick={async () => {
                         const res = await axios.post('/api/questions/addQuestion', {
                           question_id: question._id,

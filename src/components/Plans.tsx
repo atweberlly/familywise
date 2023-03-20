@@ -12,19 +12,21 @@ export default function Plans({ name, price, features, isPopular }: any) {
       <Card
         className={`flex flex-col justify-between overflow-hidden rounded-lg border-none bg-white shadow-lg dark:bg-white`}
       >
-        <div className="relative flex items-center justify-between px-6 py-4">
+        <div className="relative grid grid-cols-1 items-center justify-between px-6 py-4 lg:grid-cols-2">
           {isPopular && (
             <span className="absolute top-0 left-4 mt-5 ml-2 inline-flex h-6 items-center justify-center rounded-full bg-eggshell px-2">
               <span className="text-xs font-bold text-lemon-curry ">Most Popular</span>
             </span>
           )}
           <h3 className="mt-10 text-left text-lg font-semibold lg:text-2xl">{name} Membership</h3>
-          <div className="flex items-start">
+          <div className="flex items-start sm:items-center">
             <p className="flex items-start text-4xl font-bold lg:text-5xl">
-              <span className="text-2xl lg:text-4xl">$</span>
+              <span className="text-2xl lg:text-3xl">$</span>
               {price}
             </p>
-            <p className="ml-1 mt-2 text-lg text-secondary-600 lg:mt-5">per year</p>
+            <p className="ml-1 mt-2 text-lg text-secondary-600 lg:mt-5">
+              per year <span className="text-xs uppercase">(usd)</span>
+            </p>
           </div>
         </div>
 
