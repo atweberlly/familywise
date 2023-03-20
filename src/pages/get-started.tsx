@@ -193,7 +193,7 @@ export default function JoinUs() {
         },
       })
     }
-  }, [relationVisible])
+  }, [relationVisible, setValue])
 
   return (
     <main className="flex min-h-screen justify-center bg-gray-100">
