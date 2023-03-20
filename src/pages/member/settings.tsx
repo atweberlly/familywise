@@ -108,9 +108,13 @@ const Settings = () => {
                 <PDFDownloadLink
                   document={<PDFDoc user_id={user._id} />}
                   fileName={`${user._id}.pdf`}
-                  className="rounded-full border border-primary-500 bg-none p-3 text-sm font-bold text-primary-500 hover:bg-primary-500 hover:text-white lg:px-4"
                 >
-                  {({ loading }) => (loading ? 'Loading document...' : 'Download')}
+                  {({ loading }) => (
+                     <ButtonV2 text={''} isActive={false} className="inline-flex !rounded-full" disabled={loading}>
+                      <CloudArrowDownIcon className="mr-2 inline-block w-5" />
+                      {loading ? 'Loading document...' : 'Download'}
+                     </ButtonV2>
+                     )}
                 </PDFDownloadLink>
               )}
             </div>
