@@ -1,6 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { RootState } from '../app/store'
+import { setUser } from '../slices/slice'
+import axios from 'axios'
 import clsx from 'clsx'
 import { Dropdown, Avatar } from 'flowbite-react'
 import Cookies from 'universal-cookie'
@@ -25,6 +29,15 @@ export default function AdminLayout({ children }: any) {
   const [openFAQ, setOpenFAQ] = useState(false) //faq
   const [openQuestion, setOpenQuestion] = useState(false) //questions
   const router = useRouter()
+
+  const dispatch = useAppDispatch()
+  const user = useAppSelector((state: RootState) => state.userSlice.user)
+  useEffect(() => {
+    ;(async () => {
+      const user = await axios('/api/users/getUser')
+      dispatch(setUser(user.data.user[0]))
+    })()
+  }, [dispatch])
 
   const cookies = new Cookies()
 
@@ -69,16 +82,13 @@ export default function AdminLayout({ children }: any) {
               inline={true}
             >
               <Dropdown.Header>
-                <span className="block text-sm">Jonah Castro</span>
-                <span className="block truncate text-sm font-medium">
-                  jonahmay.castro08@gmail.com
+                <span className="block text-sm">
+                  {user?.firstname} {user?.lastname}
                 </span>
+                <span className="block truncate text-sm font-medium">{user?.email}</span>
               </Dropdown.Header>
               <Link href={'/admin'}>
                 <Dropdown.Item>Dashboard</Dropdown.Item>
-              </Link>
-              <Link href={'/admin/settings'}>
-                <Dropdown.Item>Settings</Dropdown.Item>
               </Link>
               <Dropdown.Divider />
               <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
