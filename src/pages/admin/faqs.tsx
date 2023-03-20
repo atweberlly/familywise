@@ -272,9 +272,6 @@ const FAQManager: NextPage = () => {
             </div>
           </div>
         </div>
-        <p className="mt-auto text-center">
-          Copyright &copy; familyfortunate 2022 | Privacy Policy
-        </p>
       </AdminLayout>
       <DeleteModal
         setShowDelete={setShowDelete}

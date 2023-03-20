@@ -109,7 +109,6 @@ export default function Newsletter() {
           </div>
         </div>
       </div>
-      <p className="mt-auto text-center">Copyright &copy; familyfortunate 2022 | Privacy Policy</p>
     </AdminLayout>
   )
 }
