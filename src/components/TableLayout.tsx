@@ -6,7 +6,7 @@ export default function TableLayout({ header, body, loader }: any) {
       {loader ? (
         <Spinner aria-label="Loading" size="xl" />
       ) : (
-        <Table hoverable={true} striped={true}>
+        <Table hoverable={false} striped={true}>
           <Table.Head>{header}</Table.Head>
           <Table.Body className="divide-y">{body}</Table.Body>
         </Table>
