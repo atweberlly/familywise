@@ -13,8 +13,7 @@ import Title from '../components/Title'
 import uniqueId from '../utils/uniqueId'
 import axios from 'axios'
 import flatpickr from 'flatpickr'
-
-//import 'flatpickr/dist/themes/light.css'
+import 'flatpickr/dist/themes/light.css'
 
 export default function JoinUs() {
   const router = useRouter()
