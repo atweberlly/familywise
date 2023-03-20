@@ -74,12 +74,10 @@ export default function JoinUs() {
       })
       .catch((err) => {
         const { error } = err.response
-        setTimeout(() => {
-          if (error.code === 11000)
-            toast.error('This email address is already exist. Please provide different account')
-          else toast.error(`We're sorry, something went wring when attempting to sign up.`)
-          setLoading(false) //remove loader
-        }, 3000)
+        if (error.code === 11000)
+          toast.error('This email address is already exist. Please provide different account')
+        else toast.error(`We're sorry, something went wring when attempting to sign up.`)
+        setLoading(false) //remove loader
       })
   }
 
