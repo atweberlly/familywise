@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import Heading from '../components/Heading'
@@ -11,6 +12,8 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import uniqueId from '../utils/uniqueId'
 import axios from 'axios'
+import flatpickr from 'flatpickr'
+import 'flatpickr/dist/themes/light.css'
 
 export default function JoinUs() {
   const router = useRouter()
@@ -19,7 +22,6 @@ export default function JoinUs() {
 
   const blacklistCountries = false
   const [relationVisible, setRelationVisible] = useState(false)
-  const [registerMessage, setRegisterMessage] = useState({ type: '', message: '' })
 
   const relationOptions = [
     {
@@ -79,9 +81,12 @@ export default function JoinUs() {
     email: '',
     password: '',
     cpassword: '',
-    gift_for: '',
     country: selected,
     book_receiver: 'myself',
+    giftDate: '',
+    giftSender: '',
+    giftRelation: 'mom',
+    giftMessage: `I've gifted you a subscription to Family Fortunate so you can write and share your stories with me and the family.`,
     planType: plan,
   }
 
@@ -110,8 +115,11 @@ export default function JoinUs() {
         router.push(`/checkout/${_id}`)
       })
       .catch((err) => {
-        const { message } = err.response.data
-        setRegisterMessage({ type: 'error', message: message })
+        const { error } = err.response
+        console.log(error.code)
+        if (error.code === 11000)
+          toast.error('This email address is already exist. Please provide different account')
+        else toast.error(`We're sorry, something went wring when attempting to sign up.`)
       })
   }
 
@@ -123,23 +131,35 @@ export default function JoinUs() {
   useEffect(() => {
     //this will fix the ref issues
     register('firstname', {
-      required: 'You must provide your first name',
+      required: relationVisible
+        ? 'You must provide the first name of your gift recipient'
+        : 'You must provide your first name',
     })
 
     register('book_receiver')
 
     if (relationVisible) {
-      register('gift_for', {
-        required: 'You must provide a name of your gift receiver',
+      register('giftDate', {
+        required: 'You must select a date to send your gift on',
+      })
+      register('giftSender', {
+        required: 'You must provide your name',
+      })
+      register('giftMessage', {
+        required: 'You must provide a gift message',
       })
     }
 
     register('lastname', {
-      required: 'You must provide your last name',
+      required: relationVisible
+        ? 'You must provide the last name of your gift recipient'
+        : 'You must provide your last name',
     })
 
     register('email', {
-      required: 'You must provide an email address',
+      required: relationVisible
+        ? 'You must provide an email address of your gift recipient'
+        : 'You must provide an email address',
       pattern: {
         value: /^\S+@\S+$/i,
         message: 'Please enter a valid email address',
@@ -159,208 +179,234 @@ export default function JoinUs() {
     })
   }, [relationVisible, register, watch])
 
-  return (
-    <div className="relative min-h-screen bg-vanilla">
-      <Title suffix="Family Fortunate">Get Started</Title>
-      <div className="relative flex min-h-screen w-max overflow-y-auto">
-        <div className="relative z-20 mt-4 w-screen flex-1 px-6 text-center">
-          <div className="flex justify-evenly lg:mx-24">
-            <div className="m-0 mt-4 mb-8 block h-fit max-h-fit max-w-fit rounded-lg bg-white px-8 pb-2 text-center shadow md:mx-12 md:px-12 lg:my-8">
-              <div className="m-auto mt-4 block text-center lg:mt-8">
-                <Link href="/" className="!block lg:inline-block">
-                  <span className="sr-only">Go home</span>
-                  <Logo className="mx-auto h-28 w-auto" />
-                </Link>
-              </div>
-              <form
-                className="mb-4 grid grid-flow-row gap-6 text-left"
-                method="post"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="flex items-center justify-center">
-                  <div>
-                    <p className="m-8 text-center text-lg">
-                      Family Fortunate is the perfect gift. <br /> Are you looking at this for
-                      yourself or as a gift?
-                    </p>
-                    <div className="mt-3 flex justify-center gap-4">
-                      <Radio
-                        name="book_receiver"
-                        onClick={() => setRelationVisible(false)}
-                        value={'myself'}
-                        defaultChecked
-                        onChange={(e) =>
-                          setValue('book_receiver', (e.target as HTMLInputElement).value, {
-                            shouldValidate: true,
-                          })
-                        }
-                      >
-                        Myself
-                      </Radio>
-                      <Radio
-                        name="book_receiver"
-                        onClick={() => setRelationVisible(true)}
-                        value={'gift'}
-                        onChange={(e) =>
-                          setValue('book_receiver', (e.target as HTMLInputElement).value)
-                        }
-                      >
-                        Gift
-                      </Radio>
-                      <Radio
-                        name="book_receiver"
-                        value={'both'}
-                        onClick={() => setRelationVisible(false)}
-                        onChange={(e) =>
-                          setValue('book_receiver', (e.target as HTMLInputElement).value)
-                        }
-                      >
-                        Both
-                      </Radio>
-                    </div>
-                  </div>
-                </div>
-                {relationVisible && (
-                  <>
-                    <Heading size={5}>Gift recipient details</Heading>
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                      <Input
-                        label={`I'm buying this as a gift for`}
-                        type={'text'}
-                        placeholder={'Ex: Jane Doe'}
-                        name={'gift_for'}
-                        error={errors?.gift_for?.message}
-                        onChange={(e) => setValue('gift_for', (e.target as HTMLInputElement).value)}
-                      ></Input>
-                      <label className="block">
-                        <p className="text-sm font-semibold">Who is my</p>
-                        <select
-                          id="small"
-                          className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                          defaultValue={'mom'}
-                          name={'gift_relation'}
-                        >
-                          {relationOptions.map(({ id, value }) => (
-                            <option key={id} value={value}>
-                              {value}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                    </div>
-                  </>
-                )}
-                <hr />
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <Input
-                    label={'First name'}
-                    type={'text'}
-                    placeholder={'Ex: John'}
-                    name={'firstname'}
-                    error={errors?.firstname?.message}
-                    onChange={(e) =>
-                      setValue('firstname', (e.target as HTMLInputElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                  ></Input>
-                  <Input
-                    label={'Last name'}
-                    type={'text'}
-                    placeholder={'Ex: Doe'}
-                    name={'lastname'}
-                    error={errors?.lastname?.message}
-                    onChange={(e) =>
-                      setValue('lastname', (e.target as HTMLInputElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                  ></Input>
-                </div>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <Input
-                    label={'Email Address'}
-                    type={'email'}
-                    placeholder={'johndoe@mail.com'}
-                    name={'email'}
-                    error={errors?.email?.message}
-                    autoComplete={'email'}
-                    onChange={(e) =>
-                      setValue('email', (e.target as HTMLInputElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                  ></Input>
-                  <div>
-                    <p className="text-sm font-semibold ">Country</p>
-                    <ReactFlagsSelect
-                      selected={selected}
-                      onSelect={onSelect}
-                      searchable={true}
-                      blacklistCountries={blacklistCountries}
-                      className="flag-select mt-3 block w-full"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
-                  <div className="flex w-full items-end justify-evenly">
-                    <Input
-                      label={'Password'}
-                      type={'password'}
-                      placeholder={'•••••••••'}
-                      name={'password'}
-                      autoComplete={'current-password'}
-                      onChange={(e) =>
-                        setValue('password', (e.target as HTMLInputElement).value, {
-                          shouldValidate: true,
-                        })
-                      }
-                      error={errors?.password?.message}
-                    ></Input>
-                  </div>
-                  <div className="flex w-full items-end justify-evenly">
-                    <Input
-                      label={'Confirm Password'}
-                      type={'password'}
-                      placeholder={'•••••••••'}
-                      name={'cpassword'}
-                      autoComplete={'current-password'}
-                      onChange={(e) =>
-                        setValue('cpassword', (e.target as HTMLInputElement).value, {
-                          shouldValidate: true,
-                        })
-                      }
-                      error={errors?.cpassword?.message}
-                    ></Input>
-                  </div>
-                </div>
+  useEffect(() => {
+    if (relationVisible) {
+      const datepicker = document.getElementById('datepicker')
+      flatpickr(datepicker!, {
+        enableTime: false,
+        dateFormat: 'M j, Y',
+        minDate: new Date(),
+        onChange: function (selectedDates) {
+          setValue('giftDate', selectedDates[0].toISOString(), {
+            shouldValidate: true,
+          })
+        },
+      })
+    }
+  }, [relationVisible])
 
-                {registerMessage?.type === 'success' && (
-                  <p className="mt-2 text-sm text-success-500">{registerMessage.message}</p>
-                )}
-                {registerMessage?.type === 'error' && (
-                  <p className="mt-2 text-sm text-danger-500">{registerMessage.message}</p>
-                )}
-                <p className="px-0 text-center text-sm font-light text-secondary-500 lg:px-24">
-                  Family Fortunate collects and uses personal data in accordance with our{' '}
-                  <Link className="underline hover:text-primary-400" href="/privacy-policy">
-                    Privacy Policy
-                  </Link>
-                  . <br className="hidden md:block" /> By creating an account, you agree to our{' '}
-                  <Link className="underline hover:text-primary-400" href="/terms-and-conditions">
-                    Terms and Conditions
-                  </Link>
-                  .
-                </p>
-                <Button className="mx-auto mt-2 w-full lg:w-72" type={'submit'} color={'dark'}>
-                  Buy Now
-                </Button>
-              </form>
+  return (
+    <main className="flex min-h-screen justify-center bg-gray-100">
+      <Title suffix="Family Fortunate">Get Started</Title>
+      <section className="m-0 flex max-w-screen-2xl flex-1 justify-center bg-white shadow sm:m-20 sm:rounded-lg">
+        <div className="p-6 sm:p-12 lg:w-2/3 xl:w-6/12">
+          <Link href="/" className="!block lg:inline-block">
+            <span className="sr-only">Go home</span>
+            <Logo className="mx-auto h-20 w-auto lg:mx-0" />
+          </Link>
+          <form
+            className="mt-5 mb-4 grid grid-flow-row gap-6 text-left"
+            method="post"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="flex">
+              <div>
+                <Heading size={6}>Are you looking at this for yourself or as a gift?</Heading>
+                <div className="mt-3 flex gap-4">
+                  <Radio
+                    name="book_receiver"
+                    onClick={() => setRelationVisible(false)}
+                    value={'myself'}
+                    defaultChecked
+                    onChange={(e) =>
+                      setValue('book_receiver', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  >
+                    Myself
+                  </Radio>
+                  <Radio
+                    name="book_receiver"
+                    onClick={() => setRelationVisible(true)}
+                    value={'gift'}
+                    onChange={(e) =>
+                      setValue('book_receiver', (e.target as HTMLInputElement).value)
+                    }
+                  >
+                    Gift
+                  </Radio>
+                </div>
+              </div>
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <Input
+                label={relationVisible ? "Your gift recipient's first name" : 'First Name'}
+                type={'text'}
+                placeholder={'Ex: John'}
+                name={'firstname'}
+                error={errors?.firstname?.message}
+                onChange={(e) =>
+                  setValue('firstname', (e.target as HTMLInputElement).value, {
+                    shouldValidate: true,
+                  })
+                }
+              ></Input>
+              <Input
+                label={relationVisible ? "Your gift recipient's last name" : 'Last Name'}
+                type={'text'}
+                placeholder={'Ex: Doe'}
+                name={'lastname'}
+                error={errors?.lastname?.message}
+                onChange={(e) =>
+                  setValue('lastname', (e.target as HTMLInputElement).value, {
+                    shouldValidate: true,
+                  })
+                }
+              ></Input>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <Input
+                label={relationVisible ? "Your gift recipient's email" : 'Email Address'}
+                type={'email'}
+                placeholder={'johndoe@mail.com'}
+                name={'email'}
+                error={errors?.email?.message}
+                autoComplete={'email'}
+                onChange={(e) => {
+                  setValue('email', (e.target as HTMLInputElement).value, {
+                    shouldValidate: true,
+                  })
+                }}
+              ></Input>
+              <div>
+                <p className="text-sm font-semibold ">Country</p>
+                <ReactFlagsSelect
+                  selected={selected}
+                  onSelect={onSelect}
+                  searchable={true}
+                  blacklistCountries={blacklistCountries}
+                  className="flag-select mt-3 block w-full"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
+              <div className="flex w-full items-end justify-evenly">
+                <Input
+                  label={'Password'}
+                  type={'password'}
+                  placeholder={'•••••••••'}
+                  name={'password'}
+                  autoComplete={'current-password'}
+                  onChange={(e) =>
+                    setValue('password', (e.target as HTMLInputElement).value, {
+                      shouldValidate: true,
+                    })
+                  }
+                  error={errors?.password?.message}
+                ></Input>
+              </div>
+              <div className="flex w-full items-end justify-evenly">
+                <Input
+                  label={'Confirm Password'}
+                  type={'password'}
+                  placeholder={'•••••••••'}
+                  name={'cpassword'}
+                  autoComplete={'current-password'}
+                  onChange={(e) =>
+                    setValue('cpassword', (e.target as HTMLInputElement).value, {
+                      shouldValidate: true,
+                    })
+                  }
+                  error={errors?.cpassword?.message}
+                ></Input>
+              </div>
+            </div>
+            <hr />
+            {relationVisible && (
+              <>
+                <Heading size={6}>Add a gift message</Heading>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <Input
+                    label={`Send your gift on:`}
+                    type={'text'}
+                    placeholder={'MM/DD/YYY'}
+                    name={'giftDate'}
+                    id="datepicker"
+                    error={errors?.giftDate?.message}
+                    onChange={(e) => {
+                      console.log((e.target as HTMLInputElement).value)
+                      setValue('giftDate', (e.target as HTMLInputElement).value)
+                    }}
+                  ></Input>
+                  <label className="block">
+                    <p className="text-sm font-semibold">Who is my</p>
+                    <select
+                      id="small"
+                      className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                      defaultValue={'mom'}
+                      name={'giftRelation'}
+                    >
+                      {relationOptions.map(({ id, value }) => (
+                        <option key={id} value={value}>
+                          {value}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <Input
+                  label={`Your name & anyone else the gift is from`}
+                  type={'text'}
+                  placeholder={'Ex: Jane Doe'}
+                  name={'giftSender'}
+                  error={errors?.giftSender?.message}
+                  onChange={(e) => setValue('giftSender', (e.target as HTMLInputElement).value)}
+                ></Input>
+                <label className="block w-full">
+                  <textarea
+                    className="mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                    placeholder="Type your gift message here..."
+                    name={'giftMessage'}
+                    defaultValue={`I've gifted you a subscription to Family Fortunate so you can write and share your stories with me and the family.`}
+                    onChange={(e) =>
+                      setValue('giftMessage', (e.target as HTMLTextAreaElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  />
+                  {errors?.giftMessage?.message ? (
+                    <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
+                      {errors?.giftMessage?.message}
+                    </p>
+                  ) : (
+                    ''
+                  )}
+                </label>
+              </>
+            )}
+            <p className="px-0 text-center text-sm font-light text-secondary-500 lg:px-5">
+              Family Fortunate collects and uses personal data in accordance with our{' '}
+              <Link className="underline hover:text-primary-400" href="/privacy-policy">
+                Privacy Policy
+              </Link>
+              . <br className="hidden md:block" /> By creating an account, you agree to our{' '}
+              <Link className="underline hover:text-primary-400" href="/terms-and-conditions">
+                Terms and Conditions
+              </Link>
+              .
+            </p>
+            <Button className="mx-auto mt-2 w-full" type={'submit'} color={'dark'}>
+              Buy Now
+            </Button>
+          </form>
         </div>
-      </div>
-    </div>
+        <div className="hidden flex-1 bg-indigo-100 text-center lg:flex">
+          <div className="m-12 h-full w-full bg-mockup bg-contain bg-center bg-no-repeat xl:m-16"></div>
+        </div>
+      </section>
+    </main>
   )
 }
 export async function getServerSideProps({ query }: any) {

@@ -37,22 +37,35 @@ const UserSchema = new mongoose.Schema(
       required: [true, 'Please select a Country!'],
       unique: false,
     },
-
-    //   book reciever field
+    //book receiver
     book_receiver: {
       type: String,
       required: [true, 'Please select book receiver!'],
       unique: false,
     },
 
-    //   gift for field
-    gift_for: {
+    // Date to gift
+    giftDate: {
+      type: Date,
+      required: false,
+      unique: false,
+    },
+
+    // Gift sender
+    giftSender: {
       type: String,
       required: false,
       unique: false,
     },
-    //   gift relation field
-    gift_relation: {
+    // gift relation field
+    giftRelation: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+
+    // Gift Message
+    giftMessage: {
       type: String,
       required: false,
       unique: false,
