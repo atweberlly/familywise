@@ -352,10 +352,9 @@ export const PaymentForm = (props: {
             url: '/api/sendMailFnx',
             data: {
               subject: 'Ready to get started, ' + props.user.firstname + '?',
-              template: 'onboarding_1.html',
+              template: props.user.planType + '/onboarding_1.html',
               param: {
                 name: props.user.firstname,
-                totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
               },
               to: props.user.email,
             },
