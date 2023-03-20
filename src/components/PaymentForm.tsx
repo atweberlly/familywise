@@ -334,17 +334,33 @@ export const PaymentForm = (props: {
         data: {
           orderId: id,
           status: true,
+          type: 'onboarding',
         },
       }
       setSuccess(true)
-      return axios(configuration).then((response) => {
+      return axios(configuration).then(async (response) => {
         //send emails
         //confirmation page
-
         if (response) {
           toast.success(
             "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."
           )
+          //send email onboarding
+          // params { subject, template, param, to }
+          const emailConfig = {
+            method: 'post',
+            url: '/api/sendMailFnx',
+            data: {
+              subject: 'Ready to get started, ' + props.user.firstname + '?',
+              template: 'onboarding_1.html',
+              param: {
+                name: props.user.firstname,
+                totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
+              },
+              to: props.user.email,
+            },
+          }
+          await axios(emailConfig)
           router.push('/sign-in')
         }
       })
