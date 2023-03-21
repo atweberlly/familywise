@@ -6,9 +6,17 @@ interface Props extends React.AllHTMLAttributes<HTMLElement> {
   onClick?: () => void
   children?: ReactNode
   className?: string
+  disabled?: boolean
 }
 
-export default function ButtonV2({ onClick, text, isActive, children, className }: Props) {
+export default function ButtonV2({
+  onClick,
+  text,
+  isActive,
+  children,
+  className,
+  disabled,
+}: Props) {
   return (
     <div className="relative flex items-center justify-center gap-x-1" onClick={onClick}>
       {children ? (
@@ -21,6 +29,7 @@ export default function ButtonV2({ onClick, text, isActive, children, className 
               : 'bg-none text-primary-500 hover:bg-primary-500 hover:text-white'
           }
         `}
+          disabled={disabled}
         >
           {children} {text}
         </button>
@@ -34,6 +43,7 @@ export default function ButtonV2({ onClick, text, isActive, children, className 
               : 'bg-transparent text-primary-500 hover:bg-primary-500 hover:text-white '
           }
           `}
+          disabled={disabled}
         >
           {text}
         </button>

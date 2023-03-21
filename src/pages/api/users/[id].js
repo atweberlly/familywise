@@ -43,6 +43,8 @@ export default async function handler(request, response) {
           giftDate: request.body.giftDate,
           giftSender: request.body.giftSender,
           giftRelation: request.body.giftRelation,
+          giftOccasion: request.body.giftOccasion,
+          giftSalutation: request.body.giftSalutation,
           giftMessage: request.body.giftMessage,
           roles: request.body.roles,
           orderId: request.body.orderId,

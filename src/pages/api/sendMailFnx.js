@@ -6,6 +6,7 @@ const sendMailFnx = async (req, res) => {
   const server = dev ? 'http://localhost:3000' : 'https://www.familyfortunate.us'
   const { subject, template, param, to } = req.body
   param.server_url = server
+  param.year = new Date().getFullYear()
 
   try {
     const emailBody = await GetEmailBody(template, param)

@@ -5,16 +5,18 @@ import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
 import axios from 'axios'
+import dateFormat from 'dateformat'
 import { Table, TextInput } from 'flowbite-react'
+import { NextPage } from 'next'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-export default function Newsletter() {
+const MemberList: NextPage = () => {
   const [loading, setLoading] = useState(false)
-  const [Newsletter, setNewsletter] = useState<Array<any>>([])
+  const [Subscribers, setSubscribers] = useState<Array<any>>([])
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
-  const newsletterHeader = ['Email', 'Full Name', 'Date Subscribed', 'Source', 'Status']
+  const subscriberHeader = ['Email', 'Full Name', 'Country', 'Date Subscribed', 'Plan', 'Status']
 
   //fetch all data
   useEffect(() => {
@@ -24,14 +26,14 @@ export default function Newsletter() {
       // set configurations
       const configuration = {
         method: 'get',
-        url: '/api/newsletter',
+        url: '/api/users',
       }
 
       // make the API call
       await axios(configuration)
         .then((response) => {
-          const data = response.data.newsletter.members
-          setNewsletter(data)
+          const data = response.data.result
+          setSubscribers(data)
           setLoading(false)
         })
         .catch((error) => {
@@ -44,7 +46,7 @@ export default function Newsletter() {
 
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = Newsletter.slice(indexOfFirstPost, indexOfLastPost)
+  const currentPosts = Subscribers.slice(indexOfFirstPost, indexOfLastPost)
 
   // Change page
   const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber)
@@ -52,10 +54,10 @@ export default function Newsletter() {
   return (
     <AdminLayout>
       <div>
-        <Heading size={3}>Newsletter</Heading>
-        <p className="text-base">Lists of newsletter subscribers</p>
+        <Heading size={3}>Members</Heading>
+        <p className="text-base">Lists of subscribers</p>
         <div className="my-10 text-center">
-          <Title>Newsletter</Title>
+          <Title>Members</Title>
           <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
             <div className="mt-3 flex justify-between">
               <TextInput
@@ -68,26 +70,29 @@ export default function Newsletter() {
             </div>
             <div className="mt-8">
               <TableLayout
-                header={newsletterHeader.map((title) => {
+                header={subscriberHeader.map((title) => {
                   return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                 })}
                 body={currentPosts?.map(
-                  ({ id, email_address, full_name, timestamp_opt, source, status }) => {
+                  ({ _id, email, firstname, lastname, country, createdAt, planType, status }) => {
                     return (
-                      <Table.Row className="bg-white" key={id}>
-                        <Table.Cell>{email_address}</Table.Cell>
-                        <Table.Cell>{full_name}</Table.Cell>
-                        <Table.Cell>{new Date(timestamp_opt).toUTCString()}</Table.Cell>
-                        <Table.Cell>{source}</Table.Cell>
+                      <Table.Row className="bg-white" key={_id}>
+                        <Table.Cell>{email}</Table.Cell>
+                        <Table.Cell>
+                          {firstname} {lastname}
+                        </Table.Cell>
+                        <Table.Cell>{country}</Table.Cell>
+                        <Table.Cell>{dateFormat(createdAt, 'longDate')} </Table.Cell>
+                        <Table.Cell>{planType}</Table.Cell>
                         <Table.Cell>
                           <span
                             className={`rounded-full px-4 py-2 font-semibold ${
-                              status === 'subscribed'
-                                ? 'bg-green-100 text-green-500'
+                              status === true
+                                ? 'bg-teal-100 text-primary-500'
                                 : 'bg-gray-100 text-gray-500'
                             } capitalize`}
                           >
-                            {status}
+                            {status ? 'Active' : 'Inactive'}
                           </span>
                         </Table.Cell>
                       </Table.Row>
@@ -100,7 +105,7 @@ export default function Newsletter() {
               <div className="mt-4 flex items-center justify-center text-center">
                 <Pagination
                   postsPerPage={postsPerPage}
-                  totalPosts={Newsletter.length}
+                  totalPosts={Subscribers.length}
                   paginate={paginate}
                   currentPage={currentPage}
                 />
@@ -112,3 +117,5 @@ export default function Newsletter() {
     </AdminLayout>
   )
 }
+
+export default MemberList
