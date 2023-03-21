@@ -29,7 +29,7 @@ export default function JoinUs() {
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
-    flatpickr(datepicker!).destroy()
+    if(datepicker) flatpickr(datepicker!).destroy()
   }
 
   // defining the initial state for the form
@@ -76,17 +76,17 @@ export default function JoinUs() {
       .then((response) => {
         //proceed to pricing table
         const _id = response.data.result._id
-        destroyDatePicker()
+
+        setLoading(false)
+        // redirect user to the auth page
         setTimeout(() => {
+          destroyDatePicker()
           router.push(`/checkout/${_id}`)
-          setLoading(false) //remove loader
         }, 3000)
       })
       .catch((err) => {
-        const { error } = err.response.data
-        if (error.code === 11000)
-          toast.error('This email address is already exist. Please provide different account')
-        else toast.error(`We're sorry, something went wring when attempting to sign up.`)
+        const { message } = err.response.data
+        toast.error(message)
         setLoading(false) //remove loader
       })
   }
