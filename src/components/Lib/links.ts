@@ -24,8 +24,8 @@ const links: Array<Props> = [
   },
   {
     id: uniqueId(),
-    href: 'get-started',
-    label: 'Get Started',
+    href: 'pricing',
+    label: 'Pricing',
   },
   {
     id: uniqueId(),

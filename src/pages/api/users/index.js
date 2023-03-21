@@ -1,6 +1,7 @@
 import dbConnect from '../../../../lib/dbConnect'
 import User from '../../../../models/userModel'
 import bcrypt from 'bcrypt'
+import crypto from 'crypto'
 
 export default async function handler(request, response) {
   const { method } = request
@@ -29,6 +30,9 @@ export default async function handler(request, response) {
       break
 
     case 'POST': //create user
+      const resetToken =
+        request.body.bookReceiver === 'gift' ? crypto.randomBytes(32).toString('hex') : ''
+
       bcrypt
         .hash(request.body.password, 10)
         .then(async (hashedPassword) => {
@@ -38,12 +42,15 @@ export default async function handler(request, response) {
             email: request.body.email,
             password: hashedPassword,
             country: request.body.country,
-            book_receiver: request.body.book_receiver,
+            bookReceiver: request.body.bookReceiver,
             giftDate: request.body.giftDate,
             giftSender: request.body.giftSender,
             giftRelation: request.body.giftRelation,
+            giftOccasion: request.body.giftOccasion,
+            giftSalutation: request.body.giftSalutation,
             giftMessage: request.body.giftMessage,
             roles: request.body.roles,
+            token: resetToken,
             planType: request.body.planType,
             status: request.body.status,
           }
@@ -60,10 +67,17 @@ export default async function handler(request, response) {
             })
             // catch erroe if the new user wasn't added successfully to the database
             .catch((error) => {
-              response.status(500).send({
-                message: 'Error creating user',
-                error,
-              })
+              if (error.code === 11000) {
+                response.status(500).send({
+                  message: 'This email address is already exist. Please provide different account',
+                  error,
+                })
+              } else {
+                response.status(500).send({
+                  message: "We're sorry, something went wrong when attempting to sign up.",
+                  error,
+                })
+              }
             })
         })
         // catch error if the password hash isn't successful

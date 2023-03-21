@@ -8,11 +8,20 @@ import Logo from '../../components/Logo'
 import Payin4 from '../../components/Payin4'
 import { PaymentForm } from '../../components/PaymentForm'
 import axios from 'axios'
+import dateFormat from 'dateformat'
 import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 
 export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   let initialUser = {
     planType: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    giftDate: '',
+    giftSender: '',
+    giftMessage: '',
+    giftOccation: '',
+    bookReceiver: '',
   }
   const { ClientToken, ClientID } = props
   const router = useRouter()
@@ -67,6 +76,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
               </div>
             </div>
           </div>
+
           {ClientToken && (
             <PaymentForm clientToken={ClientToken} clientID={ClientID} user={user} price={price} />
           )}
@@ -84,8 +94,8 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
           </ul>
         </div>
         <div className="order-first py-10 pl-10 pr-10 lg:order-last lg:py-16 lg:pl-24 lg:pr-48">
-          <div className="flex items-center justify-between">
-            <div className="flex gap-4">
+          <div className="flex items-start justify-between">
+            <div className="flex items-start gap-4">
               <Image
                 className="w-20 rounded-lg"
                 src="/images/cover@4x.jpg"
@@ -95,10 +105,20 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                 priority={false}
               />
               <div>
-                <Heading size={5} className="text-white">
-                  Family Fortunate Book
+                <Heading size={6} className="text-white">
+                  {user?.planType} Family Fortunate Membership
                 </Heading>
-                <p className="text-secondary-100">{user?.planType}</p>
+                {user?.bookReceiver === 'gift' && (
+                  <div className="mt-2 flex flex-col text-xs text-white/80">
+                    <p>First name: {user?.firstname}</p>
+                    <p>Last name: {user?.lastname}</p>
+                    <p>Email Address: {user?.email}</p>
+                    <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')} </p>
+                    <p>Occasion: {user?.giftOccation}</p>
+                    <p>From: {user?.giftSender}</p>
+                    <p>Message: {user?.giftMessage}</p>
+                  </div>
+                )}
               </div>
             </div>
 

@@ -7,10 +7,12 @@ import Button from '../components/Button'
 import Heading from '../components/Heading'
 import Input from '../components/Input'
 import { Radio } from '../components/InputButton'
+import { occasionOptions } from '../components/Lib/occasions'
 import { relationOptions } from '../components/Lib/relations'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
+import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
@@ -23,10 +25,11 @@ export default function JoinUs() {
   const blacklistCountries = false
   const [relationVisible, setRelationVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
+  const [showOtherField, setShowOtherField] = useState(false)
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
-    flatpickr(datepicker!).destroy()
+    if (datepicker) flatpickr(datepicker!).destroy()
   }
 
   // defining the initial state for the form
@@ -37,11 +40,13 @@ export default function JoinUs() {
     password: '',
     cpassword: '',
     country: selected,
-    book_receiver: 'myself',
+    bookReceiver: 'myself',
     giftDate: '',
     giftSender: '',
-    giftRelation: relationVisible ? 'mom' : '',
-    giftMessage: `I've gifted you a subscription to Family Fortunate so you can write and share your stories with me and the family.`,
+    giftSalutation: '',
+    giftRelation: 'mom',
+    giftOccasion: 'merry christmas!',
+    giftMessage: '',
     planType: plan,
   }
 
@@ -55,6 +60,11 @@ export default function JoinUs() {
   } = useForm({ mode: 'onBlur', defaultValues: initialState })
 
   const onSubmit = async (data: any) => {
+    //generate temporary password for gift recipient
+    if (data.password === '') {
+      data.password = generateTemporaryPassword()
+    }
+
     const configuration = {
       method: 'post',
       url: '/api/users',
@@ -66,17 +76,17 @@ export default function JoinUs() {
       .then((response) => {
         //proceed to pricing table
         const _id = response.data.result._id
-        destroyDatePicker()
+
+        setLoading(false)
+        // redirect user to the auth page
         setTimeout(() => {
+          destroyDatePicker()
           router.push(`/checkout/${_id}`)
-          setLoading(false) //remove loader
         }, 3000)
       })
       .catch((err) => {
-        const { error } = err.response.data
-        if (error.code === 11000)
-          toast.error('This email address is already exist. Please provide different account')
-        else toast.error(`We're sorry, something went wring when attempting to sign up.`)
+        const { message } = err.response.data
+        toast.error(message)
         setLoading(false) //remove loader
       })
   }
@@ -113,11 +123,17 @@ export default function JoinUs() {
         : 'You must provide your first name',
     })
 
-    register('book_receiver')
+    register('bookReceiver')
 
     if (relationVisible) {
       register('giftDate', {
         required: 'You must select a date to send your gift on',
+      })
+      register('giftOccasion', {
+        required: 'You must specify occasion',
+      })
+      register('giftSalutation', {
+        required: 'You must provide a salutation',
       })
       register('giftSender', {
         required: 'You must provide your name',
@@ -142,16 +158,15 @@ export default function JoinUs() {
         message: 'Please enter a valid email address',
       },
     })
-
     register('password', {
-      required: 'You must specify a password',
+      required: !relationVisible ? 'You must specify a password' : false,
       minLength: {
         value: 8,
         message: 'Password must have at least 8 characters',
       },
     })
     register('cpassword', {
-      required: 'You must confirm your password',
+      required: !relationVisible ? 'You must confirm your password' : false,
       validate: (val: string) => val === watch('password', '') || 'The passwords do not match',
     })
   }, [relationVisible, register, watch])
@@ -160,7 +175,7 @@ export default function JoinUs() {
     <main className="flex min-h-screen justify-center bg-gray-100">
       <Title suffix="Family Fortunate">Get Started</Title>
       <section className="m-0 flex max-w-screen-2xl flex-1 justify-center bg-white shadow sm:m-20 sm:rounded-lg">
-        <div className="p-6 sm:p-12 lg:w-2/3 xl:w-6/12">
+        <div className="p-6 sm:p-12 lg:w-1/2 xl:w-6/12">
           <Link href="/" className="!block lg:inline-block">
             <span className="sr-only">Go home</span>
             <Logo className="mx-auto h-20 w-auto lg:mx-0" />
@@ -172,15 +187,15 @@ export default function JoinUs() {
           >
             <div className="flex">
               <div>
-                <Heading size={6}>Are you looking at this for yourself or as a gift?</Heading>
+                <Heading size={4}>Are you looking at this for yourself or as a gift?</Heading>
                 <div className="mt-3 flex gap-4">
                   <Radio
-                    name="book_receiver"
+                    name="bookReceiver"
                     onClick={() => setRelationVisible(false)}
                     value={'myself'}
                     defaultChecked
                     onChange={(e) =>
-                      setValue('book_receiver', (e.target as HTMLInputElement).value, {
+                      setValue('bookReceiver', (e.target as HTMLInputElement).value, {
                         shouldValidate: true,
                       })
                     }
@@ -188,20 +203,19 @@ export default function JoinUs() {
                     Myself
                   </Radio>
                   <Radio
-                    name="book_receiver"
+                    name="bookReceiver"
                     onClick={() => setRelationVisible(true)}
                     value={'gift'}
-                    onChange={(e) =>
-                      setValue('book_receiver', (e.target as HTMLInputElement).value)
-                    }
+                    onChange={(e) => setValue('bookReceiver', (e.target as HTMLInputElement).value)}
                   >
                     Gift
                   </Radio>
                 </div>
               </div>
             </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <hr />
+            <Heading size={5}>Gift Recipient&apos;s Information</Heading>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <Input
                 label={relationVisible ? "Your gift recipient's first name" : 'First Name'}
                 type={'text'}
@@ -227,7 +241,7 @@ export default function JoinUs() {
                 }
               ></Input>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <Input
                 label={relationVisible ? "Your gift recipient's email" : 'Email Address'}
                 type={'email'}
@@ -241,6 +255,24 @@ export default function JoinUs() {
                   })
                 }}
               ></Input>
+
+              {relationVisible && (
+                <label className="block">
+                  <p className="text-sm font-semibold">Who is my</p>
+                  <select
+                    id="small"
+                    className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                    defaultValue={'mom'}
+                    name={'giftRelation'}
+                  >
+                    {relationOptions.map(({ id, value }) => (
+                      <option key={id} value={value}>
+                        {value}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              )}
               <div>
                 <p className="text-sm font-semibold ">Country</p>
                 <ReactFlagsSelect
@@ -252,45 +284,47 @@ export default function JoinUs() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
-              <div className="flex w-full items-end justify-evenly">
-                <Input
-                  label={'Password'}
-                  type={'password'}
-                  placeholder={'•••••••••'}
-                  name={'password'}
-                  autoComplete={'current-password'}
-                  onChange={(e) =>
-                    setValue('password', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                  error={errors?.password?.message}
-                ></Input>
+            {!relationVisible && (
+              <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <div className="flex w-full items-end justify-evenly">
+                  <Input
+                    label={'Password'}
+                    type={'password'}
+                    placeholder={'•••••••••'}
+                    name={'password'}
+                    autoComplete={'current-password'}
+                    onChange={(e) =>
+                      setValue('password', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                    error={errors?.password?.message}
+                  ></Input>
+                </div>
+                <div className="flex w-full items-end justify-evenly">
+                  <Input
+                    label={'Confirm Password'}
+                    type={'password'}
+                    placeholder={'•••••••••'}
+                    name={'cpassword'}
+                    autoComplete={'current-password'}
+                    onChange={(e) =>
+                      setValue('cpassword', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                    error={errors?.cpassword?.message}
+                  ></Input>
+                </div>
               </div>
-              <div className="flex w-full items-end justify-evenly">
-                <Input
-                  label={'Confirm Password'}
-                  type={'password'}
-                  placeholder={'•••••••••'}
-                  name={'cpassword'}
-                  autoComplete={'current-password'}
-                  onChange={(e) =>
-                    setValue('cpassword', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                  error={errors?.cpassword?.message}
-                ></Input>
-              </div>
-            </div>
+            )}
             <hr />
             {relationVisible && (
               <>
-                <Heading size={6}>Add a gift message</Heading>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <Heading size={5}>Gift Information</Heading>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                   <Input
-                    label={`Send your gift on:`}
+                    label={`Send gift on calendar:`}
                     type={'text'}
                     placeholder={'MM/DD/YYY'}
                     name={'giftDate'}
@@ -301,36 +335,89 @@ export default function JoinUs() {
                       setValue('giftDate', (e.target as HTMLInputElement).value)
                     }}
                   ></Input>
-                  <label className="block">
-                    <p className="text-sm font-semibold">Who is my</p>
-                    <select
-                      id="small"
-                      className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                      defaultValue={'mom'}
-                      name={'giftRelation'}
-                    >
-                      {relationOptions.map(({ id, value }) => (
-                        <option key={id} value={value}>
-                          {value}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+                  <div>
+                    <div className={`${showOtherField && 'flex items-end space-x-2'}`}>
+                      <label className="block">
+                        <p className="text-sm font-semibold">Occasion</p>
+                        <select
+                          className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                          defaultValue={'merry christmas!'}
+                          name={'giftOccasion'}
+                          onChange={(e) => {
+                            if ((e.target as HTMLSelectElement).value === 'other') {
+                              setShowOtherField(true)
+                              setValue('giftOccasion', '', {
+                                shouldValidate: true,
+                              })
+                            } else {
+                              setShowOtherField(false)
+                              setValue('giftOccasion', (e.target as HTMLSelectElement).value, {
+                                shouldValidate: true,
+                              })
+                            }
+                          }}
+                        >
+                          {occasionOptions.map(({ id, value }) => (
+                            <option key={id} value={value}>
+                              {value}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      {showOtherField && (
+                        <Input
+                          label={``}
+                          type={'text'}
+                          placeholder={'Please specify'}
+                          name={'giftOccasion'}
+                          onChange={(e) => {
+                            setValue('giftOccasion', (e.target as HTMLInputElement).value, {
+                              shouldValidate: true,
+                            })
+                          }}
+                        ></Input>
+                      )}
+                    </div>
+                    {errors?.giftOccasion?.message ? (
+                      <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
+                        {errors?.giftOccasion?.message}
+                      </p>
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </div>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"></div>
                 <Input
                   label={`Your name & anyone else the gift is from`}
                   type={'text'}
-                  placeholder={'Ex: Jane Doe'}
+                  placeholder={'E.g. Jane Doe'}
                   name={'giftSender'}
                   error={errors?.giftSender?.message}
-                  onChange={(e) => setValue('giftSender', (e.target as HTMLInputElement).value)}
+                  onChange={(e) =>
+                    setValue('giftSender', (e.target as HTMLInputElement).value, {
+                      shouldValidate: true,
+                    })
+                  }
+                ></Input>
+                <Input
+                  label={`Salutation`}
+                  type={'text'}
+                  placeholder={'E.g. Dear Aunt Linda, Hi Pop, To My Dear Husband'}
+                  name={'giftSalutation'}
+                  error={errors?.giftSender?.message}
+                  onChange={(e) =>
+                    setValue('giftSalutation', (e.target as HTMLInputElement).value, {
+                      shouldValidate: true,
+                    })
+                  }
                 ></Input>
                 <label className="block w-full">
+                  <p className="text-sm font-semibold"> Add a gift message</p>
                   <textarea
-                    className="mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                    placeholder="Type your gift message here..."
+                    className="mt-3 block h-40 w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                    placeholder="E.g. We’ve bought you an annual membership with Family Fortunate because we’d love to hear about your life before we came along! I came across this beautiful idea for a gift and immediately thought it would be perfect for you, so I hope you enjoy it."
                     name={'giftMessage'}
-                    defaultValue={`I've gifted you a subscription to Family Fortunate so you can write and share your stories with me and the family.`}
                     onChange={(e) =>
                       setValue('giftMessage', (e.target as HTMLTextAreaElement).value, {
                         shouldValidate: true,
@@ -375,8 +462,8 @@ export default function JoinUs() {
             </Button>
           </form>
         </div>
-        <div className="hidden flex-1 bg-indigo-100 text-center lg:flex">
-          <div className="m-12 h-full w-full bg-mockup bg-contain bg-center bg-no-repeat xl:m-16"></div>
+        <div className="hidden flex-1 bg-vanilla text-center lg:flex">
+          <div className="h-full w-full bg-book-cover bg-contain bg-center bg-no-repeat"></div>
         </div>
       </section>
     </main>
