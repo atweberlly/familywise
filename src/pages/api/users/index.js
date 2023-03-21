@@ -67,14 +67,14 @@ export default async function handler(request, response) {
             })
             // catch erroe if the new user wasn't added successfully to the database
             .catch((error) => {
-              if(error.code === 11000){
+              if (error.code === 11000) {
                 response.status(500).send({
                   message: 'This email address is already exist. Please provide different account',
                   error,
                 })
-              }else{
+              } else {
                 response.status(500).send({
-                  message:  'We\'re sorry, something went wrong when attempting to sign up.',
+                  message: "We're sorry, something went wrong when attempting to sign up.",
                   error,
                 })
               }
