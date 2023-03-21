@@ -29,7 +29,7 @@ export default function JoinUs() {
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
-    if(datepicker) flatpickr(datepicker!).destroy()
+    if (datepicker) flatpickr(datepicker!).destroy()
   }
 
   // defining the initial state for the form
