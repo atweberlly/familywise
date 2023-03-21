@@ -17,7 +17,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         texture: "url('/images/hero/hero-video-placeholder@4x.jpg')",
-        mockup: "url('/images/signup-mockup.png')",
+        'book-cover': "url('/images/book-cover.png')",
       },
       boxShadow: {
         xl: '0 24px 48px -12px rgba(16, 24, 40, 0.25)',

@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema(
       unique: false,
     },
     //book receiver
-    book_receiver: {
+    bookReceiver: {
       type: String,
       required: [true, 'Please select book receiver!'],
       unique: false,
@@ -63,9 +63,21 @@ const UserSchema = new mongoose.Schema(
       required: false,
       unique: false,
     },
+    // Gift Salutation
+    giftSalutation: {
+      type: String,
+      required: false,
+      unique: false,
+    },
 
     // Gift Message
     giftMessage: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+    // Gift Occasions
+    giftOccasion: {
       type: String,
       required: false,
       unique: false,

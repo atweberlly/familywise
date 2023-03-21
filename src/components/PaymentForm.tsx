@@ -347,16 +347,33 @@ export const PaymentForm = (props: {
           )
           //send email onboarding
           // params { subject, template, param, to }
+          const params =
+            props.user.bookReceiver === 'gift'
+              ? {
+                  name: props.user.firstname,
+                  totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
+                  occasion: props.user.giftOccasion,
+                  salutation: props.user.giftSalutation,
+                  token: props.user.token,
+                  sender: props.user.giftSender,
+                  message: props.user.message,
+                }
+              : {
+                  name: props.user.firstname,
+                  totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
+                }
+          const template =
+            props.user.bookReceiver === 'gift'
+              ? props.user.planType + '/onboarding_gift.html'
+              : props.user.planType + '/onboarding_1.html'
+
           const emailConfig = {
             method: 'post',
             url: '/api/sendMailFnx',
             data: {
               subject: 'Ready to get started, ' + props.user.firstname + '?',
-              template: 'onboarding_1.html',
-              param: {
-                name: props.user.firstname,
-                totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
-              },
+              template: template,
+              param: params,
               to: props.user.email,
             },
           }
