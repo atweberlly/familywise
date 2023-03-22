@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import Input from '../components/Input'
@@ -13,7 +14,6 @@ export default function ResetPassword() {
   const router = useRouter()
   const { token } = router.query
   const [loading, setLoading] = useState(false)
-  const [resetMessage, setResetMessage] = useState({ type: '', message: '', status: 404 })
 
   // defining the initial state for the form
   const initialState = {
@@ -58,12 +58,6 @@ export default function ResetPassword() {
     // make the API call
     await axios(configuration)
       .then((result) => {
-        setResetMessage({
-          type: 'success',
-          message: result.data.message,
-          status: 200,
-        })
-        setLoading(false)
         // redirect user to the auth page
         setTimeout(() => {
           if (result.data.roles === 'admin') {
@@ -71,16 +65,15 @@ export default function ResetPassword() {
           } else {
             router.push('/member/questions')
           }
+
+          toast.success(result.data.message)
+          setLoading(false)
         }, 3000)
       })
       .catch((err) => {
         const { message } = err.response.data
-        setResetMessage({ type: 'error', message: message, status: err.response.status })
-        setTimeout(() => {
-          // After 3 seconds set the show value to false
-          setResetMessage({ type: '', message: '', status: 404 })
-          setLoading(false)
-        }, 3000)
+        toast.error(message)
+        setLoading(false)
       })
   }
 
@@ -123,14 +116,8 @@ export default function ResetPassword() {
                   error={errors?.cpassword?.message}
                 ></Input>
               </div>
-              {resetMessage?.type === 'success' && (
-                <p className="mt-2 text-sm text-success-500">{resetMessage?.message}</p>
-              )}{' '}
-              {resetMessage?.type === 'error' && (
-                <p className="mt-2 text-sm text-danger-500">{resetMessage?.message}</p>
-              )}
               <div className="mt-7">
-                <Button href="" className="w-full" color="primary" type={'submit'}>
+                <Button href="" className="w-full" color="dark" type={'submit'} disabled={loading}>
                   {loading ? (
                     <>
                       <Spinner aria-label="loading" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import Input from '../components/Input'
@@ -13,7 +14,6 @@ import type { NextPage } from 'next'
 const ForgotPassword: NextPage = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const [forgotMessage, setForgotMessage] = useState({ type: '', message: '', status: 404 })
 
   // defining the initial state for the form
   const initialState = {
@@ -52,22 +52,14 @@ const ForgotPassword: NextPage = () => {
     // make the API call
     await axios(configuration)
       .then((result) => {
-        setForgotMessage({
-          type: 'success',
-          message: result.data.message,
-          status: 200,
-        })
+        toast.success(result.data.message)
         setLoading(false)
         router.push('sign-in')
       })
       .catch((err) => {
         const { message } = err.response.data
-        setForgotMessage({ type: 'error', message: message, status: err.response.status })
-        setTimeout(() => {
-          // After 3 seconds set the show value to false
-          setForgotMessage({ type: '', message: '', status: 404 })
-          setLoading(false)
-        }, 3000)
+        toast.error(message)
+        setLoading(false)
       })
   }
 
@@ -80,7 +72,7 @@ const ForgotPassword: NextPage = () => {
               <Title>Forgot Password</Title>
               <Link href="/" className="mb-16 !block lg:inline-block">
                 <span className="sr-only">Go home</span>
-                <Logo className="mx-auto h-24 w-auto" />
+                <Logo className="mx-auto h-24 w-auto" isWhite={false} />
               </Link>
               <p className="base my-2 text-center lg:text-sm">
                 No worries! Just enter your email and we&apos;ll send you a reset password link.
@@ -98,14 +90,8 @@ const ForgotPassword: NextPage = () => {
                   onChange={(e) => setValue('email', (e.target as HTMLInputElement).value)}
                 ></Input>
               </div>
-              {forgotMessage?.type === 'success' && (
-                <p className="mt-2 text-sm text-success-500">{forgotMessage?.message}</p>
-              )}{' '}
-              {forgotMessage?.type === 'error' && (
-                <p className="mt-2 text-sm text-danger-500">{forgotMessage?.message}</p>
-              )}
               <div className="mt-7">
-                <Button href="" className="w-full" color="primary" type={'submit'}>
+                <Button href="" className="w-full" color="dark" type={'submit'} disabled={loading}>
                   {loading ? (
                     <>
                       <Spinner aria-label="loading" />
@@ -119,7 +105,7 @@ const ForgotPassword: NextPage = () => {
             </form>
             <p className="base mt-5 text-center text-sm md:mt-6 lg:mt-8">
               Just remember?{' '}
-              <Link className="inline text-primary-500 hover:underline" href={'/sign-in'}>
+              <Link className="inline text-lemon-curry hover:underline" href={'/sign-in'}>
                 Sign in
               </Link>
             </p>
