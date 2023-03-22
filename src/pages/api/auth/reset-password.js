@@ -24,11 +24,12 @@ export default async function handler(request, response) {
         //send email
         try {
           const emailSubject = 'Reset your password'
-          const resetUrl = `${server}/reset-password?token=${resetToken}`
           const data = {
             name: user.firstname,
             email: email,
-            url: resetUrl,
+            server_url: server,
+            token: resetToken,
+            year: new Date().getFullYear(),
           }
 
           console.log(data)

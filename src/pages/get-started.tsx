@@ -77,11 +77,11 @@ export default function JoinUs() {
         //proceed to pricing table
         const _id = response.data.result._id
 
-        setLoading(false)
         // redirect user to the auth page
         setTimeout(() => {
           destroyDatePicker()
           router.push(`/checkout/${_id}`)
+          setLoading(false)
         }, 3000)
       })
       .catch((err) => {

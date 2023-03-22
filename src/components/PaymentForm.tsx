@@ -342,9 +342,6 @@ export const PaymentForm = (props: {
         //send emails
         //confirmation page
         if (response) {
-          toast.success(
-            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."
-          )
           //send email onboarding
           // params { subject, template, param, to }
           const params =
@@ -356,7 +353,7 @@ export const PaymentForm = (props: {
                   salutation: props.user.giftSalutation,
                   token: props.user.token,
                   sender: props.user.giftSender,
-                  message: props.user.message,
+                  message: props.user.giftMessage,
                 }
               : {
                   name: props.user.firstname,
@@ -364,8 +361,8 @@ export const PaymentForm = (props: {
                 }
           const template =
             props.user.bookReceiver === 'gift'
-              ? props.user.planType + '/onboarding_gift.html'
-              : props.user.planType + '/onboarding_1.html'
+              ? 'Both/onboarding-1-gift.html'
+              : props.user.planType + '/onboarding-1.html'
 
           const emailConfig = {
             method: 'post',
@@ -378,6 +375,12 @@ export const PaymentForm = (props: {
             },
           }
           await axios(emailConfig)
+
+          //show success notification
+          toast.success(
+            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."
+          )
+          //redirect to sign in page
           router.push('/sign-in')
         }
       })
