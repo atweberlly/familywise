@@ -23,7 +23,7 @@ const getForAdd = async (req, res) => {
       case 'classic':
         const questionsClassic = await Questions.find({
           published: true,
-          QuestionType: 'classic',
+          QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },
         })
         res.status(200).json({ questions: questionsClassic, categories: categories })
 
