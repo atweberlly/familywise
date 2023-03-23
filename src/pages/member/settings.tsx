@@ -99,8 +99,8 @@ const Settings = () => {
                     The stories in your account are yours to keep forever
                   </h4>
                   <p className="text-xs text-secondary-500 lg:text-sm">
-                    Click the button to request a backup of your Family Fortunate account. <br />
-                    We’ll send you an email when your backup is ready to download
+                    If you would like to keep a backup of your stories on your <br /> own computer
+                    click the download button.
                   </p>
                 </div>
               </div>

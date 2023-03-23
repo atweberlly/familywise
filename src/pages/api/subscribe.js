@@ -6,7 +6,7 @@ mailchimp.setConfig({
 })
 
 const subscribe = async (req, res) => {
-  const { email, firstName, lastName } = req.body
+  const { email, firstName, lastName, country } = req.body
 
   try {
     const response = await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
@@ -14,6 +14,7 @@ const subscribe = async (req, res) => {
       merge_fields: {
         FNAME: firstName,
         LNAME: lastName,
+        COUNTRY: country,
       },
       status: 'subscribed',
     })

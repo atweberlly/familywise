@@ -6,7 +6,6 @@ import { RootState } from '../app/store'
 import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
-import dateFormat from 'dateformat'
 import { Dropdown, Avatar } from 'flowbite-react'
 import Cookies from 'universal-cookie'
 import {
@@ -333,7 +332,10 @@ export default function AdminLayout({ children }: any) {
           {children}
 
           <p className="mt-auto text-center">
-            Copyright &copy; familyfortunate {dateFormat(new Date(), 'yyyy')} | Privacy Policy
+            Copyright &copy; familyfortunate {new Date().getFullYear()} |{' '}
+            <li>
+              <Link href={'/privacy-policy'}>Privacy Policy</Link>
+            </li>
           </p>
         </main>
       </div>

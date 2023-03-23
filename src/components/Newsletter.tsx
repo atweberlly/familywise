@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import Button from './Button'
@@ -7,17 +8,20 @@ import { Spinner } from 'flowbite-react'
 
 export default function Newsletter() {
   const [isLoading, setLoading] = useState(false)
+  const [selected, setSelected] = useState('AU')
 
   let initialState = {
     first_name: '',
     last_name: '',
     email: '',
+    country: selected,
   }
 
   const {
     register,
     handleSubmit,
     resetField,
+    setValue,
     formState: { errors },
   } = useForm({ mode: 'onBlur', defaultValues: initialState })
 
@@ -31,6 +35,7 @@ export default function Newsletter() {
         email: data.email,
         firstName: data.first_name,
         lastName: data.last_name,
+        country: data.country,
       },
     }
     // make the API call
@@ -60,6 +65,11 @@ export default function Newsletter() {
       })
   }
 
+  const onSelect = (code: string): void => {
+    setSelected(code)
+    setValue('country', code)
+  }
+
   return (
     <section className="relative overflow-hidden pt-64 pb-12 md:pb-24">
       <img
@@ -78,65 +88,74 @@ export default function Newsletter() {
           <h2 className="mt-6 font-serif text-4xl font-bold">Receive inspiration in your inbox</h2>
         </div>
 
-        <form
-          className="mx-auto mt-8 grid max-w-screen-md grid-cols-1 items-start justify-center gap-8 md:grid-cols-2"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div>
-            <input
-              className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
-              type="text"
-              placeholder="First name"
-              {...register('first_name', { required: 'Your must provide first name' })}
-            />
-            {errors.first_name && (
-              <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
-                {errors.first_name.message}
-              </p>
-            )}
+        <form className="mx-auto mt-8 max-w-screen-md" onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid grid-cols-1 items-start justify-center gap-8 md:grid-cols-2">
+            <div>
+              <input
+                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                type="text"
+                placeholder="First name"
+                {...register('first_name', { required: 'Your must provide first name' })}
+              />
+              {errors.first_name && (
+                <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
+                  {errors.first_name.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <input
+                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                type="text"
+                placeholder="Last name"
+                {...register('last_name', { required: 'You must provide last name' })}
+              />
+              {errors.last_name && (
+                <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
+                  {errors.last_name.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <input
+                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                type="email"
+                placeholder="Email address"
+                {...register('email', {
+                  required: 'You must provide an email address',
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: 'Please enter a valid email address',
+                  },
+                })}
+              />
+              {errors.email && (
+                <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <ReactFlagsSelect
+                selected={selected}
+                onSelect={onSelect}
+                searchable={true}
+                className="flag-select w-full rounded-lg border-2 border-gray-300 bg-white !pb-0 shadow-sm transition focus:border-primary-600 focus:outline-none"
+              />
+            </div>
           </div>
-          <div>
-            <input
-              className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
-              type="text"
-              placeholder="Last name"
-              {...register('last_name', { required: 'You must provide last name' })}
-            />
-            {errors.last_name && (
-              <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
-                {errors.last_name.message}
-              </p>
-            )}
+          <div className="mx-auto mt-4 max-w-sm text-center lg:mt-8">
+            <Button className="w-40" type={'submit'} color={'yellow'}>
+              {isLoading ? (
+                <>
+                  <Spinner aria-label="loading" />
+                  <span className="pl-3">Sending</span>
+                </>
+              ) : (
+                'Join Us'
+              )}
+            </Button>
           </div>
-          <div>
-            <input
-              className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
-              type="email"
-              placeholder="Email address"
-              {...register('email', {
-                required: 'You must provide an email address',
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: 'Please enter a valid email address',
-                },
-              })}
-            />
-            {errors.email && (
-              <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
-                {errors.email.message}
-              </p>
-            )}
-          </div>
-          <Button className="w-full" type={'submit'} color={'dark'}>
-            {isLoading ? (
-              <>
-                <Spinner aria-label="loading" />
-                <span className="pl-3">Sending</span>
-              </>
-            ) : (
-              'Join Us'
-            )}
-          </Button>
         </form>
       </div>
     </section>
