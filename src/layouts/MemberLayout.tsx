@@ -336,7 +336,15 @@ export default function MemberLayout({ children }: any) {
           aria-label="Overlay"
         ></div>
 
-        <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">{children}</main>
+        <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">
+          {children}
+          <p className="mt-auto text-center">
+            Copyright &copy; familyfortunate {new Date().getFullYear()} |{' '}
+            <li>
+              <Link href={'/privacy-policy'}>Privacy Policy</Link>
+            </li>
+          </p>
+        </main>
       </div>
     </div>
   )

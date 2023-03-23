@@ -3,6 +3,7 @@ import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
   return (
     <footer className="bg-black-pearl pt-12 pb-8 text-white">
       <div className="container grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -70,7 +71,7 @@ export default function Footer() {
         <hr className="mb-6 border-gray-600" />
 
         <p className="mt-6 text-sm text-gray-500">
-          Copyright 2023 Family Fortunate. All rights reserved.
+          Copyright {currentYear} Family Fortunate. All rights reserved.
         </p>
       </div>
     </footer>
