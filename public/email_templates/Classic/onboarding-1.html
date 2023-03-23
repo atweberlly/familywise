@@ -103,7 +103,6 @@
                     >Select a different question</a
                   >
                 </li>
-
                 <li style="margin: 0 0 8px 0">
                   <a
                     target="_blank"
@@ -145,36 +144,49 @@
               📍 Stay Updated!<br />Follow us on our social media accounts to get more updates on
               our new releases and any ongoing promotions.
             </p>
-            <div
+            <table
+              align="center"
+              width="100%"
+              data-id="__react-email-container"
+              role="presentation"
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
               style="
-                display: flex;
-                gap: 8px;
-                justify-content: center;
-                align-items: center;
+                max-width: 37.5em;
+                width: 20px;
+                text-align: center;
                 margin-top: 8px;
                 margin-bottom: 24px;
               "
             >
-              <a
-                href="https://www.facebook.com/familyfortunate"
-                target="_blank"
-                rel="noreferrer"
-                style="width: 30px; height: 30px"
-                ><img
-                  src="${server_url}/static/Facebook.png"
-                  alt="Facebook"
-                  style="height: 100%; width: 100%" /></a
-              ><a
-                href="https://www.instagram.com/familyfortunate"
-                target="_blank"
-                rel="noreferrer"
-                style="width: 30px; height: 30px"
-                ><img
-                  src="${server_url}/static/Instagram.png"
-                  alt="Instagram"
-                  style="height: 100%; width: 100%"
-              /></a>
-            </div>
+              <tbody>
+                <tr style="width: 100%">
+                  <td data-id="__react-email-column">
+                    <a
+                      href="https://www.facebook.com/familyfortunate"
+                      target="_blank"
+                      rel="noreferrer"
+                      ><img
+                        src="${server_url}/static/Facebook.png"
+                        alt="Facebook"
+                        style="height: 25px; width: 25px; margin-right: 5px"
+                    /></a>
+                  </td>
+                  <td data-id="__react-email-column">
+                    <a
+                      href="https://www.instagram.com/familyfortunate"
+                      target="_blank"
+                      rel="noreferrer"
+                      ><img
+                        src="${server_url}/static/Instagram.png"
+                        alt="Instagram"
+                        style="height: 25px; width: 25px"
+                    /></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <p
               style="
                 font-size: 16px;
@@ -190,7 +202,7 @@
                 style="margin: 0 0 16px 0; color: #667085; font-size: 16px; line-height: 24px"
                 >Privacy Policy</a
               >
-              <br />61-63 Parry St Newcastle, NSW Australia <br />&copy; ${year}. Family Fortunate
+              <br />61-63 Parry St Newcastle, NSW Australia <br />© ${year}. Family Fortunate
             </p>
           </td>
         </tr>
