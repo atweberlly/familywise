@@ -127,7 +127,7 @@ export default function JoinUs() {
 
     if (relationVisible) {
       register('giftDate', {
-        required: 'You must select a date to send your gift on',
+        required: 'You must select a date to send your gift',
       })
       register('giftOccasion', {
         required: 'You must specify occasion',
@@ -324,7 +324,7 @@ export default function JoinUs() {
                 <Heading size={5}>Gift Information</Heading>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                   <Input
-                    label={`Send gift on calendar:`}
+                    label={`Send gift on date:`}
                     type={'text'}
                     placeholder={'MM/DD/YYY'}
                     name={'giftDate'}
@@ -416,7 +416,7 @@ export default function JoinUs() {
                   <p className="text-sm font-semibold"> Add a gift message</p>
                   <textarea
                     className="mt-3 block h-40 w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                    placeholder="E.g. We’ve bought you an annual membership with Family Fortunate because we’d love to hear about your life before we came along! I came across this beautiful idea for a gift and immediately thought it would be perfect for you, so I hope you enjoy it."
+                    placeholder={`E.g. We’ve bought you an annual ${plan} membership with Family Fortunate because we’d love to hear about your life before we came along!\n\nI came across this beautiful idea for a gift and immediately thought it would be perfect for you, so I hope you enjoy it.`}
                     name={'giftMessage'}
                     onChange={(e) =>
                       setValue('giftMessage', (e.target as HTMLTextAreaElement).value, {
