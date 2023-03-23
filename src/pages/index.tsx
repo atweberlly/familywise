@@ -245,12 +245,9 @@ export default function Home() {
             </p>
 
             <div className="mt-6 md:mt-12">
-              <button
-                className="inline-block rounded bg-sunglow px-4 py-3 font-bold uppercase tracking-wider text-black"
-                onClick={scrollDown}
-              >
+              <Button className="w-40" type={'button'} color={'yellow'} onClick={scrollDown}>
                 Get started
-              </button>
+              </Button>
             </div>
           </div>
 
