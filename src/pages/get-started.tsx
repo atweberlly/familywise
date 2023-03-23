@@ -80,8 +80,8 @@ export default function JoinUs() {
         // redirect user to the auth page
         setTimeout(() => {
           destroyDatePicker()
-          router.push(`/checkout/${_id}`)
           setLoading(false)
+          router.push(`/checkout/${_id}`)
         }, 3000)
       })
       .catch((err) => {
