@@ -331,11 +331,9 @@ export default function AdminLayout({ children }: any) {
         <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">
           {children}
 
-          <p className="mt-auto text-center">
+          <p className="mt-auto text-center text-secondary-500">
             Copyright &copy; familyfortunate {new Date().getFullYear()} |{' '}
-            <li>
-              <Link href={'/privacy-policy'}>Privacy Policy</Link>
-            </li>
+            <Link href={'/privacy-policy'}>Privacy Policy</Link>
           </p>
         </main>
       </div>
