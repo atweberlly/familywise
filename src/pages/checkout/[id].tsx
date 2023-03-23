@@ -20,7 +20,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
     giftDate: '',
     giftSender: '',
     giftMessage: '',
-    giftOccation: '',
+    giftOccasion: '',
     bookReceiver: '',
   }
   const { ClientToken, ClientID } = props
@@ -114,7 +114,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     <p>Last name: {user?.lastname}</p>
                     <p>Email Address: {user?.email}</p>
                     <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')} </p>
-                    <p>Occasion: {user?.giftOccation}</p>
+                    <p>Occasion: {user?.giftOccasion}</p>
                     <p>From: {user?.giftSender}</p>
                     <p>Message: {user?.giftMessage}</p>
                   </div>

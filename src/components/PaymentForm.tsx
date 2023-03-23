@@ -342,40 +342,12 @@ export const PaymentForm = (props: {
         //send emails
         //confirmation page
         if (response) {
-          //send email onboarding
-          // params { subject, template, param, to }
-          const params =
-            props.user.bookReceiver === 'gift'
-              ? {
-                  name: props.user.firstname,
-                  totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
-                  occasion: props.user.giftOccasion,
-                  salutation: props.user.giftSalutation,
-                  token: props.user.token,
-                  sender: props.user.giftSender,
-                  message: props.user.giftMessage,
-                }
-              : {
-                  name: props.user.firstname,
-                  totalQuestions: props.user.planType === 'Classic' ? 100 : 500,
-                }
-          const template =
-            props.user.bookReceiver === 'gift'
-              ? 'Both/onboarding-1-gift.html'
-              : props.user.planType + '/onboarding-1.html'
-
-          const emailConfig = {
+          const config = {
             method: 'post',
-            url: '/api/sendMailFnx',
-            data: {
-              subject: 'Ready to get started, ' + props.user.firstname + '?',
-              template: template,
-              param: params,
-              to: props.user.email,
-            },
+            url: '/api/questions/getFirstQuestion',
+            data: props.user,
           }
-          await axios(emailConfig)
-
+          await axios(config)
           //show success notification
           toast.success(
             "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."

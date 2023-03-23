@@ -114,7 +114,6 @@ export default function ReplaceQuestion({
                     <Button
                       color="primary"
                       type="button"
-                      className="bg-white"
                       onClick={async () => {
                         const res = await axios.post('/api/questions/replaceQuestion', {
                           question_id: question._id,
