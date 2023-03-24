@@ -8,13 +8,13 @@ const generateRandomQuestion = async (req, res) => {
   await dbConnect()
   try {
     // Get user with status=true
-    const users = await User.find({ status: true })
+    const users = await User.find({ status: true, roles: 'subscriber' })
 
     // Loop through each user and create a story with a random question
     for (const user of users) {
       // Get random question with QuestionType = 'planType' or 'both' and published = 1
       let questions = await Question.find({
-        QuestionType: { $in: ['planType', 'both'] },
+        QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },
         published: true,
       })
 
@@ -39,6 +39,14 @@ const generateRandomQuestion = async (req, res) => {
         user_id: user._id,
         question_id: randomQuestion._id,
       })
+
+      /*
+        TODO: Send email (RAMDOM TEMPLATE) based in user planType with the ff data:
+        {
+          name: user.firstname,
+          question: randomQuestion.question
+        }
+      */
     }
 
     res.status(200).json({ message: 'Random questions generated for valid users.' })
