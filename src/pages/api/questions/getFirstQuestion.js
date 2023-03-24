@@ -1,6 +1,7 @@
 import dbConnect from '../../../../lib/dbConnect'
 import Questions from '../../../../models/questionModel'
 import Story from '../../../../models/storyModel'
+import { convertTimezone } from '../../../utils/userTimezone'
 import { sendMailFnx } from '../sendMailFnx'
 
 const getFirstQuestion = async (req, res) => {
@@ -39,9 +40,9 @@ const getFirstQuestion = async (req, res) => {
 const sendOnboardingEmail = async (user, question) => {
   //Email Parameters
   //params { subject, template, param, to }
-  const subject = 'Ready to get started, ' + user.firstname + '?'
+  const subject = 'Ready to get started, ' + capitalizeFirstLetter(user.firstname) + '?'
   const params = {
-    name: user.firstname.ToCapitalize(),
+    name: capitalizeFirstLetter(user.firstname),
     totalQuestions: user.planType === 'Classic' ? 100 : 500,
   }
   const template = user.planType + '/onboarding-1.html'
@@ -59,11 +60,11 @@ const sendOnboardingEmail = async (user, question) => {
 //Note by Jonah: need to test this function
 const sendGiftScheduleEmail = async (user, question) => {
   // Set the date and time you want the email to be sent
-  const scheduledDate = new Date(user.giftDate)
+  const scheduledDate = convertTimezone(new Date(user.giftDate), user.timezone, user.timezone)
   // Calculate the number of milliseconds until the scheduled date and time
   const timeUntilScheduled = scheduledDate.getTime() - Date.now()
   //params { subject, template, param, to }
-  const subject = user.firstname + ", Here's your gift!"
+  const subject = capitalizeFirstLetter(user.firstname) + ", Here's your gift!"
   const params = {
     name: capitalizeFirstLetter(user.firstname),
     totalQuestions: user.planType === 'Classic' ? 100 : 500,
@@ -92,7 +93,7 @@ const sendGiftScheduleEmail = async (user, question) => {
 
 const sendFirstQuestion = async (user, question) => {
   //params { subject, template, param, to }
-  const subject = user.firstname + ", Here's your first question!"
+  const subject = capitalizeFirstLetter(user.firstname) + ", Here's your first question!"
   const params = {
     name: capitalizeFirstLetter(user.firstname),
     question: question,

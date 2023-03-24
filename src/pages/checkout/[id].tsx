@@ -10,9 +10,10 @@ import { PaymentForm } from '../../components/PaymentForm'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
 export default function Checkout(props: { ClientToken: any; ClientID: any }) {
-  let initialUser = {
+  const [user, setUser] = useState({
     planType: '',
     firstname: '',
     lastname: '',
@@ -22,35 +23,50 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
     giftMessage: '',
     giftOccasion: '',
     bookReceiver: '',
-  }
+  })
+
+  const [couponCode, setCouponCode] = useState('')
+  const [price, setPrice] = useState(97)
+  const [isValidCoupon, setValidCoupon] = useState(false)
+  const [discountAmount, setDiscountAmount] = useState(0)
+  const [originalPrice, setOriginalPrice] = useState(97)
+  const [showDiscount, setShowDiscount] = useState(true)
+
   const { ClientToken, ClientID } = props
   const router = useRouter()
   const { id } = router.query
-  const [user, setUser] = useState(initialUser)
 
   useEffect(() => {
     const fetchUser = async () => {
-      const configuration = {
-        method: 'get',
-        url: '/api/users/' + id,
-      }
+      try {
+        const response = await axios.get(`/api/users/${id}`)
 
-      // make the API call
-      await axios(configuration).then((response) => {
         if (response.data.result === null || response.data.result.orderId) {
-          //redirect to sign in
-          //it means user already subscribed
-          router.push(`/sign-in`)
+          // redirect to sign in if user already subscribed
+          router.push('/sign-in')
         } else {
           setUser(response.data.result)
         }
-      })
+      } catch (error) {
+        console.error(error)
+      }
     }
+
     fetchUser()
   }, [router, id])
 
-  const price = user?.planType === 'Classic' ? '97.00' : '159.00'
+  useEffect(() => {
+    setPrice(user?.planType === 'Premium' ? 159 : 97)
+    setOriginalPrice(user?.planType === 'Premium' ? 159 : 97)
+  }, [user])
 
+  useEffect(() => {
+    if (couponCode.length === 0) {
+      setValidCoupon(false)
+      setDiscountAmount(0)
+      setValidCoupon(false)
+    }
+  }, [couponCode])
   return (
     <>
       <div className="relative grid max-w-full grid-cols-1 items-start bg-black-pearl lg:grid-cols-2">
@@ -126,27 +142,96 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
               ${price}
             </Heading>
           </div>
+          {showDiscount && (
+            <>
+              <hr className="mt-5 w-full border-white/80" />
+              <div className="m-5 flex items-start gap-4 lg:m-8">
+                <div>
+                  <input
+                    className={`w-full rounded-lg border-2 bg-transparent px-3 py-3 text-white shadow-sm transition focus:outline-none ${
+                      couponCode && !isValidCoupon
+                        ? 'border-red-300 focus:border-red-400'
+                        : 'border-gray-300 focus:border-lemon-curry'
+                    }`}
+                    type="text"
+                    placeholder="Discount Code"
+                    value={couponCode}
+                    onChange={(event) => setCouponCode(event.target.value)}
+                  />
+                  {couponCode && !isValidCoupon && (
+                    <p className="mt-2 text-xs text-red-400">Enter a valid discount code</p>
+                  )}
+                </div>
+
+                <Button
+                  className="w-20 shrink-0"
+                  type={'button'}
+                  color={'secondary'}
+                  onClick={async () => {
+                    const validate = await axios.post('/api/coupon/validate', {
+                      coupon: couponCode,
+                    })
+                    if (validate.status === 201) {
+                      if (validate.data.result) {
+                        const { amount, type } = validate.data.result
+
+                        const discounted =
+                          type === 'percentage' ? price - (price * amount) / 100 : price - amount
+                        // setPrice()
+                        setDiscountAmount(type === 'percentage' ? (price * amount) / 100 : amount) //amount to be discounted
+                        setValidCoupon(true) //set valid coupon to true
+                        setPrice(discounted) //set price with discount
+                        setShowDiscount(false)
+                      } else {
+                        //reset
+                        setValidCoupon(false)
+                        setDiscountAmount(0)
+                        setValidCoupon(false)
+                      }
+                    }
+                  }}
+                >
+                  Apply
+                </Button>
+              </div>
+            </>
+          )}
+
           <hr className="mt-5 w-full border-white/80" />
-          <div className="m-5 flex gap-4 lg:m-10">
-            <input
-              className="w-full rounded-lg border-2 border-gray-300 bg-transparent px-3 py-2 text-white shadow-sm transition focus:border-lemon-curry focus:outline-none"
-              type="text"
-              placeholder="Discount Code"
-            />
-            <Button className="w-20" type={'submit'} color={'secondary'}>
-              Apply
-            </Button>
-          </div>
-          <hr className="mt-5 w-full border-white/80" />
-          <div className="mt-5 flex justify-between">
-            <Heading size={5} className="text-white">
-              Total
-            </Heading>
+          {couponCode && isValidCoupon && (
+            <>
+              <div className="mt-5 flex justify-between">
+                <p className="text-sm text-white">Subtotal</p>
+                <div className="inline-flex items-end">
+                  <p className="text-sm text-white">${originalPrice}</p>
+                </div>
+              </div>
+              <div className="mt-3 flex justify-between">
+                <p className="flex items-center gap-2 text-sm text-white">
+                  Discount{' '}
+                  <span className="flex items-center rounded bg-lemon-curry p-1 text-white">
+                    {couponCode}{' '}
+                    <XMarkIcon
+                      className="h-6 w-6 cursor-pointer text-white"
+                      onClick={() => {
+                        setShowDiscount(true)
+                        setCouponCode('')
+                        setPrice(originalPrice)
+                      }}
+                    />{' '}
+                  </span>
+                </p>
+                <div className="inline-flex items-end">
+                  <p className="text-sm text-white">-${discountAmount}</p>
+                </div>
+              </div>
+            </>
+          )}
+          <div className="mt-3 flex justify-between">
+            <p className="text-bold text-xl text-white">Total</p>
             <div className="inline-flex items-end">
               <p className="mr-2 text-xs text-secondary-100/70">USD</p>
-              <Heading size={4} className="text-white">
-                ${price}
-              </Heading>
+              <p className="text-bold text-xl text-white">${price}</p>
             </div>
           </div>
         </div>

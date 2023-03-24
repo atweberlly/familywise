@@ -1,4 +1,3 @@
-import Heading from '../src/components/Heading'
 import mongoose, { mongo } from 'mongoose'
 
 // story schema

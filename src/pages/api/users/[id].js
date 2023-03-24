@@ -7,6 +7,7 @@ export default async function handler(request, response) {
     query: { id },
     method,
   } = request
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
   await dbConnect()
 
@@ -72,6 +73,7 @@ export default async function handler(request, response) {
                 roles: request.body.roles,
                 orderId: request.body.orderId,
                 planType: request.body.planType,
+                timezone: userTimezone,
                 status: request.body.status,
               },
             }
