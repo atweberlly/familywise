@@ -17,6 +17,7 @@ import axios from 'axios'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 import { Spinner } from 'flowbite-react'
+import dateFormat from 'dateformat'
 
 export default function JoinUs() {
   const router = useRouter()
@@ -105,7 +106,7 @@ export default function JoinUs() {
           dateFormat: 'M j, Y',
           minDate: new Date(),
           onChange: function (selectedDates) {
-            setValue('giftDate', selectedDates[0].toISOString(), {
+            setValue('giftDate', dateFormat(selectedDates[0]), {
               shouldValidate: true,
             })
           },
