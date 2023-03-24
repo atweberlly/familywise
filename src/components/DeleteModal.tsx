@@ -1,13 +1,13 @@
 import { useState } from 'react'
+import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import clsx from 'clsx'
-import { Spinner, Alert } from 'flowbite-react'
+import { Spinner } from 'flowbite-react'
 
 export default function DeleteModal({ showDelete, setShowDelete, table, id }: any) {
   const [isRemove, setRemove] = useState(false)
   const [loading, setLoading] = useState(false)
   const [inputValue, setInputValue] = useState('')
-  const [deleteMessage, setDeleteMessage] = useState({ type: '', message: '' })
 
   // check if input is equal to "REMOVE"
   const handleUserInput = (e: any) => {
@@ -34,22 +34,20 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
     // make the API call
     await axios(configuration)
       .then(() => {
-        setDeleteMessage({ type: 'success', message: 'Successfully deleted.' })
         setTimeout(() => {
           // After 3 seconds set the show value to false
+          toast.success('Successfully deleted.')
           setShowDelete(false) //hide modal
           setLoading(false) //remove loader
-          setDeleteMessage({ type: '', message: '' }) //reset delete message
         }, 3000)
       })
       .catch((err) => {
         const { error } = err.response.data
-        setDeleteMessage({ type: 'error', message: error })
         setTimeout(() => {
           // After 3 seconds set the show value to false
+          toast.error(error)
           setShowDelete(false)
           setLoading(false)
-          setDeleteMessage({ type: '', message: '' })
         }, 3000)
       })
   }
@@ -72,16 +70,6 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
         )}
       >
         <div className="flex flex-col px-8 pt-8 text-center">
-          {deleteMessage?.message && (
-            <div className="my-4">
-              <Alert
-                color={deleteMessage?.type === 'success' ? 'success' : 'failure'}
-                withBorderAccent={true}
-              >
-                <span>{deleteMessage?.message}</span>
-              </Alert>
-            </div>
-          )}
           <h4 className="mb-4 text-xl font-bold">Delete this item?</h4>
           <div className="text-gray-500">
             <p className="mb-2">
