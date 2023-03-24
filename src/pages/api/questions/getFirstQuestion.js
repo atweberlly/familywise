@@ -107,7 +107,10 @@ const sendFirstQuestion = async (user, question) => {
     to: user.email,
   }
   // Send the email
-  sendMailFnx(emailConfig)
+  // Delay the email sending for 5 minutes
+  setTimeout(() => {
+    sendMailFnx(emailConfig)
+  }, 300000)
 }
 
 // program to convert first letter of a string to uppercase

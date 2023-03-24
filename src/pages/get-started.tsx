@@ -14,6 +14,7 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
+import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 import { Spinner } from 'flowbite-react'
@@ -105,7 +106,7 @@ export default function JoinUs() {
           dateFormat: 'M j, Y',
           minDate: new Date(),
           onChange: function (selectedDates) {
-            setValue('giftDate', selectedDates[0].toISOString(), {
+            setValue('giftDate', dateFormat(selectedDates[0]), {
               shouldValidate: true,
             })
           },
