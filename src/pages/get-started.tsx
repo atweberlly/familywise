@@ -14,10 +14,10 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
+import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 import { Spinner } from 'flowbite-react'
-import dateFormat from 'dateformat'
 
 export default function JoinUs() {
   const router = useRouter()
