@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import clsx from 'clsx'
 import Swiper, { Pagination, Autoplay } from 'swiper'
 import { StarIcon } from '@heroicons/react/24/solid'
 
-export default function Testimonials() {
+interface Props extends React.HTMLAttributes<HTMLElement> {
+  className?: string
+}
+
+export default function Testimonials({ className }: Props) {
   const [testimonials, setTestimonials] = useState([])
 
   useEffect(() => {
@@ -40,7 +45,10 @@ export default function Testimonials() {
     testimonialsSwiper.init()
   }, [])
   return (
-    <section className="bg-vanilla px-10 pt-12 pb-8 text-white" id="testimonials">
+    <section
+      className={clsx('bg-vanilla px-10 pt-12 pb-8 text-white', className)}
+      id="testimonials"
+    >
       <div className="relative mx-auto max-w-screen-md pb-10">
         <div className="swiper testimonials">
           <div className="swiper-wrapper">
