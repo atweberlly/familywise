@@ -9,7 +9,12 @@ const staticQuestionId = '641e466788e2fe3884a27b0f' //requested by the client
 const getFirstQuestion = async (req, res) => {
   try {
     await dbConnect()
-    const { _id, bookReceiver } = req.body
+    const { _id, bookReceiver, giftDate, timezone } = req.body
+    // Set the date and time you want the email to be sent
+    const scheduledDate = convertTimezone(new Date(giftDate), timezone, timezone)
+    // Calculate the number of milliseconds until the scheduled date and time
+    const timeUntilScheduled = scheduledDate.getTime() - Date.now()
+
     const questions = await Questions.findOne({
       _id: staticQuestionId,
     })
@@ -21,9 +26,11 @@ const getFirstQuestion = async (req, res) => {
     await Story.create({ user_id: _id, question_id: questions._id })
 
     if (bookReceiver === 'gift') {
-      await sendGiftScheduleEmail(req.body, questions.question)
+      await sendGiftScheduleEmail(req.body, timeUntilScheduled)
+      await sendFirstQuestion(req.body, timeUntilScheduled)
     } else {
-      await sendOnboardingEmail(req.body, questions.question)
+      await sendOnboardingEmail(req.body)
+      await sendFirstQuestion(req.body, questions.question, 300000)
     }
 
     return res.status(200).json({ message: 'Email successfully sent!' })
@@ -33,7 +40,7 @@ const getFirstQuestion = async (req, res) => {
   }
 }
 
-const sendOnboardingEmail = async (user, question) => {
+const sendOnboardingEmail = async (user) => {
   //Email Parameters
   //params { subject, template, param, to }
   const subject = `Ready to get started, ${capitalizeFirstLetter(user.firstname)}?`
@@ -51,14 +58,9 @@ const sendOnboardingEmail = async (user, question) => {
   }
   // Send the email
   sendMailFnx(emailConfig)
-  sendFirstQuestion(user, question)
 }
 //Note by Jonah: need to test this function
-const sendGiftScheduleEmail = async (user, question) => {
-  // Set the date and time you want the email to be sent
-  const scheduledDate = convertTimezone(new Date(user.giftDate), user.timezone, user.timezone)
-  // Calculate the number of milliseconds until the scheduled date and time
-  const timeUntilScheduled = scheduledDate.getTime() - Date.now()
+const sendGiftScheduleEmail = async (user, delay) => {
   //params { subject, template, param, to }
   const subject = `${capitalizeFirstLetter(user.firstname)}, Here's your gift!`
   const params = {
@@ -83,11 +85,10 @@ const sendGiftScheduleEmail = async (user, question) => {
   setTimeout(() => {
     // Send the email
     sendMailFnx(emailConfig)
-    sendFirstQuestion(user, question)
-  }, timeUntilScheduled)
+  }, delay)
 }
 
-const sendFirstQuestion = async (user, question) => {
+const sendFirstQuestion = async (user, question, delay) => {
   //params { subject, template, param, to }
   const subject = `${capitalizeFirstLetter(user.firstname)}, Here's your first question!`
   const params = {
@@ -107,7 +108,7 @@ const sendFirstQuestion = async (user, question) => {
   // Delay the email sending for 5 minutes
   setTimeout(() => {
     sendMailFnx(emailConfig)
-  }, 300000)
+  }, delay)
 }
 
 // program to convert first letter of a string to uppercase
