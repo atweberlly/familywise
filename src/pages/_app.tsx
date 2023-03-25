@@ -4,6 +4,13 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { store } from '../app/store'
 import '../styles/main.css'
+import moment from 'moment-timezone'
+import 'moment/locale/en-gb'
+
+// optional - set locale for formatting dates
+
+const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone // get user's timezone
+moment.tz.setDefault(userTimezone) // set default timezone
 
 function App({ Component, pageProps }: AppProps) {
   return (

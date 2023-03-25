@@ -16,7 +16,7 @@ export const PaymentForm = (props: {
   clientID: any
   clientToken: any
   user: any
-  price: string
+  price: number
 }) => {
   const amount = props.price
   const currency = 'USD'

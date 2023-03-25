@@ -107,6 +107,12 @@ const UserSchema = new mongoose.Schema(
       enum: ['Classic', 'Premium'],
       default: 'Classic',
     },
+
+    //user's timezone
+    timezone: {
+      type: String,
+      require: true,
+    },
     //   payment status
     status: {
       type: Boolean,

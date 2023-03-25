@@ -29,6 +29,7 @@ export default function AdminLayout({ children }: any) {
   const [open, setOpen] = useState(false)
   const [openFAQ, setOpenFAQ] = useState(false) //faq
   const [openQuestion, setOpenQuestion] = useState(false) //questions
+  const [openSettings, setOpenSettings] = useState(false)
   const router = useRouter()
 
   const dispatch = useAppDispatch()
@@ -49,7 +50,7 @@ export default function AdminLayout({ children }: any) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f5f6f8]">
+    <div className="flex min-h-screen flex-col bg-[#f5f6f8] ">
       <header className="border-b bg-white px-4 py-6 xl:px-8">
         <div className="flex items-center gap-2">
           <button className="md:hidden" type="button" onClick={() => setShow(!show)}>
@@ -304,16 +305,42 @@ export default function AdminLayout({ children }: any) {
                   <span className="">Members</span>
                 </Link>
               </li>
-
               <li className="flex flex-col" aria-label="Settings">
-                <Link
-                  className="-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100"
-                  href=""
-                  onClick={() => setShow(!show)}
+                <button
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                    (router.pathname === '/admin/coupon' ||
+                      router.pathname === '/admin/settings') &&
+                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                  }`}
+                  type="button"
+                  onClick={() => setOpenSettings(!openSettings)}
                 >
-                  <Cog8ToothIcon className="h-6 w-6 text-dark-200" />
-                  <span className="">Settings</span>
-                </Link>
+                  <div className="flex items-center gap-4">
+                    <Cog8ToothIcon className="h-6 w-6 text-dark-200" />
+                    <span className="">Settings</span>
+                  </div>
+
+                  <div className="ml-auto">
+                    <ChevronDownIcon
+                      className={clsx(
+                        'h-6 w-6 text-dark-200 transition-transform',
+                        openSettings && 'rotate-180'
+                      )}
+                    />
+                  </div>
+                </button>
+
+                {openSettings && (
+                  <div className="flex flex-col pl-10">
+                    <Link
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      href="/admin/coupon"
+                      onClick={() => setOpenSettings(!show)}
+                    >
+                      Coupon
+                    </Link>
+                  </div>
+                )}
               </li>
             </ul>
           </nav>

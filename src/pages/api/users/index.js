@@ -5,6 +5,7 @@ import crypto from 'crypto'
 
 export default async function handler(request, response) {
   const { method } = request
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
   await dbConnect()
 
@@ -52,6 +53,7 @@ export default async function handler(request, response) {
             roles: request.body.roles,
             token: resetToken,
             planType: request.body.planType,
+            timezone: userTimezone,
             status: request.body.status,
           }
 
