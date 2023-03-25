@@ -57,7 +57,7 @@ const sendOnboardingEmail = async (user) => {
     to: user.email,
   }
   // Send the email
-  sendMailFnx(emailConfig)
+  return await sendMailFnx(emailConfig)
 }
 //Note by Jonah: need to test this function
 const sendGiftScheduleEmail = async (user, delay) => {
@@ -82,10 +82,13 @@ const sendGiftScheduleEmail = async (user, delay) => {
     to: user.email,
   }
   // Delay the email sending until the scheduled date and time
-  setTimeout(() => {
-    // Send the email
-    sendMailFnx(emailConfig)
-  }, delay)
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      // Send the email
+      await sendMailFnx(emailConfig)
+      resolve()
+    }, delay)
+  })
 }
 
 const sendFirstQuestion = async (user, question, delay) => {
@@ -106,9 +109,13 @@ const sendFirstQuestion = async (user, question, delay) => {
   }
   // Send the email
   // Delay the email sending for 5 minutes
-  setTimeout(() => {
-    sendMailFnx(emailConfig)
-  }, delay)
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      // Send the email
+      await sendMailFnx(emailConfig)
+      resolve()
+    }, delay)
+  })
 }
 
 // program to convert first letter of a string to uppercase
