@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import router from 'next/router'
+import { isSameDate } from '../utils/globalFnx'
+import { convertTimezone } from '../utils/userTimezone'
 import Heading from './Heading'
 import type { FUNDING_SOURCE } from '@paypal/paypal-js'
 import {
@@ -342,12 +344,22 @@ export const PaymentForm = (props: {
         //send emails
         //confirmation page
         if (response) {
-          const config = {
-            method: 'post',
-            url: '/api/questions/getFirstQuestion',
-            data: props.user,
+          //send onboarding
+          //Check if the user has set a gift date and use that as the schedule, otherwise use today's date
+          const schedule =
+            props.user.giftReceiver === 'gift' ? new Date(props.user.giftDate) : new Date()
+          // Convert schedule date to the specified timezone
+          const emailSchedule = convertTimezone(schedule, props.user.timezone, props.user.timezone)
+          // Convert today to the specified timezone
+          const today = convertTimezone(new Date(), props.user.timezone, props.user.timezone)
+          // Check if today's date is the same as the scheduled email date
+          if (isSameDate(emailSchedule, today)) {
+            // Send the onboarding email
+            await axios.post('/api/mail/onboarding', props.user)
+            // Get the first question for the user and send it to them
+            await axios.post('/api/questions/getFirstQuestion', { _id: props.user._id })
           }
-          await axios(config)
+
           //show success notification
           toast.success(
             "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."
