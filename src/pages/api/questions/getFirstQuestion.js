@@ -14,6 +14,9 @@ const getFirstQuestion = async (req, res) => {
 
     // Convert gift date to the specified timezone
     const giftDateConverted = convertTimezone(new Date(giftDate), timezone, timezone)
+    // Convert today to the specified timezone
+    const today = convertTimezone(new Date(), timezone, timezone)
+
     // Find the relevant question for the user
     const questions = await Questions.findOne({
       _id: staticQuestionId,
@@ -26,8 +29,7 @@ const getFirstQuestion = async (req, res) => {
 
     // Check if the email should be sent now or scheduled for a later date
     if (bookReceiver === 'gift') {
-      console.log(isSameDate(new Date(), giftDateConverted))
-      if (isSameDate(new Date(), giftDateConverted)) {
+      if (isSameDate(today, giftDateConverted)) {
         // Send the onboarding email and first question
         await sendOnboardingEmail(req.body)
         await sendFirstQuestion(req.body, questions.question)
