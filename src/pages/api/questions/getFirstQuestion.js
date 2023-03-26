@@ -28,7 +28,7 @@ const getFirstQuestion = async (req, res) => {
 
     return res.status(200).json({ message: 'Email successfully sent!' })
   } catch (err) {
-    res.status(500).json({ message: err })
+    return res.status(500).json({ message: err })
   }
 }
 
@@ -49,11 +49,7 @@ const sendFirstQuestion = async (user, question) => {
     to: user.email,
   }
   // Send the email
-  // Delay the email sending for 5 minutes
-  setTimeout(async () => {
-    // Send the email
-    await sendMailFnx(emailConfig)
-  }, 300000)
+  await sendMailFnx(emailConfig)
 }
 
 export default getFirstQuestion
