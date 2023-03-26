@@ -9,46 +9,72 @@ const staticQuestionId = '641e466788e2fe3884a27b0f' //requested by the client
 const getFirstQuestion = async (req, res) => {
   try {
     await dbConnect()
+    // Extract relevant information from request body
     const { _id, bookReceiver, giftDate, timezone } = req.body
-    // Set the date and time you want the email to be sent
-    const scheduledDate = convertTimezone(new Date(giftDate), timezone, timezone)
-    // Calculate the number of milliseconds until the scheduled date and time
-    const timeUntilScheduled = scheduledDate.getTime() - Date.now()
 
+    // Convert gift date to the specified timezone
+    const giftDateConverted = convertTimezone(new Date(giftDate), timezone, timezone)
+    // Convert today to the specified timezone
+    const today = convertTimezone(new Date(), timezone, timezone)
+
+    // Find the relevant question for the user
     const questions = await Questions.findOne({
       _id: staticQuestionId,
     })
+    // Check if the user has already have their first question
     const currentStories = await Story.find({ user_id: _id })
     if (currentStories.length !== 0) {
       return res.status(500).json({ message: 'First question already added' })
     }
 
-    await Story.create({ user_id: _id, question_id: questions._id })
-
+    // Check if the email should be sent now or scheduled for a later date
     if (bookReceiver === 'gift') {
-      await sendGiftScheduleEmail(req.body, timeUntilScheduled)
-      await sendFirstQuestion(req.body, timeUntilScheduled)
+      if (isSameDate(today, giftDateConverted)) {
+        // Send the onboarding email and first question
+        await sendOnboardingEmail(req.body)
+        await sendFirstQuestion(req.body, questions.question)
+      }
     } else {
+      // Send the onboarding email and first question
       await sendOnboardingEmail(req.body)
-      await sendFirstQuestion(req.body, questions.question, 300000)
+      await sendFirstQuestion(req.body, questions.question)
     }
+
+    // Save the user's first question to the story table
+    await Story.create({ user_id: _id, question_id: questions._id })
 
     return res.status(200).json({ message: 'Email successfully sent!' })
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : 'Internal server error'
-    return res.status(500).json({ message: errorMessage, err })
+    res.status(500).json({ message: err })
   }
 }
 
 const sendOnboardingEmail = async (user) => {
   //Email Parameters
   //params { subject, template, param, to }
-  const subject = `Ready to get started, ${capitalizeFirstLetter(user.firstname)}?`
-  const params = {
-    name: capitalizeFirstLetter(user.firstname),
-    totalQuestions: user.planType === 'Classic' ? 100 : 500,
-  }
-  const template = user.planType + '/onboarding-1.html'
+  const subject =
+    user.bookReceiver === 'gift'
+      ? `${capitalizeFirstLetter(user.firstname)}, Here's your gift!`
+      : `Ready to get started, ${capitalizeFirstLetter(user.firstname)}?`
+  const params =
+    user.bookReceiver === 'gift'
+      ? {
+          name: capitalizeFirstLetter(user.firstname),
+          totalQuestions: user.planType === 'Classic' ? 100 : 500,
+          occasion: user.giftOccasion,
+          salutation: user.giftSalutation,
+          token: user.token,
+          sender: user.giftSender,
+          message: user.giftMessage,
+        }
+      : {
+          name: capitalizeFirstLetter(user.firstname),
+          totalQuestions: user.planType === 'Classic' ? 100 : 500,
+        }
+  const template =
+    user.bookReceiver === 'gift'
+      ? 'Both/onboarding-1-gift.html'
+      : user.planType + '/onboarding-1.html'
 
   const emailConfig = {
     subject: subject,
@@ -56,42 +82,12 @@ const sendOnboardingEmail = async (user) => {
     param: params,
     to: user.email,
   }
+
   // Send the email
   return await sendMailFnx(emailConfig)
 }
-//Note by Jonah: need to test this function
-const sendGiftScheduleEmail = async (user, delay) => {
-  //params { subject, template, param, to }
-  const subject = `${capitalizeFirstLetter(user.firstname)}, Here's your gift!`
-  const params = {
-    name: capitalizeFirstLetter(user.firstname),
-    totalQuestions: user.planType === 'Classic' ? 100 : 500,
-    occasion: user.giftOccasion,
-    salutation: user.giftSalutation,
-    token: user.token,
-    sender: user.giftSender,
-    message: user.giftMessage,
-  }
 
-  const template = 'Both/onboarding-1-gift.html'
-
-  const emailConfig = {
-    subject: subject,
-    template: template,
-    param: params,
-    to: user.email,
-  }
-  // Delay the email sending until the scheduled date and time
-  return new Promise((resolve) => {
-    setTimeout(async () => {
-      // Send the email
-      await sendMailFnx(emailConfig)
-      resolve()
-    }, delay)
-  })
-}
-
-const sendFirstQuestion = async (user, question, delay) => {
+const sendFirstQuestion = async (user, question) => {
   //params { subject, template, param, to }
   const subject = `${capitalizeFirstLetter(user.firstname)}, Here's your first question!`
   const params = {
@@ -109,19 +105,25 @@ const sendFirstQuestion = async (user, question, delay) => {
   }
   // Send the email
   // Delay the email sending for 5 minutes
-  return new Promise((resolve) => {
-    setTimeout(async () => {
-      // Send the email
-      await sendMailFnx(emailConfig)
-      resolve()
-    }, delay)
-  })
+  setTimeout(async () => {
+    // Send the email
+    await sendMailFnx(emailConfig)
+  }, 300000)
 }
 
 // program to convert first letter of a string to uppercase
 const capitalizeFirstLetter = (str) => {
   // converting first letter to uppercase
   return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+//function to check if dates are equal
+const isSameDate = (date1, date2) => {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  )
 }
 
 export default getFirstQuestion
