@@ -54,7 +54,7 @@ export default function Newsletter() {
         }, 3000)
       })
       .catch((err) => {
-        toast.success('You are already subscribed. We are glad you are interested with us.')
+        toast.success('You are already subscribed. We are glad you are interested in us.')
         setTimeout(() => {
           // After 3 seconds set the show value to false
           setLoading(false) //remove loader
