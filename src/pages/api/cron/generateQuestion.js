@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from '../../../utils/globalFnx'
 import { sendMailFnx } from '../sendMailFnx'
 
 const generateRandomQuestion = async (req, res) => {
-  // add req as argument
+  //Establish a database connection
   await dbConnect()
   try {
     // Get user with status=true
