@@ -2,6 +2,8 @@ import dbConnect from '../../../../lib/dbConnect'
 import Question from '../../../../models/questionModel'
 import Story from '../../../../models/storyModel'
 import User from '../../../../models/userModel'
+import { capitalizeFirstLetter } from '../../../utils/globalFnx'
+import { sendMailFnx } from '../sendMailFnx'
 
 const generateRandomQuestion = async (req, res) => {
   // add req as argument
@@ -47,6 +49,25 @@ const generateRandomQuestion = async (req, res) => {
           question: randomQuestion.question
         }
       */
+
+      // Construct the email subject line
+      const subject = `${capitalizeFirstLetter(user.firstname)}, ${randomQuestion.question}`
+      // Set the email template to be used
+      const template = `${user.planType}/weekly-email-${Math.floor(Math.random() * 10)}.html`
+
+      const params = {
+        name: capitalizeFirstLetter(user.firstname),
+        question: randomQuestion.question,
+      }
+      // Set the configuration for the email to be sent
+      const emailConfig = {
+        subject: subject,
+        template: template,
+        param: params,
+        to: user.email,
+      }
+      // Send the onboarding email and first question
+      await sendMailFnx(emailConfig)
     }
 
     res.status(200).json({ message: 'Random questions generated for valid users.' })
