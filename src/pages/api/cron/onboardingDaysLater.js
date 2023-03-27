@@ -24,7 +24,7 @@ const onboardingDaysLater = async (req, res) => {
     // Loop through each user
     for (const user of users) {
       //Set the date for the scheduled email based on whether the user received a gift or not
-      const date = user.giftReceiver === 'gift' ? user.giftDate : user.createdAt
+      const date = user.bookReceiver === 'gift' ? user.giftDate : user.createdAt
       //get user's timezone
       const timezone = user.timezone ? user.timezone : 'UTC'
       //Add [n] days to the scheduled date

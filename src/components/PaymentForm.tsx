@@ -347,7 +347,7 @@ export const PaymentForm = (props: {
           //send onboarding
           //Check if the user has set a gift date and use that as the schedule, otherwise use today's date
           const schedule =
-            props.user.giftReceiver === 'gift' ? new Date(props.user.giftDate) : new Date()
+            props.user.bookReceiver === 'gift' ? new Date(props.user.giftDate) : new Date()
           // Convert schedule date to the specified timezone
           const emailSchedule = convertTimezone(schedule, props.user.timezone, props.user.timezone)
           // Convert today to the specified timezone
