@@ -8,7 +8,7 @@ export default async function handler(request, response) {
 
   switch (method) {
     case 'GET': //find all testimonials
-      await Testimonial.find({})
+      await Testimonial.find({ published: true})
         // return success
         .then((result) => {
           response.status(201).send({
