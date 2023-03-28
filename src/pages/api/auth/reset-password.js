@@ -12,7 +12,7 @@ export default async function handler(request, response) {
   switch (method) {
     case 'POST': //forgot endpoint
       const dev = process.env.NODE_ENV !== 'production'
-      const server = dev ? 'http://localhost:3000' : 'https://wwww.familyfortunate.us'
+      const server = dev ? 'http://localhost:3000' : 'https://www.familyfortunate.us'
       const { email } = request.body
       const resetToken = crypto.randomBytes(32).toString('hex')
       // Save the token to the database
