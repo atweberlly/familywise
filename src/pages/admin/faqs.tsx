@@ -199,7 +199,7 @@ const FAQManager: NextPage = () => {
           <p className="text-base">Manage your FAQs content.</p>
           <div className="my-10 text-center">
             <Title>FAQs Manager</Title>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-[#323337]">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
@@ -222,7 +222,7 @@ const FAQManager: NextPage = () => {
                   })}
                   body={currentPosts?.map(({ _id, category, question, answer, published }) => {
                     return (
-                      <Table.Row className="bg-white" key={_id}>
+                      <Table.Row className="bg-white " key={_id}>
                         <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
                         <Table.Cell> {truncate(question)}</Table.Cell>
                         <Table.Cell>{truncate(answer)}</Table.Cell>
@@ -296,7 +296,7 @@ const FAQManager: NextPage = () => {
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white p-4">
+            <div className="flex items-center justify-between bg-white p-4 ">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} FAQ
               </h4>

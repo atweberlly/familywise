@@ -170,7 +170,7 @@ const FAQCategories: NextPage = () => {
           <p className="text-base">Manage your FAQ Categories.</p>
           <div className="my-10 text-center">
             <Title>FAQ Categories Manager</Title>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-[#323337]">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"

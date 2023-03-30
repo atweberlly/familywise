@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -38,7 +34,5 @@
     "/Applications/MAMP/htdocs/familyfortunate-v2/.next/types/**/*.ts",
     "C:\\Users\\jeric\\Documents\\Development\\Github\\familyfortunate-v2\\.next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

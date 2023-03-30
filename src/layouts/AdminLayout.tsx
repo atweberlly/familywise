@@ -7,6 +7,7 @@ import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
 import { Dropdown, Avatar, Flowbite, DarkThemeToggle } from 'flowbite-react'
+import { DropdownItem } from 'flowbite-react/lib/esm/components/Dropdown/DropdownItem'
 import Cookies from 'universal-cookie'
 import {
   Bars3Icon,
@@ -21,7 +22,6 @@ import {
   ChatBubbleLeftRightIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline'
-import { DropdownItem } from 'flowbite-react/lib/esm/components/Dropdown/DropdownItem'
 
 // active state class names: border-primary-400 text-primary-400
 //will integrate dynamic navigation later
@@ -33,7 +33,7 @@ export default function AdminLayout({ children }: any) {
   const [openSettings, setOpenSettings] = useState(false)
   const router = useRouter()
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const dispatch = useAppDispatch()
   const user = useAppSelector((state: RootState) => state.userSlice.user)
@@ -41,10 +41,8 @@ export default function AdminLayout({ children }: any) {
     ;(async () => {
       const user = await axios('/api/users/getUser')
       dispatch(setUser(user.data.user[0]))
-
     })()
   }, [dispatch])
-
 
   const cookies = new Cookies()
 
@@ -55,13 +53,12 @@ export default function AdminLayout({ children }: any) {
   }
 
   const handleToggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-  
-  
+    setIsDarkMode(!isDarkMode)
+  }
+
   return (
-    <div className="flex min-h-screen flex-col bg-[#f5f6f8]">
-      <header className="border-b bg-white px-4 py-6 xl:px-8">
+    <div className="flex min-h-screen flex-col bg-[#f5f6f8] dark:bg-[#212325] dark:text-white">
+      <header className="border-b bg-white px-4 py-6 dark:bg-[#111315] dark:text-white xl:px-8">
         <div className="flex items-center gap-2">
           <button className="md:hidden" type="button" onClick={() => setShow(!show)}>
             <Bars3Icon className="h-6 w-6" />
@@ -69,11 +66,9 @@ export default function AdminLayout({ children }: any) {
 
           <p>Family Fortunate</p>
 
-          
           <div className="ml-auto flex items-center gap-2">
-          
             <Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
-              <DarkThemeToggle/>
+              <DarkThemeToggle />
             </Flowbite>
             <button className="relative" type="button">
               <span className="sr-only">Open notification</span>
@@ -85,8 +80,6 @@ export default function AdminLayout({ children }: any) {
                 <span className="sr-only">New notification available</span>
               </div>
             </button>
-
-            
 
             <Dropdown
               label={
@@ -117,10 +110,10 @@ export default function AdminLayout({ children }: any) {
       </header>
 
       <div className="relative flex flex-1">
-        <aside 
+        <aside
           className={clsx(
-            'absolute top-0 bottom-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all md:static xl:min-w-[320px] dark:bg-[#111315]',
-            show ? 'left-0' : '-left-full' 
+            'absolute top-0 bottom-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all dark:bg-[#111315] md:static xl:min-w-[320px]',
+            show ? 'left-0' : '-left-full'
           )}
         >
           <nav aria-label="Administrator side navigation">
@@ -375,7 +368,7 @@ export default function AdminLayout({ children }: any) {
         <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">
           {children}
 
-          <p className="mt-auto text-center text-secondary-500">
+          <p className="mt-auto text-center text-secondary-500 dark:text-white">
             Copyright &copy; familyfortunate {new Date().getFullYear()} |{' '}
             <Link href={'/privacy-policy'}>Privacy Policy</Link>
           </p>

@@ -170,7 +170,7 @@ const QuestionCategories: NextPage = () => {
           <p className="text-base">Manage your categories.</p>
           <div className="my-10 text-center">
             <Title>Categories Manager</Title>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-[#323337]">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
@@ -181,7 +181,7 @@ const QuestionCategories: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white"
+                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558]"
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>

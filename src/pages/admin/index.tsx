@@ -76,7 +76,7 @@ const Administrator: NextPage = () => {
       <div className="mt-4 " role="grid">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 " role="row">
           <div role="gridcell">
-            <div className="rounded-lg bg-white px-6 py-5 dark:bg-[#212325]">
+            <div className="rounded-lg bg-white px-6 py-5 dark:bg-[#323337]">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold">Subscribers</h2>
                 <Link
@@ -94,7 +94,9 @@ const Administrator: NextPage = () => {
                   return (
                     <div key={id}>
                       <div>{full_name}</div>
-                      <p className="text-sm text-secondary-500 dark:text-[#E2E2E2]">{email_address}</p>
+                      <p className="text-sm text-secondary-500 dark:text-[#E2E2E2]">
+                        {email_address}
+                      </p>
                     </div>
                   )
                 })}
@@ -103,11 +105,11 @@ const Administrator: NextPage = () => {
           </div>
 
           <div role="gridcell">
-            <div className="rounded-lg bg-white px-6 py-5 dark:bg-[#212325] ">
+            <div className="rounded-lg bg-white px-6 py-5 dark:bg-[#323337] ">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold">10 Active Members</h2>
                 <Link
-                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558]"
+                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558] "
                   href="/admin/subscribed-members"
                 >
                   View all
@@ -126,7 +128,9 @@ const Administrator: NextPage = () => {
                             <p>
                               {firstname} {lastname}
                             </p>
-                            <p className="text-sm text-secondary-500 dark:text-[#E2E2E2]">{email}</p>
+                            <p className="text-sm text-secondary-500 dark:text-[#E2E2E2] ">
+                              {email}
+                            </p>
                           </div>
                           <span className="rounded-full bg-emerald-100 px-3 py-1 text-sm text-primary-600 dark:bg-[#a07b60] dark:text-white">
                             {planType}
