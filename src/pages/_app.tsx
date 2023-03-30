@@ -1,14 +1,14 @@
+import { useEffect } from 'react'
+import ReactGA from 'react-ga'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { store } from '../app/store'
 import '../styles/main.css'
 import moment from 'moment-timezone'
 import 'moment/locale/en-gb'
-import { useEffect } from 'react'
-import ReactGA from 'react-ga'
-import { useRouter } from 'next/router'
 
 // optional - set locale for formatting dates
 
@@ -16,11 +16,11 @@ const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone // get use
 moment.tz.setDefault(userTimezone) // set default timezone
 
 function App({ Component, pageProps }: AppProps) {
-  const title = ""
-  const description = ""
-  const keywords = ""
-  const author = ""
-  const img = ""
+  const title = ''
+  const description = ''
+  const keywords = ''
+  const author = ''
+  const img = ''
   const router = useRouter()
 
   useEffect(() => {
@@ -36,14 +36,14 @@ function App({ Component, pageProps }: AppProps) {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [])
+  }, [router])
   return (
     <div>
       <Provider store={store}>
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          
+
           {/* GENERAL META */}
           <meta name="description" content={description} />
           <meta name="keywords" content={keywords} />
