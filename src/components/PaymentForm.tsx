@@ -283,7 +283,6 @@ export const PaymentForm = (props: {
     )
   }
 */
-  const [, setSuccess] = useState(false) //defined but never used.
 
   const createOrder = (
     data: any,
@@ -339,7 +338,7 @@ export const PaymentForm = (props: {
           type: 'onboarding',
         },
       }
-      setSuccess(true)
+
       return axios(configuration).then(async (response) => {
         //send emails
         //confirmation page
@@ -513,7 +512,8 @@ export const PaymentForm = (props: {
 
       <PayPalScriptProvider
         options={{
-          'client-id': 'test',
+          'client-id': props.clientID,
+          'data-client-token': props.clientToken,
           components: 'buttons,marks,funding-eligibility',
         }}
       >
