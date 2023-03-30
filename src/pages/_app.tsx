@@ -6,6 +6,9 @@ import { store } from '../app/store'
 import '../styles/main.css'
 import moment from 'moment-timezone'
 import 'moment/locale/en-gb'
+import { useEffect } from 'react'
+import ReactGA from 'react-ga'
+import { useRouter } from 'next/router'
 
 // optional - set locale for formatting dates
 
@@ -13,12 +16,52 @@ const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone // get use
 moment.tz.setDefault(userTimezone) // set default timezone
 
 function App({ Component, pageProps }: AppProps) {
+  const title = ""
+  const description = ""
+  const keywords = ""
+  const author = ""
+  const img = ""
+  const router = useRouter()
+
+  useEffect(() => {
+    ReactGA.initialize('G-PR0D0VL962')
+    ReactGA.pageview(window.location.pathname + window.location.search)
+
+    const handleRouteChange = (url: string) => {
+      ReactGA.pageview(url)
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [])
   return (
     <div>
       <Provider store={store}>
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          
+          {/* GENERAL META */}
+          <meta name="description" content={description} />
+          <meta name="keywords" content={keywords} />
+          <meta name="author" content={author} />
+          <meta name="robots" content="index, follow" />
+          {/* FACEBOOK META */}
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:image" content={img} />
+          <meta property="og:url" content="https://familyfortunate.us" />
+          <meta property="og:type" content="website" />
+          {/* TWITTER META */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image" content={img} />
+          <meta name="twitter:url" content="https://familyfortunate.us" />
+
           <link rel="icon" type="image/png" href="/favicon.png" />
         </Head>
         <Component {...pageProps} />
