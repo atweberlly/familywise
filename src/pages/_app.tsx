@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
@@ -26,10 +26,14 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     ReactGA.initialize('G-PR0D0VL962')
-    ReactGA.pageview(window.location.pathname + window.location.search)
+    ReactGA.send({
+      hitType: 'pageview',
+      page: router.pathname,
+      title: title,
+    })
 
     const handleRouteChange = (url: string) => {
-      ReactGA.pageview(url)
+      ReactGA.send({ hitType: 'pageview', page: url, title: title })
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
