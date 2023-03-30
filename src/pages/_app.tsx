@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { store } from '../app/store'
 import '../styles/main.css'
+import { Analytics } from '@vercel/analytics/react'
 import moment from 'moment-timezone'
 import 'moment/locale/en-gb'
 
@@ -66,6 +67,7 @@ function App({ Component, pageProps }: AppProps) {
         </Head>
         <Component {...pageProps} />
         <Toaster />
+        <Analytics />
       </Provider>
     </div>
   )

@@ -40,6 +40,7 @@
     "@sveltejs/adapter-vercel": "^2.4.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
+    "@vercel/analytics": "^0.1.11",
     "aws-sdk": "^2.1328.0",
     "axios": "^1.2.1",
     "bcrypt": "^5.1.0",
