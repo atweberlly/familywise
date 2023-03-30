@@ -6,7 +6,7 @@ import { RootState } from '../app/store'
 import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
-import { Dropdown, Avatar } from 'flowbite-react'
+import { Dropdown, Avatar, Flowbite, DarkThemeToggle } from 'flowbite-react'
 import Cookies from 'universal-cookie'
 import {
   Bars3Icon,
@@ -21,6 +21,7 @@ import {
   ChatBubbleLeftRightIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline'
+import { DropdownItem } from 'flowbite-react/lib/esm/components/Dropdown/DropdownItem'
 
 // active state class names: border-primary-400 text-primary-400
 //will integrate dynamic navigation later
@@ -32,14 +33,18 @@ export default function AdminLayout({ children }: any) {
   const [openSettings, setOpenSettings] = useState(false)
   const router = useRouter()
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const dispatch = useAppDispatch()
   const user = useAppSelector((state: RootState) => state.userSlice.user)
   useEffect(() => {
     ;(async () => {
       const user = await axios('/api/users/getUser')
       dispatch(setUser(user.data.user[0]))
+
     })()
   }, [dispatch])
+
 
   const cookies = new Cookies()
 
@@ -49,8 +54,13 @@ export default function AdminLayout({ children }: any) {
     router.push('/sign-in')
   }
 
+  const handleToggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+  
+  
   return (
-    <div className="flex min-h-screen flex-col bg-[#f5f6f8] ">
+    <div className="flex min-h-screen flex-col bg-[#f5f6f8]">
       <header className="border-b bg-white px-4 py-6 xl:px-8">
         <div className="flex items-center gap-2">
           <button className="md:hidden" type="button" onClick={() => setShow(!show)}>
@@ -59,7 +69,12 @@ export default function AdminLayout({ children }: any) {
 
           <p>Family Fortunate</p>
 
+          
           <div className="ml-auto flex items-center gap-2">
+          
+            <Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
+              <DarkThemeToggle/>
+            </Flowbite>
             <button className="relative" type="button">
               <span className="sr-only">Open notification</span>
               <BellIcon className="h-6 w-6 stroke-dark-200" />
@@ -70,6 +85,8 @@ export default function AdminLayout({ children }: any) {
                 <span className="sr-only">New notification available</span>
               </div>
             </button>
+
+            
 
             <Dropdown
               label={
@@ -100,10 +117,10 @@ export default function AdminLayout({ children }: any) {
       </header>
 
       <div className="relative flex flex-1">
-        <aside
+        <aside 
           className={clsx(
-            'absolute top-0 bottom-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all md:static xl:min-w-[320px]',
-            show ? 'left-0' : '-left-full'
+            'absolute top-0 bottom-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all md:static xl:min-w-[320px] dark:bg-[#111315]',
+            show ? 'left-0' : '-left-full' 
           )}
         >
           <nav aria-label="Administrator side navigation">
@@ -150,7 +167,7 @@ export default function AdminLayout({ children }: any) {
                 {openQuestion && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100 dark:bg-[#111315]"
                       href="/admin/questions"
                       onClick={() => setOpenQuestion(!show)}
                     >

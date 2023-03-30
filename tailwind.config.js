@@ -9,6 +9,7 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  darkMode: "class",
   theme: {
     container: {
       center: true,
