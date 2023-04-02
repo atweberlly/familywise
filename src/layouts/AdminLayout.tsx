@@ -74,7 +74,7 @@ export default function AdminLayout({ children }: any) {
               <span className="sr-only">Open notification</span>
               <BellIcon className="h-6 w-6 stroke-dark-200" />
               <div
-                className="absolute top-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-primary-400"
+                className="absolute top-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-[#B99D7E]"
                 aria-label="New notification indicator"
               >
                 <span className="sr-only">New notification available</span>
@@ -120,9 +120,9 @@ export default function AdminLayout({ children }: any) {
             <ul className="flex flex-col">
               <li className="flex flex-col" aria-label="Dashboard">
                 <Link
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     router.pathname === '/admin' &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   href="/admin"
                   onClick={() => setShow(!show)}
@@ -134,23 +134,23 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="FAQs">
                 <button
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     (router.pathname === '/admin/questions' ||
-                      router.pathname === '/admin/questions-categories') &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                      router.pathname == '/admin/questions-categories') &&
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   type="button"
                   onClick={() => setOpenQuestion(!openQuestion)}
                 >
                   <div className="flex items-center gap-4">
-                    <QuestionMarkCircleIcon className="h-6 w-6 text-dark-200" />
+                    <QuestionMarkCircleIcon className="h-6 w-6" />
                     <span className="">Questions</span>
                   </div>
 
                   <div className="ml-auto">
                     <ChevronDownIcon
                       className={clsx(
-                        'h-6 w-6 text-dark-200 transition-transform',
+                        'h-6 w-6transition-transform',
                         openQuestion && 'rotate-180'
                       )}
                     />
@@ -160,7 +160,7 @@ export default function AdminLayout({ children }: any) {
                 {openQuestion && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100 dark:bg-[#111315]"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href="/admin/questions"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -168,7 +168,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href="/admin/questions-categories"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -180,7 +180,12 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Book Style">
                 <button
-                  className="-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100"
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
+                    (router.pathname === '/admin/general' ||
+                    router.pathname === '/admin/colors' ||
+                      router.pathname == '/admin/alignment') &&
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
+                  }`}
                   type="button"
                   onClick={() => setOpen(!open)}
                 >
@@ -202,7 +207,7 @@ export default function AdminLayout({ children }: any) {
                 {open && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -210,7 +215,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -218,7 +223,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -230,9 +235,10 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Newsletter">
                 <Link
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     router.pathname === '/admin/newsletter' &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   href="/admin/newsletter"
                   onClick={() => setShow(!show)}
@@ -244,10 +250,10 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="FAQs">
                 <button
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     (router.pathname === '/admin/faqs' ||
-                      router.pathname === '/admin/faqs-categories') &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                      router.pathname == '/admin/faqs-categories') &&
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   type="button"
                   onClick={() => setOpenFAQ(!openFAQ)}
@@ -270,7 +276,7 @@ export default function AdminLayout({ children }: any) {
                 {openFAQ && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href="/admin/faqs"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -278,7 +284,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href="/admin/faqs-categories"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -290,9 +296,9 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Contact">
                 <Link
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     router.pathname === '/admin/testimonials' &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   href="/admin/testimonials"
                   onClick={() => setShow(!show)}
@@ -304,9 +310,10 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Newsletter">
                 <Link
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     router.pathname === '/admin/subscribed-members' &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   href="/admin/subscribed-members"
                   onClick={() => setShow(!show)}
@@ -317,10 +324,10 @@ export default function AdminLayout({ children }: any) {
               </li>
               <li className="flex flex-col" aria-label="Settings">
                 <button
-                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:bg-dark-100 ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 hover:border-r-4 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2] ${
                     (router.pathname === '/admin/coupon' ||
-                      router.pathname === '/admin/settings') &&
-                    ' border-primary-400 bg-[#f7ffff] font-bold text-primary-400'
+                      router.pathname === '/admin/settings')&&
+                    ' border-[#9E7558] bg-[#F1ECE3] font-bold text-[#9E7558] dark:bg-[#323337] dark:text-white dark:border-[#D6C7B2]'
                   }`}
                   type="button"
                   onClick={() => setOpenSettings(!openSettings)}
@@ -343,7 +350,7 @@ export default function AdminLayout({ children }: any) {
                 {openSettings && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 hover:bg-dark-100"
+                      className="-mr-4 -ml-14 py-2 pr-4 pl-14 text-[#697586] hover:border-[#B99D7E] hover:bg-[#F1ECE3] hover:font-bold hover:text-[#9E7558] dark:hover:bg-[#323337] dark:hover:text-white dark:hover:border-[#D6C7B2]"
                       href="/admin/coupon"
                       onClick={() => setOpenSettings(!show)}
                     >

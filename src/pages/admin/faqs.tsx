@@ -210,7 +210,7 @@ const FAQManager: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white"
+                  className="rounded-full bg-[#B99D7E] hover:bg-[#9E7558] px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558] dark:hover:bg-[#B99D7E]"
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -292,11 +292,11 @@ const FAQManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 dark:bg-[#323337] transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white p-4 ">
+            <div className="flex items-center justify-between bg-white dark:bg-[#212325] dark:text-white p-4 ">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} FAQ
               </h4>
@@ -313,7 +313,7 @@ const FAQManager: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white dark:bg-[#212325] dark:text-white p-4">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -328,7 +328,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Category</p>
                   <select
-                    className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#323337] dark:text-white/50"
                     {...register('category_id', { required: true })}
                   >
                     <option value="" defaultValue={''}>
@@ -352,7 +353,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Question</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#323337] dark:text-white"
                     placeholder="Question"
                     rows={4}
                     {...register('question', { required: true })}
@@ -367,7 +369,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Answer</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#323337] dark:text-white"
                     rows={4}
                     placeholder="Answer"
                     {...register('answer', { required: true })}
@@ -389,8 +392,8 @@ const FAQManager: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white p-4 ">
-                <button className="rounded-xl bg-primary-500 px-4 py-3 text-white" type="submit">
+              <div className="mt-auto flex justify-center bg-white dark:bg-[#212325] p-4 ">
+                <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
                       <Spinner aria-label="loading" />

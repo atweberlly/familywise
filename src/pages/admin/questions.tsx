@@ -13,6 +13,7 @@ import clsx from 'clsx'
 import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
 import type { NextPage } from 'next'
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { ClassNames } from '@emotion/react'
 
 const QuestionManager: NextPage = () => {
   let initialState = {
@@ -213,7 +214,7 @@ const QuestionManager: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558]"
+                  className="rounded-full bg-[#B99D7E] hover:bg-[#9E7558] px-4 py-2 text-center text-sm text-white  dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -226,7 +227,7 @@ const QuestionManager: NextPage = () => {
                   body={currentPosts?.map(
                     ({ _id, category, question, description, QuestionType, published }) => {
                       return (
-                        <Table.Row className="bg-white" key={_id}>
+                        <Table.Row className="bg-white dark " key={_id}>
                           <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
                           <Table.Cell> {truncate(question)}</Table.Cell>
                           <Table.Cell>{truncate(description)}</Table.Cell>
@@ -245,7 +246,7 @@ const QuestionManager: NextPage = () => {
                           <Table.Cell>
                             <div className="flex gap-x-4">
                               <Link
-                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                className="text-sm font-semibold text-[#B99D7E] hover:text-[#9E7558]"
                                 href="#edit"
                                 onClick={() => handlerEdit(_id)}
                               >
@@ -280,6 +281,7 @@ const QuestionManager: NextPage = () => {
         </div>
       </AdminLayout>
       <DeleteModal
+
         setShowDelete={setShowDelete}
         showDelete={showDelete}
         table={'questions'}
@@ -289,7 +291,7 @@ const QuestionManager: NextPage = () => {
         <>
           <div
             className={clsx(
-              'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all',
+              'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all ',
               showAddEdit ? 'visible opacity-100' : 'invisible opacity-0'
             )}
             aria-hidden="true"
@@ -298,11 +300,11 @@ const QuestionManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 dark:bg-[#323337] transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white p-4">
+            <div className="flex items-center justify-between bg-white dark:bg-[#212325] dark:text-white p-4">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} Question
               </h4>
@@ -319,7 +321,7 @@ const QuestionManager: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white dark:text-white dark:bg-[#212325] p-4">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -334,7 +336,8 @@ const QuestionManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Category</p>
                   <select
-                    className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full appearance-none rounded-lg border border-gray-600 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#323337] dark:text-white/50"
                     {...register('category_id', { required: true })}
                   >
                     <option value="" defaultValue={''}>
@@ -358,7 +361,8 @@ const QuestionManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Question</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#111315] dark:text-white"
                     rows={4}
                     placeholder="Question"
                     {...register('question', { required: true })}
@@ -373,7 +377,8 @@ const QuestionManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#111315] dark:text-white"
                     rows={4}
                     placeholder="Description"
                     {...register('description', { required: true })}
@@ -393,7 +398,7 @@ const QuestionManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('QuestionType')}
                     />
-                    <label htmlFor="classic" className="ml-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="classic" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
                       Classic
                     </label>
                   </div>
@@ -405,7 +410,7 @@ const QuestionManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('QuestionType')}
                     />
-                    <label htmlFor="premium" className="ml-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="premium" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
                       Premium
                     </label>
                   </div>
@@ -417,7 +422,7 @@ const QuestionManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('QuestionType')}
                     />
-                    <label htmlFor="both" className="ml-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="both" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
                       Both
                     </label>
                   </div>
@@ -433,8 +438,8 @@ const QuestionManager: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white p-4 ">
-                <button className="rounded-xl bg-primary-500 px-4 py-3 text-white" type="submit">
+              <div className="mt-auto flex justify-center bg-white dark:bg-[#212325] p-4 ">
+                <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
                       <Spinner aria-label="loading" />
