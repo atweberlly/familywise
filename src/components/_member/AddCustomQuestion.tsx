@@ -37,7 +37,7 @@ export default function AddCustomQuestion({ showCustom, setShowCustom, setData }
   return (
     <div
       className={clsx(
-        'visible fixed inset-0 z-20 h-full w-full bg-black/50 opacity-100 transition-all',
+        'visible fixed inset-0 z-20 h-full w-full bg-black/50 opacity-100 transition-all ',
         showCustom ? 'visible opacity-100' : 'invisible opacity-0'
       )}
       aria-hidden="true"
@@ -53,7 +53,7 @@ export default function AddCustomQuestion({ showCustom, setShowCustom, setData }
           <h4 className="mb-4 text-xl font-bold text-gray-700">Write your own question</h4>
           <label>
             <textarea
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 "
               rows={4}
               value={question}
               onChange={(e) => {
@@ -64,7 +64,7 @@ export default function AddCustomQuestion({ showCustom, setShowCustom, setData }
             ></textarea>
           </label>
         </div>
-        <div className="grid grid-cols-2 gap-4 border-t bg-white p-8">
+        <div className="grid grid-cols-2 gap-4 border-t bg-white p-8 dark:bg-black ">
           <button
             className="rounded-lg border border-primary-400 px-4 py-3 text-sm font-bold text-primary-400"
             type="button"

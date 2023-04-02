@@ -74,7 +74,8 @@ const PastTable = (funcProps: any) => {
         </div>
         <div className="flex gap-2">
           <button
-            className="rounded-xl border-none bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600 hover:text-white lg:px-4"
+            className="rounded-xl border-none bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600 hover:text-white lg:px-4
+            "
             onClick={async () => {
               // setDeleteId(row.original.id)
               const res = await axios.post('/api/questions/removePastQuestion', {
@@ -117,7 +118,7 @@ const PastTable = (funcProps: any) => {
         setShowCustom={setShowCustom}
       />
       {loading && <Spinner loading={loading} />}
-      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white py-6">
+      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white dark:bg-black py-6">
         <SortableList items={data} setItems={setData} component={DragComponent} />
       </div>
     </div>

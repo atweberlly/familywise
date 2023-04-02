@@ -86,7 +86,7 @@ const Edit = ({ question, id }: Props) => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <span className="font-normal">Heading</span>
       <div className="relative w-full">
         <div className="absolute inset-y-0 right-6 flex items-center pl-3">
@@ -107,17 +107,17 @@ const Edit = ({ question, id }: Props) => {
             }}
           >
             {isDisabled ? (
-              <PencilIcon className="h-6 w-6 text-primary-500" />
+              <PencilIcon className="h-6 w-6 text-[#9E7558]" />
             ) : (
-              <CheckIcon className="h-6 w-6 text-primary-500" />
+              <CheckIcon className="h-6 w-6 text-[#9E7558]" />
             )}
           </span>
         </div>
         <input
           type="text"
-          className={`mt-2 w-full rounded-xl border-secondary-600 ${
-            isDisabled ? 'bg-secondary-200' : 'bg-white'
-          } px-8 py-6 text-sm text-secondary-600 outline-none`}
+          className={`mt-2 w-full rounded-xl border-[#9E7558] ${
+            isDisabled ? 'bg-secondary-200  dark:bg-[#323337] dark:text-white/30' : 'bg-white dark:bg-black dark:text-white'
+          } px-8 py-6 text-sm text-secondary-600  outline-none`}
           defaultValue={defaultContent.heading ? defaultContent.heading : question}
           disabled={isDisabled}
           onChange={(e) => {
@@ -144,7 +144,7 @@ const Edit = ({ question, id }: Props) => {
           <div className="py-[25px]">
             <span className="font-normal">Your story</span>
             <textarea
-              className="mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
+              className="mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-[#323337] dark:text-white"
               placeholder="Write your story here..."
               defaultValue={defaultContent.story}
               onChange={(e) => {
@@ -166,7 +166,7 @@ const Edit = ({ question, id }: Props) => {
                   className="mx-auto max-h-32 w-auto object-cover"
                 />
               ) : (
-                <CloudArrowUpIcon className="mx-auto h-8 w-8 text-primary-500" />
+                <CloudArrowUpIcon className="mx-auto h-8 w-8 text-[#9E7558]" />
               )}
               <label
                 htmlFor="avatar"
@@ -181,14 +181,14 @@ const Edit = ({ question, id }: Props) => {
                 onChange={uploadFile}
                 hidden
               />
-              <p className="mb-8 text-xs text-primary-500">
+              <p className="mb-8 text-xs text-[#9E7558]">
                 Only JPEG and PNG files with max size of 8MB.
               </p>
             </div>
           </div>
           <div className="py-[25px]">
             <textarea
-              className="mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
+              className="mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-[#323337] dark:text-white"
               placeholder="Add a caption for your image. The caption will appear below your image."
               defaultValue={defaultContent.caption}
               onChange={(e) => {
@@ -203,13 +203,13 @@ const Edit = ({ question, id }: Props) => {
         <div className="flex items-center justify-center gap-3">
           {saving ? (
             <>
-              <ClipLoader color="#21C0AD" loading={true} size={20} />
-              <span className="text-[20px] text-[#21C0AD]">saving</span>
+              <ClipLoader color="#9E7558" loading={true} size={20} />
+              <span className="text-[20px] text-[#9E7558]">saving</span>
             </>
           ) : (
             <>
-              <FaCheck color="#21C0AD" />
-              <span className="text-[20px] text-[#21C0AD]">saved</span>
+              <FaCheck color="#9E7558" />
+              <span className="text-[20px] text-[#9E7558]">saved</span>
             </>
           )}
         </div>
