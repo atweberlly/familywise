@@ -21,9 +21,26 @@ export default function AddQuestion({
   categories,
 }: Props) {
   const [filterCategory, setFilterCategory] = useState('')
+  const [searchKeyword, setSearchKeyword] = useState('')
   const closeModal = () => {
     setShowAdd(false)
   }
+
+  const filteredQuestions = questions.filter((question) => {
+    // If the search keyword is not empty, check if it matches the question's text
+    if (searchKeyword !== '') {
+      const regex = new RegExp(searchKeyword, 'i')
+      if (!regex.test(question.question)) {
+        return false
+      }
+    }
+    // If a category is selected, check if the question belongs to that category
+    if (filterCategory !== '' && question.category_id !== filterCategory) {
+      return false
+    }
+    // If the question passed all filters, return true
+    return true
+  })
 
   return (
     <div
@@ -36,13 +53,15 @@ export default function AddQuestion({
     >
       <div
         className={clsx(
-          'fixed top-1/2 left-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all lg:min-w-[50rem] lg:max-w-lg dark:bg-[#323337]',
+          'fixed top-1/2 left-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all dark:bg-[#323337] lg:min-w-[50rem] lg:max-w-lg',
           showAdd ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >
         <div className="flex items-center justify-between bg-white p-4 dark:bg-[#212325]">
           <div>
-            <h4 className="text-lg font-semibold text-gray-800 dark:text-white">Browse our list to spark ideas</h4>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
+              Browse our list to spark ideas
+            </h4>
           </div>
           <button className="flex items-center text-red-500" type="button" onClick={closeModal}>
             <span className="text-sm font-semibold">Close</span>
@@ -67,8 +86,10 @@ export default function AddQuestion({
                     type="text"
                     id="search"
                     className="block w-full rounded-lg border border-gray-300 bg-white p-2.5 pl-10 text-sm text-secondary-600 placeholder:text-secondary-300 focus:border-primary-500 focus:ring-primary-500
-                    dark:bg-[#323337] dark:text-[#E2E2E2]"
+                                dark:bg-[#323337] dark:text-[#E2E2E2]"
                     placeholder="Enter a keyword"
+                    value={searchKeyword}
+                    onChange={(e) => setSearchKeyword(e.target.value)}
                   />
                 </div>
               </div>
@@ -104,15 +125,12 @@ export default function AddQuestion({
             </div>
             <hr className="w-full border bg-secondary-300" />
             <div className="max-h-80 overflow-auto">
-              {(filterCategory !== ''
-                ? questions.filter((e) => e.category_id === filterCategory)
-                : questions
-              ).map((question: any, i: any) => {
+              {filteredQuestions.map((question: any, i: any) => {
                 return (
                   <div className="my-2 flex items-center justify-between" key={i}>
                     <p>{question.question}</p>
-                    <Button 
-                      className='dark:bg-[#323337] dark:text-[#E2E2E2] dark:hover:bg-[#9E7558] hover:bg-[#B99D7E]'
+                    <Button
+                      className="hover:bg-[#B99D7E] dark:bg-[#323337] dark:text-[#E2E2E2] dark:hover:bg-[#9E7558]"
                       color="primary"
                       type="button"
                       onClick={async () => {

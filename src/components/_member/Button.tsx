@@ -23,11 +23,11 @@ export default function ButtonV2({
         <button
           className={`
         ${className}
-        rounded-xl border border-[#9E7558] dark:border-[#9E7558] p-2 text-sm font-bold lg:px-4 ${
-            isActive
-            ? 'bg-[#B99D7E] dark:bg-[#9E7558] text-white hover:bg-[#9E7558] dark:hover:bg-[#9E7558]/70 hover:text-white'
-            : 'bg-transparent  text-[#9E7558] hover:bg-[#9E7558] dark:hover:bg-[#9E7558]/70 hover:text-white dark:hover:text-white'
-          }
+        rounded-xl border border-[#9E7558] p-2 text-sm font-bold dark:border-[#9E7558] lg:px-4 ${
+          isActive
+            ? 'bg-[#B99D7E] text-white hover:bg-[#9E7558] hover:text-white dark:bg-[#9E7558] dark:hover:bg-[#9E7558]/70'
+            : 'bg-transparent  text-[#9E7558] hover:bg-[#9E7558] hover:text-white dark:hover:bg-[#9E7558]/70 dark:hover:text-white'
+        }
         `}
           disabled={disabled}
         >
@@ -37,10 +37,10 @@ export default function ButtonV2({
         <button
           className={`
           ${className}
-          rounded-xl border border-[#9E7558] dark:border-white p-2 text-sm font-bold lg:px-4 ${
+          rounded-xl border border-[#9E7558] p-2 text-sm font-bold dark:border-white lg:px-4 ${
             isActive
-              ? 'bg-[#B99D7E] dark:bg-[#9E7558] text-white hover:bg-[#9E7558] dark:hover:bg-[#9E7558]/70 hover:text-white'
-              : 'bg-transparent  text-[#9E7558] hover:bg-[#9E7558] dark:hover:bg-[#B99D7E]/70 hover:text-white dark:hover:text-white'
+              ? 'bg-[#B99D7E] text-white hover:bg-[#9E7558] hover:text-white dark:bg-[#9E7558] dark:hover:bg-[#9E7558]/70'
+              : 'bg-transparent  text-[#9E7558] hover:bg-[#9E7558] hover:text-white dark:hover:bg-[#B99D7E]/70 dark:hover:text-white'
           }
           `}
           disabled={disabled}

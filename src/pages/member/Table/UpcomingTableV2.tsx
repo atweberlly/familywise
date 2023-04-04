@@ -117,8 +117,8 @@ const UpcomingTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm md:flex-row md:items-center
-        dark:bg-[#212325] dark:hover:bg-[#212325]/90"
+        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm dark:bg-[#212325] dark:hover:bg-[#212325]/90
+        md:flex-row md:items-center"
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
@@ -134,8 +134,8 @@ const UpcomingTable = (funcProps: any) => {
         </div>
         <div className="flex gap-2">
           <button
-            className="rounded-xl border-none bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600 hover:text-white lg:px-4
-            dark:text-white dark:hover:text-white/90 dark:hover:bg-[#212325]"
+            className="rounded-xl border-none bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600 hover:text-white dark:text-white
+            dark:hover:bg-[#212325] dark:hover:text-white/90 lg:px-4"
             onClick={async () => {
               // setDeleteId(row.original.id)
               const res = await axios.post('/api/questions/removeQuestion', {
@@ -191,7 +191,7 @@ const UpcomingTable = (funcProps: any) => {
         planType={funcProps.planType}
       />
       {loading && <Spinner loading={loading} />}
-      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white dark:bg-[#111315] py-6">
+      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white py-6 dark:bg-[#111315]">
         <SortableList items={data} setItems={setData} component={DragComponent} />
       </div>
       <AddQuestion

@@ -47,7 +47,7 @@ const Questions = () => {
               <ButtonV2 text="Upcoming Questions" onClick={upcomingClick} isActive={upcoming} />
               <ButtonV2 text="Not Started" onClick={pastClick} isActive={past} />
             </div>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white dark:bg-[#212325] p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-[#212325]">
               <div className="max-w-auto mt-8 mb-10 flex items-center justify-center">
                 {upcoming && (
                   <UpcomingTableV2

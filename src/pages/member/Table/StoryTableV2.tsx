@@ -57,8 +57,8 @@ const StoryTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm md:flex-row md:items-center
-        dark:bg-[#212325] dark:hover:bg-[#212325]/90"
+        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm dark:bg-[#212325] dark:hover:bg-[#212325]/90
+        md:flex-row md:items-center"
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
@@ -74,8 +74,8 @@ const StoryTable = (funcProps: any) => {
         </div>
         <div className="flex gap-2">
           <button
-            className="rounded-xl border border-[#9E7558] bg-transparent px-2 py-2 text-sm font-bold text-[#9E7558] hover:bg-[#9E7558] hover:text-white lg:px-3
-            dark:text-[#9E7558] dark:hover:text-white"
+            className="rounded-xl border border-[#9E7558] bg-transparent px-2 py-2 text-sm font-bold text-[#9E7558] hover:bg-[#9E7558] hover:text-white dark:text-[#9E7558]
+            dark:hover:text-white lg:px-3"
             onClick={() => {
               funcProps.onClick()
               funcProps.setId(item._id)
@@ -102,7 +102,7 @@ const StoryTable = (funcProps: any) => {
         setShowCustom={setShowCustom}
       />
       {loading && <Spinner loading={loading} />}
-      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white dark:bg-black dark:text-white py-6">
+      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white py-6 dark:bg-black dark:text-white">
         <SortableList items={data} setItems={setData} component={DragComponent} />
       </div>
     </div>

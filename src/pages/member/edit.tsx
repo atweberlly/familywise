@@ -116,7 +116,9 @@ const Edit = ({ question, id }: Props) => {
         <input
           type="text"
           className={`mt-2 w-full rounded-xl border-[#9E7558] ${
-            isDisabled ? 'bg-secondary-200  dark:bg-[#323337] dark:text-white/30' : 'bg-white dark:bg-black dark:text-white'
+            isDisabled
+              ? 'bg-secondary-200  dark:bg-[#323337] dark:text-white/30'
+              : 'bg-white dark:bg-black dark:text-white'
           } px-8 py-6 text-sm text-secondary-600  outline-none`}
           defaultValue={defaultContent.heading ? defaultContent.heading : question}
           disabled={isDisabled}

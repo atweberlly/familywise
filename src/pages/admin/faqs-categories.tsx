@@ -181,7 +181,7 @@ const FAQCategories: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-[#B99D7E] hover:bg-[#9E7558] px-4 py-2 text-center text-sm text-white  dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
+                  className="rounded-full bg-[#B99D7E] px-4 py-2 text-center text-sm text-white hover:bg-[#9E7558]  dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -255,7 +255,7 @@ const FAQCategories: NextPage = () => {
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white dark:bg-[#212325] dark:text-white p-4">
+            <div className="flex items-center justify-between bg-white p-4 dark:bg-[#212325] dark:text-white">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} FAQ Category
               </h4>
@@ -272,7 +272,7 @@ const FAQCategories: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between dark:bg-[#323337]"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white dark:bg-[#212325] dark:text-white p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-[#212325] dark:text-white">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -312,7 +312,7 @@ const FAQCategories: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white dark:bg-[#212325] p-4 ">
+              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-[#212325] ">
                 <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>

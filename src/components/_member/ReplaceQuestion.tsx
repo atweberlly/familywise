@@ -38,13 +38,15 @@ export default function ReplaceQuestion({
     >
       <div
         className={clsx(
-          'fixed top-1/2 left-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all lg:min-w-[50rem] lg:max-w-lg dark:bg-[#323337]',
+          'fixed top-1/2 left-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all dark:bg-[#323337] lg:min-w-[50rem] lg:max-w-lg',
           showReplace ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >
         <div className="flex items-center justify-between bg-white p-4 dark:bg-[#212325]">
           <div className="">
-            <h4 className="text-lg font-semibold text-gray-800 dark:text-white">Replace a question for yourself</h4>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
+              Replace a question for yourself
+            </h4>
             <p className="text-secondary-400 dark:text-[#E2E2E2]">Browse our list to spark ideas</p>
           </div>
           <button className="flex items-center text-red-500 " type="button" onClick={closeModal}>
@@ -114,7 +116,7 @@ export default function ReplaceQuestion({
                   <div className="my-2 flex items-center justify-between" key={i}>
                     <p>{question.question}</p>
                     <Button
-                      className='dark:bg-[#323337] dark:text-[#E2E2E2] dark:hover:bg-[#9E7558] hover:bg-[#B99D7E]'
+                      className="hover:bg-[#B99D7E] dark:bg-[#323337] dark:text-[#E2E2E2] dark:hover:bg-[#9E7558]"
                       color="primary"
                       type="button"
                       onClick={async () => {

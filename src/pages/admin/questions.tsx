@@ -8,12 +8,12 @@ import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
+import { ClassNames } from '@emotion/react'
 import axios from 'axios'
 import clsx from 'clsx'
 import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
 import type { NextPage } from 'next'
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { ClassNames } from '@emotion/react'
 
 const QuestionManager: NextPage = () => {
   let initialState = {
@@ -214,7 +214,7 @@ const QuestionManager: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-[#B99D7E] hover:bg-[#9E7558] px-4 py-2 text-center text-sm text-white  dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
+                  className="rounded-full bg-[#B99D7E] px-4 py-2 text-center text-sm text-white hover:bg-[#9E7558]  dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -227,7 +227,7 @@ const QuestionManager: NextPage = () => {
                   body={currentPosts?.map(
                     ({ _id, category, question, description, QuestionType, published }) => {
                       return (
-                        <Table.Row className="bg-white dark " key={_id}>
+                        <Table.Row className="dark bg-white " key={_id}>
                           <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
                           <Table.Cell> {truncate(question)}</Table.Cell>
                           <Table.Cell>{truncate(description)}</Table.Cell>
@@ -281,7 +281,6 @@ const QuestionManager: NextPage = () => {
         </div>
       </AdminLayout>
       <DeleteModal
-
         setShowDelete={setShowDelete}
         showDelete={showDelete}
         table={'questions'}
@@ -300,11 +299,11 @@ const QuestionManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 dark:bg-[#323337] transition-all',
+              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all dark:bg-[#323337]',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white dark:bg-[#212325] dark:text-white p-4">
+            <div className="flex items-center justify-between bg-white p-4 dark:bg-[#212325] dark:text-white">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} Question
               </h4>
@@ -321,7 +320,7 @@ const QuestionManager: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white dark:text-white dark:bg-[#212325] p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-[#212325] dark:text-white">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -398,7 +397,10 @@ const QuestionManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('QuestionType')}
                     />
-                    <label htmlFor="classic" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label
+                      htmlFor="classic"
+                      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Classic
                     </label>
                   </div>
@@ -410,7 +412,10 @@ const QuestionManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('QuestionType')}
                     />
-                    <label htmlFor="premium" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label
+                      htmlFor="premium"
+                      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Premium
                     </label>
                   </div>
@@ -422,7 +427,10 @@ const QuestionManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('QuestionType')}
                     />
-                    <label htmlFor="both" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label
+                      htmlFor="both"
+                      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Both
                     </label>
                   </div>
@@ -438,7 +446,7 @@ const QuestionManager: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white dark:bg-[#212325] p-4 ">
+              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-[#212325] ">
                 <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
