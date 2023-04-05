@@ -30,6 +30,9 @@ const CouponManager: NextPage = () => {
     timezone: '',
     published: false,
   }
+  interface Post{
+    description: string,
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -45,6 +48,8 @@ const CouponManager: NextPage = () => {
   const [postsPerPage] = useState(10)
   const couponHeader = ['Code', 'Description', 'Type', 'Amount', 'Expiry Date', 'Status', '']
   const type = ['percentage', 'amount']
+   //keyword
+   const [searchKeyword, setSearchKeyword] = useState("");
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
@@ -237,6 +242,8 @@ const CouponManager: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e)=> setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -250,7 +257,11 @@ const CouponManager: NextPage = () => {
                   header={couponHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(
+                  body={currentPosts
+                    .filter((post: Post)=>
+                      post.description.toLowerCase().includes(searchKeyword.toLowerCase())
+                    )
+                    .map(
                     ({ _id, code, description, type, amount, expiryDate, timezone, published }) => {
                       return (
                         <Table.Row className="bg-white" key={_id}>
@@ -270,8 +281,8 @@ const CouponManager: NextPage = () => {
                             <span
                               className={`rounded-full px-4 py-2 font-semibold ${
                                 published
-                                  ? 'bg-green-100 text-green-500'
-                                  : 'bg-gray-100 text-gray-500'
+                                ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
+                                : 'bg-gray-100 text-gray-500'
                               } capitalize`}
                             >
                               {published ? 'Published' : 'Draft'}

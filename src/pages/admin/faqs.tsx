@@ -22,6 +22,13 @@ const FAQManager: NextPage = () => {
     answer: '',
     published: false,
   }
+  interface Post{
+    _id: string,
+    category_id: string,
+    question: string,
+    answer: string,
+    published: boolean,
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -39,6 +46,8 @@ const FAQManager: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const faqHeader = ['Category Name', 'Question', 'Answer', 'Status', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const {
     register,
@@ -207,6 +216,8 @@ const FAQManager: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e)=> setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -220,7 +231,11 @@ const FAQManager: NextPage = () => {
                   header={faqHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(({ _id, category, question, answer, published }) => {
+                  body={currentPosts
+                    .filter((post: Post)=>
+                      post.question.toLowerCase().includes(searchKeyword.toLowerCase())
+                    )
+                    .map(({ _id, category, question, answer, published }) => {
                     return (
                       <Table.Row className="bg-white " key={_id}>
                         <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
@@ -230,8 +245,8 @@ const FAQManager: NextPage = () => {
                           <span
                             className={`rounded-full px-4 py-2 font-semibold ${
                               published
-                                ? 'bg-green-100 text-green-500'
-                                : 'bg-gray-100 text-gray-500'
+                              ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
+                              : 'bg-gray-100 text-gray-500'
                             } capitalize`}
                           >
                             {published ? 'Published' : 'Draft'}

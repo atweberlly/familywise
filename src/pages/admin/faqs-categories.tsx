@@ -20,6 +20,11 @@ const FAQCategories: NextPage = () => {
     name: '',
     description: '',
   }
+  interface Post{
+    _id: string,
+    name: string,
+    description: string,
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -36,6 +41,8 @@ const FAQCategories: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const tableHeader = ['Name', 'Description', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const {
     register,
@@ -178,6 +185,8 @@ const FAQCategories: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e)=> setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -191,7 +200,11 @@ const FAQCategories: NextPage = () => {
                   header={tableHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(({ _id, type, name, description }) => {
+                  body={currentPosts
+                    .filter((post: Post)=>
+                      post.description.toLowerCase().includes(searchKeyword.toLowerCase())
+                    )
+                    .map(({ _id, type, name, description }) => {
                     return (
                       <Table.Row className="bg-white" key={_id}>
                         <Table.Cell>{name}</Table.Cell>

@@ -20,6 +20,11 @@ const QuestionCategories: NextPage = () => {
     name: '',
     description: '',
   }
+  interface Post{
+    _id: string,
+    name: string,
+    description: string,
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -36,6 +41,8 @@ const QuestionCategories: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const tableHeader = ['Name', 'Description', '']
+  //keyword
+  const[searchKeyword, setSearchKeyword] = useState("");
 
   const {
     register,
@@ -178,10 +185,12 @@ const QuestionCategories: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e)=> setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558]"
+                  className="rounded-full bg-[#B99D7E] px-4 py-2 text-center text-sm text-white   dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -191,7 +200,11 @@ const QuestionCategories: NextPage = () => {
                   header={tableHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(({ _id, name, description }) => {
+                  body={currentPosts
+                    .filter((post: Post) =>
+                      post.name.toLowerCase().includes(searchKeyword.toLocaleLowerCase())
+                    )
+                    .map(({ _id, name, description }) => {
                     return (
                       <Table.Row className="bg-white" key={_id}>
                         <Table.Cell>{name}</Table.Cell>

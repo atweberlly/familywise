@@ -2,7 +2,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 const colors = {
-  primary: ['bg-[#9E7558] text-white hover:bg-primary-600 focus:ring-[#9E7558]/50'],
+  primary: ['bg-[#9E7558] text-white hover:bg-[#9E7558] focus:ring-[#9E7558]/50'],
   secondary: [
     'bg-secondary-400 text-secondary-100 hover:bg-secondary-600 focus:ring-secondary-500/50',
   ],
