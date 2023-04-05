@@ -58,7 +58,7 @@ const PastTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm md:flex-row md:items-center"
+        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm md:flex-row md:items-center dark:bg-[#212325] dark:hover:bg-[#212325]/90"
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
@@ -91,7 +91,7 @@ const PastTable = (funcProps: any) => {
             <TrashIcon className="inline-block h-4 w-4" /> Remove
           </button>
           <button
-            className="rounded-xl border border-primary-500 bg-transparent px-2 py-2 text-sm font-bold text-primary-500 hover:bg-primary-600 hover:text-white lg:px-3"
+            className="rounded-xl border border-[#9E7558] bg-transparent px-2 py-2 text-sm font-bold text-[#9E7558] hover:bg-[#9E7558] hover:text-white lg:px-3"
             onClick={() => {
               funcProps.onClick()
               funcProps.setId(item._id)
