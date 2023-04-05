@@ -268,7 +268,7 @@ const QuestionCategories: NextPage = () => {
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white p-4">
+            <div className="flex items-center justify-between bg-white p-4 dark:bg-[#212325] dark:text-white ">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} Category
               </h4>
@@ -283,9 +283,9 @@ const QuestionCategories: NextPage = () => {
             </div>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex h-full flex-col justify-between"
+              className="flex h-full flex-col justify-between dark:bg-[#323337]"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-[#323337] dark:text-white">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -300,7 +300,8 @@ const QuestionCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Name</p>
                   <input
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#111315] dark:text-white"
                     type="text"
                     placeholder="Name"
                     {...register('name', { required: true })}
@@ -315,7 +316,8 @@ const QuestionCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#111315] dark:text-white"
                     rows={4}
                     placeholder="Description"
                     {...register('description')}
@@ -323,8 +325,8 @@ const QuestionCategories: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white p-4 ">
-                <button className="rounded-xl bg-primary-500 px-4 py-3 text-white" type="submit">
+              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-[#212325]">
+                <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
                       <Spinner aria-label="loading" />
