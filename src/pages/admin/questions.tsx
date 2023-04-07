@@ -25,13 +25,12 @@ const QuestionManager: NextPage = () => {
     published: false,
   }
   interface Post {
-    _id: string;
-    category_id: string;
-    question: string;
-    destiption: string;
-    QuestionType: string;
-    published: boolean;
-    
+    _id: string
+    category_id: string
+    question: string
+    destiption: string
+    QuestionType: string
+    published: boolean
   }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
@@ -51,7 +50,7 @@ const QuestionManager: NextPage = () => {
   const [postsPerPage] = useState(10)
   const tableHeader = ['Category Name', 'Question', 'Description', 'Type', 'Status', '']
   //keyword
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -223,11 +222,11 @@ const QuestionManager: NextPage = () => {
                   required={true}
                   icon={MagnifyingGlassIcon}
                   value={searchKeyword}
-                  onChange={(e)=> setSearchKeyword(e.target.value)}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-[#B99D7E] hover:bg-[#9E7558] px-4 py-2 text-center text-sm text-white   dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
+                  className="rounded-full bg-[#B99D7E] px-4 py-2 text-center text-sm text-white hover:bg-[#9E7558]   dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -238,12 +237,11 @@ const QuestionManager: NextPage = () => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
                   body={currentPosts
-                    .filter((post: Post)=>
+                    .filter((post: Post) =>
                       post.question.toLowerCase().includes(searchKeyword.toLowerCase())
                     )
-                    
-                    .map(
-                    ({ _id, category, question, description, QuestionType, published }) => {
+
+                    .map(({ _id, category, question, description, QuestionType, published }) => {
                       return (
                         <Table.Row className="bg-white" key={_id}>
                           <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
@@ -281,8 +279,7 @@ const QuestionManager: NextPage = () => {
                           </Table.Cell>
                         </Table.Row>
                       )
-                    }
-                  )}
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

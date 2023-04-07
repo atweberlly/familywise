@@ -58,7 +58,7 @@ const PastTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm md:flex-row md:items-center dark:bg-[#212325] dark:hover:bg-[#212325]/90"
+        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm dark:bg-[#212325] dark:hover:bg-[#212325]/90 md:flex-row md:items-center"
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">

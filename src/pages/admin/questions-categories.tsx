@@ -20,10 +20,10 @@ const QuestionCategories: NextPage = () => {
     name: '',
     description: '',
   }
-  interface Post{
-    _id: string,
-    name: string,
-    description: string,
+  interface Post {
+    _id: string
+    name: string
+    description: string
   }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
@@ -42,7 +42,7 @@ const QuestionCategories: NextPage = () => {
   const [postsPerPage] = useState(10)
   const tableHeader = ['Name', 'Description', '']
   //keyword
-  const[searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -186,7 +186,7 @@ const QuestionCategories: NextPage = () => {
                   required={true}
                   icon={MagnifyingGlassIcon}
                   value={searchKeyword}
-                  onChange={(e)=> setSearchKeyword(e.target.value)}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -205,31 +205,31 @@ const QuestionCategories: NextPage = () => {
                       post.name.toLowerCase().includes(searchKeyword.toLocaleLowerCase())
                     )
                     .map(({ _id, name, description }) => {
-                    return (
-                      <Table.Row className="bg-white" key={_id}>
-                        <Table.Cell>{name}</Table.Cell>
-                        <Table.Cell> {truncate(description)}</Table.Cell>
-                        <Table.Cell>
-                          <div className="flex gap-x-4">
-                            <Link
-                              className="text-sm font-semibold text-primary-500 hover:text-primary-600"
-                              href="#edit"
-                              onClick={() => handlerEdit(_id)}
-                            >
-                              Edit
-                            </Link>
-                            <Link
-                              href="#"
-                              className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
-                              onClick={() => handleClick(_id)}
-                            >
-                              Delete
-                            </Link>
-                          </div>
-                        </Table.Cell>
-                      </Table.Row>
-                    )
-                  })}
+                      return (
+                        <Table.Row className="bg-white" key={_id}>
+                          <Table.Cell>{name}</Table.Cell>
+                          <Table.Cell> {truncate(description)}</Table.Cell>
+                          <Table.Cell>
+                            <div className="flex gap-x-4">
+                              <Link
+                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                href="#edit"
+                                onClick={() => handlerEdit(_id)}
+                              >
+                                Edit
+                              </Link>
+                              <Link
+                                href="#"
+                                className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
+                                onClick={() => handleClick(_id)}
+                              >
+                                Delete
+                              </Link>
+                            </div>
+                          </Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

@@ -30,8 +30,8 @@ const CouponManager: NextPage = () => {
     timezone: '',
     published: false,
   }
-  interface Post{
-    description: string,
+  interface Post {
+    description: string
   }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
@@ -48,8 +48,8 @@ const CouponManager: NextPage = () => {
   const [postsPerPage] = useState(10)
   const couponHeader = ['Code', 'Description', 'Type', 'Amount', 'Expiry Date', 'Status', '']
   const type = ['percentage', 'amount']
-   //keyword
-   const [searchKeyword, setSearchKeyword] = useState("");
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
@@ -243,7 +243,7 @@ const CouponManager: NextPage = () => {
                   required={true}
                   icon={MagnifyingGlassIcon}
                   value={searchKeyword}
-                  onChange={(e)=> setSearchKeyword(e.target.value)}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -258,58 +258,69 @@ const CouponManager: NextPage = () => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
                   body={currentPosts
-                    .filter((post: Post)=>
+                    .filter((post: Post) =>
                       post.description.toLowerCase().includes(searchKeyword.toLowerCase())
                     )
                     .map(
-                    ({ _id, code, description, type, amount, expiryDate, timezone, published }) => {
-                      return (
-                        <Table.Row className="bg-white" key={_id}>
-                          <Table.Cell> {code}</Table.Cell>
-                          <Table.Cell className="truncate whitespace-nowrap">
-                            <p className="w-48 overflow-x-auto whitespace-nowrap">{description}</p>
-                          </Table.Cell>
-                          <Table.Cell className="capitalize">{type}</Table.Cell>
-                          <Table.Cell>{amount}</Table.Cell>
-                          <Table.Cell>
-                            {dateFormat(
-                              convertTimezone(new Date(expiryDate), timezone, timezone),
-                              'longDate'
-                            )}
-                          </Table.Cell>
-                          <Table.Cell>
-                            <span
-                              className={`rounded-full px-4 py-2 font-semibold ${
-                                published
-                                ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
-                                : 'bg-gray-100 text-gray-500'
-                              } capitalize`}
-                            >
-                              {published ? 'Published' : 'Draft'}
-                            </span>
-                          </Table.Cell>
-                          <Table.Cell>
-                            <div className="flex gap-x-4">
-                              <Link
-                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
-                                href="#edit"
-                                onClick={() => handlerEdit(_id)}
+                      ({
+                        _id,
+                        code,
+                        description,
+                        type,
+                        amount,
+                        expiryDate,
+                        timezone,
+                        published,
+                      }) => {
+                        return (
+                          <Table.Row className="bg-white" key={_id}>
+                            <Table.Cell> {code}</Table.Cell>
+                            <Table.Cell className="truncate whitespace-nowrap">
+                              <p className="w-48 overflow-x-auto whitespace-nowrap">
+                                {description}
+                              </p>
+                            </Table.Cell>
+                            <Table.Cell className="capitalize">{type}</Table.Cell>
+                            <Table.Cell>{amount}</Table.Cell>
+                            <Table.Cell>
+                              {dateFormat(
+                                convertTimezone(new Date(expiryDate), timezone, timezone),
+                                'longDate'
+                              )}
+                            </Table.Cell>
+                            <Table.Cell>
+                              <span
+                                className={`rounded-full px-4 py-2 font-semibold ${
+                                  published
+                                    ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
+                                    : 'bg-gray-100 text-gray-500'
+                                } capitalize`}
                               >
-                                Edit
-                              </Link>
-                              <Link
-                                href="#delete"
-                                className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
-                                onClick={() => handleClick(_id)}
-                              >
-                                Delete
-                              </Link>
-                            </div>
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    }
-                  )}
+                                {published ? 'Published' : 'Draft'}
+                              </span>
+                            </Table.Cell>
+                            <Table.Cell>
+                              <div className="flex gap-x-4">
+                                <Link
+                                  className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                  href="#edit"
+                                  onClick={() => handlerEdit(_id)}
+                                >
+                                  Edit
+                                </Link>
+                                <Link
+                                  href="#delete"
+                                  className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
+                                  onClick={() => handleClick(_id)}
+                                >
+                                  Delete
+                                </Link>
+                              </div>
+                            </Table.Cell>
+                          </Table.Row>
+                        )
+                      }
+                    )}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

@@ -18,11 +18,11 @@ const MemberList: NextPage = () => {
     lastname: '',
   }
 
-  interface Post{
-    _id: string,
-    email: string,
-    firstname: string,
-    lastname: string,
+  interface Post {
+    _id: string
+    email: string
+    firstname: string
+    lastname: string
   }
 
   const [loading, setLoading] = useState(false)
@@ -34,7 +34,7 @@ const MemberList: NextPage = () => {
   const [postsPerPage] = useState(10)
   const subscriberHeader = ['Email', 'Full Name', 'Country', 'Date Subscribed', 'Plan', 'Status']
   //keyword
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('')
   //fetch all data
   useEffect(() => {
     //setLoading(true)
@@ -84,7 +84,7 @@ const MemberList: NextPage = () => {
                 required={true}
                 icon={MagnifyingGlassIcon}
                 value={searchKeyword}
-                onChange={(e)=> setSearchKeyword(e.target.value)}
+                onChange={(e) => setSearchKeyword(e.target.value)}
               />
             </div>
             <div className="mt-8">
@@ -93,36 +93,35 @@ const MemberList: NextPage = () => {
                   return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                 })}
                 body={currentPosts
-                  .filter((post: Post)=>
-                      post.lastname.toLowerCase().includes(searchKeyword.toLowerCase())
-                      
-                    )
+                  .filter((post: Post) =>
+                    post.lastname.toLowerCase().includes(searchKeyword.toLowerCase())
+                  )
                   .map(
-                  ({ _id, email, firstname, lastname, country, createdAt, planType, status }) => {
-                    return (
-                      <Table.Row className="bg-white" key={_id}>
-                        <Table.Cell>{email}</Table.Cell>
-                        <Table.Cell>
-                          {firstname} {lastname}
-                        </Table.Cell>
-                        <Table.Cell>{country}</Table.Cell>
-                        <Table.Cell>{dateFormat(createdAt, 'longDate')} </Table.Cell>
-                        <Table.Cell>{planType}</Table.Cell>
-                        <Table.Cell>
-                          <span
-                            className={`rounded-full px-4 py-2 font-semibold ${
-                              status === true
-                              ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
-                              : 'bg-gray-100 text-gray-500'
-                            } capitalize`}
-                          >
-                            {status ? 'Active' : 'Inactive'}
-                          </span>
-                        </Table.Cell>
-                      </Table.Row>
-                    )
-                  }
-                )}
+                    ({ _id, email, firstname, lastname, country, createdAt, planType, status }) => {
+                      return (
+                        <Table.Row className="bg-white" key={_id}>
+                          <Table.Cell>{email}</Table.Cell>
+                          <Table.Cell>
+                            {firstname} {lastname}
+                          </Table.Cell>
+                          <Table.Cell>{country}</Table.Cell>
+                          <Table.Cell>{dateFormat(createdAt, 'longDate')} </Table.Cell>
+                          <Table.Cell>{planType}</Table.Cell>
+                          <Table.Cell>
+                            <span
+                              className={`rounded-full px-4 py-2 font-semibold ${
+                                status === true
+                                  ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
+                                  : 'bg-gray-100 text-gray-500'
+                              } capitalize`}
+                            >
+                              {status ? 'Active' : 'Inactive'}
+                            </span>
+                          </Table.Cell>
+                        </Table.Row>
+                      )
+                    }
+                  )}
                 loader={loading}
               />
 

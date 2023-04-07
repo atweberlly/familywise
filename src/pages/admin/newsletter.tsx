@@ -14,8 +14,8 @@ export default function Newsletter() {
     email_address: '',
     full_name: '',
   }
-  interface Post{
-    full_name: string,
+  interface Post {
+    full_name: string
   }
 
   const [loading, setLoading] = useState(false)
@@ -27,7 +27,7 @@ export default function Newsletter() {
   const [postsPerPage] = useState(10)
   const newsletterHeader = ['Email', 'Full Name', 'Date Subscribed', 'Source', 'Status']
   //keyword
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   //fetch all data
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function Newsletter() {
                 required={true}
                 icon={MagnifyingGlassIcon}
                 value={searchKeyword}
-                onChange={(e)=> setSearchKeyword(e.target.value)}
+                onChange={(e) => setSearchKeyword(e.target.value)}
               />
             </div>
             <div className="mt-8">
@@ -87,11 +87,10 @@ export default function Newsletter() {
                   return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                 })}
                 body={currentPosts
-                  .filter((post: Post)=>
-                      post.full_name.toLowerCase().includes(searchKeyword.toLowerCase())
-                    )
-                  .map(
-                  ({ id, email_address, full_name, timestamp_opt, source, status }) => {
+                  .filter((post: Post) =>
+                    post.full_name.toLowerCase().includes(searchKeyword.toLowerCase())
+                  )
+                  .map(({ id, email_address, full_name, timestamp_opt, source, status }) => {
                     return (
                       <Table.Row className="bg-white" key={id}>
                         <Table.Cell>{email_address}</Table.Cell>
@@ -102,8 +101,8 @@ export default function Newsletter() {
                           <span
                             className={`rounded-full px-4 py-2 font-semibold ${
                               status === 'subscribed'
-                              ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
-                              : 'bg-gray-100 text-gray-500'
+                                ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
+                                : 'bg-gray-100 text-gray-500'
                             } capitalize`}
                           >
                             {status}
@@ -111,8 +110,7 @@ export default function Newsletter() {
                         </Table.Cell>
                       </Table.Row>
                     )
-                  }
-                )}
+                  })}
                 loader={loading}
               />
 
