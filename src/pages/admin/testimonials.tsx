@@ -177,7 +177,7 @@ const FAQManager: NextPage = () => {
           <p className="text-base">Manage your testimonial content.</p>
           <div className="my-10 text-center">
             <Title>Testimonials Manager</Title>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
@@ -188,12 +188,12 @@ const FAQManager: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-primary-500 px-4 py-2 text-center text-sm text-white"
+                  className="rounded-full bg-primary-400 px-4 py-2 text-center text-sm text-white hover:bg-primary-600  dark:bg-primary-600 dark:hover:bg-primary-400 "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
               </div>
-              <div className="mt-8">
+              <div className="mt-8 ">
                 <TableLayout
                   header={testimonialHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
@@ -201,7 +201,7 @@ const FAQManager: NextPage = () => {
                   body={currentPosts?.map(
                     ({ _id, name, position, location, message, published }) => {
                       return (
-                        <Table.Row className="bg-white" key={_id}>
+                        <Table.Row className="bg-white " key={_id}>
                           <Table.Cell>{name}</Table.Cell>
                           <Table.Cell> {position}</Table.Cell>
                           <Table.Cell>{location}</Table.Cell>
@@ -264,7 +264,7 @@ const FAQManager: NextPage = () => {
         <>
           <div
             className={clsx(
-              'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all',
+              'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all ',
               showAddEdit ? 'visible opacity-100' : 'invisible opacity-0'
             )}
             aria-hidden="true"
@@ -273,11 +273,11 @@ const FAQManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l  bg-gray-100 transition-all ',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white p-4">
+            <div className="dark:bg-dark-medium flex items-center justify-between bg-white p-4 dark:text-white">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} FAQ
               </h4>
@@ -294,7 +294,7 @@ const FAQManager: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4">
+              <div className="dark:bg-dark-medium mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:text-white">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -310,7 +310,8 @@ const FAQManager: NextPage = () => {
                   <p className="mb-2 text-sm">Name</p>
                   <input
                     type="text"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="Name"
                     {...register('name', { required: true })}
                   ></input>
@@ -324,7 +325,8 @@ const FAQManager: NextPage = () => {
                   <p className="mb-2 text-sm">Position</p>
                   <input
                     type="text"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="Position"
                     {...register('position')}
                   ></input>
@@ -333,7 +335,8 @@ const FAQManager: NextPage = () => {
                   <p className="mb-2 text-sm">Location</p>
                   <input
                     type="text"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="Location"
                     {...register('location')}
                   ></input>
@@ -341,7 +344,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Message</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="Message"
                     rows={4}
                     {...register('message', { required: true })}
@@ -362,8 +366,8 @@ const FAQManager: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white p-4 ">
-                <button className="rounded-xl bg-primary-500 px-4 py-3 text-white" type="submit">
+              <div className="dark:bg-dark-medium mt-auto flex justify-center bg-white p-4 ">
+                <button className="rounded-xl bg-primary-600 px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
                       <Spinner aria-label="loading" />

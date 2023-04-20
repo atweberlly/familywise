@@ -58,7 +58,7 @@ const MemberList: NextPage = () => {
         <p className="text-base">Lists of subscribers</p>
         <div className="my-10 text-center">
           <Title>Members</Title>
-          <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
+          <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
             <div className="mt-3 flex justify-between">
               <TextInput
                 id="search"

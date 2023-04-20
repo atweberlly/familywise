@@ -7,7 +7,7 @@ export default function Paginations({ postsPerPage, totalPosts, paginate, curren
   return (
     <div className="flex w-full items-center justify-between py-2">
       <div>
-        <p className="text-sm text-gray-700">
+        <p className="text-sm text-gray-700 dark:text-white">
           Showing <span className="font-medium">{startItem} </span>
           to <span className="font-medium"> {endItem > totalPosts ? totalPosts : endItem} </span>
           of
