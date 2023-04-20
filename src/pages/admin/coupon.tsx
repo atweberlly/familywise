@@ -27,6 +27,7 @@ const CouponManager: NextPage = () => {
     type: 'percentage',
     amount: '',
     expiryDate: '',
+    planType: 'both',
     timezone: '',
     published: false,
   }
@@ -43,7 +44,7 @@ const CouponManager: NextPage = () => {
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
-  const couponHeader = ['Code', 'Description', 'Type', 'Amount', 'Expiry Date', 'Status', '']
+  const couponHeader = ['Code', 'Description', 'Type', 'Amount', 'Expiry Date', 'Subscription', 'Status', '']
   const type = ['percentage', 'amount']
 
   const destroyDatePicker = () => {
@@ -74,6 +75,7 @@ const CouponManager: NextPage = () => {
         description: data.description,
         type: data.type,
         amount: data.amount,
+        planType: data.planType,
         expiryDate: dateFormat(data.expiryDate, 'longDate'),
         published: data.published,
       },
@@ -251,7 +253,7 @@ const CouponManager: NextPage = () => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
                   body={currentPosts?.map(
-                    ({ _id, code, description, type, amount, expiryDate, timezone, published }) => {
+                    ({ _id, code, description, type, amount, expiryDate, timezone, planType, published }) => {
                       return (
                         <Table.Row className="bg-white" key={_id}>
                           <Table.Cell> {code}</Table.Cell>
@@ -265,6 +267,9 @@ const CouponManager: NextPage = () => {
                               convertTimezone(new Date(expiryDate), timezone, timezone),
                               'longDate'
                             )}
+                          </Table.Cell>
+                          <Table.Cell className='capitalize'>
+                            {planType}
                           </Table.Cell>
                           <Table.Cell>
                             <span
@@ -362,6 +367,7 @@ const CouponManager: NextPage = () => {
             >
               <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white dark:bg-[#212325] dark:text-white p-4">
                 <input type="hidden" {...register('_id')} />
+               
                 <label>
                   <p className="mb-2 text-sm">Code</p>
                   <input
@@ -440,6 +446,44 @@ const CouponManager: NextPage = () => {
                     {...register('expiryDate')}
                   />
                 </label>
+                <div className="flex">
+                  <div className="mr-4 flex items-center">
+                    <input
+                      id="classic"
+                      type="radio"
+                      value="classic"
+                      className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
+                      {...register('planType')}
+                    />
+                    <label htmlFor="classic" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Classic
+                    </label>
+                  </div>
+                  <div className="mr-4 flex items-center">
+                    <input
+                      id="premium"
+                      type="radio"
+                      value="premium"
+                      className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
+                      {...register('planType')}
+                    />
+                    <label htmlFor="premium" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Premium
+                    </label>
+                  </div>
+                  <div className="mr-4 flex items-center">
+                    <input
+                      id="both"
+                      type="radio"
+                      value="both"
+                      className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
+                      {...register('planType')}
+                    />
+                    <label htmlFor="both" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Both
+                    </label>
+                  </div>
+                </div>
 
                 <label className="flex items-center gap-2">
                   <input

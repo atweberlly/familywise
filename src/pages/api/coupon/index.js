@@ -33,6 +33,7 @@ export default async function handler(request, response) {
         type: request.body.type,
         amount: request.body.amount,
         expiryDate: request.body.expiryDate,
+        planType: request.body.planType,
         timezone: userTimezone,
         published: request.body.published,
       }

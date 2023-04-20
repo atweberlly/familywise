@@ -2,7 +2,7 @@ import dbConnect from '../../../../lib/dbConnect'
 import Coupon from '../../../../models/couponModel'
 
 const getCouponByCode = async (request, response) => {
-  const { coupon } = request.body
+  const { coupon, plan } = request.body
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -11,6 +11,7 @@ const getCouponByCode = async (request, response) => {
 
     const result = await Coupon.findOne({
       code: coupon,
+      planType: { $in: [plan.toLowerCase(), 'both'] },
       published: true,
       expiryDate: { $gte: new Date(today) },
     })
