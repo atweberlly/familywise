@@ -118,7 +118,7 @@ const PastTable = (funcProps: any) => {
         setShowCustom={setShowCustom}
       />
       {loading && <Spinner loading={loading} />}
-      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white dark:bg-black py-6">
+      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white py-6 dark:bg-black">
         <SortableList items={data} setItems={setData} component={DragComponent} />
       </div>
     </div>

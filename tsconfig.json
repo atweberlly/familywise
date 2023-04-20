@@ -31,8 +31,7 @@
     "**/*.js",
     "src/middleware.js",
     ".next/types/**/*.ts",
-    "/Applications/MAMP/htdocs/familyfortunate-v2/.next/types/**/*.ts",
-    "C:\\Users\\jeric\\Documents\\Development\\Github\\familyfortunate-v2\\.next/types/**/*.ts"
+    "/Users/jonahcastro/Atweberlly/familyfortunate-v2/.next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

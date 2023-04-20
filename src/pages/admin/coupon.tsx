@@ -44,7 +44,16 @@ const CouponManager: NextPage = () => {
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
-  const couponHeader = ['Code', 'Description', 'Type', 'Amount', 'Expiry Date', 'Subscription', 'Status', '']
+  const couponHeader = [
+    'Code',
+    'Description',
+    'Type',
+    'Amount',
+    'Expiry Date',
+    'Subscription',
+    'Status',
+    '',
+  ]
   const type = ['percentage', 'amount']
 
   const destroyDatePicker = () => {
@@ -231,7 +240,7 @@ const CouponManager: NextPage = () => {
           <p className="text-base">Manage your coupon details</p>
           <div className="my-10 text-center">
             <Title>Coupon Manager</Title>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-[#323337]">
+            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
@@ -242,7 +251,7 @@ const CouponManager: NextPage = () => {
                 />
                 <Button
                   onClick={handlerAdd}
-                  className="rounded-full bg-[#B99D7E] hover:bg-[#9E7558] px-4 py-2 text-center text-sm text-white  dark:bg-[#9E7558] dark:hover:bg-[#B99D7E] "
+                  className="rounded-full bg-primary-400 px-4 py-2 text-center text-sm text-white hover:bg-primary-600  dark:bg-primary-600 dark:hover:bg-primary-400 "
                 >
                   <PlusIcon className="inline-block h-4 w-4" /> Add new
                 </Button>
@@ -253,7 +262,17 @@ const CouponManager: NextPage = () => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
                   body={currentPosts?.map(
-                    ({ _id, code, description, type, amount, expiryDate, timezone, planType, published }) => {
+                    ({
+                      _id,
+                      code,
+                      description,
+                      type,
+                      amount,
+                      expiryDate,
+                      timezone,
+                      planType,
+                      published,
+                    }) => {
                       return (
                         <Table.Row className="bg-white" key={_id}>
                           <Table.Cell> {code}</Table.Cell>
@@ -268,9 +287,7 @@ const CouponManager: NextPage = () => {
                               'longDate'
                             )}
                           </Table.Cell>
-                          <Table.Cell className='capitalize'>
-                            {planType}
-                          </Table.Cell>
+                          <Table.Cell className="capitalize">{planType}</Table.Cell>
                           <Table.Cell>
                             <span
                               className={`rounded-full px-4 py-2 font-semibold ${
@@ -341,11 +358,11 @@ const CouponManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 dark:bg-[#323337] transition-all',
+              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white dark:bg-[#212325] dark:text-white p-4">
+            <div className="flex items-center justify-between bg-white p-4 dark:bg-shark dark:text-white">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} Coupon
               </h4>
@@ -365,14 +382,14 @@ const CouponManager: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white dark:bg-[#212325] dark:text-white p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
                 <input type="hidden" {...register('_id')} />
-               
+
                 <label>
                   <p className="mb-2 text-sm">Code</p>
                   <input
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                    dark:bg-[#323337] dark:text-white"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="E.g. CHRISTMAS2023"
                     {...register('code', { required: true })}
                   />
@@ -385,8 +402,8 @@ const CouponManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                    dark:bg-[#323337] dark:text-white"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="E.g. Coupon for Christmas 2023"
                     rows={4}
                     {...register('description', { required: true })}
@@ -400,8 +417,8 @@ const CouponManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Type</p>
                   <select
-                    className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 capitalize text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                    dark:bg-[#323337] dark:text-white"
+                    className="dark:bg-dark block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 capitalize text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     {...register('type', { required: true })}
                   >
                     {type.map((item) => {
@@ -418,8 +435,8 @@ const CouponManager: NextPage = () => {
                   <p className="mb-2 text-sm">Amount</p>
                   <input
                     type={'number'}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                    dark:bg-[#323337] dark:text-white"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="E.g 10"
                     {...register('amount', {
                       required: true,
@@ -439,8 +456,8 @@ const CouponManager: NextPage = () => {
                   <p className="mb-2 text-sm">Expiry Date</p>
                   <input
                     type={'text'}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                    dark:bg-[#323337] dark:text-white"
+                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
+                    focus:ring-primary-500 dark:text-white"
                     placeholder="MM/DD/YYY"
                     id="datepicker"
                     {...register('expiryDate')}
@@ -455,7 +472,10 @@ const CouponManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('planType')}
                     />
-                    <label htmlFor="classic" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label
+                      htmlFor="classic"
+                      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Classic
                     </label>
                   </div>
@@ -467,7 +487,10 @@ const CouponManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('planType')}
                     />
-                    <label htmlFor="premium" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label
+                      htmlFor="premium"
+                      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Premium
                     </label>
                   </div>
@@ -479,7 +502,10 @@ const CouponManager: NextPage = () => {
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500"
                       {...register('planType')}
                     />
-                    <label htmlFor="both" className="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label
+                      htmlFor="both"
+                      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Both
                     </label>
                   </div>
@@ -487,7 +513,7 @@ const CouponManager: NextPage = () => {
 
                 <label className="flex items-center gap-2">
                   <input
-                    className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500 dark:bg-[#323337] dark:text-white"
+                    className="dark:bg-dark h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500 dark:text-white"
                     type="checkbox"
                     {...register('published')}
                   />
@@ -495,8 +521,8 @@ const CouponManager: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white dark:bg-[#212325] p-4 ">
-                <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
+              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-shark ">
+                <button className="rounded-xl bg-primary-600 px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
                       <Spinner aria-label="loading" />

@@ -157,9 +157,11 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     value={couponCode}
                     onChange={(event) => setCouponCode(event.target.value)}
                   />
-                  
+
                   {couponCode.length !== 0 && isValidCoupon === false && (
-                    <p className="mt-2 text-xs text-red-400">{!isValidCoupon}Enter a valid discount code</p>
+                    <p className="mt-2 text-xs text-red-400">
+                      {!isValidCoupon}Enter a valid discount code
+                    </p>
                   )}
                 </div>
 

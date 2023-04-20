@@ -130,7 +130,7 @@ const YourProfile = () => {
       <Heading className="mb-10" size={3}>
         Your Profile
       </Heading>
-      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-8 dark:bg-[#212325]">
+      <div className="max-w-auto dark:bg-dark-medium relative overflow-x-auto rounded-lg bg-white p-8">
         <div className="max-w-auto flex flex-col gap-4 lg:gap-8">
           <div>
             <Heading size={5}>Personal Information</Heading>
@@ -140,7 +140,8 @@ const YourProfile = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="grid grid-cols-1 gap-x-20 md:grid-cols-2 ">
-                <Input className='dark:bg-[#323337] dark:text-white'
+                <Input
+                  className="dark:bg-dark dark:text-white"
                   label={'First name'}
                   type={'text'}
                   placeholder={'Ex: John'}
@@ -154,7 +155,8 @@ const YourProfile = () => {
                     })
                   }}
                 ></Input>
-                <Input className='dark:bg-[#323337] dark:text-white'
+                <Input
+                  className="dark:bg-dark dark:text-white"
                   label={'Last name'}
                   type={'text'}
                   placeholder={'Ex: Doe'}
@@ -170,8 +172,8 @@ const YourProfile = () => {
               <div className="grid grid-cols-1  gap-x-20 md:grid-cols-2">
                 <label className="block w-full">
                   <p className="text-sm font-semibold">{'Email Address'}</p>
-                  <input 
-                    className="peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:bg-[#323337] dark:text-white"
+                  <input
+                    className="dark:bg-dark peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:text-white"
                     placeholder={'Email Address'}
                     type={'text'}
                     defaultValue={user?.email}
@@ -189,7 +191,11 @@ const YourProfile = () => {
                   />
                 </div>
               </div>
-              <Button className="mt-2 w-full lg:w-72 dark:text-white dark:bg-[#9E7558] dark:hover:bg-[#B99D7E]" type={'submit'} disabled={disabled} >
+              <Button
+                className="mt-2 w-full dark:bg-primary-600 dark:text-white dark:hover:bg-primary-400 lg:w-72"
+                type={'submit'}
+                disabled={disabled}
+              >
                 Save Changes
               </Button>
             </form>
@@ -203,7 +209,8 @@ const YourProfile = () => {
             >
               <div className="grid grid-cols-1 items-center gap-x-20  md:grid-cols-2">
                 <div className="flex w-full items-end justify-evenly">
-                  <Input className='dark:bg-[#323337] dark:text-white'
+                  <Input
+                    className="dark:bg-dark dark:text-white"
                     label={'Password'}
                     type={'password'}
                     placeholder={'•••••••••'}
@@ -217,7 +224,8 @@ const YourProfile = () => {
                   ></Input>
                 </div>
                 <div className="flex w-full items-end justify-evenly">
-                  <Input className='dark:bg-[#323337] dark:text-white'
+                  <Input
+                    className="dark:bg-dark dark:text-white"
                     label={'Confirm Password'}
                     type={'password'}
                     placeholder={'•••••••••'}
@@ -232,7 +240,7 @@ const YourProfile = () => {
                 </div>
               </div>
               <Button
-                className="mt-2 w-full lg:w-72 dark:bg-[#AB8664] dark:text-white dark:hover:bg-[#B99D7E] "
+                className="mt-2 w-full dark:bg-[#AB8664] dark:text-white dark:hover:bg-primary-400 lg:w-72 "
                 type={'submit'}
                 disabled={passwordBtnDisabled}
               >

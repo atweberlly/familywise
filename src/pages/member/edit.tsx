@@ -107,16 +107,18 @@ const Edit = ({ question, id }: Props) => {
             }}
           >
             {isDisabled ? (
-              <PencilIcon className="h-6 w-6 text-[#9E7558]" />
+              <PencilIcon className="h-6 w-6 text-primary-600" />
             ) : (
-              <CheckIcon className="h-6 w-6 text-[#9E7558]" />
+              <CheckIcon className="h-6 w-6 text-primary-600" />
             )}
           </span>
         </div>
         <input
           type="text"
-          className={`mt-2 w-full rounded-xl border-[#9E7558] ${
-            isDisabled ? 'bg-secondary-200  dark:bg-[#323337] dark:text-white/30' : 'bg-white dark:bg-black dark:text-white'
+          className={`mt-2 w-full rounded-xl border-primary-600 ${
+            isDisabled
+              ? 'dark:bg-dark  bg-secondary-200 dark:text-white/30'
+              : 'bg-white dark:bg-black dark:text-white'
           } px-8 py-6 text-sm text-secondary-600  outline-none`}
           defaultValue={defaultContent.heading ? defaultContent.heading : question}
           disabled={isDisabled}
@@ -144,7 +146,7 @@ const Edit = ({ question, id }: Props) => {
           <div className="py-[25px]">
             <span className="font-normal">Your story</span>
             <textarea
-              className="mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-[#323337] dark:text-white"
+              className="dark:bg-dark mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
               placeholder="Write your story here..."
               defaultValue={defaultContent.story}
               onChange={(e) => {
@@ -166,7 +168,7 @@ const Edit = ({ question, id }: Props) => {
                   className="mx-auto max-h-32 w-auto object-cover"
                 />
               ) : (
-                <CloudArrowUpIcon className="mx-auto h-8 w-8 text-[#9E7558]" />
+                <CloudArrowUpIcon className="mx-auto h-8 w-8 text-primary-600" />
               )}
               <label
                 htmlFor="avatar"
@@ -181,14 +183,14 @@ const Edit = ({ question, id }: Props) => {
                 onChange={uploadFile}
                 hidden
               />
-              <p className="mb-8 text-xs text-[#9E7558]">
+              <p className="mb-8 text-xs text-primary-600">
                 Only JPEG and PNG files with max size of 8MB.
               </p>
             </div>
           </div>
           <div className="py-[25px]">
             <textarea
-              className="mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-[#323337] dark:text-white"
+              className="dark:bg-dark mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
               placeholder="Add a caption for your image. The caption will appear below your image."
               defaultValue={defaultContent.caption}
               onChange={(e) => {
@@ -204,12 +206,12 @@ const Edit = ({ question, id }: Props) => {
           {saving ? (
             <>
               <ClipLoader color="#9E7558" loading={true} size={20} />
-              <span className="text-[20px] text-[#9E7558]">saving</span>
+              <span className="text-[20px] text-primary-600">saving</span>
             </>
           ) : (
             <>
               <FaCheck color="#9E7558" />
-              <span className="text-[20px] text-[#9E7558]">saved</span>
+              <span className="text-[20px] text-primary-600">saved</span>
             </>
           )}
         </div>

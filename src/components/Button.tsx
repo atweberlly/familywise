@@ -2,7 +2,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 const colors = {
-  primary: ['bg-[#9E7558] text-white hover:bg-primary-600 focus:ring-[#9E7558]/50'],
+  primary: ['bg-primary-600 text-white hover:bg-primary-600 focus:ring-primary-600/50'],
   secondary: [
     'bg-secondary-400 text-secondary-100 hover:bg-secondary-600 focus:ring-secondary-500/50',
   ],
@@ -42,7 +42,7 @@ export default function Button({
   ) : (
     <button
       className={clsx(
-        'inline-block rounded-xl border-2 border-transparent px-4 py-3 text-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-secondary-200 disabled:hover:bg-[#9E7558]',
+        'inline-block rounded-xl border-2 border-transparent px-4 py-3 text-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-secondary-200 disabled:hover:bg-primary-600',
         colorClassnames,
         className
       )}

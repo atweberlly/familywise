@@ -76,11 +76,11 @@ const Administrator: NextPage = () => {
       <div className="mt-4 " role="grid">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 " role="row">
           <div role="gridcell">
-            <div className="rounded-lg bg-white px-6 py-5 dark:bg-[#323337]">
+            <div className="dark:bg-dark rounded-lg bg-white px-6 py-5">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold">Subscribers</h2>
                 <Link
-                  className="rounded-full bg-[#B99D7E] px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558]"
+                  className="rounded-full bg-primary-400 px-4 py-2 text-center text-sm text-white dark:bg-primary-600"
                   href="/admin/newsletter"
                 >
                   View all
@@ -94,7 +94,7 @@ const Administrator: NextPage = () => {
                   return (
                     <div key={id}>
                       <div>{full_name}</div>
-                      <p className="text-sm text-secondary-500 dark:text-[#E2E2E2]">
+                      <p className="text-sm text-secondary-500 dark:text-mercury">
                         {email_address}
                       </p>
                     </div>
@@ -105,11 +105,11 @@ const Administrator: NextPage = () => {
           </div>
 
           <div role="gridcell">
-            <div className="rounded-lg bg-white px-6 py-5 dark:bg-[#323337] ">
+            <div className="dark:bg-dark rounded-lg bg-white px-6 py-5 ">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold">10 Active Members</h2>
                 <Link
-                  className="rounded-full bg-[#B99D7E] px-4 py-2 text-center text-sm text-white dark:bg-[#9E7558] "
+                  className="rounded-full bg-primary-400 px-4 py-2 text-center text-sm text-white dark:bg-primary-600 "
                   href="/admin/subscribed-members"
                 >
                   View all
@@ -128,11 +128,9 @@ const Administrator: NextPage = () => {
                             <p>
                               {firstname} {lastname}
                             </p>
-                            <p className="text-sm text-secondary-500 dark:text-[#E2E2E2] ">
-                              {email}
-                            </p>
+                            <p className="text-sm text-secondary-500 dark:text-mercury ">{email}</p>
                           </div>
-                          <span className="rounded-full bg-[#B99D7E] px-3 py-1 text-sm text-white dark:bg-[#a07b60] dark:text-white">
+                          <span className="rounded-full bg-primary-400 px-3 py-1 text-sm text-white dark:bg-[#a07b60] dark:text-white">
                             {planType}
                           </span>
                         </div>
