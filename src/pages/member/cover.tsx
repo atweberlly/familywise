@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, ChangeEvent, useRef, useEffect } from 'react'
+import { FaCheck } from 'react-icons/fa'
 import Slider from 'react-slick'
+import { ClipLoader } from 'react-spinners'
 import Image from 'next/image'
 import Heading from '../../components/Heading'
 import Input from '../../components/Input'
@@ -9,6 +11,7 @@ import axios from 'axios'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import { CloudArrowUpIcon } from '@heroicons/react/24/solid'
+import { render } from 'react-dom';
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   title: string
@@ -24,33 +27,23 @@ const Cover = ({ id }: Props) => {
   const [image, setImage] = useState(null)
   const [defaultContent, setDefaultContent] = useState({ heading: '', story: '', caption: '' })
   const [uploadedFile, setUploadedFile] = useState<any>()
+  
 
-  const uploadFile = async (event: any) => {
-    if (event.target.files[0] === undefined) {
-      return
+  function uploadFile(event: React.ChangeEvent<HTMLInputElement>) {
+   
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
     }
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0]
-      let { data } = await axios.post('/api/s3/uploadFile', {
-        name: file.name,
-        type: file.type,
-      })
-
-      const url = data.url
-      await axios.put(url, file, {
-        headers: {
-          'Content-type': file.type,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      const image_url = BUCKET_URL + file.name.split(' ').join('+')
-      await axios.post('/api/questions/saveImage', {
-        id: id,
-        image: image_url,
-      })
-      setUploadedFile(image_url)
-    }
+    
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setUploadedFile(reader.result as string);
+      setImage(null);
+    };
+    reader.readAsDataURL(file);
   }
+  
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
@@ -60,11 +53,11 @@ const Cover = ({ id }: Props) => {
   }
 
   const images = [
-    // This is Sample Image Array
-    '/images/cover/book-cover1.jpg',
-    '/images/cover/book-cover2.jpg',
-    '/images/cover/book-cover3.jpg',
-    '/images/cover/book-cover4.jpg',
+    // This is Sample Image Array Change it to become Dynamic
+    '/images/cover/book-c1.svg',
+    '/images/cover/book-c2.svg',
+    '/images/cover/book-c3.svg',
+    '/images/cover/book-c4.svg',
   ]
 
   return (
@@ -94,7 +87,7 @@ const Cover = ({ id }: Props) => {
       <div className="h-[40%] w-[60%] py-[5px] px-[20px]">
         <form className="mt-8 md:mt-12">
           <div className="mb-4 w-[60%]">
-            <Input
+            <Input //Title Input
               label={'Title'}
               type={'text'}
               name={'title'}
@@ -104,7 +97,7 @@ const Cover = ({ id }: Props) => {
             ></Input>
           </div>
           <div className="mb-4 w-[60%]">
-            <Input
+            <Input //Author Input
               label={'Author’s name'}
               type={'text'}
               name={'authpr'}
@@ -146,6 +139,7 @@ const Cover = ({ id }: Props) => {
                     type="file"
                     id="avatar"
                     // onChange={(e) => setValue('heading',(e.target as HTMLInputElement).value)}
+
                     onChange={uploadFile}
                     hidden
                   />
@@ -157,6 +151,21 @@ const Cover = ({ id }: Props) => {
             </div>
           </div>
         </div>
+        <div className="flex justify-between gap-2 px-[25px]">
+          <div className="flex items-center justify-center gap-3">
+            {saving ? (
+              <>
+                <ClipLoader color="#9E7558" loading={true} size={20} />
+                <span className="text-[20px] text-[#9E7558]">saving</span>
+              </>
+            ) : (
+              <>
+                <FaCheck color="#9E7558" />
+                <span className="text-[20px] text-[#9E7558]">saved</span>
+              </>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="absolute top-10 right-0 mx-auto h-auto w-auto bg-gray-200 py-4 px-5 dark:bg-dark-200">
@@ -164,12 +173,13 @@ const Cover = ({ id }: Props) => {
         <Heading size={2} className="top-0 pb-10">
           Preview
         </Heading>
-        <Image
+        <Image //Preview Image
           className="z-50"
-          src={images[selectedImageIndex]}
+          src={uploadedFile ? uploadedFile : images[selectedImageIndex]}
           alt="previewImage"
           width="356"
           height="756"
+          
         />
       </div>
     </MemberLayout>
