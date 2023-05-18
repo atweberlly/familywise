@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, useRef, useEffect } from 'react'
+import { render } from 'react-dom'
 import { FaCheck } from 'react-icons/fa'
 import Slider from 'react-slick'
 import { ClipLoader } from 'react-spinners'
@@ -11,7 +12,6 @@ import axios from 'axios'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import { CloudArrowUpIcon } from '@heroicons/react/24/solid'
-import { render } from 'react-dom';
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   title: string
@@ -27,23 +27,20 @@ const Cover = ({ id }: Props) => {
   const [image, setImage] = useState(null)
   const [defaultContent, setDefaultContent] = useState({ heading: '', story: '', caption: '' })
   const [uploadedFile, setUploadedFile] = useState<any>()
-  
 
   function uploadFile(event: React.ChangeEvent<HTMLInputElement>) {
-   
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]
     if (!file) {
-      return;
+      return
     }
-    
-    const reader = new FileReader();
+
+    const reader = new FileReader()
     reader.onloadend = () => {
-      setUploadedFile(reader.result as string);
-      setImage(null);
-    };
-    reader.readAsDataURL(file);
+      setUploadedFile(reader.result as string)
+      setImage(null)
+    }
+    reader.readAsDataURL(file)
   }
-  
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
@@ -179,7 +176,6 @@ const Cover = ({ id }: Props) => {
           alt="previewImage"
           width="356"
           height="756"
-          
         />
       </div>
     </MemberLayout>
