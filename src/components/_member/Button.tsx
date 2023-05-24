@@ -23,11 +23,11 @@ export default function ButtonV2({
         <button
           className={`
         ${className}
-          rounded-xl border border-primary-500 p-3 text-sm font-bold lg:px-4 ${
-            isActive
-              ? 'bg-primary-500 text-white hover:bg-primary-600 hover:text-white'
-              : 'bg-none text-primary-500 hover:bg-primary-500 hover:text-white'
-          }
+        rounded-xl border border-primary-600 p-2 text-sm font-bold dark:border-primary-600 lg:px-4 ${
+          isActive
+            ? 'bg-primary-400 text-white hover:bg-primary-600 hover:text-white dark:bg-primary-600 dark:hover:bg-primary-600/70'
+            : 'bg-transparent  text-primary-600 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600/70 dark:hover:text-white'
+        }
         `}
           disabled={disabled}
         >
@@ -37,10 +37,10 @@ export default function ButtonV2({
         <button
           className={`
           ${className}
-          rounded-xl border border-primary-500 p-2 text-sm font-bold lg:px-4 ${
+          rounded-xl border border-primary-600 p-2 text-sm font-bold dark:border-white lg:px-4 ${
             isActive
-              ? 'bg-primary-500 text-white hover:bg-primary-600 hover:text-white'
-              : 'bg-transparent text-primary-500 hover:bg-primary-500 hover:text-white '
+              ? 'bg-primary-400 text-white hover:bg-primary-600 hover:text-white dark:bg-primary-600 dark:hover:bg-primary-600/70'
+              : 'bg-transparent  text-primary-600 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-400/70 dark:hover:text-white'
           }
           `}
           disabled={disabled}

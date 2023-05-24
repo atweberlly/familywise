@@ -27,7 +27,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
 
   const [couponCode, setCouponCode] = useState('')
   const [price, setPrice] = useState(97)
-  const [isValidCoupon, setValidCoupon] = useState(false)
+  const [isValidCoupon, setValidCoupon] = useState(true)
   const [discountAmount, setDiscountAmount] = useState(0)
   const [originalPrice, setOriginalPrice] = useState(97)
   const [showDiscount, setShowDiscount] = useState(true)
@@ -62,9 +62,8 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
 
   useEffect(() => {
     if (couponCode.length === 0) {
-      setValidCoupon(false)
+      setValidCoupon(true)
       setDiscountAmount(0)
-      setValidCoupon(false)
     }
   }, [couponCode])
   return (
@@ -158,8 +157,11 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     value={couponCode}
                     onChange={(event) => setCouponCode(event.target.value)}
                   />
-                  {couponCode && !isValidCoupon && (
-                    <p className="mt-2 text-xs text-red-400">Enter a valid discount code</p>
+
+                  {couponCode.length !== 0 && isValidCoupon === false && (
+                    <p className="mt-2 text-xs text-red-400">
+                      {!isValidCoupon}Enter a valid discount code
+                    </p>
                   )}
                 </div>
 
@@ -170,6 +172,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                   onClick={async () => {
                     const validate = await axios.post('/api/coupon/validate', {
                       coupon: couponCode,
+                      plan: user?.planType,
                     })
                     if (validate.status === 201) {
                       if (validate.data.result) {
@@ -198,7 +201,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
           )}
 
           <hr className="mt-5 w-full border-white/80" />
-          {couponCode && isValidCoupon && (
+          {discountAmount > 0 && (
             <>
               <div className="mt-5 flex justify-between">
                 <p className="text-sm text-white">Subtotal</p>

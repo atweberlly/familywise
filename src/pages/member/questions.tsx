@@ -47,7 +47,7 @@ const Questions = () => {
               <ButtonV2 text="Upcoming Questions" onClick={upcomingClick} isActive={upcoming} />
               <ButtonV2 text="Not Started" onClick={pastClick} isActive={past} />
             </div>
-            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto dark:bg-dark-medium relative overflow-x-auto rounded-lg bg-white p-6">
               <div className="max-w-auto mt-8 mb-10 flex items-center justify-center">
                 {upcoming && (
                   <UpcomingTableV2
@@ -78,12 +78,12 @@ const Questions = () => {
           <div>
             <div className="flex justify-between">
               <button
-                className="relative flex items-center justify-center gap-x-1 pl-6 font-bold text-primary-500"
+                className="relative flex items-center justify-center gap-x-1 pl-6 font-bold text-primary-600"
                 onClick={() => {
                   setEdit(false)
                 }}
               >
-                <ChevronLeftIcon className="inline h-5 w-5 text-primary-500" />
+                <ChevronLeftIcon className="inline h-5 w-5 text-primary-600" />
                 Go Back
               </button>
               {/* <button className="relative flex items-center justify-center gap-x-1 pr-6 font-bold text-primary-500">
@@ -91,7 +91,7 @@ const Questions = () => {
                 <ChevronRightIcon className="inline h-5 w-5 text-primary-500" />
               </button> */}
             </div>
-            <div className="mb-[64px] mt-[32px] flex w-full flex-col rounded-[5px] bg-white px-[24px]">
+            <div className="dark:bg-dark-medium mb-[64px] mt-[32px] flex w-full flex-col rounded-[5px] bg-white px-[24px] ">
               <div className="mt-8 mb-10 flex w-full items-center justify-center">
                 <Edit question={question} id={id} />
               </div>

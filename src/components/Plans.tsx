@@ -10,7 +10,7 @@ export default function Plans({ name, price, features, isPopular }: any) {
   return (
     <div className="text-left">
       <Card
-        className={`flex flex-col justify-between overflow-hidden rounded-lg border-none bg-white shadow-lg dark:bg-white`}
+        className={`flex flex-col justify-between overflow-hidden rounded-lg border-none bg-white shadow-lg `}
       >
         <div className="relative grid grid-cols-1 items-center justify-between px-6 py-4 lg:grid-cols-2">
           {isPopular && (

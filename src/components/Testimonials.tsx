@@ -55,7 +55,7 @@ export default function Testimonials({ className }: Props) {
             {testimonials?.map(({ _id, message, name, location, position, published }) => {
               return (
                 <div className="swiper-slide" key={_id}>
-                  <div className="rounded-lg bg-white p-4 text-center">
+                  <div className="rounded-lg bg-white p-4 text-center ">
                     <div className="flex gap-3 font-serif text-2xl font-bold text-warning-600">
                       <div className="flex-1">
                         <p className="font-bold">

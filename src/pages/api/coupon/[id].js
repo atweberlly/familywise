@@ -41,6 +41,7 @@ export default async function handler(request, response) {
         amount: request.body.amount,
         expiryDate: request.body.expiryDate,
         timezone: userTimezone,
+        planType: request.body.planType,
         published: request.body.published,
       }
       //update newValues by id
