@@ -23,6 +23,14 @@ const QuestionManager: NextPage = () => {
     QuestionType: 'both',
     published: false,
   }
+  interface Post {
+    _id: string
+    category_id: string
+    question: string
+    destiption: string
+    QuestionType: string
+    published: boolean
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -40,6 +48,8 @@ const QuestionManager: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const tableHeader = ['Category Name', 'Question', 'Description', 'Type', 'Status', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -210,6 +220,8 @@ const QuestionManager: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -223,8 +235,12 @@ const QuestionManager: NextPage = () => {
                   header={tableHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(
-                    ({ _id, category, question, description, QuestionType, published }) => {
+                  body={currentPosts
+                    .filter((post: Post) =>
+                      post.question.toLowerCase().includes(searchKeyword.toLowerCase())
+                    )
+
+                    .map(({ _id, category, question, description, QuestionType, published }) => {
                       return (
                         <Table.Row className="dark bg-white " key={_id}>
                           <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
@@ -233,9 +249,9 @@ const QuestionManager: NextPage = () => {
                           <Table.Cell className="capitalize">{QuestionType}</Table.Cell>
                           <Table.Cell>
                             <span
-                              className={`rounded-full px-4 py-2 font-semibold ${
+                              className={`rounded-full px-4 py-2 font-semibold  ${
                                 published
-                                  ? 'bg-green-100 text-green-500'
+                                  ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
                                   : 'bg-gray-100 text-gray-500'
                               } capitalize`}
                             >
@@ -262,8 +278,7 @@ const QuestionManager: NextPage = () => {
                           </Table.Cell>
                         </Table.Row>
                       )
-                    }
-                  )}
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

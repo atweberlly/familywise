@@ -20,6 +20,11 @@ const FAQCategories: NextPage = () => {
     name: '',
     description: '',
   }
+  interface Post {
+    _id: string
+    name: string
+    description: string
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -36,6 +41,8 @@ const FAQCategories: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const tableHeader = ['Name', 'Description', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -178,6 +185,8 @@ const FAQCategories: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -191,32 +200,36 @@ const FAQCategories: NextPage = () => {
                   header={tableHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(({ _id, type, name, description }) => {
-                    return (
-                      <Table.Row className="bg-white" key={_id}>
-                        <Table.Cell>{name}</Table.Cell>
-                        <Table.Cell> {truncate(description)}</Table.Cell>
-                        <Table.Cell>
-                          <div className="flex gap-x-4">
-                            <Link
-                              className="text-sm font-semibold text-primary-500 hover:text-primary-600"
-                              href="#edit"
-                              onClick={() => handlerEdit(_id)}
-                            >
-                              Edit
-                            </Link>
-                            <Link
-                              href="#"
-                              className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
-                              onClick={() => handleClick(_id)}
-                            >
-                              Delete
-                            </Link>
-                          </div>
-                        </Table.Cell>
-                      </Table.Row>
+                  body={currentPosts
+                    .filter((post: Post) =>
+                      post.description.toLowerCase().includes(searchKeyword.toLowerCase())
                     )
-                  })}
+                    .map(({ _id, type, name, description }) => {
+                      return (
+                        <Table.Row className="bg-white" key={_id}>
+                          <Table.Cell>{name}</Table.Cell>
+                          <Table.Cell> {truncate(description)}</Table.Cell>
+                          <Table.Cell>
+                            <div className="flex gap-x-4">
+                              <Link
+                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                href="#edit"
+                                onClick={() => handlerEdit(_id)}
+                              >
+                                Edit
+                              </Link>
+                              <Link
+                                href="#"
+                                className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
+                                onClick={() => handleClick(_id)}
+                              >
+                                Delete
+                              </Link>
+                            </div>
+                          </Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

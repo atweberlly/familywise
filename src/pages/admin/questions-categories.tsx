@@ -20,6 +20,11 @@ const QuestionCategories: NextPage = () => {
     name: '',
     description: '',
   }
+  interface Post {
+    _id: string
+    name: string
+    description: string
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -36,6 +41,8 @@ const QuestionCategories: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const tableHeader = ['Name', 'Description', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -178,6 +185,8 @@ const QuestionCategories: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -191,32 +200,36 @@ const QuestionCategories: NextPage = () => {
                   header={tableHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(({ _id, name, description }) => {
-                    return (
-                      <Table.Row className="bg-white" key={_id}>
-                        <Table.Cell>{name}</Table.Cell>
-                        <Table.Cell> {truncate(description)}</Table.Cell>
-                        <Table.Cell>
-                          <div className="flex gap-x-4">
-                            <Link
-                              className="text-sm font-semibold text-primary-500 hover:text-primary-600"
-                              href="#edit"
-                              onClick={() => handlerEdit(_id)}
-                            >
-                              Edit
-                            </Link>
-                            <Link
-                              href="#"
-                              className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
-                              onClick={() => handleClick(_id)}
-                            >
-                              Delete
-                            </Link>
-                          </div>
-                        </Table.Cell>
-                      </Table.Row>
+                  body={currentPosts
+                    .filter((post: Post) =>
+                      post.name.toLowerCase().includes(searchKeyword.toLocaleLowerCase())
                     )
-                  })}
+                    .map(({ _id, name, description }) => {
+                      return (
+                        <Table.Row className="bg-white" key={_id}>
+                          <Table.Cell>{name}</Table.Cell>
+                          <Table.Cell> {truncate(description)}</Table.Cell>
+                          <Table.Cell>
+                            <div className="flex gap-x-4">
+                              <Link
+                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                href="#edit"
+                                onClick={() => handlerEdit(_id)}
+                              >
+                                Edit
+                              </Link>
+                              <Link
+                                href="#"
+                                className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
+                                onClick={() => handleClick(_id)}
+                              >
+                                Delete
+                              </Link>
+                            </div>
+                          </Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">
@@ -255,7 +268,7 @@ const QuestionCategories: NextPage = () => {
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
-            <div className="flex items-center justify-between bg-white p-4">
+            <div className="flex items-center justify-between bg-white p-4 dark:bg-[#212325] dark:text-white ">
               <h4 className="text-lg font-bold tracking-tight">
                 {!getValues('_id') ? 'Add' : 'Edit'} Category
               </h4>
@@ -270,9 +283,9 @@ const QuestionCategories: NextPage = () => {
             </div>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex h-full flex-col justify-between"
+              className="flex h-full flex-col justify-between dark:bg-[#323337]"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4">
+              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-[#323337] dark:text-white">
                 {addEditMessage?.message && (
                   <div className="my-4">
                     <Alert
@@ -287,7 +300,8 @@ const QuestionCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Name</p>
                   <input
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#111315] dark:text-white"
                     type="text"
                     placeholder="Name"
                     {...register('name', { required: true })}
@@ -302,7 +316,8 @@ const QuestionCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-[#111315] dark:text-white"
                     rows={4}
                     placeholder="Description"
                     {...register('description')}
@@ -310,8 +325,8 @@ const QuestionCategories: NextPage = () => {
                 </label>
               </div>
 
-              <div className="mt-auto flex justify-center bg-white p-4 ">
-                <button className="rounded-xl bg-primary-500 px-4 py-3 text-white" type="submit">
+              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-[#212325]">
+                <button className="rounded-xl bg-[#9E7558] px-4 py-3 text-white" type="submit">
                   {loadingBtn ? (
                     <>
                       <Spinner aria-label="loading" />
