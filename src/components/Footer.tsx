@@ -30,12 +30,18 @@ export default function Footer() {
               <Link href={'/#testimonials'}>Testimonials</Link>
             </li>
 
-            {/*  <li>
-              <a href="">Terms & Conditions</a>
+            <li>
+              <a href={'/terms-and-condition'}>Terms & Conditions</a>
             </li>
             <li>
-              <a href="">Privacy Policy</a>
-            </li> */}
+              <a href={'/privacy-policy'}>Privacy Policy</a>
+            </li>
+            <li>
+              <a href={'/cookie-policy'}>Cookie Policy</a>
+            </li>
+            <li>
+              <a href={'/refund-policy'}>Refund Policy</a>
+            </li>
           </ul>
         </div>
 
