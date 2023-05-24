@@ -21,9 +21,26 @@ export default function AddQuestion({
   categories,
 }: Props) {
   const [filterCategory, setFilterCategory] = useState('')
+  const [searchKeyword, setSearchKeyword] = useState('')
   const closeModal = () => {
     setShowAdd(false)
   }
+
+  const filteredQuestions = questions.filter((question) => {
+    // If the search keyword is not empty, check if it matches the question's text
+    if (searchKeyword !== '') {
+      const regex = new RegExp(searchKeyword, 'i')
+      if (!regex.test(question.question)) {
+        return false
+      }
+    }
+    // If a category is selected, check if the question belongs to that category
+    if (filterCategory !== '' && question.category_id !== filterCategory) {
+      return false
+    }
+    // If the question passed all filters, return true
+    return true
+  })
 
   return (
     <div
@@ -71,6 +88,8 @@ export default function AddQuestion({
                     className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-white p-2.5 pl-10 text-sm text-secondary-600 placeholder:text-secondary-300 focus:border-primary-500
                     focus:ring-primary-500 dark:text-mercury"
                     placeholder="Enter a keyword"
+                    value={searchKeyword}
+                    onChange={(e) => setSearchKeyword(e.target.value)}
                   />
                 </div>
               </div>
@@ -106,10 +125,7 @@ export default function AddQuestion({
             </div>
             <hr className="w-full border bg-secondary-300" />
             <div className="max-h-80 overflow-auto">
-              {(filterCategory !== ''
-                ? questions.filter((e) => e.category_id === filterCategory)
-                : questions
-              ).map((question: any, i: any) => {
+              {filteredQuestions.map((question: any, i: any) => {
                 return (
                   <div className="my-2 flex items-center justify-between" key={i}>
                     <p>{question.question}</p>

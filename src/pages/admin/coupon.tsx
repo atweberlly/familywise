@@ -55,6 +55,8 @@ const CouponManager: NextPage = () => {
     '',
   ]
   const type = ['percentage', 'amount']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
@@ -248,6 +250,8 @@ const CouponManager: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -298,6 +302,17 @@ const CouponManager: NextPage = () => {
                             >
                               {published ? 'Published' : 'Draft'}
                             </span>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <div className="flex gap-x-4">
+                              <Link
+                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                href="#edit"
+                                onClick={() => handlerEdit(_id)}
+                              >
+                                {published ? 'Published' : 'Draft'}
+                              </Link>
+                            </div>
                           </Table.Cell>
                           <Table.Cell>
                             <div className="flex gap-x-4">

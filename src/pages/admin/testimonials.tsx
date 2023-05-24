@@ -23,6 +23,9 @@ const FAQManager: NextPage = () => {
     message: '',
     published: false,
   }
+  interface Post {
+    name: string
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -39,6 +42,8 @@ const FAQManager: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const testimonialHeader = ['Name', 'Position', 'Location', 'Message', 'Status', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -185,6 +190,8 @@ const FAQManager: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -198,8 +205,11 @@ const FAQManager: NextPage = () => {
                   header={testimonialHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(
-                    ({ _id, name, position, location, message, published }) => {
+                  body={currentPosts
+                    .filter((post: Post) =>
+                      post.name.toLowerCase().includes(searchKeyword.toLowerCase())
+                    )
+                    .map(({ _id, name, position, location, message, published }) => {
                       return (
                         <Table.Row className="bg-white " key={_id}>
                           <Table.Cell>{name}</Table.Cell>
@@ -210,7 +220,7 @@ const FAQManager: NextPage = () => {
                             <span
                               className={`rounded-full px-4 py-2 font-semibold ${
                                 published
-                                  ? 'bg-green-100 text-green-500'
+                                  ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
                                   : 'bg-gray-100 text-gray-500'
                               } capitalize`}
                             >
@@ -237,8 +247,7 @@ const FAQManager: NextPage = () => {
                           </Table.Cell>
                         </Table.Row>
                       )
-                    }
-                  )}
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

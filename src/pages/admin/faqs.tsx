@@ -22,6 +22,13 @@ const FAQManager: NextPage = () => {
     answer: '',
     published: false,
   }
+  interface Post {
+    _id: string
+    category_id: string
+    question: string
+    answer: string
+    published: boolean
+  }
   //show / hide modals
   const [showAddEdit, setShowAddEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -39,6 +46,8 @@ const FAQManager: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const faqHeader = ['Category Name', 'Question', 'Answer', 'Status', '']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const {
     register,
@@ -207,6 +216,8 @@ const FAQManager: NextPage = () => {
                   placeholder="Search"
                   required={true}
                   icon={MagnifyingGlassIcon}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
                 <Button
                   onClick={handlerAdd}
@@ -220,44 +231,48 @@ const FAQManager: NextPage = () => {
                   header={faqHeader.map((title) => {
                     return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                   })}
-                  body={currentPosts?.map(({ _id, category, question, answer, published }) => {
-                    return (
-                      <Table.Row className="bg-white " key={_id}>
-                        <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
-                        <Table.Cell> {truncate(question)}</Table.Cell>
-                        <Table.Cell>{truncate(answer)}</Table.Cell>
-                        <Table.Cell>
-                          <span
-                            className={`rounded-full px-4 py-2 font-semibold ${
-                              published
-                                ? 'bg-green-100 text-green-500'
-                                : 'bg-gray-100 text-gray-500'
-                            } capitalize`}
-                          >
-                            {published ? 'Published' : 'Draft'}
-                          </span>
-                        </Table.Cell>
-                        <Table.Cell>
-                          <div className="flex gap-x-4">
-                            <Link
-                              className="text-sm font-semibold text-primary-500 hover:text-primary-600"
-                              href="#edit"
-                              onClick={() => handlerEdit(_id)}
-                            >
-                              Edit
-                            </Link>
-                            <Link
-                              href="#delete"
-                              className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
-                              onClick={() => handleClick(_id)}
-                            >
-                              Delete
-                            </Link>
-                          </div>
-                        </Table.Cell>
-                      </Table.Row>
+                  body={currentPosts
+                    .filter((post: Post) =>
+                      post.question.toLowerCase().includes(searchKeyword.toLowerCase())
                     )
-                  })}
+                    .map(({ _id, category, question, answer, published }) => {
+                      return (
+                        <Table.Row className="bg-white " key={_id}>
+                          <Table.Cell>{category.length > 0 && category[0]['name']}</Table.Cell>
+                          <Table.Cell> {truncate(question)}</Table.Cell>
+                          <Table.Cell>{truncate(answer)}</Table.Cell>
+                          <Table.Cell>
+                            <span
+                              className={`rounded-full px-4 py-2 font-semibold ${
+                                published
+                                  ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
+                                  : 'bg-gray-100 text-gray-500'
+                              } capitalize`}
+                            >
+                              {published ? 'Published' : 'Draft'}
+                            </span>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <div className="flex gap-x-4">
+                              <Link
+                                className="text-sm font-semibold text-primary-500 hover:text-primary-600"
+                                href="#edit"
+                                onClick={() => handlerEdit(_id)}
+                              >
+                                Edit
+                              </Link>
+                              <Link
+                                href="#delete"
+                                className="text-sm font-semibold text-secondary-300 hover:text-danger-500"
+                                onClick={() => handleClick(_id)}
+                              >
+                                Delete
+                              </Link>
+                            </div>
+                          </Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
                   loader={loading}
                 />
                 <div className="mt-4 flex items-center justify-center text-center">

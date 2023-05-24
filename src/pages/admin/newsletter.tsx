@@ -9,12 +9,25 @@ import { Table, TextInput } from 'flowbite-react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Newsletter() {
+  /*let initialState = {
+    _id: '',
+    email_address: '',
+    full_name: '',
+  }*/
+  interface Post {
+    full_name: string
+  }
+
   const [loading, setLoading] = useState(false)
   const [Newsletter, setNewsletter] = useState<Array<any>>([])
+  //data
+  //const [data, setData] = useState(initialState)
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const newsletterHeader = ['Email', 'Full Name', 'Date Subscribed', 'Source', 'Status']
+  //keyword
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   //fetch all data
   useEffect(() => {
@@ -64,6 +77,8 @@ export default function Newsletter() {
                 placeholder="Search"
                 required={true}
                 icon={MagnifyingGlassIcon}
+                value={searchKeyword}
+                onChange={(e) => setSearchKeyword(e.target.value)}
               />
             </div>
             <div className="mt-8">
@@ -71,8 +86,11 @@ export default function Newsletter() {
                 header={newsletterHeader.map((title) => {
                   return <Table.HeadCell key={title}>{title}</Table.HeadCell>
                 })}
-                body={currentPosts?.map(
-                  ({ id, email_address, full_name, timestamp_opt, source, status }) => {
+                body={currentPosts
+                  .filter((post: Post) =>
+                    post.full_name.toLowerCase().includes(searchKeyword.toLowerCase())
+                  )
+                  .map(({ id, email_address, full_name, timestamp_opt, source, status }) => {
                     return (
                       <Table.Row className="bg-white" key={id}>
                         <Table.Cell>{email_address}</Table.Cell>
@@ -83,7 +101,7 @@ export default function Newsletter() {
                           <span
                             className={`rounded-full px-4 py-2 font-semibold ${
                               status === 'subscribed'
-                                ? 'bg-green-100 text-green-500'
+                                ? 'bg-green-100 text-green-500 dark:bg-[#323337] dark:text-white  '
                                 : 'bg-gray-100 text-gray-500'
                             } capitalize`}
                           >
@@ -92,8 +110,7 @@ export default function Newsletter() {
                         </Table.Cell>
                       </Table.Row>
                     )
-                  }
-                )}
+                  })}
                 loader={loading}
               />
 
