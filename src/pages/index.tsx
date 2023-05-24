@@ -125,9 +125,12 @@ export default function Home() {
             />
 
             <div className="relative z-50 mx-auto max-w-lg pt-80">
-              <h1 className="text-center font-serif text-[3.25rem] leading-none md:text-left lg:text-6xl">
-                <span className="font-bold">Capturing Life&apos;s Priceless</span>{' '}
-                <span className="font-semibold italic">Moments</span>
+              <h1 className="text-center font-serif text-[3.25rem] leading-none lg:text-6xl">
+                <span className="font-bold">
+                  Publish the stories <br />
+                  of your
+                </span>{' '}
+                <span className="font-semibold italic">life</span>
               </h1>
               <p className="mt-5 text-center text-xl font-medium md:text-left">
                 We all carry amazing life stories with us, many untold.
