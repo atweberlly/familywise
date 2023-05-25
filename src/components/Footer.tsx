@@ -29,18 +29,17 @@ export default function Footer() {
             <li>
               <Link href={'/#testimonials'}>Testimonials</Link>
             </li>
-
+            <li>
+              <a href={'/privacy'}>Privacy</a>
+            </li>
+            <li>
+              <a href={'/cookies'}>Cookie</a>
+            </li>
+            <li>
+              <a href={'/refund'}>Refund</a>
+            </li>
             <li>
               <a href={'/terms-and-condition'}>Terms & Conditions</a>
-            </li>
-            <li>
-              <a href={'/privacy-policy'}>Privacy Policy</a>
-            </li>
-            <li>
-              <a href={'/cookie-policy'}>Cookie Policy</a>
-            </li>
-            <li>
-              <a href={'/refund-policy'}>Refund Policy</a>
             </li>
           </ul>
         </div>
