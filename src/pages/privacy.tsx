@@ -27,7 +27,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 1. We respect your privacy
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate respects your right to privacy and is committed to safeguarding
@@ -62,7 +62,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 2. What personal information is collected
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate will, from time to time, receive and store personal information
@@ -98,7 +98,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 3. How we collect your personal information
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate collects personal information from you in a variety of ways,
@@ -120,7 +120,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 4. How we use your personal information
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate may use personal information collected from you to provide you
@@ -174,7 +174,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 5. Disclosure of your personal information
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate may disclose your personal information to any of our employees,
@@ -194,7 +194,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 6. General Data Protection Regulation (GDPR) for the European Union (EU)
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate will comply with the principles of data protection set out in
@@ -258,7 +258,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 7. Your rights under the GDPR
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     If you are an individual residing in the EU, you have certain rights as to how
@@ -300,7 +300,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 8. Hosting and International Data Transfers
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Information that we collect may from time to time be stored, processed in or
@@ -352,7 +352,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 9. Security of your personal information
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Family Fortunate is committed to ensuring that the information you provide to us
@@ -386,7 +386,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 10. Access to your personal information
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     You may request details of personal information that we hold about you in
@@ -414,7 +414,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 11. Complaints about privacy
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     If you have any complaints about our privacy practices, please feel free to send
@@ -432,7 +432,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 12. Changes to Privacy Policy
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Please be aware that we may change this Privacy Policy in the future. We may
@@ -448,7 +448,7 @@ export default function privacy_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 13. Website
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p className="italic">When you visit our website</p>
                   <p className="mt-3">

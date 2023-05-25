@@ -27,7 +27,7 @@ export default function refund_policy() {
           <ol className="mt-4 flex list-none flex-col gap-4 text-justify md:gap-8">
             <li>
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">1. General</h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     We offer refunds, repairs and replacements in accordance with the{' '}
@@ -37,8 +37,8 @@ export default function refund_policy() {
                 </li>
                 <li>
                   <p>
-                    Any benefits set out in this Policy may apply in addition to consumer&apos;s rights
-                    under the <span className="italic">Australian Consumer Law</span> .
+                    Any benefits set out in this Policy may apply in addition to consumer&apos;s
+                    rights under the <span className="italic">Australian Consumer Law</span> .
                   </p>
                 </li>
                 <li>
@@ -54,7 +54,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 2. Australian Consumer Law
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Under the <span className="italic">Australian Consumer Law:</span>
@@ -136,7 +136,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 3. Cancellation and Change of Mind
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     In the event that you receive the products or services you have purchased, as
@@ -158,7 +158,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 4. Products Damaged During Delivery
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>In the event that the product you ordered has been damaged during delivery:</p>
                   <ol className="my-5 list-[lower-roman] pl-10">
@@ -183,7 +183,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 5. Exceptions
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     Notwithstanding the other provisions of this Policy, we may refuse to provide a
@@ -212,7 +212,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 6. Shipping Costs for Returns
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     In the event that a product you have purchased fails to meet one or more
@@ -259,7 +259,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 7. Response Time
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     We aim to process any requests for repairs, replacements or refunds within 5
@@ -272,7 +272,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 8. How to Return Products
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     You can contact us using the contact email provided at the end of this Policy to
@@ -304,7 +304,7 @@ export default function refund_policy() {
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">
                 9. Contact Us
               </h3>
-              <ul className="text-normal flex list-outside list-[upper-alpha] flex-col gap-4 pl-10 md:text-lg">
+              <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
                     If you wish to speak to us about this Policy or about any refund, repairs or
