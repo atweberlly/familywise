@@ -74,7 +74,7 @@ export default function Home() {
 
   return (
     <div>
-      <Title>Family Fortunate</Title>
+      <Title>Family Wise</Title>
 
       <header className="bg-vanilla text-white">
         <Header />
@@ -150,8 +150,8 @@ export default function Home() {
 
         <div className="mx-auto mt-12 max-w-3xl px-10 lg:mt-24">
           <p className="text-center font-serif text-[1.75rem] leading-8 md:text-5xl">
-            Family Fortunate sends you a question each week &amp; your stories are compiled into
-            your very own book of memories
+            Family Wise sends you a question each week &amp; your stories are compiled into your
+            very own book of memories
           </p>
         </div>
 
@@ -473,7 +473,7 @@ export default function Home() {
 
                   <div className="hidden py-4 open-details:block">
                     <p>
-                      The Family Fortunate experience is risk-free, with a 30 day money back
+                      The Family Wise experience is risk-free, with a 30 day money back
                       guarantee. If for any reason you or your relative are not satisfied by the
                       experience or the result, simply send us an email and we will give you a full
                       refund, no questions asked.
@@ -583,12 +583,12 @@ export default function Home() {
             </p>
 
             <p className="mt-4">
-              Family Fortunate was inspired by her work and is designed to give families the
-              opportunity to gather precious memories whilst the opportunity is there.
+              Family Wise was inspired by her work and is designed to give families the opportunity
+              to gather precious memories whilst the opportunity is there.
             </p>
 
             <p className="mt-4">
-              Family Fortunate is dedicated to the thousands of people she has had the privilege to
+              Family Wise is dedicated to the thousands of people she has had the privilege to
               assist as they grieve the loss of the people they love.
             </p>
           </div>

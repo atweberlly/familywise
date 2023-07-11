@@ -174,7 +174,7 @@ export default function JoinUs() {
 
   return (
     <main className="flex min-h-screen justify-center bg-gray-100">
-      <Title suffix="Family Fortunate">Get Started</Title>
+      <Title suffix="Family Wise">Get Started</Title>
       <section className="m-0 flex max-w-screen-2xl flex-1 justify-center bg-white shadow sm:m-20 sm:rounded-lg">
         <div className="p-6 sm:p-12 lg:w-1/2 xl:w-6/12">
           <Link href="/" className="!block lg:inline-block">
@@ -417,7 +417,7 @@ export default function JoinUs() {
                   <p className="text-sm font-semibold"> Add a gift message</p>
                   <textarea
                     className="mt-3 block h-40 w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                    placeholder={`E.g. We’ve bought you an annual ${plan} membership with Family Fortunate because we’d love to hear about your life before we came along!\n\nI came across this beautiful idea for a gift and immediately thought it would be perfect for you, so I hope you enjoy it.`}
+                    placeholder={`E.g. We’ve bought you an annual ${plan} membership with Family Wise because we’d love to hear about your life before we came along!\n\nI came across this beautiful idea for a gift and immediately thought it would be perfect for you, so I hope you enjoy it.`}
                     name={'giftMessage'}
                     onChange={(e) =>
                       setValue('giftMessage', (e.target as HTMLTextAreaElement).value, {
@@ -436,12 +436,12 @@ export default function JoinUs() {
               </>
             )}
             <p className="px-0 text-center text-sm font-light text-secondary-500 lg:px-5">
-              Family Fortunate collects and uses personal data in accordance with our{' '}
-              <Link className="underline hover:text-primary-400" href="/privacy-policy">
+              Family Wise collects and uses personal data in accordance with our{' '}
+              <Link className="underline hover:text-primary-400" href="/privacy">
                 Privacy Policy
               </Link>
               . <br className="hidden md:block" /> By creating an account, you agree to our{' '}
-              <Link className="underline hover:text-primary-400" href="/terms-and-conditions">
+              <Link className="underline hover:text-primary-400" href="/terms-and-condition">
                 Terms and Conditions
               </Link>
               .

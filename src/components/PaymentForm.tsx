@@ -304,7 +304,7 @@ export const PaymentForm = (props: {
       .create({
         purchase_units: [
           {
-            description: 'FamilyFortunate',
+            description: 'Family Wise',
             amount: {
               currency_code: currency, // Here change the currency if needed
               value: amount, // Here change the amount if needed

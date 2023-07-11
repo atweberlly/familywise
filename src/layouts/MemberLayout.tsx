@@ -47,7 +47,7 @@ export default function MemberLayout({ children }: any) {
             <Bars3Icon className="h-6 w-6" />
           </button>
 
-          {/* <p>Family Fortunate</p> */}
+          {/* <p>Family Wise</p> */}
 
           <svg
             width="176"
@@ -353,7 +353,7 @@ export default function MemberLayout({ children }: any) {
         <main className="flex flex-1 flex-col overflow-x-hidden p-4 xl:p-8">
           {children}
           <p className="mt-auto text-center text-secondary-500 dark:text-white">
-            Copyright &copy; familyfortunate {new Date().getFullYear()} |{' '}
+            Copyright &copy; FamilyWise Stories {new Date().getFullYear()} |{' '}
             <Link href={'/privacy-policy'}>Privacy Policy</Link>
           </p>
         </main>

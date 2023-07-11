@@ -6,7 +6,7 @@ import Title from '../components/Title'
 export default function refund_policy() {
   return (
     <main className="relative min-h-screen bg-black-pearl">
-      <Title suffix="Family Fortunate">Cookie Policy</Title>
+      <Title suffix="Family Wise">Cookie Policy</Title>
       <header>
         <Header color="light" />
         <div className="mx-auto my-8 max-w-screen-xl text-center md:text-left lg:my-16">
@@ -20,8 +20,8 @@ export default function refund_policy() {
           <p className="mt-0 text-justify text-base md:text-lg">Last updated: 10th May 2023</p>
           <p className="mt-4">
             This Website (referred to in these &quot;terms of use&quot; as the website) is owned and
-            operated by Family Fortunate, who is referred to in this Cookie Policy as
-            &quot;we&quot;, &quot;us&quot;, &quot;our&quot; and similar grammatical forms.
+            operated by Family Wise, who is referred to in this Cookie Policy as &quot;we&quot;,
+            &quot;us&quot;, &quot;our&quot; and similar grammatical forms.
           </p>
           <p className="mt-4">
             Our Cookie Policy explains what cookies are, how we use cookies, how third-party

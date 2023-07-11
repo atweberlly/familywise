@@ -4,9 +4,11 @@ import Heading from '../components/Heading'
 import Title from '../components/Title'
 
 export default function refund_policy() {
+  const dev = process.env.NODE_ENV !== 'production'
+  const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
   return (
     <main className="relative min-h-screen bg-black-pearl">
-      <Title suffix="Family Fortunate">Refund Policy</Title>
+      <Title suffix="Family Wise">Refund Policy</Title>
       <header>
         <Header color="light" />
         <div className="mx-auto my-8 max-w-screen-xl text-center md:text-left lg:my-16">
@@ -20,8 +22,8 @@ export default function refund_policy() {
           <p className="mt-0 text-justify text-base md:text-lg">
             This Refund Policy (&quot;Policy&quot;) applies to the following purchases: purchases
             through{' '}
-            <a href="https://www.familyfortunate.us" className="text-primary-600">
-              www.familyfortunate.us
+            <a href={server} className="text-primary-600">
+              www.familywise.us
             </a>
           </p>
           <ol className="mt-4 flex list-none flex-col gap-4 text-justify md:gap-8">
@@ -309,8 +311,8 @@ export default function refund_policy() {
                   <p>
                     If you wish to speak to us about this Policy or about any refund, repairs or
                     replacements, please contact us at:{' '}
-                    <a href="mailto:hello@familyfortunate.us" className="text-primary-600">
-                      hello@familyfortunate.us
+                    <a href="mailto:mystory@familywise.us" className="text-primary-600">
+                      mystory@familywise.us
                     </a>
                     .
                   </p>

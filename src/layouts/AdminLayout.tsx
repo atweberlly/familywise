@@ -63,7 +63,7 @@ export default function AdminLayout({ children }: any) {
             <Bars3Icon className="h-6 w-6" />
           </button>
 
-          <p>Family Fortunate</p>
+          <p>Family Wise</p>
 
           <div className="ml-auto flex items-center gap-2">
             <Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
@@ -370,7 +370,7 @@ export default function AdminLayout({ children }: any) {
           {children}
 
           <p className="mt-auto text-center text-secondary-500 dark:text-white">
-            Copyright &copy; familyfortunate {new Date().getFullYear()} |{' '}
+            Copyright &copy; FamilyWise Stories {new Date().getFullYear()} |{' '}
             <Link href={'/privacy-policy'}>Privacy Policy</Link>
           </p>
         </main>

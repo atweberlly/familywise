@@ -6,7 +6,7 @@ import Title from '../components/Title'
 export default function terms_and_condition() {
   return (
     <main className="relative min-h-screen bg-black-pearl">
-      <Title suffix="Family Fortunate">Terms & Conditions</Title>
+      <Title suffix="Family Wise">Terms & Conditions</Title>
       <header>
         <Header color="light" />
         <div className="mx-auto my-8 max-w-screen-xl text-center md:text-left lg:my-16">
@@ -25,30 +25,30 @@ export default function terms_and_condition() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Welcome to Family Fortunate (<span className="font-semibold">Website</span>).
-                    The Website provides inspirational prompts to assist members in writing their
+                    Welcome to Family Wise (<span className="font-semibold">Website</span>). The
+                    Website provides inspirational prompts to assist members in writing their
                     memoirs (<span className="font-semibold">Services</span>).
                   </p>
                 </li>
                 <li>
                   <p>
-                    The Website is operated by Family Fortunate. Access to and use of the Website,
-                    or any of its associated Products or Services, is provided by Family Fortunate.
-                    Please read these terms and conditions (
-                    <span className="font-semibold">Terms</span>) carefully. By using, browsing
-                    and/or reading the Website, this signifies that you have read, understood and
-                    agree to be bound by the Terms. If you do not agree with the Terms, you must
-                    cease usage of the Website, or any of Services, immediately.
+                    The Website is operated by Family Wise. Access to and use of the Website, or any
+                    of its associated Products or Services, is provided by Family Wise. Please read
+                    these terms and conditions (<span className="font-semibold">Terms</span>)
+                    carefully. By using, browsing and/or reading the Website, this signifies that
+                    you have read, understood and agree to be bound by the Terms. If you do not
+                    agree with the Terms, you must cease usage of the Website, or any of Services,
+                    immediately.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Family Fortunate reserves the right to review and change any of the Terms by
-                    updating this page at its sole discretion. When Family Fortunate updates the
-                    Terms, it will use reasonable endeavours to provide you with notice of updates
-                    to the Terms. Any changes to the Terms take immediate effect from the date of
-                    their publication. Before you continue, we recommend you keep a copy of the
-                    Terms for your records.
+                    Family Wise reserves the right to review and change any of the Terms by updating
+                    this page at its sole discretion. When Family Wise updates the Terms, it will
+                    use reasonable endeavours to provide you with notice of updates to the Terms.
+                    Any changes to the Terms take immediate effect from the date of their
+                    publication. Before you continue, we recommend you keep a copy of the Terms for
+                    your records.
                   </p>
                 </li>
               </ul>
@@ -62,7 +62,7 @@ export default function terms_and_condition() {
                   <p>
                     You accept the Terms by remaining on the Website. You may also accept the Terms
                     by clicking to accept or agree to the Terms where this option is made available
-                    to you by Family Fortunate in the user interface.
+                    to you by Family Wise in the user interface.
                   </p>
                 </li>
               </ul>
@@ -93,7 +93,7 @@ export default function terms_and_condition() {
                 </li>
                 <li>
                   <p>
-                    You warrant that any information you give to Family Fortunate in the course of
+                    You warrant that any information you give to Family Wise in the course of
                     completing the registration process will always be accurate, correct and up to
                     date.
                   </p>
@@ -109,7 +109,7 @@ export default function terms_and_condition() {
                   <p>You may not use the Services and may not accept the Terms if:</p>
                   <ol className="my-5 list-[lower-roman] pl-10">
                     <li>
-                      you are not of legal age to form a binding contract with Family Fortunate; or
+                      you are not of legal age to form a binding contract with Family Wise; or
                     </li>
                     <li>
                       you are a person barred from receiving the Services under the laws of
@@ -151,13 +151,13 @@ export default function terms_and_condition() {
                     </li>
                     <li>
                       access and use of the Website is limited, non-transferable and allows for the
-                      sole use of the Website by you for the purposes of Family Fortunate providing
-                      the Services;
+                      sole use of the Website by you for the purposes of Family Wise providing the
+                      Services;
                     </li>
                     <li>
                       you will not use the Services or the Website in connection with any commercial
                       endeavours except those that are specifically endorsed or approved by the
-                      management of Family Fortunate;
+                      management of Family Wise;
                     </li>
                     <li>
                       you will not use the Services or Website for any illegal and/or unauthorised
@@ -215,7 +215,7 @@ export default function terms_and_condition() {
                 </li>
                 <li>
                   <p>
-                    You agree and acknowledge that Family Fortunate can vary the Services Fee at any
+                    You agree and acknowledge that Family Wise can vary the Services Fee at any
                     time.
                   </p>
                 </li>
@@ -226,10 +226,10 @@ export default function terms_and_condition() {
                 6. Refund Policy
               </h3>
               <p className="mt-4">
-                Family Fortunate will only provide you with a refund of the Services Fee in the
-                event they are unable to continue to provide the Services or if the manager of
-                Family Fortunate makes a decision, at its absolute discretion, that it is reasonable
-                to do so under the circumstances (<span className="font-semibold">Refund</span>).
+                Family Wise will only provide you with a refund of the Services Fee in the event
+                they are unable to continue to provide the Services or if the manager of Family Wise
+                makes a decision, at its absolute discretion, that it is reasonable to do so under
+                the circumstances (<span className="font-semibold">Refund</span>).
               </p>
             </li>
             <li>
@@ -239,20 +239,20 @@ export default function terms_and_condition() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    The Website, the Services and all of the related products of Family Fortunate
-                    are subject to copyright. The material on the Website is protected by copyright
+                    The Website, the Services and all of the related products of Family Wise are
+                    subject to copyright. The material on the Website is protected by copyright
                     under the laws of Australia and through international treaties. Unless otherwise
                     indicated, all rights (including copyright) in the Services and compilation of
                     the Website (including but not limited to text, graphics, logos, button icons,
                     video images, audio clips, Website code, scripts, design elements and
                     interactive features) or the Services are owned or controlled for these
-                    purposes, and are reserved by Family Fortunate or its contributors.
+                    purposes, and are reserved by Family Wise or its contributors.
                   </p>
                 </li>
                 <li>
                   <p>
                     All trademarks, service marks and trade names are owned, registered and/or
-                    licensed by Family Fortunate, who grants to you a worldwide, non-exclusive,
+                    licensed by Family Wise, who grants to you a worldwide, non-exclusive,
                     royalty-free, revocable license whilst you are a Member to:
                   </p>
                   <ol className="my-5 list-[lower-roman] pl-10">
@@ -266,16 +266,16 @@ export default function terms_and_condition() {
                     </li>
                   </ol>
                   <p>
-                    Family Fortunate does not grant you any other rights whatsoever in relation to
-                    the Website or the Services. All other rights are expressly reserved by Family
+                    Family Wise does not grant you any other rights whatsoever in relation to the
+                    Website or the Services. All other rights are expressly reserved by Family
                     Fortunate.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Family Fortunate retains all rights, title and interest in and to the Website
-                    and all related Services. Nothing you do on or in relation to the Website will
-                    transfer any:
+                    Family Wise retains all rights, title and interest in and to the Website and all
+                    related Services. Nothing you do on or in relation to the Website will transfer
+                    any:
                   </p>
                   <ol className="my-5 list-[lower-roman] pl-10">
                     <li>
@@ -295,7 +295,7 @@ export default function terms_and_condition() {
                 </li>
                 <li>
                   <p>
-                    You may not, without the prior written permission of Family Fortunate and the
+                    You may not, without the prior written permission of Family Wise and the
                     permission of any other relevant rights owners: broadcast, republish, up-load to
                     a third party, transmit, post, distribute, show or play in public, adapt or
                     change in any way the Services or third party Services for any purpose, unless
@@ -311,9 +311,9 @@ export default function terms_and_condition() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate takes your privacy seriously and any information provided
-                    through your use of the Website and/or Services are subject to Family
-                    Fortunate&apos; Privacy Policy, which is available on the Website.
+                    Family Wise takes your privacy seriously and any information provided through
+                    your use of the Website and/or Services are subject to Family Fortunate&apos;
+                    Privacy Policy, which is available on the Website.
                   </p>
                 </li>
               </ul>
@@ -339,9 +339,9 @@ export default function terms_and_condition() {
                       expressly stated in the Terms are excluded; and
                     </li>
                     <li>
-                      Family Fortunate will not be liable for any special, indirect or consequential
-                      loss or damage (unless such loss or damage is reasonably foreseeable resulting
-                      from our failure to meet an applicable Consumer Guarantee), loss of profit or
+                      Family Wise will not be liable for any special, indirect or consequential loss
+                      or damage (unless such loss or damage is reasonably foreseeable resulting from
+                      our failure to meet an applicable Consumer Guarantee), loss of profit or
                       opportunity, or damage to goodwill arising out of or in connection with the
                       Services or these Terms (including as a result of not being able to use the
                       Services or the late supply of the Services), whether at common law, under
@@ -356,11 +356,10 @@ export default function terms_and_condition() {
                     Website and the Services is provided to you &quot;as is&quot; and &quot;as
                     available&quot; without warranty or condition of any kind. None of the
                     affiliates, directors, officers, employees, agents, contributors and licensors
-                    of Family Fortunate make any express or implied representation or warranty about
-                    the Services or any products or Services (including the products or Services of
-                    Family Fortunate) referred to on the Website. This includes (but is not
-                    restricted to) loss or damage you might suffer as a result of any of the
-                    following:
+                    of Family Wise make any express or implied representation or warranty about the
+                    Services or any products or Services (including the products or Services of
+                    Family Wise) referred to on the Website. This includes (but is not restricted
+                    to) loss or damage you might suffer as a result of any of the following:
                   </p>
                   <ol className="my-5 list-[lower-roman] pl-10">
                     <li>
@@ -377,7 +376,7 @@ export default function terms_and_condition() {
                     </li>
                     <li>
                       costs incurred as a result of you using the Website, the Services or any of
-                      the products of Family Fortunate; and
+                      the products of Family Wise; and
                     </li>
                     <li>
                       the Services or operation in respect to links which are provided for your
@@ -394,7 +393,7 @@ export default function terms_and_condition() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate&apos;s total liability arising out of or in connection with the
+                    Family Wise&apos;s total liability arising out of or in connection with the
                     Services or these Terms, however arising, including under contract, tort
                     (including negligence), in equity, under statute or otherwise, will not exceed
                     the resupply of the Services to you.
@@ -402,13 +401,13 @@ export default function terms_and_condition() {
                 </li>
                 <li>
                   <p>
-                    You expressly understand and agree that Family Fortunate, its affiliates,
-                    employees, agents, contributors and licensors shall not be liable to you for any
-                    direct, indirect, incidental, special consequential or exemplary damages which
-                    may be incurred by you, however caused and under any theory of liability. This
-                    shall include, but is not limited to, any loss of profit (whether incurred
-                    directly or indirectly), any loss of goodwill or business reputation and any
-                    other intangible loss.
+                    You expressly understand and agree that Family Wise, its affiliates, employees,
+                    agents, contributors and licensors shall not be liable to you for any direct,
+                    indirect, incidental, special consequential or exemplary damages which may be
+                    incurred by you, however caused and under any theory of liability. This shall
+                    include, but is not limited to, any loss of profit (whether incurred directly or
+                    indirectly), any loss of goodwill or business reputation and any other
+                    intangible loss.
                   </p>
                 </li>
               </ul>
@@ -428,8 +427,8 @@ export default function terms_and_condition() {
                   <p>If you want to terminate the Terms, you may do so by:</p>
                   <ol className="my-5 list-[lower-roman] pl-10">
                     <li>
-                      providing Family Fortunate with days&apos; notice of your intention to
-                      terminate; and
+                      providing Family Wise with days&apos; notice of your intention to terminate;
+                      and
                     </li>
                     <li>
                       closing your accounts for all of the services which you use, where Family
@@ -437,32 +436,32 @@ export default function terms_and_condition() {
                     </li>
                   </ol>
                   <p>
-                    Your notice should be sent, in writing, to Family Fortunate via the
-                    &apos;Contact Us&apos; link on our homepage.
+                    Your notice should be sent, in writing, to Family Wise via the &apos;Contact
+                    Us&apos; link on our homepage.
                   </p>
                 </li>
                 <li>
-                  <p>Family Fortunate may at any time, terminate the Terms with you if:</p>
+                  <p>Family Wise may at any time, terminate the Terms with you if:</p>
                   <ol className="my-5 list-[lower-roman] pl-10">
                     <li>
                       you have breached any provision of the Terms or intend to breach any
                       provision;
                     </li>
-                    <li>Family Fortunate is required to do so by law;</li>
+                    <li>Family Wise is required to do so by law;</li>
                     <li>
-                      the provision of the Services to you by Family Fortunate is, in the opinion of
-                      Family Fortunate, no longer commercially viable.
+                      the provision of the Services to you by Family Wise is, in the opinion of
+                      Family Wise, no longer commercially viable.
                     </li>
                   </ol>
                 </li>
                 <li>
                   <p>
-                    Subject to local applicable laws, Family Fortunate reserves the right to
-                    discontinue or cancel your membership at any time and may suspend or deny, in
-                    its sole discretion, your access to all or any portion of the Website or the
-                    Services without notice if you breach any provision of the Terms or any
-                    applicable law or if your conduct impacts Family Fortunate&apos;s name or
-                    reputation or violates the rights of those of another party.
+                    Subject to local applicable laws, Family Wise reserves the right to discontinue
+                    or cancel your membership at any time and may suspend or deny, in its sole
+                    discretion, your access to all or any portion of the Website or the Services
+                    without notice if you breach any provision of the Terms or any applicable law or
+                    if your conduct impacts Family Wise&apos;s name or reputation or violates the
+                    rights of those of another party.
                   </p>
                 </li>
               </ul>
@@ -474,7 +473,7 @@ export default function terms_and_condition() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    You agree to indemnify Family Fortunate, its affiliates, employees, agents,
+                    You agree to indemnify Family Wise, its affiliates, employees, agents,
                     contributors, third party content providers and licensors from and against:
                   </p>
                   <ol className="my-5 list-[lower-roman] pl-10">
@@ -569,7 +568,7 @@ export default function terms_and_condition() {
                 14. Venue and Jurisdiction
               </h3>
               <p className="pl-10">
-                The Services offered by Family Fortunate is intended to be viewed by residents of
+                The Services offered by Family Wise is intended to be viewed by residents of
                 Australia. In the event of any dispute arising out of or in relation to the Website,
                 you agree that the exclusive venue for resolving any dispute shall be in the courts
                 of New South Wales, Australia.

@@ -12,7 +12,7 @@ export default async function handler(request, response) {
   switch (method) {
     case 'POST': //forgot endpoint
       const dev = process.env.NODE_ENV !== 'production'
-      const server = dev ? 'http://localhost:3000' : 'https://www.familyfortunate.us'
+      const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
       const { token, password } = request.body
 
       // Find the user with the matching reset token
@@ -35,7 +35,7 @@ export default async function handler(request, response) {
                 }
                 //send email
                 try {
-                  const emailSubject = 'Your Family Fortunate password has been updated'
+                  const emailSubject = 'Your Family Wise password has been updated'
 
                   const data = {
                     name: user.firstname,

@@ -3,7 +3,7 @@ import { GetEmailBody } from '../../../services/emailTemplateService'
 
 const sendMailFnx = async (params) => {
   const dev = process.env.NODE_ENV !== 'production'
-  const server = dev ? 'http://localhost:3000' : 'https://www.familyfortunate.us'
+  const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
   const { subject, template, param, to } = params
   param.server_url = server
   param.year = new Date().getFullYear()

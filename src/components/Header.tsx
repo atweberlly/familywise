@@ -63,7 +63,7 @@ export default function Header({ color = 'light', ...props }: Props) {
             <div className="mt-2 flex items-center space-x-2.5 text-warning-600">
               <a
                 className="flex items-center"
-                href="https://www.facebook.com/familyfortunate"
+                href="https://www.facebook.com/familywise.stories"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -72,7 +72,7 @@ export default function Header({ color = 'light', ...props }: Props) {
 
               <a
                 className="flex items-center"
-                href="https://www.instagram.com/familyfortunate"
+                href="https://www.instagram.com/familywise.stories"
                 target="_blank"
                 rel="noreferrer"
               >
