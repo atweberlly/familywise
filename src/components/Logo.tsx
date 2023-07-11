@@ -9,7 +9,7 @@ export default function Logo({ className, isWhite, ...props }: Props) {
       src={
         isWhite ? '/svg/family-fortunate-logotype-white.svg' : '/svg/family-fortunate-logotype.svg'
       }
-      alt="Family Fortunate Logo"
+      alt="Family Wise Logo"
       className={className}
       {...props}
     />

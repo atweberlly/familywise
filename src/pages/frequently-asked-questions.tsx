@@ -48,7 +48,7 @@ export default function Faqs() {
 
   return (
     <main className="relative min-h-screen bg-white">
-      <Title suffix="Family Fortunate">Frequently Asked Questions</Title>
+      <Title suffix="Family Wise">Frequently Asked Questions</Title>
       <header>
         <Header color="dark" />
         <div className="my-8 text-center text-black-pearl lg:my-16">
@@ -75,7 +75,7 @@ export default function Faqs() {
             Frequently asked questions
           </Heading>
           <p className="py-5 text-gray-600">
-            Everything you need to know about your Family Fortunate membership
+            Everything you need to know about your Family Wise membership
           </p>
         </div>
         <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-8 px-8 pb-8 text-black-pearl lg:mt-16">

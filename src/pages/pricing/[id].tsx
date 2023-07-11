@@ -30,7 +30,7 @@ export default function Pricing() {
 
   return (
     <div className="relative min-h-screen">
-      <Title suffix="Family Fortunate">Get Started</Title>
+      <Title suffix="Family Wise">Get Started</Title>
       <div className="relative flex min-h-screen w-max overflow-y-auto">
         <div className="relative z-20 mt-4 w-screen flex-1 px-6 text-center">
           <img

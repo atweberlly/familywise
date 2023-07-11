@@ -10,7 +10,7 @@ export default function Footer() {
           <img
             className="w-38 inline-block"
             src="/svg/family-fortunate-logotype-white.svg"
-            alt="Family Fortunate"
+            alt="Family Wise"
             loading="lazy"
           />
         </div>
@@ -53,18 +53,18 @@ export default function Footer() {
           <div className="mt-8 text-sm font-medium uppercase tracking-wide text-lemon-curry">
             Email us
           </div>
-          <a className="mt-4 inline-block text-primary-100" href="mailto:hello@familyfortunate.us">
-            hello@familyfortunate.us
+          <a className="mt-4 inline-block text-primary-100" href="mailto:mystory@familywise.us">
+            mystory@familywise.us
           </a>
           <div className="tracking-widetext-lemon-curry mt-4 text-sm font-medium uppercase">
             Follow us
           </div>
           <div className="mt-4 flex items-center space-x-2.5">
-            <a href="https://www.facebook.com/familyfortunate" target="_blank" rel="noreferrer">
+            <a href="https://www.facebook.com/familywise.stories" target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faFacebookF} className="h-6 w-6" />
             </a>
 
-            <a href="https://www.instagram.com/familyfortunate" target="_blank" rel="noreferrer">
+            <a href="https://www.instagram.com/familywise.stories" target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faInstagram} className="h-6 w-6" />
             </a>
           </div>
@@ -75,7 +75,7 @@ export default function Footer() {
         <hr className="mb-6 border-gray-600" />
 
         <p className="mt-6 text-sm text-gray-500">
-          Copyright {new Date().getFullYear()} Family Fortunate. All rights reserved.
+          Copyright {new Date().getFullYear()} Family Wise. All rights reserved.
         </p>
       </div>
     </footer>

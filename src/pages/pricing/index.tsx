@@ -13,7 +13,7 @@ import { LockClosedIcon, ReceiptRefundIcon, CheckCircleIcon } from '@heroicons/r
 export default function Pricing() {
   return (
     <main>
-      <Title suffix="Family Fortunate">Pricing</Title>
+      <Title suffix="Family Wise">Pricing</Title>
       <header className="relative min-h-screen bg-vanilla pb-16">
         <Header />
         <div className="relative flex min-h-screen w-max overflow-y-auto">

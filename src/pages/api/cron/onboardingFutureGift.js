@@ -5,7 +5,7 @@ import { convertTimezone } from '../../../utils/userTimezone'
 import axios from 'axios'
 
 const dev = process.env.NODE_ENV !== 'production'
-export const server = dev ? 'http://localhost:3000' : 'https://www.familyfortunate.us'
+export const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
 
 const onboardingFutureGift = async (req, res) => {
   //Establish a database connection

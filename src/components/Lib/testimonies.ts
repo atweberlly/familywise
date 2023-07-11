@@ -9,7 +9,7 @@ const testimonies: Array<Props> = [
   {
     id: 1,
     name: 'Alby H',
-    message: `I decided to capture my life story through Family Fortunate. It was so nice to relive all of my memories & experiences and to know I’ve created a memento my family love, which will last forever.`,
+    message: `I decided to capture my life story through Family Wise. It was so nice to relive all of my memories & experiences and to know I’ve created a memento my family love, which will last forever.`,
     position: 'Lorem Ipsum',
     image: 'avatar-1.png',
   },

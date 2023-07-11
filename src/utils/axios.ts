@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'universal-cookie'
 
 const dev = process.env.NODE_ENV !== 'production'
-const server = dev ? 'http://localhost:3000/api/' : 'https://www.familyfortunate.us/api/'
+const server = dev ? 'http://localhost:3000/api/' : process.env.PRODUCTION_URL + '/api/'
 const instance = axios.create({
   baseURL: server,
   headers: {

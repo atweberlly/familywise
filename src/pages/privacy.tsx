@@ -4,9 +4,11 @@ import Heading from '../components/Heading'
 import Title from '../components/Title'
 
 export default function privacy_policy() {
+  const dev = process.env.NODE_ENV !== 'production'
+  const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
   return (
     <main className="relative min-h-screen bg-black-pearl">
-      <Title suffix="Family Fortunate">Privacy Policy</Title>
+      <Title suffix="Family Wise">Privacy Policy</Title>
       <header>
         <Header color="light" />
         <div className="mx-auto my-8 max-w-screen-xl text-center md:text-left lg:my-16">
@@ -18,9 +20,9 @@ export default function privacy_policy() {
       <section className="bg-primary-100 leading-normal md:leading-loose">
         <div className="mx-auto max-w-screen-xl py-10 px-8 md:py-20 md:px-16">
           <p className="mt-0 text-justify text-base md:text-lg">
-            This Privacy Policy describes how Family Fortunate (the &quot;Site&quot; or
-            &quot;we&quot;) collects, uses, and discloses your Personal Information when you visit
-            or make a purchase from the Site.
+            This Privacy Policy describes how Family Wise (the &quot;Site&quot; or &quot;we&quot;)
+            collects, uses, and discloses your Personal Information when you visit or make a
+            purchase from the Site.
           </p>
           <ol className="mt-4 flex list-none flex-col gap-4 text-justify md:gap-8">
             <li>
@@ -30,8 +32,8 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate respects your right to privacy and is committed to safeguarding
-                    the privacy of our customers and website visitors. This policy sets out how we
+                    Family Wise respects your right to privacy and is committed to safeguarding the
+                    privacy of our customers and website visitors. This policy sets out how we
                     collect and treat your personal information.
                   </p>
                 </li>
@@ -65,9 +67,8 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate will, from time to time, receive and store personal information
-                    you submit to our website, provided to us directly or given to us in other
-                    forms.
+                    Family Wise will, from time to time, receive and store personal information you
+                    submit to our website, provided to us directly or given to us in other forms.
                   </p>
                 </li>
                 <li>
@@ -101,7 +102,7 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate collects personal information from you in a variety of ways,
+                    Family Wise collects personal information from you in a variety of ways,
                     including when you interact with us electronically or in person, when you access
                     our website and when we engage in business activities with you. We may receive
                     personal information from third parties. If we do, we will protect it as set out
@@ -123,15 +124,15 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate may use personal information collected from you to provide you
-                    with information about our products or services. We may also make you aware of
-                    new and additional products, services and opportunities available to you.
+                    Family Wise may use personal information collected from you to provide you with
+                    information about our products or services. We may also make you aware of new
+                    and additional products, services and opportunities available to you.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Family Fortunate will use personal information only for the purposes that you
-                    consent to. This may include to:
+                    Family Wise will use personal information only for the purposes that you consent
+                    to. This may include to:
                   </p>
                   <ol className="my-5 list-[lower-roman] pl-10">
                     <li>
@@ -177,7 +178,7 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate may disclose your personal information to any of our employees,
+                    Family Wise may disclose your personal information to any of our employees,
                     officers, insurers, professional advisers, agents, suppliers or subcontractors
                     insofar as reasonably necessary for the purposes set out in this privacy policy.
                   </p>
@@ -197,9 +198,9 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate will comply with the principles of data protection set out in
-                    the GDPR for the purpose of fairness, transparency and lawful data collection
-                    and use.
+                    Family Wise will comply with the principles of data protection set out in the
+                    GDPR for the purpose of fairness, transparency and lawful data collection and
+                    use.
                   </p>
                 </li>
                 <li>
@@ -262,9 +263,9 @@ export default function privacy_policy() {
                 <li>
                   <p>
                     If you are an individual residing in the EU, you have certain rights as to how
-                    your personal information is obtained and used. Family Fortunate complies with
-                    your rights under the GDPR as to how your personal information is used and
-                    controlled if you are an individual residing in the EU
+                    your personal information is obtained and used. Family Wise complies with your
+                    rights under the GDPR as to how your personal information is used and controlled
+                    if you are an individual residing in the EU
                   </p>
                 </li>
                 <li>
@@ -315,8 +316,7 @@ export default function privacy_policy() {
                     safeguards, these include one or more of the following: the use of standard data
                     protection clauses adopted or approved by the European Commission which you can
                     obtain from the European Commission Website; the use of binding corporate rules,
-                    a copy of which you can obtain from Family Fortunate&apos;s Data Protection
-                    Officer.
+                    a copy of which you can obtain from Family Wise&apos;s Data Protection Officer.
                   </p>
                 </li>
                 <li>
@@ -326,7 +326,7 @@ export default function privacy_policy() {
                     include one or more of the following: the use of standard data protection
                     clauses adopted or approved by the European Commission which you can obtain from
                     the European Commission Website; the use of binding corporate rules, a copy of
-                    which you can obtain from Family Fortunate&apos;s Data Protection Officer.
+                    which you can obtain from Family Wise&apos;s Data Protection Officer.
                   </p>
                 </li>
                 <li>
@@ -336,7 +336,7 @@ export default function privacy_policy() {
                     or more of the following: the use of standard data protection clauses adopted or
                     approved by the European Commission which you can obtain from the European
                     Commission Website; the use of binding corporate rules, a copy of which you can
-                    obtain from Family Fortunate&apos;s Data Protection Officer.
+                    obtain from Family Wise&apos;s Data Protection Officer.
                   </p>
                 </li>
                 <li>
@@ -355,8 +355,8 @@ export default function privacy_policy() {
               <ul className="flex list-outside list-[upper-alpha] flex-col gap-4 pl-10">
                 <li>
                   <p>
-                    Family Fortunate is committed to ensuring that the information you provide to us
-                    is secure. In order to prevent unauthorised access or disclosure, we have put in
+                    Family Wise is committed to ensuring that the information you provide to us is
+                    secure. In order to prevent unauthorised access or disclosure, we have put in
                     place suitable physical, electronic and managerial procedures to safeguard and
                     secure information and protect it from misuse, interference, loss and
                     unauthorised access, modification and disclosure.
@@ -395,8 +395,8 @@ export default function privacy_policy() {
                     applicable the EU GDPR. If you would like a copy of the information which we
                     hold about you or believe that any information we hold on you is inaccurate, out
                     of date, incomplete, irrelevant or misleading, please email us at{' '}
-                    <a href="mailto:hello@familyfortunate.us" className="text-primary-600">
-                      hello@familyfortunate.us
+                    <a href="mailto:mystory@familywise.us" className="text-primary-600">
+                      mystory@familywise.us
                     </a>
                     .
                   </p>
@@ -419,8 +419,8 @@ export default function privacy_policy() {
                   <p>
                     If you have any complaints about our privacy practices, please feel free to send
                     in details of your complaints to{' '}
-                    <a href="mailto:hello@familyfortunate.us" className="inline text-primary-600">
-                      hello@familyfortunate.us
+                    <a href="mailto:mystory@familywise.us" className="inline text-primary-600">
+                      mystory@familywise.us
                     </a>
                     . We take complaints very seriously and will respond shortly after receiving
                     written notice of your complaint.
@@ -453,8 +453,8 @@ export default function privacy_policy() {
                   <p className="italic">When you visit our website</p>
                   <p className="mt-3">
                     When you come to our website (
-                    <a href="https://www.familyfortunate.us" className="text-primary-600">
-                      www.familyfortunate.us
+                    <a href={server} className="text-primary-600">
+                      www.familywise.us
                     </a>
                     ), we may collect certain information such as browser type, operating system,
                     website visited immediately before coming to our site, etc. This information is
@@ -484,7 +484,7 @@ export default function privacy_policy() {
                     Our site may from time to time have links to other websites not owned or
                     controlled by us. These links are meant for your convenience only. Links to
                     third party websites do not constitute sponsorship or endorsement or approval of
-                    these websites. Please be aware that Family Fortunate is not responsible for the
+                    these websites. Please be aware that Family Wise is not responsible for the
                     privacy practises of other such websites. We encourage our users to be aware,
                     when they leave our website, to read the privacy statements of each and every
                     website that collects personal identifiable information.

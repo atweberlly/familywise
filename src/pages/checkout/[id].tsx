@@ -121,7 +121,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
               />
               <div>
                 <Heading size={6} className="text-white">
-                  {user?.planType} Family Fortunate Membership
+                  {user?.planType} Family Wise Membership
                 </Heading>
                 {user?.bookReceiver === 'gift' && (
                   <div className="mt-2 flex flex-col text-xs text-white/80">
@@ -243,7 +243,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   )
 }
 const dev = process.env.NODE_ENV !== 'production'
-export const server = dev ? 'http://localhost:3000' : 'https://www.familyfortunate.us'
+export const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
 export async function getServerSideProps({ query }: any) {
   const response = await fetch(`${server}/api/paypal/tokens`)
   const data = await response.json()

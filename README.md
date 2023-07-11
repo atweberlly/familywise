@@ -1,4 +1,4 @@
-# Family Fortunate
+# Family Wise
 
 TODO:
 
@@ -10,13 +10,13 @@ TODO:
 1. Download or clone the project
 
    ```
-   git clone https://github.com/atweberlly/familyfortunate-v2.git
+   git clone https://github.com/atweberlly/familywise.git
    ```
 
 2. Go to the project directory
 
    ```
-   cd familyfortunate-v2
+   cd familywise
    ```
 
 3. Install dependencies

@@ -58,14 +58,14 @@ function App({ Component, pageProps }: AppProps) {
           <meta property="og:title" content={title} />
           <meta property="og:description" content={description} />
           <meta property="og:image" content={img} />
-          <meta property="og:url" content="https://familyfortunate.us" />
+          <meta property="og:url" content="https://familywise.us" />
           <meta property="og:type" content="website" />
           {/* TWITTER META */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description} />
           <meta name="twitter:image" content={img} />
-          <meta name="twitter:url" content="https://familyfortunate.us" />
+          <meta name="twitter:url" content="https://familywise.us" />
 
           <link rel="icon" type="image/png" href="/favicon.png" />
         </Head>
