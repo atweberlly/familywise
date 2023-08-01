@@ -19,8 +19,6 @@ const Settings = () => {
   const user = useAppSelector((state: RootState) => state.userSlice.user)
   const router = useRouter()
 
-  
-
   useEffect(() => {
     ;(async () => {
       const user = await axios('/api/users/getUser')
@@ -28,7 +26,7 @@ const Settings = () => {
     })()
   }, [dispatch])
   const expiryDate = new Date(user.createdAt)
-  const freeTrialEnd = user.freeTrialEnd ? new Date(user.freeTrialEnd) : null;
+  const freeTrialEnd = user.freeTrialEnd ? new Date(user.freeTrialEnd) : null
 
   const [isClient, setIsClient] = useState(false)
   useEffect(() => {
@@ -66,7 +64,7 @@ const Settings = () => {
                 <div>
                   <h4 className="text-base font-light">{user.planType} Plan</h4>
                   <p className="text-sm text-secondary-500">
-                  You are subscribed through{' '}
+                    You are subscribed through{' '}
                     {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear() + 1), 'longDate')}{' '}
                     {user.planType === 'Free-Trial' && freeTrialEnd && (
                       <>Until {dateFormat(freeTrialEnd, 'longDate')}</>

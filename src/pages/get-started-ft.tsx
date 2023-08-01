@@ -10,7 +10,6 @@ import { relationOptions } from '../components/Lib/relations'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
-import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
@@ -22,9 +21,8 @@ export default function JoinUs() {
   const { plan } = router.query
   const [selected, setSelected] = useState('AU')
   const blacklistCountries = false
-  const [relationVisible, setRelationVisible] = useState(false)
+  const [relationVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const freeTrialEnd = new Date()
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
     if (datepicker) flatpickr(datepicker!).destroy()
