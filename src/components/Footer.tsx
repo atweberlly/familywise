@@ -8,8 +8,9 @@ export default function Footer() {
       <div className="container grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div>
           <img
+            
             className="w-38 inline-block"
-            src="/svg/family-fortunate-logotype-white.svg"
+            src='/svg/fw-logo-white transparent.svg'
             alt="Family Wise"
             loading="lazy"
           />
