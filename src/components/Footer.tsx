@@ -5,14 +5,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function Footer() {
   return (
     <footer className="bg-black-pearl pt-12 pb-8 text-white">
-      <div className="container grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div className="container grid grid-cols-1 gap-8 lg:grid-cols-4">
         <div>
           <img
-            className="w-38 inline-block"
-            src="/svg/family-fortunate-logotype-white.svg"
+            className="inline-block w-40"
+            src="/svg/fw-logo-white transparent.svg"
             alt="Family Wise"
             loading="lazy"
           />
+        </div>
+        <div className="mt-24 lg:mt-0">
+          <div className="text-sm font-medium uppercase tracking-wide text-lemon-curry">
+            Policies
+          </div>
+          <ul className="mt-4 space-y-2 text-primary-100">
+            <li>
+              <a href={'/privacy'}>Privacy</a>
+            </li>
+            <li>
+              <a href={'/cookies'}>Cookie</a>
+            </li>
+            <li>
+              <a href={'/refund'}>Refund</a>
+            </li>
+            <li>
+              <a href={'/terms-and-condition'}>Terms & Conditions</a>
+            </li>
+          </ul>
         </div>
 
         <div className="mt-24 lg:mt-0">
@@ -28,18 +47,6 @@ export default function Footer() {
             </li>
             <li>
               <Link href={'/#testimonials'}>Testimonials</Link>
-            </li>
-            <li>
-              <a href={'/privacy'}>Privacy</a>
-            </li>
-            <li>
-              <a href={'/cookies'}>Cookie</a>
-            </li>
-            <li>
-              <a href={'/refund'}>Refund</a>
-            </li>
-            <li>
-              <a href={'/terms-and-condition'}>Terms & Conditions</a>
             </li>
           </ul>
         </div>
@@ -75,7 +82,7 @@ export default function Footer() {
         <hr className="mb-6 border-gray-600" />
 
         <p className="mt-6 text-sm text-gray-500">
-          Copyright {new Date().getFullYear()} Family Wise. All rights reserved.
+          Copyright {new Date().getFullYear()} FamilyWise Stories. All rights reserved.
         </p>
       </div>
     </footer>

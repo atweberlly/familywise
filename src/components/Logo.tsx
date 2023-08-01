@@ -6,9 +6,7 @@ interface Props extends React.HTMLAttributes<any> {
 export default function Logo({ className, isWhite, ...props }: Props) {
   return (
     <img
-      src={
-        isWhite ? '/svg/family-fortunate-logotype-white.svg' : '/svg/family-fortunate-logotype.svg'
-      }
+      src={isWhite ? '/svg/fw-logo-white transparent.svg' : '/svg/fw-logo-blue_brown.svg'}
       alt="Family Wise Logo"
       className={className}
       {...props}
