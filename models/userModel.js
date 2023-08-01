@@ -104,8 +104,8 @@ const UserSchema = new mongoose.Schema(
     //subscription type
     planType: {
       type: String,
-      enum: ['Classic', 'Premium'],
-      default: 'Classic',
+      enum: ['Free-Trial', 'Classic', 'Premium'],
+      default: 'Free-Trial',
     },
 
     //user's timezone
