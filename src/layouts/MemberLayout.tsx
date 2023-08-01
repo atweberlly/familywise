@@ -49,12 +49,12 @@ export default function MemberLayout({ children }: any) {
           </button>
 
           {/* <p>Family Wise</p> */}
-          <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width={176} 
-          height={65}
-          viewBox="0 0 750 337.5"
-          className="dark:text-white text-blue-800"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={176}
+            height={65}
+            viewBox="0 0 750 337.5"
+            className="text-blue-800 dark:text-white"
           >
             <path
               fill="currentColor"
