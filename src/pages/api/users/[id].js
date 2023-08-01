@@ -50,9 +50,54 @@ export default async function handler(request, response) {
           roles: request.body.roles,
           orderId: request.body.orderId,
           planType: request.body.planType,
+          freeTrialEnd: request.body.freeTrialEnd,
           status: request.body.status,
         },
       }
+      // ... (your PUT request logic)
+
+      // Check if the user's planType is already 'Free-Trial'
+      if (existingUser && existingUser.planType === 'Free-Trial') {
+        // If the user's planType is 'Free-Trial', update the freeTrialEnd date
+        const newValues = {
+          $set: {
+            // ... (your other fields)
+            planType: request.body.planType,
+            freeTrialEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Update the freeTrialEnd date (7 days from now)
+            timezone: userTimezone,
+            status: request.body.status,
+          },
+        }
+        const freeTrialEnd = new Date()
+        freeTrialEnd.setDate(freeTrialEnd.getDate() + 7)
+
+        // Set the freeTrialEnd date in the newValues
+        newValues.$set.freeTrialEnd = freeTrialEnd
+
+        // ... (your PUT request logic for updating other fields)
+
+        // Update the user's information in the database
+        await User.findByIdAndUpdate(id, newValues, {
+          new: true,
+          runValidators: true,
+        })
+          .then((result) => {
+            response.status(201).send({
+              message: 'User Updated Successfully',
+              result,
+            })
+          })
+          .catch((error) => {
+            response.status(500).send({
+              message: 'Error updating user account',
+              error,
+            })
+          })
+
+        break
+      }
+
+      // ... (your PUT request logic)
 
       if (request.body.password) {
         bcrypt
@@ -73,6 +118,7 @@ export default async function handler(request, response) {
                 roles: request.body.roles,
                 orderId: request.body.orderId,
                 planType: request.body.planType,
+                freeTrialEnd: request.body.freeTrialEnd,
                 timezone: userTimezone,
                 status: request.body.status,
               },

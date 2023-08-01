@@ -113,6 +113,13 @@ const UserSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+
+    freeTrialEnd: {
+      type: Date,
+      required: true,
+      unique: false,
+    },
+
     //   payment status
     status: {
       type: Boolean,
