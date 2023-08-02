@@ -69,6 +69,7 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
           <>
             <Page size="A4" style={tw('px-20 py-12 font-sans')}>
               {user.planType === 'Free-Trial' && (
+                <>
                 <View
                   style={{
                     position: 'absolute',
@@ -81,6 +82,7 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
                 >
                   <Image src={'/member/watermark.png'} style={{ width: '100%', height: '100%' }} />
                 </View>
+                </>
               )}
               {/* HEADER */}
               <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
