@@ -9,9 +9,11 @@ const getForAdd = async (req, res) => {
     const user = await getUser(req.headers.cookie)
     const categories = await Categories.find({ type: 'question' })
     //classic users are only classic questions
+    //freetrial users are both and trial questions
     //premium users are both and premium questions
     switch (user.planType.toLowerCase()) {
       case 'premium':
+      case 'free-trial':
         const questionsPremium = await Questions.find({
           published: true,
           QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },

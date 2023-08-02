@@ -50,7 +50,6 @@ export default async function handler(request, response) {
           roles: request.body.roles,
           orderId: request.body.orderId,
           planType: request.body.planType,
-          freeTrialEnd: request.body.freeTrialEnd,
           status: request.body.status,
         },
       }
@@ -75,7 +74,6 @@ export default async function handler(request, response) {
                 roles: request.body.roles,
                 orderId: request.body.orderId,
                 planType: request.body.planType,
-                freeTrialEnd: request.body.freeTrialEnd,
                 timezone: userTimezone,
                 status: request.body.status,
               },

@@ -18,7 +18,7 @@ const PDFPreview = () => {
 
   return (
     <PDFViewer className="min-h-screen">
-      <PDFDoc user_id={user._id} />
+      <PDFDoc user_id={user._id} user={user} />
     </PDFViewer>
   )
 }

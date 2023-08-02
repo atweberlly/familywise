@@ -117,7 +117,6 @@ const UserSchema = new mongoose.Schema(
     //user's Free Plan Due
     freeTrialEnd: {
       type: Date,
-      required: true,
       unique: false,
     },
 

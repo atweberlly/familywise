@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { RootState } from '../app/store'
+import PopUpTrial from '../components/_member/PopupTrial'
 import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
@@ -46,6 +47,8 @@ export default function MemberLayout({ children }: any) {
           <button className="md:hidden" type="button" onClick={() => setShow(!show)}>
             <Bars3Icon className="h-6 w-6" />
           </button>
+
+          <PopUpTrial />
 
           {/* <p>Family Wise</p> */}
 
