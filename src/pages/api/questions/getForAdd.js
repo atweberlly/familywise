@@ -13,13 +13,22 @@ const getForAdd = async (req, res) => {
     //premium users are both and premium questions
     switch (user.planType.toLowerCase()) {
       case 'premium':
-      case 'free-trial':
         const questionsPremium = await Questions.find({
           published: true,
           QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },
         })
         res.status(200).json({ questions: questionsPremium, categories: categories })
 
+        break
+
+      case 'free-trial':
+        const questionsFreeTrial = await Questions.find({
+          published: true,
+          QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },
+        })
+          .limit(30) // Limit the number of questions to 5 for Free-Trial users
+          .exec()
+        res.status(200).json({ questions: questionsFreeTrial, categories: categories })
         break
 
       case 'classic':
