@@ -65,7 +65,7 @@ const Settings = () => {
                   <h4 className="text-base font-light">{user.planType} Plan</h4>
                   <p className="text-sm text-secondary-500">
                     You are subscribed through{' '}
-                    {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear() + 1), 'longDate')}{' '}
+                    {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear()), 'longDate')}{' '}
                     {user.planType === 'Free-Trial' && freeTrialEnd && (
                       <>Until {dateFormat(freeTrialEnd, 'longDate')}</>
                     )}
