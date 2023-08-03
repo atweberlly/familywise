@@ -44,7 +44,7 @@ export function GlobalFilter(param: any) {
         icon={MagnifyingGlassIcon}
       />
       <div className="flex items-center gap-3">
-        {param.planType === 'Premium' && (
+        {(param.planType === 'Premium' || param.planType === 'Free-Trial') && (
           <Button
             isActive={false}
             text="Write your own"
