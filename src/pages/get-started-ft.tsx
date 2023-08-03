@@ -73,7 +73,10 @@ export default function JoinUs() {
     const configuration = {
       method: 'post',
       url: '/api/users',
-      data: data,
+      data: {
+        ...data, // Spread the existing data fields
+        status: true, // Set the status field to true
+      },
     }
     setLoading(true)
     // make the API call
@@ -86,7 +89,8 @@ export default function JoinUs() {
         setTimeout(() => {
           destroyDatePicker()
           setLoading(false)
-          router.push(`/checkout/${_id}`)
+          data.status = true
+          router.push(`sign-in`)
         }, 3000)
       })
       .catch((err) => {
