@@ -70,18 +70,21 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
             <Page size="A4" style={tw('px-20 py-12 font-sans')}>
               {user.planType === 'Free-Trial' && (
                 <>
-                <View
-                  style={{
-                    position: 'absolute',
-                    top: '20%',
-                    right: '20%',
-                    width: '50vh',
-                    height: '50vh',
-                    opacity: 0.58, // Adjust the opacity as needed (0.0 to 1.0)
-                  }}
-                >
-                  <Image src={'/member/watermark.png'} style={{ width: '100%', height: '100%' }} />
-                </View>
+                  <View
+                    style={{
+                      position: 'absolute',
+                      top: '20%',
+                      right: '20%',
+                      width: '50vh',
+                      height: '50vh',
+                      opacity: 0.58, // Adjust the opacity as needed (0.0 to 1.0)
+                    }}
+                  >
+                    <Image
+                      src={'/member/watermark.png'}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </View>
                 </>
               )}
               {/* HEADER */}

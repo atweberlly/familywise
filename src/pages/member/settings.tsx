@@ -123,7 +123,7 @@ const Settings = () => {
               </div>
               {isClient && (
                 <PDFDownloadLink
-                  document={<PDFDoc user_id={user._id} user={user}/>}
+                  document={<PDFDoc user_id={user._id} user={user} />}
                   fileName={`${user._id}.pdf`}
                 >
                   {({ loading }) => (
