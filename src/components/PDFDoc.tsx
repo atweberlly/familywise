@@ -58,7 +58,8 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
       const res = await axios.post('/api/stories/getStories', { user_id: user_id })
       if (res.status === 200) {
         console.log(res.data)
-        setData([...res.data])
+        const limitedData = user.planType === 'Free-Trial' ? res.data.slice(0, 10) : res.data //Set 10 limit Free Trial
+        setData(limitedData)
       }
     })()
   }, [user_id])
