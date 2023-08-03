@@ -82,9 +82,6 @@ export default function JoinUs() {
     // make the API call
     await axios(configuration)
       .then((response) => {
-        //proceed to pricing table
-        const _id = response.data.result._id
-
         // redirect user to the auth page
         setTimeout(() => {
           destroyDatePicker()
