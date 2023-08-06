@@ -4,10 +4,12 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
+import { QuillEditorProvider } from '../../components/QuillEditor'
 import ButtonV2 from '../../components/_member/Button'
 import axios from 'axios'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { CloudArrowUpIcon, PencilIcon } from '@heroicons/react/24/solid'
+import PDFDoc from '../../components/PDFDoc'
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   question: string
@@ -25,7 +27,6 @@ const Edit = ({ question, id }: Props) => {
   const [image, setImage] = useState(null)
   const [defaultContent, setDefaultContent] = useState({ heading: '', story: '', caption: '' })
   const [uploadedFile, setUploadedFile] = useState<any>()
-  
 
   const modules = {
     toolbar: [
@@ -170,15 +171,18 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            <span className="font-normal">Your story</span>
-            <ReactQuill
-              className="dark:bg-dark mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
-              placeholder="Write your story here..."
-              value={content.story}
-              onChange={(value) => setContent((prev) => ({ ...prev, story: value }))}
-              modules={modules}
-              formats={formats}
-            />
+            <QuillEditorProvider>
+              <span className="font-normal">Your story</span>
+              <ReactQuill
+                className="dark:bg-dark mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white dark:border-white dark:bg-black"
+                placeholder="Write your story here..."
+                value={content.story}
+                onChange={(value) => setContent((prev) => ({ ...prev, story: value }))}
+                modules={modules}
+                formats={formats}
+              />
+            </QuillEditorProvider>
+            <span className="font-normal">Output Html</span>
             <textarea
               className="dark:bg-dark mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
               placeholder="Write your story here..."
@@ -188,7 +192,6 @@ const Edit = ({ question, id }: Props) => {
                 // saveStory(e, 'story')
               }}
             />
-            
           </div>
         </div>
         <div className="w-[40%] py-[25px] px-[20px]">
