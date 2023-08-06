@@ -10,6 +10,9 @@ import { useState, useEffect } from 'react'
 import { createTw } from 'react-pdf-tailwind'
 import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
 import axios from 'axios'
+import striptags from 'striptags'
+
+// Import the striptags library
 
 // I renamed `Page` to `PdfPage` on import, and here assigning itto a variable named `Page`
 // so that the code here is aligned with `react-pdf` documentation examples,
@@ -88,7 +91,7 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
                   'first-letter:text-xl text-[#3E3F5E] text-base leading-loose text-justify m-3'
                 )}
               >
-                {story}
+                {striptags(story)}
               </Text>
               {/* FOOTER */}
               <Text
