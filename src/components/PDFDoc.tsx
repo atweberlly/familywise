@@ -8,7 +8,13 @@ import React, {
 } from 'react'
 import { useState, useEffect } from 'react'
 import { createTw } from 'react-pdf-tailwind'
-import { Document as PdfDocument, Page as PdfPage, Text, Image,  StyleSheet} from '@react-pdf/renderer'
+import {
+  Document as PdfDocument,
+  Page as PdfPage,
+  Text,
+  Image,
+  StyleSheet,
+} from '@react-pdf/renderer'
 import axios from 'axios'
 import striptags from 'striptags'
 
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     marginBottom: 10,
   },
-});
+})
 
 const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>) => {
   const [data, setData] = useState<any[]>([])
