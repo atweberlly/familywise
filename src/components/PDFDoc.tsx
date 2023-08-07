@@ -8,21 +8,10 @@ import React, {
 } from 'react'
 import { useState, useEffect } from 'react'
 import { createTw } from 'react-pdf-tailwind'
-import {
-  Document as PdfDocument,
-  Page as PdfPage,
-  Text,
-  Image,
-  StyleSheet,
-} from '@react-pdf/renderer'
+import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
 import axios from 'axios'
 import striptags from 'striptags'
 
-// Import the striptags library
-
-// I renamed `Page` to `PdfPage` on import, and here assigning itto a variable named `Page`
-// so that the code here is aligned with `react-pdf` documentation examples,
-// same goes with `Document` import.
 const Page: ClassType<
   ComponentProps<typeof PdfPage> & { children?: ReactNode },
   Component<ComponentProps<typeof PdfPage> & { children?: ReactNode }>,
@@ -60,24 +49,9 @@ const tw = createTw({
   },
 })
 
-const styles = StyleSheet.create({
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#3E3F5E',
-    marginBottom: 20,
-  },
-  story: {
-    fontSize: 14,
-    color: '#3E3F5E',
-    textAlign: 'justify',
-    marginBottom: 10,
-  },
-})
-
 const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>) => {
   const [data, setData] = useState<any[]>([])
+
   useEffect(() => {
     ;(async () => {
       const res = await axios.post('/api/stories/getStories', { user_id: user_id })
@@ -108,7 +82,7 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
              CONTENT
              Note: first-letter doesn't working in react-pdf-tailwind
              */}
-              <Text style={styles.story}>{striptags(story)}</Text>
+              {striptags(story)}
               <></>
               {/* FOOTER */}
               <Text
