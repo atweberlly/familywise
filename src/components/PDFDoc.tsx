@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { useState, useEffect } from 'react'
 import { createTw } from 'react-pdf-tailwind'
-import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
+import { Document as PdfDocument, Page as PdfPage, Text, Image,  StyleSheet} from '@react-pdf/renderer'
 import axios from 'axios'
 import striptags from 'striptags'
 
@@ -54,6 +54,22 @@ const tw = createTw({
   },
 })
 
+const styles = StyleSheet.create({
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#3E3F5E',
+    marginBottom: 20,
+  },
+  story: {
+    fontSize: 14,
+    color: '#3E3F5E',
+    textAlign: 'justify',
+    marginBottom: 10,
+  },
+});
+
 const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>) => {
   const [data, setData] = useState<any[]>([])
   useEffect(() => {
@@ -86,13 +102,8 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
              CONTENT
              Note: first-letter doesn't working in react-pdf-tailwind
              */}
-              <Text
-                style={tw(
-                  'first-letter:text-xl text-[#3E3F5E] text-base leading-loose text-justify m-3'
-                )}
-              >
-                {striptags(story)}
-              </Text>
+              <Text style={styles.story}>{striptags(story)}</Text>
+              <></>
               {/* FOOTER */}
               <Text
                 style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
