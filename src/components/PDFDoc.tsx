@@ -1,38 +1,8 @@
-import React, {
-  ClassType,
-  Component,
-  ComponentClass,
-  ComponentProps,
-  HTMLProps,
-  ReactNode,
-} from 'react'
-import { useState, useEffect } from 'react'
+import React from 'react'
 import { createTw } from 'react-pdf-tailwind'
 import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
 import axios from 'axios'
 import striptags from 'striptags'
-
-const Page: ClassType<
-  ComponentProps<typeof PdfPage> & { children?: ReactNode },
-  Component<ComponentProps<typeof PdfPage> & { children?: ReactNode }>,
-  ComponentClass<ComponentProps<typeof PdfPage> & { children?: ReactNode }>
-> = PdfPage as any
-
-const Document: ClassType<
-  ComponentProps<typeof PdfDocument> & {
-    children: ReactNode
-  },
-  Component<
-    ComponentProps<typeof PdfDocument> & {
-      children: ReactNode
-    }
-  >,
-  ComponentClass<
-    ComponentProps<typeof PdfDocument> & {
-      children: ReactNode
-    }
-  >
-> = PdfDocument as any
 
 const tw = createTw({
   theme: {
@@ -46,13 +16,26 @@ const tw = createTw({
         custom: '#bada55',
       },
     },
+    fontWeight: {
+      thin: '100',
+      hairline: '100',
+      extralight: '200',
+      light: '300',
+      normal: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+      extrabold: '800',
+      'extra-bold': '800',
+      black: '900',
+    },
   },
 })
 
-const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>) => {
-  const [data, setData] = useState<any[]>([])
+const PDFDoc = ({ item, index, user_id }: any) => {
+  const [data, setData] = React.useState<any[]>([])
 
-  useEffect(() => {
+  React.useEffect(() => {
     ;(async () => {
       const res = await axios.post('/api/stories/getStories', { user_id: user_id })
       if (res.status === 200) {
@@ -61,12 +44,63 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
       }
     })()
   }, [user_id])
+
+  //This is incredibly hard!
+  const processTextWithFormatting = (text: string) => {
+    const parsedText = striptags(text, ['b', 'i', 'u', 'em', 'strong'])
+    const segments = parsedText.split(
+      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)/g
+    )
+
+    let italicActive = false
+    let boldActive = false
+    let indexCount = 0
+
+    const styledText = segments.map((segment) => {
+      switch (segment) {
+        case '<strong>':
+          boldActive = true
+          return null
+        case '<em>':
+          italicActive = true
+          return null
+        case '</strong>':
+          boldActive = false
+          return null
+        case '</em>':
+          italicActive = false
+          return null
+        default:
+          if (segment) {
+            let textStyle = tw('text-base leading-loose text-justify m-0')
+            if (italicActive && boldActive) {
+              textStyle = tw('text-black font-semibold italic leading-loose text-justify m-0')
+            } else if (italicActive) {
+              textStyle = tw('text-[#3E3F5E] italic text-base leading-loose text-justify m-0')
+            } else if (boldActive) {
+              textStyle = tw('text-black font-semibold text-base leading-loose text-justify m-0')
+            }
+
+            return (
+              <Text key={`text-${indexCount}`} style={textStyle}>
+                {segment}
+              </Text>
+            )
+          } else {
+            return null
+          }
+      }
+    })
+
+    return styledText
+  }
+
   return (
-    <Document title="My Happy Life">
+    <PdfDocument title="My Happy Life">
       {data?.map(({ _id, heading, story, image, caption_img }) => {
         return (
           <>
-            <Page size="A4" style={tw('px-20 py-12 font-sans')}>
+            <PdfPage size="A4" style={tw('px-20 py-12 font-sans')}>
               {/* HEADER */}
               <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
               {/* STORY TITLE */}
@@ -78,15 +112,15 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
                 {heading}
               </Text>
               <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
-              {/* 
-             CONTENT
-             Note: first-letter doesn't working in react-pdf-tailwind
-             */}
-             <Text>
-             {striptags(story)}
-             </Text>
-              
-              <></>
+              {/* CONTENT */}
+              <Text
+                style={tw(
+                  'first-letter:text-xl text-[#3E3F5E] text-base leading-loose text-justify  m-3'
+                )}
+              >
+                {processTextWithFormatting(story)}
+              </Text>
+
               {/* FOOTER */}
               <Text
                 style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
@@ -102,11 +136,11 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
                   </Text>
                 </>
               )}
-            </Page>
+            </PdfPage>
           </>
         )
       })}
-    </Document>
+    </PdfDocument>
   )
 }
 
