@@ -82,7 +82,10 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
              CONTENT
              Note: first-letter doesn't working in react-pdf-tailwind
              */}
-              {striptags(story)}
+             <Text>
+             {striptags(story)}
+             </Text>
+              
               <></>
               {/* FOOTER */}
               <Text
