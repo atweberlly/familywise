@@ -4,6 +4,7 @@ import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pd
 import axios from 'axios'
 import striptags from 'striptags'
 
+// Create your tw object with your theme configuration
 const tw = createTw({
   theme: {
     fontFamily: {
@@ -17,17 +18,17 @@ const tw = createTw({
       },
     },
     fontWeight: {
-      thin: '100',
-      hairline: '100',
-      extralight: '200',
-      light: '300',
-      normal: '400',
-      medium: '500',
-      semibold: '600',
-      bold: '700',
-      extrabold: '800',
-      'extra-bold': '800',
-      black: '900',
+      thin: 100,
+      hairline: 100,
+      extralight: 200,
+      light: 300,
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+      extrabold: 800,
+      'extra-bold': 800,
+      black: 900,
     },
   },
 })
@@ -45,15 +46,19 @@ const PDFDoc = ({ item, index, user_id }: any) => {
     })()
   }, [user_id])
 
-  //This is incredibly hard!
+  //This is incredibly hard! 'It gave me brain cancer' Quill Function
   const processTextWithFormatting = (text: string) => {
-    const parsedText = striptags(text, ['b', 'i', 'u', 'em', 'strong'])
+    const parsedText = striptags(text, ['b', 'i', 'u', 'em', 'strong', 'p', 's'])
+
     const segments = parsedText.split(
-      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)/g
+      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)/g
     )
 
     let italicActive = false
     let boldActive = false
+    let underlineActive = false
+    let strikeThroughActive = false
+    let alignment = ''
     let indexCount = 0
 
     const styledText = segments.map((segment) => {
@@ -64,22 +69,67 @@ const PDFDoc = ({ item, index, user_id }: any) => {
         case '<em>':
           italicActive = true
           return null
+        case '<u>':
+          underlineActive = true
+          return null
+        case '<s>':
+          strikeThroughActive = true
+          return null
         case '</strong>':
           boldActive = false
           return null
         case '</em>':
           italicActive = false
           return null
+        case '</u>':
+          underlineActive = false
+          return null
+        case '</s>':
+          strikeThroughActive = false
+          return null
+        case '<p class="ql-align-center">':
+          alignment = 'ql-align-center'
+          return null
+        case '<p class="ql-align-left">':
+          alignment = 'ql-align-left'
+          return null
+        case '<p class="ql-align-right">':
+          alignment = 'ql-align-right'
+          return null
+        case '<p class="ql-align-justify">':
+          alignment = 'ql-align-justify'
+          return null
+        case '<p>':
+          alignment = ''
+          return null
+        case '</p>':
+          alignment = ''
+          return null
         default:
           if (segment) {
-            let textStyle = tw('text-base leading-loose text-justify m-0')
-            if (italicActive && boldActive) {
-              textStyle = tw('text-black font-semibold italic leading-loose text-justify m-0')
-            } else if (italicActive) {
-              textStyle = tw('text-[#3E3F5E] italic text-base leading-loose text-justify m-0')
-            } else if (boldActive) {
-              textStyle = tw('text-black font-semibold text-base leading-loose text-justify m-0')
-            }
+            const textStyle = tw(`
+              ${alignment === 'ql-align-center' ? 'text-center' : ''}
+              ${alignment === 'ql-align-right' ? 'text-right' : ''}
+              ${alignment === 'ql-align-left' ? 'text-left' : ''}
+              ${alignment === 'ql-align-justify' ? 'text-justify' : ''}  
+              leading-loose 
+              m-0 
+              ${italicActive && boldActive ? 'font-bold font-sansItalic text-black' : ''}
+              ${italicActive && !boldActive ? 'font-sansItalic' : ''}
+              ${!italicActive && boldActive ? 'font-bold text-black' : ''}
+              ${
+                italicActive && boldActive && underlineActive
+                  ? 'underline font-bold font-sansItalic text-black'
+                  : ''
+              }
+              ${!italicActive && !boldActive && underlineActive ? 'underline' : ''}
+              ${
+                !italicActive && boldActive && underlineActive
+                  ? 'underline font-bold text-black'
+                  : ''
+              }
+              ${strikeThroughActive ? 'line-through' : ''}
+            `)
 
             return (
               <Text key={`text-${indexCount}`} style={textStyle}>
@@ -95,6 +145,9 @@ const PDFDoc = ({ item, index, user_id }: any) => {
     return styledText
   }
 
+  const defaultTextStyle = tw('text-xl text-[#3E3F5E] text-base leading-loose text-justify m-3')
+
+  //Render PDF
   return (
     <PdfDocument title="My Happy Life">
       {data?.map(({ _id, heading, story, image, caption_img }) => {
@@ -113,14 +166,9 @@ const PDFDoc = ({ item, index, user_id }: any) => {
               </Text>
               <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
               {/* CONTENT */}
-              <Text
-                style={tw(
-                  'first-letter:text-xl text-[#3E3F5E] text-base leading-loose text-justify  m-3'
-                )}
-              >
+              <Text style={tw('text-xl text-[#3E3F5E] text-base leading-loose text-justify  m-3')}>
                 {processTextWithFormatting(story)}
               </Text>
-
               {/* FOOTER */}
               <Text
                 style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}

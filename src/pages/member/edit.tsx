@@ -31,7 +31,7 @@ const Edit = ({ question, id }: Props) => {
     toolbar: [
       [{ header: [1, 2, 3, false] }],
       ['bold', 'italic', 'underline', 'strike'],
-      ['link', 'image'],
+      ['image'],
       [{ align: [] }],
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['clean'],
