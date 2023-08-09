@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import links from './Lib/links'
 import Logo from './Logo'
+import Button from './_member/Button'
 import clsx from 'clsx'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
@@ -107,6 +108,9 @@ export default function Header({ color = 'light', ...props }: Props) {
                 {link.label}
               </a>
             ))}
+            <Link href="get-started-ft?plan=Free-Trial">
+              <Button text={'Start Free Trial'} />
+            </Link>
           </nav>
         </div>
 

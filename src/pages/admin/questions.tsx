@@ -433,6 +433,7 @@ const QuestionManager: NextPage = () => {
                       Premium
                     </label>
                   </div>
+
                   <div className="mr-4 flex items-center">
                     <input
                       id="both"
