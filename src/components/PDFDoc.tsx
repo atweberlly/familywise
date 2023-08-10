@@ -48,10 +48,10 @@ const PDFDoc = ({ item, index, user_id }: any) => {
 
   //This is incredibly hard! 'It gave me brain cancer' Quill Function
   const processTextWithFormatting = (text: string) => {
-    const parsedText = striptags(text, ['b', 'i', 'u', 'em', 'strong', 'p', 's'])
+    const parsedText = striptags(text, ['b', 'i', 'u', 'em', 'strong', 'p', 's', 'img'])
 
     const segments = parsedText.split(
-      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)/g
+      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)|(<img>)/g
     )
 
     let italicActive = false
@@ -105,6 +105,7 @@ const PDFDoc = ({ item, index, user_id }: any) => {
         case '</p>':
           alignment = ''
           return null
+
         default:
           if (segment) {
             const textStyle = tw(`
@@ -145,8 +146,6 @@ const PDFDoc = ({ item, index, user_id }: any) => {
     return styledText
   }
 
-  const defaultTextStyle = tw('text-xl text-[#3E3F5E] text-base leading-loose text-justify m-3')
-
   //Render PDF
   return (
     <PdfDocument title="My Happy Life">
@@ -169,6 +168,13 @@ const PDFDoc = ({ item, index, user_id }: any) => {
               <Text style={tw('text-xl text-[#3E3F5E] text-base leading-loose text-justify  m-3')}>
                 {processTextWithFormatting(story)}
               </Text>
+              {/* Render Image from quill here*/}
+              {/* IMAGE */}
+              {image && (
+                <>
+                  <Image style={tw('w-full')} src={image} />
+                </>
+              )}
               {/* FOOTER */}
               <Text
                 style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}

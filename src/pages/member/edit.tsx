@@ -38,17 +38,7 @@ const Edit = ({ question, id }: Props) => {
     ],
   }
 
-  const formats = [
-    'header',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'link',
-    'image',
-    'align',
-    'list',
-  ]
+  const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'align', 'list']
 
   useEffect(() => {
     ;(async () => {
