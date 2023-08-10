@@ -169,12 +169,6 @@ const PDFDoc = ({ item, index, user_id }: any) => {
                 {processTextWithFormatting(story)}
               </Text>
               {/* Render Image from quill here*/}
-              {/* IMAGE */}
-              {image && (
-                <>
-                  <Image style={tw('w-full')} src={image} />
-                </>
-              )}
               {/* FOOTER */}
               <Text
                 style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
