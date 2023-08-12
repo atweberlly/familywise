@@ -162,23 +162,12 @@ const Edit = ({ question, id }: Props) => {
           <div className="py-[25px]">
             <span className="font-normal">Your story</span>
             <ReactQuill
-              className="dark:bg-dark mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white"
+              className=" dark:bg-dark h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white"
               placeholder="Write your story here..."
               value={content.story}
               onChange={(value) => setContent((prev) => ({ ...prev, story: value }))}
               modules={modules}
               formats={formats}
-            />
-
-            <span className="font-normal">Output Html</span>
-            <textarea
-              className="dark:bg-dark mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
-              placeholder="Write your story here..."
-              defaultValue={defaultContent.story}
-              onChange={(e) => {
-                setContent((prev) => ({ ...prev, story: e.target.value }))
-                // saveStory(e, 'story')
-              }}
             />
           </div>
         </div>
