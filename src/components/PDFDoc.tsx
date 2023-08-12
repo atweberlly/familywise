@@ -63,7 +63,7 @@ const PDFDoc = ({ item, index, user_id }: any) => {
     ])
 
     const segments = parsedText.split(
-      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)|(<img>)|(<h1>)|(<\/h1>)|(<h2>)|(<\/h2>)|(<h3>)|(<\/h3>)/g
+      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)|(<img>)|(<h1>)|(<h1\s+class="ql-align-center">)|(<h1\s+class="ql-align-left">)|(<h1\s+class="ql-align-right">)|(<h1\s+class="ql-align-justify">)|(<\/h1>)|(<h2>)|(<h2\s+class="ql-align-center">)|(<h2\s+class="ql-align-left">)|(<h2\s+class="ql-align-right">)|(<h2\s+class="ql-align-justify">)|(<\/h2>)|(<h3>)|(<h3\s+class="ql-align-center">)|(<h3\s+class="ql-align-left">)|(<h3\s+class="ql-align-right">)|(<h3\s+class="ql-align-justify">)|(<\/h3>)/g
     )
 
     let heading1 = false
@@ -126,15 +126,67 @@ const PDFDoc = ({ item, index, user_id }: any) => {
           case '<p class="ql-align-justify">':
             alignment = 'ql-align-justify'
             return null
+
           case '<h1>':
             heading1 = true
             return null
+          case '<h1 class="ql-align-center">':
+            heading1 = true
+            alignment = 'ql-align-center'
+            return null
+          case '<h1 class="ql-align-left">':
+            heading1 = true
+            alignment = 'ql-align-left'
+            return null
+          case '<h1 class="ql-align-right">':
+            heading1 = true
+            alignment = 'ql-align-right'
+            return null
+          case '<h1 class="ql-align-justify">':
+            heading1 = true
+            alignment = 'ql-align-justify'
+            return null
+
           case '<h2>':
             heading2 = true
             return null
+          case '<h2 class="ql-align-center">':
+            heading2 = true
+            alignment = 'ql-align-center'
+            return null
+          case '<h2 class="ql-align-left">':
+            heading2 = true
+            alignment = 'ql-align-left'
+            return null
+          case '<h2 class="ql-align-right">':
+            heading2 = true
+            alignment = 'ql-align-right'
+            return null
+          case '<h2 class="ql-align-justify">':
+            heading2 = true
+            alignment = 'ql-align-justify'
+            return null
+
           case '<h3>':
             heading3 = true
             return null
+          case '<h3 class="ql-align-center">':
+            heading3 = true
+            alignment = 'ql-align-center'
+            return null
+          case '<h3 class="ql-align-left">':
+            heading3 = true
+            alignment = 'ql-align-left'
+            return null
+          case '<h3 class="ql-align-right">':
+            heading3 = true
+            alignment = 'ql-align-right'
+            return null
+          case '<h3 class="ql-align-justify">':
+            heading3 = true
+            alignment = 'ql-align-justify'
+            return null
+
           case '<p>':
             alignment = ''
             return null
@@ -164,22 +216,22 @@ const PDFDoc = ({ item, index, user_id }: any) => {
                 ${
                   italicActive && boldActive ? 'text-base font-bold font-sansItalic text-black' : ''
                 }
-                ${italicActive && !boldActive ? 'text-base font-sansItalic' : ''}
-                ${!italicActive && boldActive ? 'text-base font-bold text-black' : ''}
+                ${italicActive && !boldActive ? 'text-base font-sansItalic text-[#3E3F5E]' : ''}
+                ${!italicActive && boldActive ? 'text-base font-bold text-black ' : ''}
                 ${
                   italicActive && boldActive && underlineActive
-                    ? 'text-base underline font-bold font-sansItalic text-black'
+                    ? 'text-base underline font-bold font-sansItalic text-black text-[#3E3F5E]'
                     : 'text-base'
                 }
-                ${!italicActive && !boldActive && underlineActive ? 'underline' : ''}
+                ${!italicActive && !boldActive && underlineActive ? 'underline text-[#3E3F5E]' : ''}
                 ${
                   !italicActive && boldActive && underlineActive
-                    ? 'text-base underline font-bold text-black'
+                    ? 'text-base underline v font-bold text-black'
                     : ''
                 }
                 ${strikeThroughActive ? 'text-base line-through' : ''}
                 ${heading1 ? 'text-5xl leading-snug font-extrabold' : ''}
-                ${heading2 ? 'text-4xl leading-snug font-bold' : ''}
+                ${heading2 ? 'text-4xl leading-snug  font-bold' : ''}
                 ${heading3 ? 'text-3xl leading-snug font-bold' : ''}
               `)
 

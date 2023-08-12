@@ -33,12 +33,11 @@ const Edit = ({ question, id }: Props) => {
       ['bold', 'italic', 'underline', 'strike'],
       ['image'],
       [{ align: [] }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
       ['clean'],
     ],
   }
 
-  const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'align', 'list']
+  const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'align']
 
   useEffect(() => {
     ;(async () => {
@@ -168,6 +167,16 @@ const Edit = ({ question, id }: Props) => {
               onChange={(value) => setContent((prev) => ({ ...prev, story: value }))}
               modules={modules}
               formats={formats}
+            />
+
+            <textarea
+              className="dark:bg-dark mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
+              placeholder="Write your story here..."
+              defaultValue={defaultContent.story}
+              onChange={(e) => {
+                setContent((prev) => ({ ...prev, story: e.target.value }))
+                // saveStory(e, 'story')
+              }}
             />
           </div>
         </div>
