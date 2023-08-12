@@ -48,12 +48,27 @@ const PDFDoc = ({ item, index, user_id }: any) => {
 
   //This is incredibly hard! 'It gave me brain cancer' Quill Function
   const processTextWithFormatting = (text: string) => {
-    const parsedText = striptags(text, ['b', 'i', 'u', 'em', 'strong', 'p', 's', 'img'])
+    const parsedText = striptags(text, [
+      'b',
+      'i',
+      'u',
+      'em',
+      'strong',
+      'p',
+      's',
+      'img',
+      'h1',
+      'h2',
+      'h3',
+    ])
 
     const segments = parsedText.split(
-      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)|(<img>)/g
+      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)|(<img>)|(<h1>)|(<\/h1>)|(<h2>)|(<\/h2>)|(<h3>)|(<\/h3>)/g
     )
 
+    let heading1 = false
+    let heading2 = false
+    let heading3 = false
     let italicActive = false
     let boldActive = false
     let underlineActive = false
@@ -61,85 +76,122 @@ const PDFDoc = ({ item, index, user_id }: any) => {
     let alignment = ''
     let indexCount = 0
 
-    const styledText = segments.map((segment) => {
-      switch (segment) {
-        case '<strong>':
-          boldActive = true
-          return null
-        case '<em>':
-          italicActive = true
-          return null
-        case '<u>':
-          underlineActive = true
-          return null
-        case '<s>':
-          strikeThroughActive = true
-          return null
-        case '</strong>':
-          boldActive = false
-          return null
-        case '</em>':
-          italicActive = false
-          return null
-        case '</u>':
-          underlineActive = false
-          return null
-        case '</s>':
-          strikeThroughActive = false
-          return null
-        case '<p class="ql-align-center">':
-          alignment = 'ql-align-center'
-          return null
-        case '<p class="ql-align-left">':
-          alignment = 'ql-align-left'
-          return null
-        case '<p class="ql-align-right">':
-          alignment = 'ql-align-right'
-          return null
-        case '<p class="ql-align-justify">':
-          alignment = 'ql-align-justify'
-          return null
-        case '<p>':
-          alignment = ''
-          return null
-        case '</p>':
-          alignment = ''
-          return null
+    const styledText = segments.map((segment, segmentIndex) => {
+      if (segment && segment.startsWith('<img')) {
+        //Upload Image S3
+        const srcMatch = segment.match(/src="(.*?)"/)
 
-        default:
-          if (segment) {
-            const textStyle = tw(`
-              ${alignment === 'ql-align-center' ? 'text-center' : ''}
-              ${alignment === 'ql-align-right' ? 'text-right' : ''}
-              ${alignment === 'ql-align-left' ? 'text-left' : ''}
-              ${alignment === 'ql-align-justify' ? 'text-justify' : ''}  
-              leading-loose 
-              m-0 
-              ${italicActive && boldActive ? 'font-bold font-sansItalic text-black' : ''}
-              ${italicActive && !boldActive ? 'font-sansItalic' : ''}
-              ${!italicActive && boldActive ? 'font-bold text-black' : ''}
-              ${
-                italicActive && boldActive && underlineActive
-                  ? 'underline font-bold font-sansItalic text-black'
-                  : ''
-              }
-              ${!italicActive && !boldActive && underlineActive ? 'underline' : ''}
-              ${
-                !italicActive && boldActive && underlineActive
-                  ? 'underline font-bold text-black'
-                  : ''
-              }
-              ${strikeThroughActive ? 'line-through' : ''}
-            `)
+        if (srcMatch) {
+          const imageUrl = srcMatch[1]
 
-            return (
-              <Text key={`text-${indexCount}`} style={textStyle}>
-                {segment}
-              </Text>
-            )
-          } else {
+          return <Image key={`image-${segmentIndex}`} style={tw('w-full')} src={imageUrl} />
+        } else {
+          return null
+        }
+      } else if (segment) {
+        switch (segment) {
+          case '<strong>':
+            boldActive = true
             return null
-          }
+          case '<em>':
+            italicActive = true
+            return null
+          case '<u>':
+            underlineActive = true
+            return null
+          case '<s>':
+            strikeThroughActive = true
+            return null
+          case '</strong>':
+            boldActive = false
+            return null
+          case '</em>':
+            italicActive = false
+            return null
+          case '</u>':
+            underlineActive = false
+            return null
+          case '</s>':
+            strikeThroughActive = false
+            return null
+          case '<p class="ql-align-center">':
+            alignment = 'ql-align-center'
+            return null
+          case '<p class="ql-align-left">':
+            alignment = 'ql-align-left'
+            return null
+          case '<p class="ql-align-right">':
+            alignment = 'ql-align-right'
+            return null
+          case '<p class="ql-align-justify">':
+            alignment = 'ql-align-justify'
+            return null
+          case '<h1>':
+            heading1 = true
+            return null
+          case '<h2>':
+            heading2 = true
+            return null
+          case '<h3>':
+            heading3 = true
+            return null
+          case '<p>':
+            alignment = ''
+            return null
+          case '</p>':
+            alignment = ''
+            return null
+          case '</h1>':
+            heading1 = false
+            return null
+          case '</h2>':
+            heading2 = false
+            return null
+          case '</h3>':
+            heading3 = false
+            return null
+
+          default:
+            if (segment) {
+              const textStyle = tw(`
+                
+                ${alignment === 'ql-align-center' ? 'text-center' : ''}
+                ${alignment === 'ql-align-right' ? 'text-right' : ''}
+                ${alignment === 'ql-align-left' ? 'text-left' : ''}
+                ${alignment === 'ql-align-justify' ? 'text-justify' : ''}  
+                leading-loose 
+                m-0 
+                ${
+                  italicActive && boldActive ? 'text-base font-bold font-sansItalic text-black' : ''
+                }
+                ${italicActive && !boldActive ? 'text-base font-sansItalic' : ''}
+                ${!italicActive && boldActive ? 'text-base font-bold text-black' : ''}
+                ${
+                  italicActive && boldActive && underlineActive
+                    ? 'text-base underline font-bold font-sansItalic text-black'
+                    : 'text-base'
+                }
+                ${!italicActive && !boldActive && underlineActive ? 'underline' : ''}
+                ${
+                  !italicActive && boldActive && underlineActive
+                    ? 'text-base underline font-bold text-black'
+                    : ''
+                }
+                ${strikeThroughActive ? 'text-base line-through' : ''}
+                ${heading1 ? 'text-5xl leading-snug font-extrabold' : ''}
+                ${heading2 ? 'text-4xl leading-snug font-bold' : ''}
+                ${heading3 ? 'text-3xl leading-snug font-bold' : ''}
+              `)
+
+              return (
+                <Text key={`text-${indexCount}`} style={textStyle}>
+                  {segment}
+                </Text>
+              )
+            } else {
+              return null
+            }
+        }
       }
     })
 
@@ -165,9 +217,9 @@ const PDFDoc = ({ item, index, user_id }: any) => {
               </Text>
               <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
               {/* CONTENT */}
-              <Text style={tw('text-xl text-[#3E3F5E] text-base leading-loose text-justify  m-3')}>
-                {processTextWithFormatting(story)}
-              </Text>
+
+              {processTextWithFormatting(story)}
+
               {/* Render Image from quill here*/}
               {/* FOOTER */}
               <Text
