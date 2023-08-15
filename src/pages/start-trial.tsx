@@ -87,6 +87,7 @@ export default function JoinUs() {
           destroyDatePicker()
           setLoading(false)
           data.status = true
+          toast.success('Account Registration Successful')
           router.push(`sign-in`)
         }, 3000)
       })

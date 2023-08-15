@@ -108,7 +108,7 @@ export default function Header({ color = 'light', ...props }: Props) {
                 {link.label}
               </a>
             ))}
-            <Link href="get-started-ft?plan=Free-Trial">
+            <Link href="start-trial?plan=Free-Trial">
               <Button text={'Start Free Trial'} />
             </Link>
           </nav>
