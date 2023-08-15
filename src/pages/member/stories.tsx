@@ -53,7 +53,7 @@ const Stories = () => {
           </div>
           <div className="dark:bg-dark-medium mb-[64px] mt-[32px] flex w-full flex-col rounded-[5px] bg-white px-[24px] ">
             <div className="mt-8 mb-10 flex w-full items-center justify-center ">
-              <Edit question={question} id={id} isContentBold={false} />
+              <Edit question={question} id={id} />
             </div>
           </div>
         </div>
