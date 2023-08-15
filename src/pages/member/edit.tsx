@@ -13,7 +13,7 @@ interface Props extends React.AllHTMLAttributes<HTMLElement> {
   question: string
   setQuestion?: (val: string) => void
   id: string
-  isContentBold: boolean
+  
 }
 
 const BUCKET_URL = 'https://familyfortunate.s3.ap-southeast-2.amazonaws.com/'
