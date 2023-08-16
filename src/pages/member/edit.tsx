@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FaCheck } from 'react-icons/fa'
-import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { ClipLoader } from 'react-spinners'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
 import axios from 'axios'
@@ -99,6 +99,7 @@ const Edit = ({ question, id }: Props) => {
     }
   }
 
+  const ReactQuill = dynamic(import('react-quill'), { ssr: false })
   return (
     <div className="w-full ">
       <span className="font-normal">Heading</span>
