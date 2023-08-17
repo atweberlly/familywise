@@ -35,10 +35,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
         modules={modules}
         formats={formats}
       />
-      <div>
-        <h2>Editor Content:</h2>
-        <div>{value}</div>
-      </div>
     </div>
   )
 }
