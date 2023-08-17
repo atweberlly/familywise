@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { createTw } from 'react-pdf-tailwind'
 import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
 import axios from 'axios'
@@ -34,16 +34,25 @@ const tw = createTw({
 })
 
 const PDFDoc = ({ item, index, user_id }: any) => {
+  const pageSize = 500
+
   const [data, setData] = React.useState<any[]>([])
 
-  React.useEffect(() => {
-    ;(async () => {
-      const res = await axios.post('/api/stories/getStories', { user_id: user_id })
-      if (res.status === 200) {
-        console.log(res.data)
-        setData([...res.data])
+  const [currentPage] = useState(0)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.post('/api/stories/getStories', { user_id: user_id })
+        if (res.status === 200) {
+          setData([...res.data])
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error)
       }
-    })()
+    }
+
+    fetchData()
   }, [user_id])
 
   //This is incredibly hard! 'It gave me brain cancer' Quill Function
@@ -250,50 +259,50 @@ const PDFDoc = ({ item, index, user_id }: any) => {
     return styledText
   }
 
-  //Render PDF
-  return (
-    <PdfDocument title="My Happy Life">
-      {data?.map(({ _id, heading, story, image, caption_img }) => {
-        return (
+  const renderPage = (pageIndex: number) => {
+    const startIndex = pageIndex * pageSize
+    const endIndex = startIndex + pageSize
+
+    return data.slice(startIndex, endIndex).map(({ _id, heading, story, image, caption_img }) => (
+      <PdfPage key={_id} size="A4" style={tw('px-20 py-12 font-sans')}>
+        {/* Render your content for each item */}
+        {/* ... */}
+        {/* HEADER */}
+        <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
+        {/* STORY TITLE */}
+        <Text
+          style={tw(
+            'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-title text-[#3E3F5E]'
+          )}
+        >
+          {heading}
+        </Text>
+        <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
+        {/* CONTENT */}
+
+        {processTextWithFormatting(story)}
+
+        {/* Render Image from quill here*/}
+        {/* FOOTER */}
+        <Text
+          style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
+          render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+          fixed
+        />
+        {/* IMAGE */}
+        {image && (
           <>
-            <PdfPage size="A4" style={tw('px-20 py-12 font-sans')}>
-              {/* HEADER */}
-              <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
-              {/* STORY TITLE */}
-              <Text
-                style={tw(
-                  'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-title text-[#3E3F5E]'
-                )}
-              >
-                {heading}
-              </Text>
-              <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
-              {/* CONTENT */}
-
-              {processTextWithFormatting(story)}
-
-              {/* Render Image from quill here*/}
-              {/* FOOTER */}
-              <Text
-                style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
-                render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
-                fixed
-              />
-              {/* IMAGE */}
-              {image && (
-                <>
-                  <Image style={tw('w-full')} src={image} />
-                  <Text style={tw('text-sm text-center font-sansItalic mt-5 text-gray-400')}>
-                    {caption_img}
-                  </Text>
-                </>
-              )}
-            </PdfPage>
+            <Image style={tw('w-full')} src={image} />
+            <Text style={tw('text-sm text-center font-sansItalic mt-5 text-gray-400')}>
+              {caption_img}
+            </Text>
           </>
-        )
-      })}
-    </PdfDocument>
-  )
+        )}
+      </PdfPage>
+    ))
+  }
+  //Render PDF
+  return <PdfDocument title="My Happy Life">{renderPage(currentPage)}</PdfDocument>
 }
 
 export default PDFDoc
