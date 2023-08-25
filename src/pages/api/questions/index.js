@@ -1,6 +1,6 @@
+import mongoose from 'mongoose'
 import dbConnect from '../../../../lib/dbConnect'
 import Questions from '../../../../models/questionModel'
-import mongoose from 'mongoose'
 
 export default async function handler(request, response) {
   const { method } = request

@@ -1,6 +1,10 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
+import axios from 'axios'
+import clsx from 'clsx'
+import dateFormat from 'dateformat'
+import flatpickr from 'flatpickr'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -10,14 +14,10 @@ import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
 import { convertTimezone } from '../../utils/userTimezone'
-import axios from 'axios'
-import clsx from 'clsx'
-import dateFormat from 'dateformat'
-import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
-import { Table, TextInput, Spinner } from 'flowbite-react'
-import type { NextPage } from 'next'
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Spinner, Table, TextInput } from 'flowbite-react'
+import type { NextPage } from 'next'
 
 const CouponManager: NextPage = () => {
   let initialState = {
@@ -156,7 +156,7 @@ const CouponManager: NextPage = () => {
         const tempExpiry = convertTimezone(
           new Date(tempData?.expiryDate),
           tempData?.timezone,
-          tempData?.timezone
+          tempData?.timezone,
         )
         setData(tempData)
         setValue('_id', id, { shouldValidate: true })
@@ -288,7 +288,7 @@ const CouponManager: NextPage = () => {
                           <Table.Cell>
                             {dateFormat(
                               convertTimezone(new Date(expiryDate), timezone, timezone),
-                              'longDate'
+                              'longDate',
                             )}
                           </Table.Cell>
                           <Table.Cell className="capitalize">{planType}</Table.Cell>
@@ -334,7 +334,7 @@ const CouponManager: NextPage = () => {
                           </Table.Cell>
                         </Table.Row>
                       )
-                    }
+                    },
                   )}
                   loader={loading}
                 />
@@ -362,7 +362,7 @@ const CouponManager: NextPage = () => {
           <div
             className={clsx(
               'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all',
-              showAddEdit ? 'visible opacity-100' : 'invisible opacity-0'
+              showAddEdit ? 'visible opacity-100' : 'invisible opacity-0',
             )}
             aria-hidden="true"
             aria-label="Overlay"
@@ -373,8 +373,8 @@ const CouponManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
-              showAddEdit ? 'right-0' : '-right-full'
+              'dark:bg-dark absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              showAddEdit ? 'right-0' : '-right-full',
             )}
           >
             <div className="flex items-center justify-between bg-white p-4 dark:bg-shark dark:text-white">

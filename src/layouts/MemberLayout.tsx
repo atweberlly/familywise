@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Bars3Icon } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import clsx from 'clsx'
+import { Avatar, DarkThemeToggle, Dropdown, Flowbite } from 'flowbite-react'
+import Cookies from 'universal-cookie'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { RootState } from '../app/store'
 import { setUser } from '../slices/slice'
-import axios from 'axios'
-import clsx from 'clsx'
-import { Dropdown, Avatar, Flowbite, DarkThemeToggle } from 'flowbite-react'
-import Cookies from 'universal-cookie'
-import { Bars3Icon } from '@heroicons/react/24/outline'
 
 // active state class names: border-primary-400 text-primary-400
 //will integrate dynamic navigation later
@@ -168,8 +168,8 @@ export default function MemberLayout({ children }: any) {
       <div className="relative flex flex-1  ">
         <aside
           className={clsx(
-            'absolute top-0 bottom-0 z-10 min-w-[256px] bg-white  px-4 pt-4 shadow-lg transition-all dark:bg-woodsmoke dark:text-white md:static xl:min-w-[320px]',
-            show ? 'left-0' : '-left-full'
+            'absolute bottom-0 top-0 z-10 min-w-[256px] bg-white  px-4 pt-4 shadow-lg transition-all dark:bg-woodsmoke dark:text-white md:static xl:min-w-[320px]',
+            show ? 'left-0' : '-left-full',
           )}
         >
           <nav aria-label="Administrator side navigation">
@@ -344,7 +344,7 @@ export default function MemberLayout({ children }: any) {
         <div
           className={clsx(
             'absolute inset-0 z-[9] bg-black/50 transition-all md:hidden',
-            show ? 'visible opacity-100' : 'invisible opacity-0'
+            show ? 'visible opacity-100' : 'invisible opacity-0',
           )}
           aria-hidden="true"
           aria-label="Overlay"

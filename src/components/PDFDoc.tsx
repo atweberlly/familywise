@@ -5,10 +5,11 @@ import React, {
   ComponentProps,
   HTMLProps,
   ReactNode,
+  useEffect,
+  useState,
 } from 'react'
-import { useState, useEffect } from 'react'
 import { createTw } from 'react-pdf-tailwind'
-import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
+import { Image, Document as PdfDocument, Page as PdfPage, Text } from '@react-pdf/renderer'
 import axios from 'axios'
 
 // I renamed `Page` to `PdfPage` on import, and here assigning itto a variable named `Page`
@@ -73,7 +74,7 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
               {/* STORY TITLE */}
               <Text
                 style={tw(
-                  'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-title text-[#3E3F5E]'
+                  'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-title text-[#3E3F5E]',
                 )}
               >
                 {heading}
@@ -85,7 +86,7 @@ const PDFDoc = ({ item, index, user_id }: any, props: HTMLProps<HTMLDivElement>)
              */}
               <Text
                 style={tw(
-                  'first-letter:text-xl text-[#3E3F5E] text-base leading-loose text-justify m-3'
+                  'first-letter:text-xl text-[#3E3F5E] text-base leading-loose text-justify m-3',
                 )}
               >
                 {story}

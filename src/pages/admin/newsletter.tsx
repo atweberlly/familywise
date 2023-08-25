@@ -1,12 +1,12 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import { Table, TextInput } from 'flowbite-react'
 import Heading from '../../components/Heading'
 import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
-import axios from 'axios'
-import { Table, TextInput } from 'flowbite-react'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Newsletter() {
   /*let initialState = {
@@ -88,7 +88,7 @@ export default function Newsletter() {
                 })}
                 body={currentPosts
                   .filter((post: Post) =>
-                    post.full_name.toLowerCase().includes(searchKeyword.toLowerCase())
+                    post.full_name.toLowerCase().includes(searchKeyword.toLowerCase()),
                   )
                   .map(({ id, email_address, full_name, timestamp_opt, source, status }) => {
                     return (

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import links from './Lib/links'
-import Logo from './Logo'
-import clsx from 'clsx'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import clsx from 'clsx'
+import links from './Lib/links'
+import Logo from './Logo'
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   color?: 'dark' | 'light'
@@ -30,12 +30,12 @@ export default function Header({ color = 'light', ...props }: Props) {
       <div
         className={clsx(
           isOpen ? 'visible opacity-100' : 'invisible opacity-0',
-          'absolute inset-0 z-top min-h-screen w-full overflow-hidden bg-white text-dark-300 transition-all'
+          'absolute inset-0 z-top min-h-screen w-full overflow-hidden bg-white text-dark-300 transition-all',
         )}
         aria-expanded={isOpen}
       >
         <div className="container relative h-full">
-          <div className="absolute top-10 right-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
+          <div className="absolute right-10 top-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
             <button type="button" onClick={() => setIsOpen(false)}>
               <XMarkIcon className="h-full w-full" />
             </button>
@@ -82,7 +82,7 @@ export default function Header({ color = 'light', ...props }: Props) {
           </div>
 
           <Image
-            className="pointer-events-none absolute right-0 bottom-0 h-auto w-full select-none object-cover object-left"
+            className="pointer-events-none absolute bottom-0 right-0 h-auto w-full select-none object-cover object-left"
             src="/images/founder/golden-sand-explosion.jpg"
             alt=""
             width="1124"
@@ -91,7 +91,7 @@ export default function Header({ color = 'light', ...props }: Props) {
           />
         </div>
       </div>
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between py-4 px-4">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
         <Link className="relative h-28 w-48" href="/">
           <Logo isWhite={color === 'dark' ? false : true} />
         </Link>
@@ -99,7 +99,7 @@ export default function Header({ color = 'light', ...props }: Props) {
           <nav
             className={clsx(
               'flex items-center space-x-4 text-sm font-medium uppercase tracking-wide',
-              colorClassname
+              colorClassname,
             )}
           >
             {links.map((link) => (

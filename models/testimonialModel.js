@@ -35,7 +35,7 @@ const TestimonialSchema = new mongoose.Schema(
       unique: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 // export TestimonialSchema

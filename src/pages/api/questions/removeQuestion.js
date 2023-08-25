@@ -13,7 +13,7 @@ const removeQuestion = async (req, res) => {
     })
     const stories = await Story.find({ status: false, user_id: user._id }).populate('question_id')
     const removeStories = stories.filter(
-      (e) => new Date() - new Date(e.createdAt) < 3600 * 24 * 7 * 1000
+      (e) => new Date() - new Date(e.createdAt) < 3600 * 24 * 7 * 1000,
     )
     res.status(200).json(removeStories)
   } catch (error) {

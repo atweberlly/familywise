@@ -46,7 +46,7 @@ const StorySchema = mongoose.Schema(
       default: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 module.exports = mongoose.models.Story || mongoose.model('Story', StorySchema)

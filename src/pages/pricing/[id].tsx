@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 import Heading from '../../components/Heading'
 import { classic, premium } from '../../components/Lib/features'
 import Plans from '../../components/Plans'
 import Title from '../../components/Title'
-import axios from 'axios'
 
 export default function Pricing() {
   const router = useRouter()
@@ -36,7 +36,7 @@ export default function Pricing() {
           <img
             src="/svg/tree-w-bench.svg"
             alt=""
-            className="absolute bottom-0 -left-36 -z-10 h-96 select-none lg:h-[28rem] xl:-left-32 xl:h-[36rem]"
+            className="absolute -left-36 bottom-0 -z-10 h-96 select-none lg:h-[28rem] xl:-left-32 xl:h-[36rem]"
           />
           <img
             src="/svg/tree-1.svg"

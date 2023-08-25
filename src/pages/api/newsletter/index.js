@@ -13,7 +13,7 @@ export default async function handler(request, response) {
       const count = request.query ? request.query : {}
       const newsletter = await mailchimp.lists.getListMembersInfo(
         process.env.MAILCHIMP_AUDIENCE_ID,
-        count
+        count,
       )
 
       if (newsletter.status >= 400) {

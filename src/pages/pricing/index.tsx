@@ -1,14 +1,14 @@
 import Image from 'next/image'
+import { CheckCircleIcon, LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Heading from '../../components/Heading'
-import { classic, premium, all_1, all_2 } from '../../components/Lib/features'
+import { all_1, all_2, classic, premium } from '../../components/Lib/features'
 import Newsletter from '../../components/Newsletter'
 import Payin4 from '../../components/Payin4'
 import Plans from '../../components/Plans'
 import Testimonials from '../../components/Testimonials'
 import Title from '../../components/Title'
-import { LockClosedIcon, ReceiptRefundIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
 
 export default function Pricing() {
   return (

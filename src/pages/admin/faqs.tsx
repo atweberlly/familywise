@@ -1,5 +1,10 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import clsx from 'clsx'
+import { Alert, Spinner, Table, TextInput } from 'flowbite-react'
+import type { NextPage } from 'next'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -8,11 +13,6 @@ import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
-import axios from 'axios'
-import clsx from 'clsx'
-import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
-import type { NextPage } from 'next'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const FAQManager: NextPage = () => {
   let initialState = {
@@ -233,7 +233,7 @@ const FAQManager: NextPage = () => {
                   })}
                   body={currentPosts
                     .filter((post: Post) =>
-                      post.question.toLowerCase().includes(searchKeyword.toLowerCase())
+                      post.question.toLowerCase().includes(searchKeyword.toLowerCase()),
                     )
                     .map(({ _id, category, question, answer, published }) => {
                       return (
@@ -299,7 +299,7 @@ const FAQManager: NextPage = () => {
           <div
             className={clsx(
               'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all',
-              showAddEdit ? 'visible opacity-100' : 'invisible opacity-0'
+              showAddEdit ? 'visible opacity-100' : 'invisible opacity-0',
             )}
             aria-hidden="true"
             aria-label="Overlay"
@@ -307,8 +307,8 @@ const FAQManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
-              showAddEdit ? 'right-0' : '-right-full'
+              'dark:bg-dark absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              showAddEdit ? 'right-0' : '-right-full',
             )}
           >
             <div className="dark:bg-dark-medium flex items-center justify-between bg-white p-4 dark:text-white ">

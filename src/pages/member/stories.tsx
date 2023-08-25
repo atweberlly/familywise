@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import Heading from '../../components/Heading'
 import MemberLayout from '../../layouts/MemberLayout'
-import StoryTable from './Table/StoryTableV2'
 import Edit from './edit'
-import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import StoryTable from './Table/StoryTableV2'
 
 const Stories = () => {
   const [edit, setEdit] = useState(false)
@@ -21,7 +21,7 @@ const Stories = () => {
       {!edit && (
         <div>
           <div className="dark:bg-dark-medium mb-[64px] flex w-full flex-col rounded-[5px] bg-white px-[24px]">
-            <div className="mt-8 mb-10 flex w-full items-center justify-center ">
+            <div className="mb-10 mt-8 flex w-full items-center justify-center ">
               <StoryTable
                 onClick={editClick}
                 question={question}
@@ -52,7 +52,7 @@ const Stories = () => {
             </button> */}
           </div>
           <div className="dark:bg-dark-medium mb-[64px] mt-[32px] flex w-full flex-col rounded-[5px] bg-white px-[24px] ">
-            <div className="mt-8 mb-10 flex w-full items-center justify-center ">
+            <div className="mb-10 mt-8 flex w-full items-center justify-center ">
               <Edit question={question} id={id} />
             </div>
           </div>

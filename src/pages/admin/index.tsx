@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import axios from 'axios'
+import type { NextPage } from 'next'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
 import { setUser } from '../../slices/slice'
-import axios from 'axios'
-import type { NextPage } from 'next'
 
 const Administrator: NextPage = () => {
   const [Newsletter, setNewsletter] = useState<Array<any>>([])
@@ -136,7 +136,7 @@ const Administrator: NextPage = () => {
                         </div>
                       )
                     )
-                  }
+                  },
                 )}
               </div>
             </div>

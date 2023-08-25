@@ -1,8 +1,8 @@
+import crypto from 'crypto'
 import dbConnect from '../../../../lib/dbConnect'
 import User from '../../../../models/userModel'
 import { sendEmail } from '../../../../services/emailService'
 import { GetEmailBody } from '../../../../services/emailTemplateService'
-import crypto from 'crypto'
 
 export default async function handler(request, response) {
   const { method } = request

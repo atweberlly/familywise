@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { Spinner } from 'flowbite-react'
+import type { NextPage } from 'next'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
-import axios from 'axios'
-import { Spinner } from 'flowbite-react'
-import type { NextPage } from 'next'
 
 const ForgotPassword: NextPage = () => {
   const router = useRouter()

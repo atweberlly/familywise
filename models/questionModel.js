@@ -36,7 +36,7 @@ const QuestionSchema = mongoose.Schema(
       unique: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 // export QuestionSchema

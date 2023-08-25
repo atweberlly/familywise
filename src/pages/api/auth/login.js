@@ -1,7 +1,7 @@
-import dbConnect from '../../../../lib/dbConnect'
-import User from '../../../../models/userModel'
 import bcrypt from 'bcrypt'
 import * as jose from 'jose'
+import dbConnect from '../../../../lib/dbConnect'
+import User from '../../../../models/userModel'
 
 export default async function handler(request, response) {
   const { method } = request

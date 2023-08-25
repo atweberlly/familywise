@@ -1,8 +1,8 @@
+import axios from 'axios'
 import dbConnect from '../../../../lib/dbConnect'
 import User from '../../../../models/userModel'
 import { isSameDate } from '../../../utils/globalFnx'
 import { convertTimezone } from '../../../utils/userTimezone'
-import axios from 'axios'
 
 const dev = process.env.NODE_ENV !== 'production'
 export const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL

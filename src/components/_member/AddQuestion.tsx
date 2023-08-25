@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import Button from '../Button'
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import clsx from 'clsx'
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Button from '../Button'
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   showAdd: boolean
@@ -46,15 +46,15 @@ export default function AddQuestion({
     <div
       className={clsx(
         'visible fixed inset-0 z-20 h-full w-full bg-black/50 opacity-100 transition-all',
-        showAdd ? 'visible opacity-100' : 'invisible opacity-0'
+        showAdd ? 'visible opacity-100' : 'invisible opacity-0',
       )}
       aria-hidden="true"
       aria-label="Overlay"
     >
       <div
         className={clsx(
-          'dark:bg-dark fixed top-1/2 left-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all lg:min-w-[50rem] lg:max-w-lg',
-          showAdd ? 'visible opacity-100' : 'invisible opacity-0'
+          'dark:bg-dark fixed left-1/2 top-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all lg:min-w-[50rem] lg:max-w-lg',
+          showAdd ? 'visible opacity-100' : 'invisible opacity-0',
         )}
       >
         <div className="flex items-center justify-between bg-white p-4 dark:bg-shark">

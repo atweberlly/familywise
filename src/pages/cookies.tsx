@@ -16,7 +16,7 @@ export default function refund_policy() {
         </div>
       </header>
       <section className="bg-primary-100 leading-normal md:leading-loose">
-        <div className="mx-auto max-w-screen-xl py-10 px-8 md:py-20 md:px-16">
+        <div className="mx-auto max-w-screen-xl px-8 py-10 md:px-16 md:py-20">
           <p className="mt-0 text-justify text-base md:text-lg">Last updated: 10th May 2023</p>
           <p className="mt-4">
             This Website (referred to in these &quot;terms of use&quot; as the website) is owned and

@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  MinusCircleIcon,
+  PlusCircleIcon,
+} from '@heroicons/react/24/outline'
+import axios from 'axios'
+import clsx from 'clsx'
 import Button from '../components/Button'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Heading from '../components/Heading'
 import Newsletter from '../components/Newsletter'
 import Title from '../components/Title'
-import axios from 'axios'
-import clsx from 'clsx'
-import {
-  MinusCircleIcon,
-  PlusCircleIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from '@heroicons/react/24/outline'
 
 export default function Faqs() {
   const [faqs, setFaq] = useState([])
@@ -102,7 +102,7 @@ export default function Faqs() {
                   <div
                     className={clsx(
                       'px-5 pt-0',
-                      isCollapse === _id ? 'mb-4 pr-20 lg:mb-8' : 'max-h-0 overflow-hidden'
+                      isCollapse === _id ? 'mb-4 pr-20 lg:mb-8' : 'max-h-0 overflow-hidden',
                     )}
                   >
                     <p className="text-justify leading-6 text-secondary-600">{answer}</p>

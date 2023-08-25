@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { RootState } from '../app/store'
-import { setUser } from '../slices/slice'
-import axios from 'axios'
-import clsx from 'clsx'
-import { Dropdown, Avatar, Flowbite, DarkThemeToggle } from 'flowbite-react'
-import Cookies from 'universal-cookie'
 import {
   Bars3Icon,
   BellIcon,
-  ClipboardDocumentListIcon,
-  QuestionMarkCircleIcon,
-  PencilSquareIcon,
-  ChevronDownIcon,
-  NewspaperIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
-  Cog8ToothIcon,
   ChatBubbleLeftRightIcon,
+  ChatBubbleOvalLeftEllipsisIcon,
+  ChevronDownIcon,
+  ClipboardDocumentListIcon,
+  Cog8ToothIcon,
+  NewspaperIcon,
+  PencilSquareIcon,
+  QuestionMarkCircleIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import clsx from 'clsx'
+import { Avatar, DarkThemeToggle, Dropdown, Flowbite } from 'flowbite-react'
+import Cookies from 'universal-cookie'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { RootState } from '../app/store'
+import { setUser } from '../slices/slice'
 
 // active state class names: border-primary-400 text-primary-400
 //will integrate dynamic navigation later
@@ -73,7 +73,7 @@ export default function AdminLayout({ children }: any) {
               <span className="sr-only">Open notification</span>
               <BellIcon className="h-6 w-6 stroke-dark-200" />
               <div
-                className="absolute top-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-primary-400"
+                className="absolute right-0 top-0 h-3 w-3 rounded-full border-2 border-white bg-primary-400"
                 aria-label="New notification indicator"
               >
                 <span className="sr-only">New notification available</span>
@@ -111,8 +111,8 @@ export default function AdminLayout({ children }: any) {
       <div className="relative flex flex-1">
         <aside
           className={clsx(
-            'absolute top-0 bottom-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all dark:bg-woodsmoke md:static xl:min-w-[320px]',
-            show ? 'left-0' : '-left-full'
+            'absolute bottom-0 top-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all dark:bg-woodsmoke md:static xl:min-w-[320px]',
+            show ? 'left-0' : '-left-full',
           )}
         >
           <nav aria-label="Administrator side navigation">
@@ -156,7 +156,7 @@ export default function AdminLayout({ children }: any) {
                 {openQuestion && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/questions"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -164,7 +164,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/questions-categories"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -194,7 +194,7 @@ export default function AdminLayout({ children }: any) {
                     <ChevronDownIcon
                       className={clsx(
                         'h-6 w-6 text-dark-200 transition-transform',
-                        open && 'rotate-180'
+                        open && 'rotate-180',
                       )}
                     />
                   </div>
@@ -203,7 +203,7 @@ export default function AdminLayout({ children }: any) {
                 {open && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -211,7 +211,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -219,7 +219,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -262,7 +262,7 @@ export default function AdminLayout({ children }: any) {
                     <ChevronDownIcon
                       className={clsx(
                         'h-6 w-6 text-dark-200 transition-transform',
-                        openFAQ && 'rotate-180'
+                        openFAQ && 'rotate-180',
                       )}
                     />
                   </div>
@@ -271,7 +271,7 @@ export default function AdminLayout({ children }: any) {
                 {openFAQ && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/faqs"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -279,7 +279,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/faqs-categories"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -335,7 +335,7 @@ export default function AdminLayout({ children }: any) {
                     <ChevronDownIcon
                       className={clsx(
                         'h-6 w-6 text-dark-200 transition-transform',
-                        openSettings && 'rotate-180'
+                        openSettings && 'rotate-180',
                       )}
                     />
                   </div>
@@ -344,7 +344,7 @@ export default function AdminLayout({ children }: any) {
                 {openSettings && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/coupon"
                       onClick={() => setOpenSettings(!show)}
                     >
@@ -360,7 +360,7 @@ export default function AdminLayout({ children }: any) {
         <div
           className={clsx(
             'absolute inset-0 bg-black/50 transition-all md:hidden',
-            show ? 'visible opacity-100' : 'invisible opacity-0'
+            show ? 'visible opacity-100' : 'invisible opacity-0',
           )}
           aria-hidden="true"
           aria-label="Overlay"

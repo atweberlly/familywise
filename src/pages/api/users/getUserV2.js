@@ -1,6 +1,6 @@
-import User from '../../../../models/userModel'
 import * as jose from 'jose'
 import Cookies from 'universal-cookie'
+import User from '../../../../models/userModel'
 
 const getUser = async (cookie) => {
   const SECRET = new TextEncoder().encode(`${process.env.JWT_SECRET}`)

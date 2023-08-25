@@ -1,7 +1,7 @@
-import dbConnect from '../../../../lib/dbConnect'
-import User from '../../../../models/userModel'
 import * as jose from 'jose'
 import Cookies from 'universal-cookie'
+import dbConnect from '../../../../lib/dbConnect'
+import User from '../../../../models/userModel'
 
 const getUser = async (req, res) => {
   const SECRET = new TextEncoder().encode(`${process.env.JWT_SECRET}`)

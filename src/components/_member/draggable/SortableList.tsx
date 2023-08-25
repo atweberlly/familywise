@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import Draggable from './Draggable'
 import { arrayMove } from './array-move'
+import Draggable from './Draggable'
 
 export interface DraggableItem {
   id: string | number
@@ -45,7 +45,7 @@ const SortableList = ({ items, setItems, component }: DraggableItems) => {
     componentJsx: (item: any) => JSX.Element,
     item: any,
     setItems: Dispatch<SetStateAction<any>>,
-    index: number
+    index: number,
   ) => {
     const Component = componentJsx
 

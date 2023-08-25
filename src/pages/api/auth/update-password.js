@@ -1,8 +1,8 @@
+import bcrypt from 'bcrypt'
 import dbConnect from '../../../../lib/dbConnect'
 import User from '../../../../models/userModel'
 import { sendEmail } from '../../../../services/emailService'
 import { GetEmailBody } from '../../../../services/emailTemplateService'
-import bcrypt from 'bcrypt'
 
 export default async function handler(request, response) {
   const { method } = request
@@ -62,7 +62,7 @@ export default async function handler(request, response) {
                   const errorMessage = err instanceof Error ? err.message : 'Internal server error'
                   response.status(500).json({ message: errorMessage, err })
                 }
-              }
+              },
             )
           })
           // catch error if the password hash isn't successful

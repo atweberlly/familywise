@@ -24,7 +24,7 @@ const CategorySchema = mongoose.Schema(
       unique: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 // export CategorySchema

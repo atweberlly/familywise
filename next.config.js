@@ -6,11 +6,12 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
-    }),
-      config.module.rules.push({
-        test: /\.html$/,
-        loader: 'html-loader',
-      })
+    })
+
+    config.module.rules.push({
+      test: /\.html$/,
+      loader: 'html-loader',
+    })
 
     return config
   },

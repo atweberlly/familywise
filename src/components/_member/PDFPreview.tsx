@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
+import { PDFViewer } from '@react-pdf/renderer'
+import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import { setUser } from '../../slices/slice'
 import PDFDoc from '../PDFDoc'
-import { PDFViewer } from '@react-pdf/renderer'
-import axios from 'axios'
 
 const PDFPreview = () => {
   const dispatch = useAppDispatch()

@@ -38,15 +38,15 @@ export default function AddCustomQuestion({ showCustom, setShowCustom, setData }
     <div
       className={clsx(
         'visible fixed inset-0 z-20 h-full w-full bg-black/50 opacity-100 transition-all ',
-        showCustom ? 'visible opacity-100' : 'invisible opacity-0'
+        showCustom ? 'visible opacity-100' : 'invisible opacity-0',
       )}
       aria-hidden="true"
       aria-label="Overlay"
     >
       <div
         className={clsx(
-          'fixed top-1/2 left-1/2 z-30 flex min-w-[30rem] max-w-sm -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
-          showCustom ? 'visible opacity-100' : 'invisible opacity-0'
+          'fixed left-1/2 top-1/2 z-30 flex min-w-[30rem] max-w-sm -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
+          showCustom ? 'visible opacity-100' : 'invisible opacity-0',
         )}
       >
         <div className="flex flex-col px-9 pt-8 text-left">

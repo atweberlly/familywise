@@ -20,7 +20,8 @@
   font-weight: 700;
   font-family: 'Freight Big Pro';
   font-style: normal;
-  src: url('/fonts/FreightBigPro-Bold.woff') format('woff'),
+  src:
+    url('/fonts/FreightBigPro-Bold.woff') format('woff'),
     url('/fonts/FreightBigPro-Bold.woff2') format('woff2');
   font-display: swap;
 }
@@ -29,7 +30,8 @@
   font-weight: 700;
   font-family: 'Freight Big Pro';
   font-style: italic;
-  src: url('/fonts/FreightBigPro-BoldItalic.woff') format('woff'),
+  src:
+    url('/fonts/FreightBigPro-BoldItalic.woff') format('woff'),
     url('/fonts/FreightBigPro-BoldItalic.woff2') format('woff2');
   font-display: swap;
 }
@@ -38,7 +40,8 @@
   font-weight: 500;
   font-family: 'Freight Big Pro';
   font-style: normal;
-  src: url('/fonts/FreightBigPro-Medium.woff') format('woff'),
+  src:
+    url('/fonts/FreightBigPro-Medium.woff') format('woff'),
     url('/fonts/FreightBigPro-Medium.woff2') format('woff2');
   font-display: swap;
 }
@@ -47,7 +50,8 @@
   font-weight: 500;
   font-family: 'Freight Big Pro';
   font-style: italic;
-  src: url('/fonts/FreightBigPro-MediumItalic.woff') format('woff'),
+  src:
+    url('/fonts/FreightBigPro-MediumItalic.woff') format('woff'),
     url('/fonts/FreightBigPro-MediumItalic.woff2') format('woff2');
   font-display: swap;
 }

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FaCheck } from 'react-icons/fa'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
-import ButtonV2 from '../../components/_member/Button'
-import axios from 'axios'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { CloudArrowUpIcon, PencilIcon } from '@heroicons/react/24/solid'
+import axios from 'axios'
+import ButtonV2 from '../../components/_member/Button'
 
 interface Props extends React.AllHTMLAttributes<HTMLElement> {
   question: string
@@ -156,7 +156,7 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
         </div>
-        <div className="w-[40%] py-[25px] px-[20px]">
+        <div className="w-[40%] px-[20px] py-[25px]">
           <div className="flex min-h-[159px] w-full items-center justify-center rounded-[12px] border-[1px] border-dashed border-secondary-500">
             <div className="text-center">
               {uploadedFile ? (

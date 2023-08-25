@@ -26,7 +26,7 @@ const generateRandomQuestion = async (req, res) => {
       // Remove questions that have already been assigned to the user
       for (const story of stories) {
         questions = questions.filter(
-          (question) => question._id.toString() !== story.question_id.toString()
+          (question) => question._id.toString() !== story.question_id.toString(),
         )
       }
 

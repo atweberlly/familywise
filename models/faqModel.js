@@ -30,7 +30,7 @@ const FaqSchema = mongoose.Schema(
       unique: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 // export FaqSchema

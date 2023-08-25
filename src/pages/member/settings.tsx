@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { CloudArrowDownIcon, Cog8ToothIcon, PencilIcon } from '@heroicons/react/24/outline'
+import { PDFDownloadLink } from '@react-pdf/renderer'
+import axios from 'axios'
+import dateFormat from 'dateformat'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
+import ButtonV2 from '../../components/_member/Button'
 import Chip from '../../components/Chip'
 import Heading from '../../components/Heading'
 import PDFDoc from '../../components/PDFDoc'
 import Title from '../../components/Title'
-import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
-import { PDFDownloadLink } from '@react-pdf/renderer'
-import axios from 'axios'
-import dateFormat from 'dateformat'
-import { PencilIcon, Cog8ToothIcon, CloudArrowDownIcon } from '@heroicons/react/24/outline'
 
 const Settings = () => {
   const dispatch = useAppDispatch()

@@ -57,7 +57,7 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
       <div
         className={clsx(
           'absolute inset-0 z-20 h-full w-full bg-black/50 transition-all',
-          showDelete ? 'visible opacity-100' : 'invisible opacity-0'
+          showDelete ? 'visible opacity-100' : 'invisible opacity-0',
         )}
         aria-hidden="true"
         aria-label="Overlay"
@@ -65,8 +65,8 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
       />
       <div
         className={clsx(
-          'absolute top-1/2 left-1/2 z-30 flex max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
-          showDelete ? 'visible opacity-100' : 'invisible opacity-0'
+          'absolute left-1/2 top-1/2 z-30 flex max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
+          showDelete ? 'visible opacity-100' : 'invisible opacity-0',
         )}
       >
         <div className="flex flex-col px-8 pt-8 text-center">

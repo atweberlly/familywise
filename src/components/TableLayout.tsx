@@ -1,4 +1,4 @@
-import { Table, Spinner } from 'flowbite-react'
+import { Spinner, Table } from 'flowbite-react'
 
 export default function TableLayout({ header, body, loader }: any) {
   return (

@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { Spinner } from 'flowbite-react'
+import Cookies from 'universal-cookie'
+import type { NextPage } from 'next'
 import { useAppDispatch } from '../app/hooks'
 import Button from '../components/Button'
 import Heading from '../components/Heading'
@@ -11,10 +15,6 @@ import Logo from '../components/Logo'
 import Title from '../components/Title'
 import { setUser } from '../slices/slice'
 import { setAuthToken } from '../utils/axios'
-import axios from 'axios'
-import { Spinner } from 'flowbite-react'
-import type { NextPage } from 'next'
-import Cookies from 'universal-cookie'
 
 const SignIn: NextPage = () => {
   const cookies = new Cookies()

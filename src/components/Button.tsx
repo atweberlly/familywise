@@ -32,7 +32,7 @@ export default function Button({
       className={clsx(
         'inline-block rounded-xl border-2 border-transparent px-4 py-3 text-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2',
         colorClassnames,
-        className
+        className,
       )}
       href={href}
       {...props}
@@ -44,7 +44,7 @@ export default function Button({
       className={clsx(
         'inline-block rounded-xl border-2 border-transparent px-4 py-3 text-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-secondary-200 disabled:hover:bg-primary-600',
         colorClassnames,
-        className
+        className,
       )}
       type={type}
       {...props}

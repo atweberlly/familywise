@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/solid'
+import axios from 'axios'
+import dateFormat from 'dateformat'
 import Button from '../../components/Button'
 import Heading from '../../components/Heading'
 import Logo from '../../components/Logo'
 import Payin4 from '../../components/Payin4'
 import { PaymentForm } from '../../components/PaymentForm'
-import axios from 'axios'
-import dateFormat from 'dateformat'
-import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
-import { XMarkIcon } from '@heroicons/react/24/solid'
 
 export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   const [user, setUser] = useState({
@@ -69,7 +69,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   return (
     <>
       <div className="relative grid max-w-full grid-cols-1 items-start bg-black-pearl lg:grid-cols-2">
-        <div className="h-screen bg-white pr-10 pl-10 lg:pr-24 lg:pl-48">
+        <div className="h-screen bg-white pl-10 pr-10 lg:pl-48 lg:pr-24">
           <div className="my-5 grid grid-cols-1 items-center justify-between gap-10 lg:grid-cols-2">
             <Link href="/" className="!block lg:inline-block">
               <span className="sr-only">Go home</span>

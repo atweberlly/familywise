@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { StarIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 import clsx from 'clsx'
-import Swiper, { Pagination, Autoplay } from 'swiper'
-import { StarIcon } from '@heroicons/react/24/solid'
+import Swiper, { Autoplay, Pagination } from 'swiper'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   className?: string
@@ -46,7 +46,7 @@ export default function Testimonials({ className }: Props) {
   }, [])
   return (
     <section
-      className={clsx('bg-vanilla px-10 pt-12 pb-8 text-white', className)}
+      className={clsx('bg-vanilla px-10 pb-8 pt-12 text-white', className)}
       id="testimonials"
     >
       <div className="relative mx-auto max-w-screen-md pb-10">

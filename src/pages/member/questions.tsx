@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
+import Edit from './edit'
 import PastTableV2 from './Table/PastTableV2'
 import UpcomingTableV2 from './Table/UpcomingTableV2'
-import Edit from './edit'
-import axios from 'axios'
-import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 
 const Questions = () => {
   const [upcoming, setUpcoming] = useState(true)
@@ -43,12 +43,12 @@ const Questions = () => {
         {!edit && (
           <div>
             <div>Hi {user?.firstname}, Welcome back</div>
-            <div className="flex gap-4 pt-[43px] pb-[67px]">
+            <div className="flex gap-4 pb-[67px] pt-[43px]">
               <ButtonV2 text="Upcoming Questions" onClick={upcomingClick} isActive={upcoming} />
               <ButtonV2 text="Not Started" onClick={pastClick} isActive={past} />
             </div>
             <div className="max-w-auto dark:bg-dark-medium relative overflow-x-auto rounded-lg bg-white p-6">
-              <div className="max-w-auto mt-8 mb-10 flex items-center justify-center">
+              <div className="max-w-auto mb-10 mt-8 flex items-center justify-center">
                 {upcoming && (
                   <UpcomingTableV2
                     onClick={editClick}
@@ -92,7 +92,7 @@ const Questions = () => {
               </button> */}
             </div>
             <div className="dark:bg-dark-medium mb-[64px] mt-[32px] flex w-full flex-col rounded-[5px] bg-white px-[24px] ">
-              <div className="mt-8 mb-10 flex w-full items-center justify-center">
+              <div className="mb-10 mt-8 flex w-full items-center justify-center">
                 <Edit question={question} id={id} />
               </div>
             </div>

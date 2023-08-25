@@ -5,7 +5,7 @@ export const generateAccessToken = async () => {
   const { AUTH_API_URL } = sandboxURLs
 
   const encodedToken = Buffer.from(
-    NEXT_PUBLIC_PAYPAL_CLIENT_ID + ':' + PAYPAL_CLIENT_SECRET
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID + ':' + PAYPAL_CLIENT_SECRET,
   ).toString('base64')
   const response = await fetch(AUTH_API_URL, {
     method: 'POST',

@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import router from 'next/router'
-import { isSameDate } from '../utils/globalFnx'
-import { convertTimezone } from '../utils/userTimezone'
-import Heading from './Heading'
-import type { FUNDING_SOURCE } from '@paypal/paypal-js'
 import {
-  PayPalScriptProvider, //PayPalHostedFieldsProvider,
   //PayPalHostedField,
   //usePayPalHostedFields,
   PayPalButtons, //usePayPalScriptReducer,
   PayPalMarks,
+  PayPalScriptProvider, //PayPalHostedFieldsProvider,
 } from '@paypal/react-paypal-js'
 import axios from 'axios'
+import type { FUNDING_SOURCE } from '@paypal/paypal-js'
+import { isSameDate } from '../utils/globalFnx'
+import { convertTimezone } from '../utils/userTimezone'
+import Heading from './Heading'
 
 export const PaymentForm = (props: {
   clientID: any
@@ -298,7 +298,7 @@ export const PaymentForm = (props: {
             }) => Promise<any>
           }
         }*/
-    actions: any
+    actions: any,
   ) => {
     return actions.order
       .create({
@@ -325,7 +325,7 @@ export const PaymentForm = (props: {
     /*data: { subscriptionID: any },*/
     /*actions: { order: { capture: () => Promise<any> } }*/
     data: any,
-    actions: any
+    actions: any,
   ) => {
     return await actions.order.capture().then(function (details: { id: any }) {
       const { id } = details
@@ -364,7 +364,7 @@ export const PaymentForm = (props: {
 
           //show success notification
           toast.success(
-            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."
+            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon.",
           )
           //redirect to sign in page
           router.push('/sign-in')
@@ -417,7 +417,7 @@ export const PaymentForm = (props: {
       </PayPalScriptProvider>  */}
 
       <Heading size={5}>Payment</Heading>
-      <p className="mt-2 mb-4 text-sm text-secondary-600">
+      <p className="mb-4 mt-2 text-sm text-secondary-600">
         All transactions are secure and encrypted.
       </p>
 

@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import dateFormat from 'dateformat'
+import flatpickr from 'flatpickr'
 import Button from '../components/Button'
 import Heading from '../components/Heading'
 import Input from '../components/Input'
@@ -13,9 +16,6 @@ import Link from '../components/Link'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
 import generateTemporaryPassword from '../utils/generateTempPassword'
-import axios from 'axios'
-import dateFormat from 'dateformat'
-import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 import { Spinner } from 'flowbite-react'
 
@@ -182,7 +182,7 @@ export default function JoinUs() {
             <Logo className="mx-auto h-20 w-auto lg:mx-0" />
           </Link>
           <form
-            className="mt-5 mb-4 grid grid-flow-row gap-6 text-left"
+            className="mb-4 mt-5 grid grid-flow-row gap-6 text-left"
             method="post"
             onSubmit={handleSubmit(onSubmit)}
           >

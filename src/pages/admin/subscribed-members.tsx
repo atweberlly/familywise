@@ -1,14 +1,14 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
+import { NextPage } from 'next'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import dateFormat from 'dateformat'
+import { Table, TextInput } from 'flowbite-react'
 import Heading from '../../components/Heading'
 import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
 import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
-import axios from 'axios'
-import dateFormat from 'dateformat'
-import { Table, TextInput } from 'flowbite-react'
-import { NextPage } from 'next'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 const MemberList: NextPage = () => {
   /*let initialState = {
@@ -94,7 +94,7 @@ const MemberList: NextPage = () => {
                 })}
                 body={currentPosts
                   .filter((post: Post) =>
-                    post.lastname.toLowerCase().includes(searchKeyword.toLowerCase())
+                    post.lastname.toLowerCase().includes(searchKeyword.toLowerCase()),
                   )
                   .map(
                     ({ _id, email, firstname, lastname, country, createdAt, planType, status }) => {
@@ -120,7 +120,7 @@ const MemberList: NextPage = () => {
                           </Table.Cell>
                         </Table.Row>
                       )
-                    }
+                    },
                   )}
                 loader={loading}
               />

@@ -2,9 +2,9 @@ import { useState } from 'react'
 import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import Button from './Button'
 import axios from 'axios'
 import { Spinner } from 'flowbite-react'
+import Button from './Button'
 
 export default function Newsletter() {
   const [isLoading, setLoading] = useState(false)
@@ -43,7 +43,7 @@ export default function Newsletter() {
     await axios(configuration)
       .then(() => {
         toast.success(
-          'Success! 🎉 You are now subscribed to receive our example questions & tips for writing your story.'
+          'Success! 🎉 You are now subscribed to receive our example questions & tips for writing your story.',
         )
         setTimeout(() => {
           // After 3 seconds set the show value to false
@@ -71,7 +71,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="relative overflow-hidden pt-64 pb-12 md:pb-24">
+    <section className="relative overflow-hidden pb-12 pt-64 md:pb-24">
       <img
         className="absolute inset-0 h-full w-full select-none object-cover"
         src="/images/image.jpg"
