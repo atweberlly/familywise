@@ -1,10 +1,5 @@
 # Family Wise
 
-TODO:
-
-- Add project description
-- List down technologies used
-
 ## Run Locally
 
 1. Download or clone the project
