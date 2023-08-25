@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  swcMinify: true,
+  pageExtensions: ['ts', 'tsx'],
+  reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -14,9 +14,6 @@ const nextConfig = {
     })
 
     return config
-  },
-  experimental: {
-    appDir: true,
   },
 }
 
