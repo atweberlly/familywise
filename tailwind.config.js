@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 const files = require('./files')
@@ -96,12 +95,6 @@ module.exports = {
   },
   plugins: [
     plugin(({ addBase, addVariant }) => {
-      addBase({
-        body: {
-          fontSize: '16px',
-        },
-      })
-
       // addVariant('peer-choice', '.peer-choice:checked ~ * &')
       addVariant('open-details', '.open-details[open] &')
     }),
