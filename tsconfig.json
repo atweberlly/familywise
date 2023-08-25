@@ -14,12 +14,24 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
       "~/public/*": ["public/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-env.d.ts"],
+  "include": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".eslintrc.js",
+    ".next/types/**/*.ts",
+    "next-env.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
