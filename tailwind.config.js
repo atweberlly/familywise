@@ -79,7 +79,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
         serif: ['Freight Big Pro', ...defaultTheme.fontFamily.serif],
       },
       minWidth: {
