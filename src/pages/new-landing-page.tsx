@@ -1,14 +1,42 @@
+// import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LockClosedIcon, MinusIcon, PlusIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
+// import axios from 'axios'
+// import { Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
 import Title from '~/components/Title'
 
 export default function Home(): JSX.Element {
+  // const [testimonials, setTestimonials] = useState([])
+
+  /* useEffect(() => {
+    async function fetchTestimonials(): Promise<void> {
+      const configuration = {
+        method: 'get',
+        url: 'api/testimonials',
+      }
+
+      // Make the API call
+      await axios(configuration)
+        .then((response) => {
+          setTestimonials(response.data.result)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+
+    void fetchTestimonials()
+
+    console.log(testimonials)
+  }, [testimonials]) */
+
   return (
     <div>
       <Title>FamilyWise</Title>
@@ -259,6 +287,40 @@ export default function Home(): JSX.Element {
               </dl>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f7f6f3] py-8 md:py-16 lg:py-24">
+        <div className="container relative">
+          <Swiper
+          // modules={[Pagination]}
+          // pagination={{
+          //   el: '.swiper-pagination',
+          // }}
+          >
+            <SwiperSlide>
+              <div className="flex items-center justify-center space-x-1.5">
+                {[...Array(5).keys()].map((index) => (
+                  <StarIcon className="h-6 w-6 text-[#f7c54a]" key={index} />
+                ))}
+              </div>
+
+              <blockquote className="mt-4 text-center font-serif text-4xl text-gray-900 [text-wrap:balance] lg:text-5xl xl:text-6xl">
+                <p>
+                  FamilyWise Stories guided me every week to gather my memoirs into a keepsake book.
+                  All my children have a copy now, which will last for generations to come.
+                </p>
+              </blockquote>
+
+              <div className="mt-8 text-center">
+                <div className="mx-auto h-16 w-16 rounded-full bg-gray-400"></div>
+                <div className="mt-4 text-lg font-semibold text-primary-500">Nancy L.</div>
+                <address className="mt-1 not-italic text-primary-500">Greenwood, Indiana</address>
+              </div>
+            </SwiperSlide>
+
+            {/* <div className="swiper-pagination" /> */}
+          </Swiper>
         </div>
       </section>
 
