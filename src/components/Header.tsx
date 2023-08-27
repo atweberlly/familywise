@@ -1,123 +1,71 @@
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import clsx from 'clsx'
-import links from './Lib/links'
-import Logo from './Logo'
+import { Bars3Icon } from '@heroicons/react/24/outline'
 
-interface Props extends React.AllHTMLAttributes<HTMLElement> {
-  color?: 'dark' | 'light'
+interface Hyperlink {
+  id: number
+  href: string
+  text: string
 }
 
-export default function Header({ color = 'light', ...props }: Props) {
-  const [isOpen, setIsOpen] = useState(false)
+const links: Hyperlink[] = [
+  { id: 1, href: '', text: 'How it works' },
+  { id: 2, href: '', text: 'The Founder' },
+  { id: 3, href: '', text: 'FAQs' },
+  { id: 4, href: '', text: 'Pricing' },
+  { id: 5, href: '', text: 'Sign in' },
+]
 
-  useEffect(() => {
-    if (isOpen) {
-      // Set the overflow of the body to hidden when the menu is open
-      document.body.classList.add('overflow-hidden')
-    } else {
-      // Remove the overflow of the body when the menu is closed
-      document.body.classList.remove('overflow-hidden')
-    }
-  }, [isOpen])
-  const colorClassname = color === 'dark' ? 'text-secondary-600' : 'text-white'
+export default function Header(): JSX.Element {
   return (
-    <>
-      <div
-        className={clsx(
-          isOpen ? 'visible opacity-100' : 'invisible opacity-0',
-          'absolute inset-0 z-top min-h-screen w-full overflow-hidden bg-white text-dark-300 transition-all',
-        )}
-        aria-expanded={isOpen}
-      >
-        <div className="container relative h-full">
-          <div className="absolute right-10 top-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
-            <button type="button" onClick={() => setIsOpen(false)}>
-              <XMarkIcon className="h-full w-full" />
-            </button>
-          </div>
-
-          <nav className="relative z-40 pt-32" aria-label="Mobile menu">
-            <ul className="space-y-4 lg:space-y-8">
-              {links.map((link) => (
-                <li key={link.id}>
-                  <Link
-                    className="inline-block font-serif text-[3.25rem] font-bold leading-none transition hover:text-warning-600 lg:text-8xl"
-                    href={'/' + link.href}
-                    arial-label={link.label}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="relative z-40 mt-6 lg:mt-8">
-            <div className="text-sm uppercase tracking-wide lg:text-lg">Follow us on</div>
-            <div className="mt-2 flex items-center space-x-2.5 text-warning-600">
-              <a
-                className="flex items-center"
-                href="https://www.facebook.com/familywise.stories"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faFacebookF} className="h-6 w-6 lg:h-8 lg:w-8" />
-              </a>
-
-              <a
-                className="flex items-center"
-                href="https://www.instagram.com/familywise.stories"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faInstagram} className="h-6 w-6 lg:h-8 lg:w-8" />
-              </a>
-            </div>
-          </div>
-
+    <header>
+      <div className="container flex items-center justify-between py-6">
+        <div className="relative">
+          <Link className="absolute inset-0" href="">
+            <span className="sr-only">FamilyWise Stories</span>
+          </Link>
           <Image
-            className="pointer-events-none absolute bottom-0 right-0 h-auto w-full select-none object-cover object-left"
-            src="/images/founder/golden-sand-explosion.jpg"
-            alt=""
-            width="1124"
-            height="736"
-            priority={false}
+            className="h-20 w-40 object-contain"
+            src="/images/familywise-logotype.png"
+            alt="FamilyWise Stories"
+            width={160}
+            height={72}
+            priority
           />
         </div>
-      </div>
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
-        <Link className="relative h-28 w-48" href="/">
-          <Logo isWhite={color === 'dark' ? false : true} />
-        </Link>
-        <div className="hidden md:flex md:items-center md:space-x-4">
-          <nav
-            className={clsx(
-              'flex items-center space-x-4 text-sm font-medium uppercase tracking-wide',
-              colorClassname,
-            )}
-          >
+
+        <div className="hidden lg:block">
+          <ul className="flex items-center space-x-10 p-4">
             {links.map((link) => (
-              <a href={'/' + link.href} key={link.id}>
-                {link.label}
-              </a>
+              <li key={link.id}>
+                <Link
+                  className="text-sm font-medium uppercase"
+                  href={link.href}
+                  aria-label={link.text}
+                >
+                  {link.text}
+                </Link>
+              </li>
             ))}
-          </nav>
+
+            <li>
+              <Link
+                className="inline-block rounded-lg bg-[#013882] px-5 py-3 font-semibold text-white"
+                href=""
+              >
+                Start Free Trial
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        <button
-          className={clsx('h-8 w-8 lg:hidden', colorClassname)}
-          type="button"
-          onClick={() => setIsOpen(true)}
-        >
-          <Bars3Icon />
-        </button>
+        <div className="lg:hidden">
+          <button className="flex h-10 w-10 items-center justify-center" type="button">
+            <span className="sr-only">Open menu</span>
+            <Bars3Icon className="h-6 w-6" />
+          </button>
+        </div>
       </div>
-    </>
+    </header>
   )
 }
