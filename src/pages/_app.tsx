@@ -16,7 +16,7 @@ import 'moment/locale/en-gb'
 const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone // get user's timezone
 moment.tz.setDefault(userTimezone) // set default timezone
 
-function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const title = ''
   const description = ''
   const keywords = ''
@@ -29,11 +29,11 @@ function App({ Component, pageProps }: AppProps) {
     ReactGA.send({
       hitType: 'pageview',
       page: router.pathname,
-      title: title,
+      title,
     })
 
-    const handleRouteChange = (url: string) => {
-      ReactGA.send({ hitType: 'pageview', page: url, title: title })
+    const handleRouteChange = (url: string): void => {
+      ReactGA.send({ hitType: 'pageview', page: url, title })
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -42,8 +42,9 @@ function App({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router])
+
   return (
-    <div>
+    <>
       <Provider store={store}>
         <Head>
           <meta charSet="utf-8" />
@@ -69,12 +70,11 @@ function App({ Component, pageProps }: AppProps) {
 
           <link rel="icon" type="image/png" href="/favicon.png" />
         </Head>
+
         <Component {...pageProps} />
         <Toaster />
         <Analytics />
       </Provider>
-    </div>
+    </>
   )
 }
-
-export default App
