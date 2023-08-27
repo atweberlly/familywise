@@ -5,9 +5,6 @@ const files = require('./files')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [...files],
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
   darkMode: 'class',
   theme: {
     container: {
