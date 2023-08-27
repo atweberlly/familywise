@@ -24,7 +24,7 @@ export const PaymentForm = (props: {
   const currency = 'USD'
   const style = { color: 'black' }
 
-  /* 
+  /*
   DO NOT DELETE THIS
   const SubmitPayment = ({ customStyle }: any) => {
     // Here declare the variable containing the hostedField instance
@@ -139,7 +139,7 @@ export const PaymentForm = (props: {
         )}
       </>
     )
-  } 
+  }
   const SubmitPayment = ({ customStyle }) => {
     const [paying, setPaying] = useState(false)
     const cardHolderName = useRef(null)
@@ -194,7 +194,7 @@ export const PaymentForm = (props: {
 				<input
 					id="card-holder"
 					ref={cardHolderName}
-					className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+					className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					style={{ ...customStyle, outline: "none" }}
 					type="text"
 					placeholder="Full name"
@@ -204,7 +204,7 @@ export const PaymentForm = (props: {
         <input
           id="card-billing-address-street"
           style={{ ...customStyle, outline: "none" }}
-          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					type="text"
           placeholder="street"
         />
@@ -212,7 +212,7 @@ export const PaymentForm = (props: {
         <input
           id="card-billing-address-unit"
           style={{ ...customStyle, outline: "none" }}
-          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					type="text"
           placeholder="unit"
         />
@@ -220,7 +220,7 @@ export const PaymentForm = (props: {
         <input
           id="card-billing-address-unit"
           style={{ ...customStyle, outline: "none" }}
-          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					type="text"
           placeholder="city"
         />
@@ -228,7 +228,7 @@ export const PaymentForm = (props: {
         <input
           id="card-billing-address-state"
           style={{ ...customStyle, outline: "none" }}
-          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					type="text"
           placeholder="state"
         />
@@ -236,7 +236,7 @@ export const PaymentForm = (props: {
         <input
           id="card-billing-address-zip"
           style={{ ...customStyle, outline: "none" }}
-          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					type="text"
           placeholder="zip"
         />
@@ -244,10 +244,10 @@ export const PaymentForm = (props: {
         <input
           id="card-billing-address-country"
           style={{ ...customStyle, outline: "none" }}
-          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"         
+          className="card-field mt-2 mb-4 h-10 w-full rounded-lg border border-secondary-400 bg-white p-3 text-lg focus:border-lemon-curry"
 					type="text"
           placeholder="country"
-        /> 
+        />
        <Button className="w-full" type={'button'} onClick={handleClick} color={'yellow'}>
           {paying ? <Spinner aria-label="Loading" size="xl" className="mx-auto" /> : 'Pay'}
         </Button>
@@ -512,8 +512,8 @@ export const PaymentForm = (props: {
 
       <PayPalScriptProvider
         options={{
-          'client-id': props.clientID,
-          'data-client-token': props.clientToken,
+          clientId: props.clientID,
+          dataClientToken: props.clientToken,
           components: 'buttons,marks,funding-eligibility',
         }}
       >
