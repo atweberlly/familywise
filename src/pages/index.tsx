@@ -18,10 +18,11 @@ import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
 import TwitchIcon from '../components/TwitchIcon'
 
-export default function Home() {
-  //const [productInfo, setProductInfo] = useState(classic)
+export default function Home(): JSX.Element {
+  // const [productInfo, setProductInfo] = useState(classic)
+
   useEffect(() => {
-    function Marquee(selector: string, speed: number) {
+    function Marquee(selector: string, speed: number): void {
       const parentSelector = document.querySelector(selector) as HTMLElement
       console.log(parentSelector)
       const clone = parentSelector.innerHTML
@@ -57,7 +58,7 @@ export default function Home() {
     presentation.init()
   }, [])
 
-  const scrollDown = () => {
+  const scrollDown = (): void => {
     const howItWorks = document.getElementById('how-it-works')?.offsetTop
     const getStarted = document.getElementById('get-started')?.offsetTop
 
@@ -77,6 +78,7 @@ export default function Home() {
 
       <header className="bg-vanilla text-white">
         <Header />
+
         <div className="mx-auto max-w-screen-xl px-10 pt-16">
           <div className="relative">
             <Image
