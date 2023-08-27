@@ -4,7 +4,7 @@
     "build": "next build",
     "dev": "next dev",
     "format": "prettier --write .",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "preview": "next build && next start"
   },
   "browserslist": {
