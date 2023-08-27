@@ -1,9 +1,11 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const plugin = require('tailwindcss/plugin')
-const files = require('./files')
+import aspectRatio from '@tailwindcss/aspect-ratio'
+import forms from '@tailwindcss/forms'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
+import type { Config } from 'tailwindcss'
+import files from './files'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [...files],
   darkMode: 'class',
   theme: {
@@ -22,22 +24,21 @@ module.exports = {
       colors: {
         vanilla: '#d6c7b2',
         sunglow: '#fec339',
-        eggshell: '#F3E9DB',
-        dark: '#323337',
+        eggshell: '#f3e9db',
         woodsmoke: '#111315',
         shark: '#212325',
         mercury: '#e2e2e2',
         palesky: '#697586',
         'black-pearl': '#07222d',
-        'lemon-curry': '#CA8E22',
-        'ghost-white': '#F9FAFB',
+        'lemon-curry': '#ca8e22',
+        'ghost-white': '#f9fafb',
         primary: {
-          100: '#F1ECE3',
-          200: '#E1D7C7',
-          300: '#D6C7B2',
-          400: '#B99D7E',
-          500: '#AB8664',
-          600: '#9E7558',
+          100: '#f1ece3',
+          200: '#e1d7c7',
+          300: '#d6c7b2',
+          400: '#b99d7e',
+          500: '#ab8664',
+          600: '#9e7558',
         },
         secondary: {
           100: '#f5f6f8',
@@ -67,6 +68,7 @@ module.exports = {
           600: '#e5000c',
         },
         dark: {
+          DEFAULT: '#323337',
           100: '#e7e8ea',
           200: '#757785',
           300: '#393c51',
@@ -83,7 +85,7 @@ module.exports = {
         xs: '320px',
       },
       zIndex: {
-        top: 9999,
+        top: '9999',
       },
     },
   },
@@ -91,13 +93,12 @@ module.exports = {
     aspectRatio: false,
   },
   plugins: [
-    plugin(({ addBase, addVariant }) => {
-      // addVariant('peer-choice', '.peer-choice:checked ~ * &')
+    plugin(({ addVariant }) => {
       addVariant('open-details', '.open-details[open] &')
     }),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/forms')({
+    aspectRatio,
+    forms({
       strategy: 'class',
     }),
   ],
-}
+} satisfies Config
