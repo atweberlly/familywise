@@ -8,7 +8,7 @@ export default function _404(): JSX.Element {
   return (
     <div className="bg-primary-100">
       <Title suffix="Page not found">404</Title>
-      <Header color="dark" />
+      <Header />
       <main className="mx-auto max-w-5xl px-4 py-16 md:px-8 lg:pb-24">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center lg:gap-8">
           <div className="lg:pr-8">
