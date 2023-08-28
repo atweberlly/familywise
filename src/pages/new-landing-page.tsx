@@ -3,7 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { LockClosedIcon, MinusIcon, PlusIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowLongDownIcon,
+  LockClosedIcon,
+  MinusIcon,
+  PlusIcon,
+  ReceiptRefundIcon,
+} from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 // import axios from 'axios'
 // import { Pagination } from 'swiper'
@@ -36,6 +42,16 @@ export default function Home(): JSX.Element {
 
     console.log(testimonials)
   }, [testimonials]) */
+
+  function scrollDown() {
+    const element = document.getElementById('get-started') as HTMLDivElement
+
+    if (element === null) {
+      return
+    }
+
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <div>
@@ -96,11 +112,26 @@ export default function Home(): JSX.Element {
               We all carry amazing life stories with us, many untold.
             </p>
           </div>
+
+          <button
+            className="mx-auto mt-20 flex animate-bounce flex-col items-center lg:mt-28"
+            type="button"
+            onClick={scrollDown}
+          >
+            <div className="text-sm uppercase tracking-wide">Learn more</div>
+            <ArrowLongDownIcon className="mt-2 h-6 w-6" />
+          </button>
         </div>
+
+        <div></div>
       </div>
 
-      <section className="px-10 pb-12 pt-14 md:pb-14 md:pt-16">
-        <div className="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16">
+      <section>
+        <div className="aspect-h-9 aspect-w-16 md:aspect-h-6">
+          <Image className="object-cover" src="/images/video-placeholder.png" alt="" fill />
+        </div>
+
+        <div className="container grid grid-cols-1 items-center gap-8 pb-12 pt-14 md:grid-cols-2 md:pb-14 md:pt-16 lg:gap-16 lg:pb-24">
           <div>
             <div className="flex items-center">
               <div className="h-px w-10 bg-[#111]" />
@@ -132,7 +163,59 @@ export default function Home(): JSX.Element {
             </div>
           </div>
 
-          <div>{/* images */}</div>
+          <div className="-mx-10 flex items-start">
+            <div className="grid grow grid-cols-6 gap-4">
+              <div className="col-span-2 col-start-2 place-self-end">
+                <Image
+                  className="h-40 w-full object-cover"
+                  src="/images/get-started/image-1.jpg"
+                  alt=""
+                  width={160}
+                  height={160}
+                />
+              </div>
+
+              <div className="col-span-2">
+                <Image
+                  className="h-60 w-full object-cover"
+                  src="/images/get-started/image-2.jpg"
+                  alt=""
+                  width={160}
+                  height={240}
+                />
+              </div>
+
+              <div className="col-span-2 justify-self-end">
+                <Image
+                  className="h-32 w-full object-cover"
+                  src="/images/get-started/image-3.jpg"
+                  alt=""
+                  width={192}
+                  height={128}
+                />
+              </div>
+
+              <div className="col-span-2">
+                <Image
+                  className="h-60 w-full object-cover"
+                  src="/images/get-started/image-4.jpg"
+                  alt=""
+                  width={160}
+                  height={240}
+                />
+              </div>
+
+              <div className="col-span-2">
+                <Image
+                  className="h-32 w-full object-cover"
+                  src="/images/get-started/image-5.jpg"
+                  alt=""
+                  width={192}
+                  height={128}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
