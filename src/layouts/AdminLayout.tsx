@@ -119,9 +119,9 @@ export default function AdminLayout({ children }: any) {
             <ul className="flex flex-col">
               <li className="flex flex-col" aria-label="Dashboard">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/admin' &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   href="/admin"
                   onClick={() => setShow(!show)}
@@ -133,10 +133,10 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="FAQs">
                 <button
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     (router.pathname === '/admin/questions' ||
                       router.pathname === '/admin/questions-categories') &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   type="button"
                   onClick={() => setOpenQuestion(!openQuestion)}
@@ -156,7 +156,7 @@ export default function AdminLayout({ children }: any) {
                 {openQuestion && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href="/admin/questions"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -164,7 +164,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href="/admin/questions-categories"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -176,11 +176,11 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Book Style">
                 <button
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     (router.pathname === '/admin/general' ||
                       router.pathname === '/admin/colors' ||
                       router.pathname === '/admin/alignment') &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   type="button"
                   onClick={() => setOpen(!open)}
@@ -203,7 +203,7 @@ export default function AdminLayout({ children }: any) {
                 {open && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -211,7 +211,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -219,7 +219,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -231,9 +231,9 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Newsletter">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/admin/newsletter' &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   href="/admin/newsletter"
                   onClick={() => setShow(!show)}
@@ -245,10 +245,10 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="FAQs">
                 <button
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     (router.pathname === '/admin/faqs' ||
                       router.pathname === '/admin/faqs-categories') &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   type="button"
                   onClick={() => setOpenFAQ(!openFAQ)}
@@ -271,7 +271,7 @@ export default function AdminLayout({ children }: any) {
                 {openFAQ && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href="/admin/faqs"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -279,7 +279,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href="/admin/faqs-categories"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -291,9 +291,9 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Contact">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/admin/testimonials' &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   href="/admin/testimonials"
                   onClick={() => setShow(!show)}
@@ -305,9 +305,9 @@ export default function AdminLayout({ children }: any) {
 
               <li className="flex flex-col" aria-label="Newsletter">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/admin/subscribed-members' &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   href="/admin/subscribed-members"
                   onClick={() => setShow(!show)}
@@ -318,10 +318,10 @@ export default function AdminLayout({ children }: any) {
               </li>
               <li className="flex flex-col" aria-label="Settings">
                 <button
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
                     (router.pathname === '/admin/coupon' ||
                       router.pathname === '/admin/settings') &&
-                    ' dark:bg-dark border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:text-white'
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
                   }`}
                   type="button"
                   onClick={() => setOpenSettings(!openSettings)}
@@ -344,7 +344,7 @@ export default function AdminLayout({ children }: any) {
                 {openSettings && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
                       href="/admin/coupon"
                       onClick={() => setOpenSettings(!show)}
                     >
