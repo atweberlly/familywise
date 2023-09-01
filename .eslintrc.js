@@ -21,5 +21,11 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'tailwindcss/no-custom-classname': [
+      'warn',
+      {
+        whitelist: ['open-details'],
+      },
+    ],
   },
 }
