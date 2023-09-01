@@ -5,6 +5,70 @@ export interface Props {
   item: string
   icon?: string | null
 }
+
+export const freetrial: Array<Props> = [
+  {
+    id: uniqueId(),
+    item: '14-Days trial',
+  },
+  {
+    id: uniqueId(),
+    item: '500+ questions to choose from',
+  },
+  {
+    id: uniqueId(),
+    item: 'Move through your questions as quickly or as slowly as you want',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the frequency of your emails',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish from 20 to 550 pages in your book',
+  },
+  {
+    id: uniqueId(),
+    item: 'Receive Pro Tips for writing throughout the year',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your stories before printing',
+  },
+  {
+    id: uniqueId(),
+    item: 'Write your own questions',
+  },
+  {
+    id: uniqueId(),
+    item: 'Rewrite a question to suit your style',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish your book of poetry or other writings',
+  },
+  {
+    id: uniqueId(),
+    item: 'Invite someone to have access to your account',
+  },
+  {
+    id: uniqueId(),
+    item: 'Have the opportunity to have your story published by us',
+  },
+  {
+    id: uniqueId(),
+    item: 'Design your own book cover',
+  },
+  {
+    id: uniqueId(),
+    item: 'Unlimited images included in your book',
+  },
+  {
+    id: uniqueId(),
+    item: 'Priority technical support',
+  },
+]
+
 export const classic: Array<Props> = [
   {
     id: uniqueId(),

@@ -307,7 +307,7 @@ const FAQManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'dark:bg-dark absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >

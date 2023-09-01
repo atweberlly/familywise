@@ -45,7 +45,7 @@ export default function AddCustomQuestion({ showCustom, setShowCustom, setData }
     >
       <div
         className={clsx(
-          'fixed top-1/2 left-1/2 z-30 flex min-w-[30rem] max-w-sm -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
+          'fixed left-1/2 top-1/2 z-30 flex min-w-[30rem] max-w-sm -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
           showCustom ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >

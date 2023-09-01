@@ -166,7 +166,7 @@ const Edit = ({ question, id }: Props) => {
             */}
           </div>
         </div>
-        <div className="w-[40%] py-[25px] px-[20px]">
+        <div className="w-[40%] px-[20px] py-[25px]">
           <div className="flex min-h-[159px] w-full items-center justify-center rounded-[12px] border-[1px] border-dashed border-secondary-500">
             <div className="text-center">
               {uploadedFile ? (

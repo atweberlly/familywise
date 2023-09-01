@@ -81,21 +81,21 @@ export default function Home() {
         <div className="mx-auto max-w-screen-xl px-10 pt-16">
           <div className="relative">
             <Image
-              className="absolute top-0 left-1/2 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0 lg:h-[524px] lg:w-[356px]"
+              className="absolute left-1/2 top-0 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0 lg:h-[524px] lg:w-[356px]"
               src="/images/hero/hero-image-1@4x.jpg"
               alt=""
               width="184"
               height="264"
             />
             <Image
-              className="absolute top-48 left-0 z-10 h-[208px] w-[144px] shadow-xl lg:h-[340px] lg:w-[232px]"
+              className="absolute left-0 top-48 z-10 h-[208px] w-[144px] shadow-xl lg:h-[340px] lg:w-[232px]"
               src="/images/hero/hero-image-2@4x.jpg"
               alt=""
               width="144"
               height="208"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 z-10 h-[192px] w-[128px] shadow-xl md:left-28 lg:top-[calc(12rem+20px)] lg:left-48 lg:h-[284px] lg:w-[192px]"
+              className="absolute right-0 top-[calc(12rem+6px)] z-10 h-[192px] w-[128px] shadow-xl md:left-28 lg:left-48 lg:top-[calc(12rem+20px)] lg:h-[284px] lg:w-[192px]"
               src="/images/hero/hero-image-3@4x.jpg"
               alt=""
               width="128"
@@ -103,21 +103,21 @@ export default function Home() {
             />
 
             <Image
-              className="absolute top-0 right-8 z-10 hidden h-[264px] w-[184px] shadow-xl md:block lg:h-[456px] lg:w-[328px]"
+              className="absolute right-8 top-0 z-10 hidden h-[264px] w-[184px] shadow-xl md:block lg:h-[456px] lg:w-[328px]"
               src="/images/hero/hero-image-4.jpg"
               alt=""
               width="328"
               height="456"
             />
             <Image
-              className="absolute top-48 right-28 z-20 hidden h-[208px] w-[144px] shadow-xl md:block lg:right-56 lg:h-[284px] lg:w-[192px]"
+              className="absolute right-28 top-48 z-20 hidden h-[208px] w-[144px] shadow-xl md:block lg:right-56 lg:h-[284px] lg:w-[192px]"
               src="/images/hero/hero-image-5.jpg"
               alt=""
               width="192"
               height="284"
             />
             <Image
-              className="absolute top-[calc(12rem+6px)] right-0 z-30 hidden h-[192px] w-[128px] shadow-xl md:block lg:h-[432px] lg:w-[296px]"
+              className="absolute right-0 top-[calc(12rem+6px)] z-30 hidden h-[192px] w-[128px] shadow-xl md:block lg:h-[432px] lg:w-[296px]"
               src="/images/hero/hero-image-6.jpg"
               alt=""
               width="296"
@@ -156,7 +156,7 @@ export default function Home() {
         </div>
 
         <div
-          className="max-w-screen-full relative mx-auto overflow-hidden px-10 pt-32 pb-14"
+          className="max-w-screen-full relative mx-auto overflow-hidden px-10 pb-14 pt-32"
           id="how-it-works"
         >
           <div className="marquee how-it-works absolute top-1/2 hidden -translate-y-1/2 whitespace-nowrap lg:flex">
@@ -225,14 +225,14 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="bg-black-pearl px-10 pt-14 pb-12 text-white md:pt-16 md:pb-14">
+      <section className="bg-black-pearl px-10 pb-12 pt-14 text-white md:pb-14 md:pt-16">
         <div className="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16">
           <div className="md:order-1 md:col-span-2">
             <h2 className="font-serif text-[3.25rem] font-bold leading-none lg:text-6xl">
               <span className="block text-white/30">Start</span>{' '}
               <span className="-mt-2 ml-16 block">right away</span>
             </h2>
-            <p className="mt-2 ml-8 text-sm uppercase tracking-wide text-white/70">
+            <p className="ml-8 mt-2 text-sm uppercase tracking-wide text-white/70">
               Capture the stories of your lifetime
             </p>
           </div>
@@ -497,7 +497,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-black-pearl pt-32 pb-16 text-white">
+      <section className="bg-black-pearl pb-16 pt-32 text-white">
         <div className="container">
           <div className="marquee gift flex overflow-hidden whitespace-nowrap">
             <h2 className="mr-4 bg-texture bg-clip-text pb-2 font-serif text-[12rem] font-bold text-transparent">
@@ -553,13 +553,13 @@ export default function Home() {
               </div>
             </div>
             <button
-              className="swiper-prev top-[40%] right-0 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2 lg:top-[42%]"
+              className="swiper-prev right-0 top-[40%] z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2 lg:top-[42%]"
               type="button"
             >
               <ArrowLongLeftIcon className="h-4 w-4 md:h-8 md:w-8 " />
             </button>
             <button
-              className="swiper-next top-1/2 right-0 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2"
+              className="swiper-next right-0 top-1/2 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2"
               type="button"
             >
               <ArrowLongRightIcon className="h-4 w-4 md:h-8 md:w-8 " />
@@ -568,7 +568,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden px-10 pt-14 pb-6" id="founder">
+      <section className="overflow-hidden px-10 pb-6 pt-14" id="founder">
         <div className="relative mx-auto grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
           <div className="relative z-10">
             <h2 className="font-serif text-6xl font-bold">
@@ -612,7 +612,7 @@ export default function Home() {
           </div>
 
           <Image
-            className="pointer-events-none absolute top-0 -right-1/2 h-auto w-full select-none object-cover object-left"
+            className="pointer-events-none absolute -right-1/2 top-0 h-auto w-full select-none object-cover object-left"
             src="/images/founder/golden-sand-explosion.jpg"
             alt=""
             width="1124"

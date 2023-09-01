@@ -14,7 +14,7 @@ export default function Plans({ name, price, features, isPopular }: any) {
       >
         <div className="relative grid grid-cols-1 items-center justify-between px-6 py-4 lg:grid-cols-2">
           {isPopular && (
-            <span className="absolute top-0 left-4 mt-5 ml-2 inline-flex h-6 items-center justify-center rounded-full bg-eggshell px-2">
+            <span className="absolute left-4 top-0 ml-2 mt-5 inline-flex h-6 items-center justify-center rounded-full bg-eggshell px-2">
               <span className="text-xs font-bold text-lemon-curry ">Most Popular</span>
             </span>
           )}

@@ -6,13 +6,10 @@ import { useRouter } from 'next/router'
 import Button from '../components/Button'
 import Heading from '../components/Heading'
 import Input from '../components/Input'
-import { Radio } from '../components/InputButton'
-import { occasionOptions } from '../components/Lib/occasions'
 import { relationOptions } from '../components/Lib/relations'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
-import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
@@ -21,13 +18,11 @@ import { Spinner } from 'flowbite-react'
 
 export default function JoinUs() {
   const router = useRouter()
-  const { plan } = router.query
+  const plan = 'Free-Trial'
   const [selected, setSelected] = useState('AU')
   const blacklistCountries = false
-  const [relationVisible, setRelationVisible] = useState(false)
+  const [relationVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [showOtherField, setShowOtherField] = useState(false)
-
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
     if (datepicker) flatpickr(datepicker!).destroy()
@@ -45,10 +40,11 @@ export default function JoinUs() {
     giftDate: '',
     giftSender: '',
     giftSalutation: '',
-    giftRelation: 'mom',
-    giftOccasion: 'merry christmas!',
-    giftMessage: '',
+    giftRelation: '', //this can be empty
+    giftOccasion: '', //this can be empty
+    giftMessage: '', //this can be empty
     planType: plan,
+    freeTrialEnd: '',
   }
 
   // getting the event handlers from our custom hook
@@ -61,28 +57,42 @@ export default function JoinUs() {
   } = useForm({ mode: 'onBlur', defaultValues: initialState })
 
   const onSubmit = async (data: any) => {
-    //generate temporary password for gift recipient
-    if (data.password === '') {
-      data.password = generateTemporaryPassword()
+    // Calculate the free trial end date (14 days from the current date)
+    const freeTrialEnd = new Date()
+    freeTrialEnd.setDate(freeTrialEnd.getDate() + 14)
+
+    // Format the free trial end date as a string (e.g., "2023-08-08T00:00:00.000Z")
+    data.freeTrialEnd = freeTrialEnd.toISOString()
+
+    // Check if the freeTrialEnd field is present in the data object
+    if (!data.hasOwnProperty('freeTrialEnd')) {
+      // If not present, throw an error indicating that freeTrialEnd is required
+      throw new Error('freeTrialEnd is required')
     }
 
     const configuration = {
       method: 'post',
       url: '/api/users',
-      data: data,
+      data: {
+        ...data, // Spread the existing data fields
+        status: true, // Set the status field to true
+      },
     }
     setLoading(true)
     // make the API call
     await axios(configuration)
       .then((response) => {
-        //proceed to pricing table
-        const _id = response.data.result._id
-
         // redirect user to the auth page
-        setTimeout(() => {
+        setTimeout(async () => {
           destroyDatePicker()
           setLoading(false)
-          router.push(`/checkout/${_id}`)
+          data.status = true
+
+          //Send onboarding email
+          await axios.post('/api/mail/onboarding', data)
+          //
+          toast.success('Congratulations! Your 14-Day Free Trial Registration Was Successful 🎉')
+          router.push(`sign-in`)
         }, 3000)
       })
       .catch((err) => {
@@ -187,35 +197,12 @@ export default function JoinUs() {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex">
-              <div>
-                <Heading size={4}>Are you looking at this for yourself or as a gift?</Heading>
-                <div className="mt-3 flex gap-4">
-                  <Radio
-                    name="bookReceiver"
-                    onClick={() => setRelationVisible(false)}
-                    value={'myself'}
-                    defaultChecked
-                    onChange={(e) =>
-                      setValue('bookReceiver', (e.target as HTMLInputElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                  >
-                    Myself
-                  </Radio>
-                  <Radio
-                    name="bookReceiver"
-                    onClick={() => setRelationVisible(true)}
-                    value={'gift'}
-                    onChange={(e) => setValue('bookReceiver', (e.target as HTMLInputElement).value)}
-                  >
-                    Gift
-                  </Radio>
-                </div>
-              </div>
+              <Heading size={4}>
+                Unlock the full potential of our services with an incredible 14-day free trial!
+              </Heading>
             </div>
             <hr />
-            <Heading size={5}>Gift Recipient&apos;s Information</Heading>
+            <Heading size={5}>Recipient&apos;s Information</Heading>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <Input
                 label={relationVisible ? "Your gift recipient's first name" : 'First Name'}
@@ -320,121 +307,6 @@ export default function JoinUs() {
               </div>
             )}
             <hr />
-            {relationVisible && (
-              <>
-                <Heading size={5}>Gift Information</Heading>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                  <Input
-                    label={`Send gift on date:`}
-                    type={'text'}
-                    placeholder={'MM/DD/YYY'}
-                    name={'giftDate'}
-                    id="datepicker"
-                    error={errors?.giftDate?.message}
-                    onChange={(e) => {
-                      console.log((e.target as HTMLInputElement).value)
-                      setValue('giftDate', (e.target as HTMLInputElement).value)
-                    }}
-                  ></Input>
-                  <div>
-                    <div className={`${showOtherField && 'flex items-end space-x-2'}`}>
-                      <label className="block">
-                        <p className="text-sm font-semibold">Occasion</p>
-                        <select
-                          className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                          defaultValue={'merry christmas!'}
-                          name={'giftOccasion'}
-                          onChange={(e) => {
-                            if ((e.target as HTMLSelectElement).value === 'other') {
-                              setShowOtherField(true)
-                              setValue('giftOccasion', '', {
-                                shouldValidate: true,
-                              })
-                            } else {
-                              setShowOtherField(false)
-                              setValue('giftOccasion', (e.target as HTMLSelectElement).value, {
-                                shouldValidate: true,
-                              })
-                            }
-                          }}
-                        >
-                          {occasionOptions.map(({ id, value }) => (
-                            <option key={id} value={value}>
-                              {value}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                      {showOtherField && (
-                        <Input
-                          label={``}
-                          type={'text'}
-                          placeholder={'Please specify'}
-                          name={'giftOccasion'}
-                          onChange={(e) => {
-                            setValue('giftOccasion', (e.target as HTMLInputElement).value, {
-                              shouldValidate: true,
-                            })
-                          }}
-                        ></Input>
-                      )}
-                    </div>
-                    {errors?.giftOccasion?.message ? (
-                      <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
-                        {errors?.giftOccasion?.message}
-                      </p>
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"></div>
-                <Input
-                  label={`Your name & anyone else the gift is from`}
-                  type={'text'}
-                  placeholder={'E.g. Jane Doe'}
-                  name={'giftSender'}
-                  error={errors?.giftSender?.message}
-                  onChange={(e) =>
-                    setValue('giftSender', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                ></Input>
-                <Input
-                  label={`Salutation`}
-                  type={'text'}
-                  placeholder={'E.g. Dear Aunt Linda, Hi Pop, To My Dear Husband'}
-                  name={'giftSalutation'}
-                  error={errors?.giftSender?.message}
-                  onChange={(e) =>
-                    setValue('giftSalutation', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                ></Input>
-                <label className="block w-full">
-                  <p className="text-sm font-semibold"> Add a gift message</p>
-                  <textarea
-                    className="mt-3 block h-40 w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                    placeholder={`E.g. We’ve bought you an annual ${plan} membership with Family Wise because we’d love to hear about your life before we came along!\n\nI came across this beautiful idea for a gift and immediately thought it would be perfect for you, so I hope you enjoy it.`}
-                    name={'giftMessage'}
-                    onChange={(e) =>
-                      setValue('giftMessage', (e.target as HTMLTextAreaElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                  />
-                  {errors?.giftMessage?.message ? (
-                    <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
-                      {errors?.giftMessage?.message}
-                    </p>
-                  ) : (
-                    ''
-                  )}
-                </label>
-              </>
-            )}
             <p className="px-0 text-center text-sm font-light text-secondary-500 lg:px-5">
               Family Wise collects and uses personal data in accordance with our{' '}
               <Link className="underline hover:text-primary-400" href="/privacy">
@@ -458,7 +330,7 @@ export default function JoinUs() {
                   <span className="pl-3">Processing...</span>
                 </>
               ) : (
-                'Buy Now'
+                'Try Now'
               )}
             </Button>
           </form>
@@ -469,18 +341,4 @@ export default function JoinUs() {
       </section>
     </main>
   )
-}
-export async function getServerSideProps({ query }: any) {
-  if (!query.plan) {
-    return {
-      redirect: {
-        destination: '/pricing',
-        permanent: false,
-      },
-    }
-  }
-
-  return {
-    props: {},
-  }
 }

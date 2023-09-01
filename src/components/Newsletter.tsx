@@ -71,7 +71,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="relative overflow-hidden pt-64 pb-12 md:pb-24">
+    <section className="relative overflow-hidden pb-12 pt-64 md:pb-24">
       <img
         className="absolute inset-0 h-full w-full select-none object-cover"
         src="/images/image.jpg"

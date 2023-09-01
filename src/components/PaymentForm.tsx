@@ -417,7 +417,7 @@ export const PaymentForm = (props: {
       </PayPalScriptProvider>  */}
 
       <Heading size={5}>Payment</Heading>
-      <p className="mt-2 mb-4 text-sm text-secondary-600">
+      <p className="mb-4 mt-2 text-sm text-secondary-600">
         All transactions are secure and encrypted.
       </p>
 
