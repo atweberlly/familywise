@@ -182,7 +182,7 @@ export default function JoinUs() {
             <Logo className="mx-auto h-20 w-auto lg:mx-0" />
           </Link>
           <form
-            className="mt-5 mb-4 grid grid-flow-row gap-6 text-left"
+            className="mb-4 mt-5 grid grid-flow-row gap-6 text-left"
             method="post"
             onSubmit={handleSubmit(onSubmit)}
           >

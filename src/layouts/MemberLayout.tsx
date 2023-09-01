@@ -126,7 +126,7 @@ export default function MemberLayout({ children }: any) {
       <div className="relative flex flex-1  ">
         <aside
           className={clsx(
-            'absolute top-0 bottom-0 z-10 min-w-[256px] bg-white  px-4 pt-4 shadow-lg transition-all dark:bg-woodsmoke dark:text-white md:static xl:min-w-[320px]',
+            'absolute bottom-0 top-0 z-10 min-w-[256px] bg-white  px-4 pt-4 shadow-lg transition-all dark:bg-woodsmoke dark:text-white md:static xl:min-w-[320px]',
             show ? 'left-0' : '-left-full'
           )}
         >

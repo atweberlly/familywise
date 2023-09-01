@@ -97,7 +97,7 @@ export default function AdminLayout({ children }: any) {
               <span className="sr-only">Open notification</span>
               <BellIcon className="h-6 w-6 stroke-dark-200" />
               <div
-                className="absolute top-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-primary-400"
+                className="absolute right-0 top-0 h-3 w-3 rounded-full border-2 border-white bg-primary-400"
                 aria-label="New notification indicator"
               >
                 <span className="sr-only">New notification available</span>
@@ -135,7 +135,7 @@ export default function AdminLayout({ children }: any) {
       <div className="relative flex flex-1">
         <aside
           className={clsx(
-            'absolute top-0 bottom-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all dark:bg-woodsmoke md:static xl:min-w-[320px]',
+            'absolute bottom-0 top-0 z-10 min-w-[256px] border-r bg-white px-4 pt-4 transition-all dark:bg-woodsmoke md:static xl:min-w-[320px]',
             show ? 'left-0' : '-left-full'
           )}
         >
@@ -180,7 +180,7 @@ export default function AdminLayout({ children }: any) {
                 {openQuestion && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/questions"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -188,7 +188,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/questions-categories"
                       onClick={() => setOpenQuestion(!show)}
                     >
@@ -227,7 +227,7 @@ export default function AdminLayout({ children }: any) {
                 {open && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -235,7 +235,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -243,7 +243,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href=""
                       onClick={() => setShow(!show)}
                     >
@@ -295,7 +295,7 @@ export default function AdminLayout({ children }: any) {
                 {openFAQ && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/faqs"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -303,7 +303,7 @@ export default function AdminLayout({ children }: any) {
                     </Link>
 
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/faqs-categories"
                       onClick={() => setOpenFAQ(!show)}
                     >
@@ -368,7 +368,7 @@ export default function AdminLayout({ children }: any) {
                 {openSettings && (
                   <div className="flex flex-col pl-10">
                     <Link
-                      className="dark:hover:bg-dark -mr-4 -ml-14 py-2 pr-4 pl-14 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
+                      className="dark:hover:bg-dark -ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:text-white"
                       href="/admin/coupon"
                       onClick={() => setOpenSettings(!show)}
                     >

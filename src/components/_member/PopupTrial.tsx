@@ -51,7 +51,7 @@ const PopUpTrial = () => {
               Don&apos;t miss out on our amazing features!
             </p>
             <button
-              className="mt-4 mr-6 rounded-md bg-primary-600 px-4 py-2 text-white"
+              className="mr-6 mt-4 rounded-md bg-primary-600 px-4 py-2 text-white"
               onClick={handleClosePopup}
             >
               Ok

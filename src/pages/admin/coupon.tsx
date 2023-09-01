@@ -1,6 +1,7 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
+import { HiSearch } from 'react-icons/hi'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -17,7 +18,7 @@ import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 import { Table, TextInput, Spinner } from 'flowbite-react'
 import type { NextPage } from 'next'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const CouponManager: NextPage = () => {
   let initialState = {
@@ -249,7 +250,7 @@ const CouponManager: NextPage = () => {
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={MagnifyingGlassIcon}
+                  icon={HiSearch}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />
@@ -373,7 +374,7 @@ const CouponManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'dark:bg-dark absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >

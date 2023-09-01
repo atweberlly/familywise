@@ -36,7 +36,7 @@ export default function Header({ color = 'light', ...props }: Props) {
         aria-expanded={isOpen}
       >
         <div className="container relative h-full">
-          <div className="absolute top-10 right-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
+          <div className="absolute right-10 top-10 z-50 h-6 w-6 lg:h-8 lg:w-8">
             <button type="button" onClick={() => setIsOpen(false)}>
               <XMarkIcon className="h-full w-full" />
             </button>
@@ -83,7 +83,7 @@ export default function Header({ color = 'light', ...props }: Props) {
           </div>
 
           <Image
-            className="pointer-events-none absolute right-0 bottom-0 h-auto w-full select-none object-cover object-left"
+            className="pointer-events-none absolute bottom-0 right-0 h-auto w-full select-none object-cover object-left"
             src="/images/founder/golden-sand-explosion.jpg"
             alt=""
             width="1124"
@@ -92,7 +92,7 @@ export default function Header({ color = 'light', ...props }: Props) {
           />
         </div>
       </div>
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between py-4 px-4">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
         <Link className="relative h-28 w-48" href="/">
           <Logo isWhite={color === 'dark' ? false : true} />
         </Link>

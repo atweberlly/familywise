@@ -18,7 +18,7 @@ export default function refund_policy() {
         </div>
       </header>
       <section className="bg-primary-100 leading-normal md:leading-loose">
-        <div className="mx-auto max-w-screen-xl py-10 px-8 md:py-20 md:px-16">
+        <div className="mx-auto max-w-screen-xl px-8 py-10 md:px-16 md:py-20">
           <p className="mt-0 text-justify text-base md:text-lg">
             This Refund Policy (&quot;Policy&quot;) applies to the following purchases: purchases
             through{' '}

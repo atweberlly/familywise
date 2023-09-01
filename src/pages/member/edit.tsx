@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { FaCheck } from 'react-icons/fa'
+import 'react-quill/dist/quill.snow.css'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
+import QuillEditor from './QuilEditor'
 import axios from 'axios'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { CloudArrowUpIcon, PencilIcon } from '@heroicons/react/24/solid'
@@ -85,6 +87,11 @@ const Edit = ({ question, id }: Props) => {
     }
   }
 
+  // Define the onChange handler for QuillEditor
+  const handleEditorChange = (value: any) => {
+    setContent((prev) => ({ ...prev, story: value }))
+  }
+
   return (
     <div className="w-full ">
       <span className="font-normal">Heading</span>
@@ -144,7 +151,10 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            <span className="font-normal">Your story</span>
+            {defaultContent.story}
+            <QuillEditor value={content.story} onChange={handleEditorChange} />
+
+            {/*
             <textarea
               className="dark:bg-dark mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
               placeholder="Write your story here..."
@@ -154,9 +164,10 @@ const Edit = ({ question, id }: Props) => {
                 // saveStory(e, 'story')
               }}
             />
+            */}
           </div>
         </div>
-        <div className="w-[40%] py-[25px] px-[20px]">
+        <div className="w-[40%] px-[20px] py-[25px]">
           <div className="flex min-h-[159px] w-full items-center justify-center rounded-[12px] border-[1px] border-dashed border-secondary-500">
             <div className="text-center">
               {uploadedFile ? (

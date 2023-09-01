@@ -38,7 +38,7 @@ export default function ReplaceQuestion({
     >
       <div
         className={clsx(
-          'dark:bg-dark fixed top-1/2 left-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all lg:min-w-[50rem] lg:max-w-lg',
+          'dark:bg-dark fixed left-1/2 top-1/2 z-30 flex min-w-[20rem] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all lg:min-w-[50rem] lg:max-w-lg',
           showReplace ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >

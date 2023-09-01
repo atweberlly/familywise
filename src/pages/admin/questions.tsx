@@ -1,5 +1,6 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
+import { HiSearch } from 'react-icons/hi'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -12,7 +13,7 @@ import axios from 'axios'
 import clsx from 'clsx'
 import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
 import type { NextPage } from 'next'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const QuestionManager: NextPage = () => {
   let initialState = {
@@ -219,7 +220,7 @@ const QuestionManager: NextPage = () => {
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={MagnifyingGlassIcon}
+                  icon={HiSearch}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />
@@ -313,7 +314,7 @@ const QuestionManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'dark:bg-dark absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
