@@ -13,7 +13,7 @@ import Title from '../components/Title'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
-import 'flatpickr/dist/themes/light.css'
+//import 'flatpickr/dist/themes/light.css'
 import { Spinner } from 'flowbite-react'
 
 export default function JoinUs() {

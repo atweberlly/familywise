@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { FaCheck } from 'react-icons/fa'
-import 'react-quill/dist/quill.snow.css'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
@@ -151,7 +150,6 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            {defaultContent.story}
             <QuillEditor value={content.story} onChange={handleEditorChange} />
 
             {/*
