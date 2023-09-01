@@ -8,7 +8,7 @@ const onboarding = async (req, res) => {
     if (user.planType === 'Free-Trial') {
       // Send onboarding email for Free-Trial users
       const onboardingSubject =
-        'Ready to get started  ' + capitalizeFirstLetter(user.firstname) + '!'
+        'Ready to get started, ' + capitalizeFirstLetter(user.firstname) + '?'
       const onboardingTemplate = 'FreeTrial/onboarding-1.html'
 
       const onboardingEmailConfig = {

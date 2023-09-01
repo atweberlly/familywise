@@ -18,7 +18,7 @@ import { Spinner } from 'flowbite-react'
 
 export default function JoinUs() {
   const router = useRouter()
-  const { plan } = router.query
+  const plan = 'Free-Trial'
   const [selected, setSelected] = useState('AU')
   const blacklistCountries = false
   const [relationVisible] = useState(false)
@@ -36,13 +36,13 @@ export default function JoinUs() {
     password: '',
     cpassword: '',
     country: selected,
-    bookReceiver: 'gift',
+    bookReceiver: 'myself',
     giftDate: '',
     giftSender: '',
     giftSalutation: '',
-    giftRelation: 'mom',
-    giftOccasion: 'merry christmas!',
-    giftMessage: 'Enjoy Free Trial',
+    giftRelation: '', //this can be empty
+    giftOccasion: '', //this can be empty
+    giftMessage: '', //this can be empty
     planType: plan,
     freeTrialEnd: '',
   }
@@ -91,7 +91,7 @@ export default function JoinUs() {
           //Send onboarding email
           await axios.post('/api/mail/onboarding', data)
           //
-          toast.success('Account Registration Successful')
+          toast.success('Congratulations! Your 14-Day Free Trial Registration Was Successful 🎉')
           router.push(`sign-in`)
         }, 3000)
       })
@@ -341,18 +341,4 @@ export default function JoinUs() {
       </section>
     </main>
   )
-}
-export async function getServerSideProps({ query }: any) {
-  if (!query.plan) {
-    return {
-      redirect: {
-        destination: '/pricing',
-        permanent: false,
-      },
-    }
-  }
-
-  return {
-    props: {},
-  }
 }
