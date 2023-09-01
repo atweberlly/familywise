@@ -1,4 +1,5 @@
 import { useState, useEffect, SetStateAction } from 'react'
+import { HiSearch } from 'react-icons/hi'
 import Heading from '../../components/Heading'
 import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
@@ -6,7 +7,6 @@ import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
 import axios from 'axios'
 import { Table, TextInput } from 'flowbite-react'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Newsletter() {
   /*let initialState = {
@@ -76,7 +76,7 @@ export default function Newsletter() {
                 type="text"
                 placeholder="Search"
                 required={true}
-                icon={MagnifyingGlassIcon}
+                icon={HiSearch}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />

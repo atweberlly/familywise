@@ -151,6 +151,7 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
+            {defaultContent.story}
             <QuillEditor value={content.story} onChange={handleEditorChange} />
 
             {/*
