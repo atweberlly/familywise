@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
+import Image from 'next/image'
 import axios from 'axios'
 import { Spinner } from 'flowbite-react'
+import countryData from '~/data/countryData'
 import Button from './Button'
 
 export default function Newsletter() {
   const [isLoading, setLoading] = useState(false)
   const [selected, setSelected] = useState('AU')
+  const [phone, setPhone] = useState(`+${countryData[0].countryCallingCode}`)
 
-  let initialState = {
+  const initialState = {
     first_name: '',
     last_name: '',
     email: '',
@@ -39,25 +41,25 @@ export default function Newsletter() {
       },
     }
     // make the API call
-    // make the API call
     await axios(configuration)
       .then(() => {
         toast.success(
           'Success! 🎉 You are now subscribed to receive our example questions & tips for writing your story.',
         )
         setTimeout(() => {
-          // After 3 seconds set the show value to false
-          setLoading(false) //remove loader
+          // After 3 seconds set the show value to falses
+          setLoading(false) // remove loader
           resetField('first_name')
           resetField('last_name')
           resetField('email')
         }, 3000)
       })
-      .catch((err) => {
+      .catch(() => {
         toast.success('You are already subscribed. We are glad you are interested in us.')
+
         setTimeout(() => {
           // After 3 seconds set the show value to false
-          setLoading(false) //remove loader
+          setLoading(false) // remove loader
           resetField('first_name')
           resetField('last_name')
           resetField('email')
@@ -65,6 +67,7 @@ export default function Newsletter() {
       })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSelect = (code: string): void => {
     setSelected(code)
     setValue('country', code)
@@ -72,13 +75,12 @@ export default function Newsletter() {
 
   return (
     <section className="relative overflow-hidden pb-12 pt-64 md:pb-24">
-      <img
-        className="absolute inset-0 h-full w-full select-none object-cover"
-        src="/images/image.jpg"
+      <Image
+        className="pointer-events-none select-none object-cover"
+        src="/images/newsletter.jpg"
         alt=""
-        loading="lazy"
+        fill
       />
-      <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-white"></div>
 
       <div className="container relative">
         <div className="text-center">
@@ -88,68 +90,108 @@ export default function Newsletter() {
           <h2 className="mt-6 font-serif text-4xl font-bold">Receive inspiration in your inbox</h2>
         </div>
 
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form className="mx-auto mt-8 max-w-screen-md" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 items-start justify-center gap-8 md:grid-cols-2">
-            <div>
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="first-name">
+                First name
+              </label>
               <input
-                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className=" border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
+                id="first-name"
                 type="text"
-                placeholder="First name"
-                {...register('first_name', { required: 'Your must provide first name' })}
+                {...register('first_name', { required: 'Your must provide your first name.' })}
               />
-              {errors.first_name && (
+              {errors.first_name != null && (
                 <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
                   {errors.first_name.message}
                 </p>
               )}
             </div>
-            <div>
+
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="last-name">
+                Last name
+              </label>
               <input
-                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className=" border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
+                id="last-name"
                 type="text"
-                placeholder="Last name"
-                {...register('last_name', { required: 'You must provide last name' })}
+                {...register('last_name', { required: 'You must provide your last name.' })}
               />
-              {errors.last_name && (
+              {errors.last_name != null && (
                 <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
                   {errors.last_name.message}
                 </p>
               )}
             </div>
-            <div>
+
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="email-address">
+                Email address
+              </label>
               <input
-                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className="border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
+                id="email-address"
                 type="email"
-                placeholder="Email address"
                 {...register('email', {
                   required: 'You must provide an email address',
                   pattern: {
                     value: /^\S+@\S+$/i,
-                    message: 'Please enter a valid email address',
+                    message: 'Please enter a valid email address.',
                   },
                 })}
               />
-              {errors.email && (
+              {errors.email != null && (
                 <p className="mt-2 text-sm text-danger-500 peer-invalid:block">
                   {errors.email.message}
                 </p>
               )}
             </div>
-            <div>
-              <ReactFlagsSelect
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="phone-number">
+                Phone number
+              </label>
+
+              <div className="flex items-center">
+                <select
+                  className="border-b border-b-gray-800 bg-transparent py-2 pl-3"
+                  name="phone-number"
+                  id="phone-number"
+                  onChange={(e) => {
+                    setPhone(e.target.value)
+                  }}
+                >
+                  {countryData.map((country) => (
+                    <option value={`+${country.countryCallingCode}`} key={country.countryCode}>
+                      {country.countryCode}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  className="flex-1 border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
+                  type="tel"
+                  placeholder={phone}
+                />
+              </div>
+
+              {/* <ReactFlagsSelect
+                className="border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
                 selected={selected}
                 onSelect={onSelect}
                 searchable={true}
-                className="flag-select w-full rounded-lg border-2 border-gray-300 bg-white !pb-0 shadow-sm transition focus:border-primary-600 focus:outline-none"
-              />
+              /> */}
             </div>
           </div>
-          <div className="mx-auto mt-4 max-w-sm text-center lg:mt-8">
-            <Button className="w-40" type={'submit'} color={'yellow'}>
+
+          <div className="mx-auto mt-8 max-w-sm text-center lg:mt-8">
+            <Button className="w-40 !bg-[#013882]" type="submit">
               {isLoading ? (
                 <>
                   <Spinner aria-label="loading" />
-                  <span className="pl-3">Sending</span>
+                  <span className="ml-3">Sending</span>
                 </>
               ) : (
                 'Join Us'

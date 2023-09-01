@@ -30,7 +30,7 @@ export default function Button({
   return type === 'link' ? (
     <Link
       className={clsx(
-        'inline-block rounded-xl border-2 border-transparent px-4 py-3 text-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2',
+        'inline-block rounded-lg border-2 border-transparent px-4 py-3 text-center font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2',
         colorClassnames,
         className,
       )}

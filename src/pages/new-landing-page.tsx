@@ -16,6 +16,7 @@ import { StarIcon } from '@heroicons/react/24/solid'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
+import Newsletter from '~/components/Newsletter'
 import Title from '~/components/Title'
 
 export default function Home(): JSX.Element {
@@ -407,6 +408,7 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
+      <Newsletter />
       <Footer />
     </div>
   )
