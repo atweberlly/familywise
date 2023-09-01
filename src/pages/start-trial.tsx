@@ -36,13 +36,13 @@ export default function JoinUs() {
     password: '',
     cpassword: '',
     country: selected,
-    bookReceiver: 'myself',
+    bookReceiver: 'gift',
     giftDate: '',
     giftSender: '',
     giftSalutation: '',
     giftRelation: 'mom',
     giftOccasion: 'merry christmas!',
-    giftMessage: '',
+    giftMessage: 'Enjoy Free Trial',
     planType: plan,
     freeTrialEnd: '',
   }
@@ -83,10 +83,15 @@ export default function JoinUs() {
     await axios(configuration)
       .then((response) => {
         // redirect user to the auth page
-        setTimeout(() => {
+        setTimeout(async () => {
           destroyDatePicker()
           setLoading(false)
           data.status = true
+
+          //Send onboarding email
+          await axios.post('/api/mail/onboarding', data)
+          //
+          toast.success('Account Registration Successful')
           router.push(`sign-in`)
         }, 3000)
       })
