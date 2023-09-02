@@ -5,7 +5,6 @@ import Image from 'next/image'
 import axios from 'axios'
 import { Spinner } from 'flowbite-react'
 import countryData from '~/data/countryData'
-import Button from './Button'
 
 export default function Newsletter() {
   const [isLoading, setLoading] = useState(false)
@@ -84,10 +83,10 @@ export default function Newsletter() {
 
       <div className="container relative">
         <div className="text-center">
-          <div className="text-sm font-medium uppercase tracking-wide">
-            Make every moment count!
-          </div>
-          <h2 className="mt-6 font-serif text-4xl font-bold">Receive inspiration in your inbox</h2>
+          <h2 className="text-sm font-medium uppercase tracking-wider">Make every moment count!</h2>
+          <p className="mt-6 font-fair text-4xl font-semibold">
+            We&apos;ll remind you before important dates
+          </p>
         </div>
 
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
@@ -186,17 +185,20 @@ export default function Newsletter() {
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-sm text-center lg:mt-8">
-            <Button className="w-40 !bg-[#013882]" type="submit">
+          <div className="mx-auto mt-8 text-center">
+            <button
+              className="w-full rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600 lg:w-32"
+              type="submit"
+            >
               {isLoading ? (
                 <>
                   <Spinner aria-label="loading" />
                   <span className="ml-3">Sending</span>
                 </>
               ) : (
-                'Join Us'
+                'Join us'
               )}
-            </Button>
+            </button>
           </div>
         </form>
       </div>
