@@ -50,7 +50,7 @@ export default function Header(): JSX.Element {
 
             <li>
               <Link
-                className="inline-block rounded-lg bg-[#013882] px-5 py-3 font-semibold text-white"
+                className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
                 href=""
               >
                 Start Free Trial
