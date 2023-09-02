@@ -4,6 +4,7 @@ import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   ArrowLongDownIcon,
+  CheckCircleIcon,
   LockClosedIcon,
   MinusIcon,
   PlusIcon,
@@ -290,8 +291,8 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
-      <section className="container py-8" id="get-started">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <section className="bg-[#f7fafc] py-8 lg:py-16 xl:py-24" id="get-started">
+        <div className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16 xl:gap-24">
           <div>
             <div className="aspect-h-4 aspect-w-3">
               <Image className="rounded-lg object-cover" src="/images/cover@4x.jpg" alt="" fill />
@@ -301,24 +302,66 @@ export default function Home(): JSX.Element {
           <div>
             <div className="flex items-center">
               <div className="h-px w-10 bg-[#111]" />
-              <p className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
+              <h2 className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
                 Bringing families together
-              </p>
+              </h2>
+            </div>
+            <p className="mt-4 font-fair text-4xl lg:text-6xl">Your story starts here</p>
+
+            <div className="mt-8 inline-flex items-end">
+              <div className="flex items-center space-x-1">
+                {[...Array(5).keys()].map((index) => (
+                  <StarIcon className="h-6 w-6 text-yellow-500" key={index} />
+                ))}
+              </div>
+              <span className="ml-2 text-sm">5 start reviews</span>
             </div>
 
-            <h2 className="mt-4 font-fair text-4xl lg:text-6xl">Your story starts here</h2>
+            <ul className="mt-8 space-y-2">
+              <li className="flex">
+                <div className="flex h-6 items-center">
+                  <CheckCircleIcon className="h-6 w-6 rounded-full bg-[#eaf1ff] stroke-[#0063e8]" />
+                </div>
+
+                <p className="ml-2 font-medium text-gray-600">
+                  One year membership, your first book is included!
+                </p>
+              </li>
+
+              <li className="flex">
+                <div className="flex h-6 items-center">
+                  <CheckCircleIcon className="h-6 w-6 rounded-full bg-[#eaf1ff] stroke-[#0063e8]" />
+                </div>
+
+                <p className="ml-2 font-medium text-gray-600">
+                  Complete your book as quickly as you want
+                </p>
+              </li>
+            </ul>
 
             <div className="mt-10">
-              <div className="inline-flex items-end">
-                <div className="flex items-center space-x-1">
-                  {[...Array(5).keys()].map((index) => (
-                    <StarIcon className="h-6 w-6 text-yellow-500" key={index} />
-                  ))}
-                </div>
-                <span className="ml-2 text-sm">50 Reviews</span>
-              </div>
-
               <div className="my-8 space-y-4">
+                <div className="relative flex">
+                  <input
+                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
+                    id="free-trial"
+                    name="plan"
+                    type="radio"
+                    value="classic"
+                  />
+                  <label
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
+                    htmlFor="free-trial"
+                  >
+                    <div>
+                      <div className="text-lg font-bold">Free trial</div>
+                      <div className="text-sm text-secondary-600">14 days</div>
+                    </div>
+
+                    <div className="text-2xl font-semibold">$0.00</div>
+                  </label>
+                </div>
+
                 <div className="relative flex">
                   <input
                     className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
@@ -328,18 +371,15 @@ export default function Home(): JSX.Element {
                     value="classic"
                   />
                   <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition peer-checked:border-blue-500 peer-focus:ring-4 peer-focus:ring-blue-500/50"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
                     htmlFor="classic-plan"
                   >
                     <div>
-                      <div className="text-lg font-bold">Classic</div>
-                      <div className="text-sm">Classic plan</div>
+                      <div className="text-lg font-bold">Your Life In A Book</div>
+                      <div className="text-sm">Questions about your life</div>
                     </div>
 
-                    <div>
-                      <span className="text-3xl font-semibold">$97</span>{' '}
-                      <span className="text-sm">per year</span>
-                    </div>
+                    <div className="text-2xl font-semibold">$97.00</div>
                   </label>
                 </div>
 
@@ -352,18 +392,15 @@ export default function Home(): JSX.Element {
                     value="premium"
                   />
                   <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition peer-checked:border-blue-500 peer-focus:ring-4 peer-focus:ring-blue-500/50"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
                     htmlFor="premium-plan"
                   >
                     <div>
-                      <div className="text-lg font-bold">Premium</div>
-                      <div className="text-sm">Most popular</div>
+                      <div className="text-lg font-bold">Photo Based Book</div>
+                      <div className="text-sm">Start with a photo and tell that story</div>
                     </div>
 
-                    <div>
-                      <span className="text-3xl font-semibold">$137</span>{' '}
-                      <span className="text-sm">per year</span>
-                    </div>
+                    <div className="text-2xl font-semibold">$97.00</div>
                   </label>
                 </div>
 
