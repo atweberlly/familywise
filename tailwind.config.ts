@@ -93,8 +93,13 @@ export default {
     aspectRatio: false,
   },
   plugins: [
-    plugin(({ addVariant }) => {
+    plugin(({ addVariant, addUtilities }) => {
       addVariant('open-details', '.open-details[open] &')
+      addUtilities({
+        '.text-balance': {
+          textWrap: 'balance',
+        },
+      })
     }),
     aspectRatio,
     forms({
