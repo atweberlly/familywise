@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
@@ -18,6 +17,8 @@ import Footer from '~/components/Footer'
 import Header from '~/components/Header'
 import Newsletter from '~/components/Newsletter'
 import Title from '~/components/Title'
+import FirstStep from '~/public/images/how-it-works/first-step.svg'
+import SecondStep from '~/public/images/how-it-works/second-step.svg'
 
 export default function Home(): JSX.Element {
   // const [testimonials, setTestimonials] = useState([])
@@ -47,11 +48,9 @@ export default function Home(): JSX.Element {
   function scrollDown() {
     const element = document.getElementById('get-started') as HTMLDivElement
 
-    if (element === null) {
-      return
+    if (element !== null) {
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-
-    element.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -107,7 +106,7 @@ export default function Home(): JSX.Element {
 
           <div className="relative z-50 mx-auto max-w-lg pt-80 text-[#112f45]">
             <h1 className="text-center font-serif text-[3.25rem] font-bold leading-none lg:text-6xl">
-              Publish the <span className="text-[#ec8b33]">stories</span> of your life
+              Publish the <em className="text-orange-500">stories</em> of your life
             </h1>
             <p className="mt-5 text-center text-xl font-medium md:text-left">
               We all carry amazing life stories with us, many untold.
@@ -124,12 +123,85 @@ export default function Home(): JSX.Element {
           </button>
         </div>
 
-        <div></div>
+        <div className="mx-auto my-8 max-w-4xl lg:my-16 xl:my-32">
+          <h2 className="text-center font-fair text-4xl lg:text-5xl xl:text-6xl">
+            &quot;FamilyWise sends you a question each week and your stories are compiled into your
+            very own book of memories.&quot;
+          </h2>
+        </div>
+      </div>
+
+      <div className="relative bg-[#f8f8f8] py-8">
+        {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+        {/* <div className="how-it-works absolute top-1/2 hidden -translate-y-1/2 whitespace-nowrap lg:flex">
+          <div className="mx-8 mr-4 select-none text-center font-serif text-8xl font-bold">
+            How it works
+          </div>
+        </div> */}
+
+        <div className="mx-8 mr-4 text-center font-serif text-5xl font-bold lg:text-6xl">
+          How it works
+        </div>
+
+        <div className="container mt-8">
+          <div className="flex flex-col gap-8 lg:flex-row lg:gap-0 lg:[&_p]:px-4">
+            <div className="text-center lg:w-4/12 lg:shrink-0">
+              <div className="flex justify-center">
+                <FirstStep className="h-40 w-40 object-cover" />
+              </div>
+
+              <h3 className="relative mt-4 text-sm">
+                <span className="relative z-10 bg-[#f7f6f3] px-2">Step 1</span>
+                <div className="absolute top-1/2 h-px w-full -translate-y-1/2 bg-[#ec8b33]" />
+              </h3>
+
+              <p className="mt-4 text-xl font-medium text-balance">
+                Each week we&apos;ll email a question to you.
+              </p>
+            </div>
+
+            <div className="text-center lg:w-4/12 lg:shrink-0">
+              <div className="flex justify-center">
+                <SecondStep className="h-40 w-40 object-cover" />
+              </div>
+
+              <h3 className="relative mt-4 text-sm">
+                <span className="relative z-10 bg-[#f7f6f3] px-2">Step 2</span>
+                <div className="absolute top-1/2 h-px w-full -translate-y-1/2 bg-[#ec8b33]" />
+              </h3>
+              <p className="mt-4 text-xl font-medium text-balance">
+                Your answers can be as long or short as you like. Add photos if you&apos;d like.
+              </p>
+            </div>
+
+            <div className="text-center lg:w-4/12 lg:shrink-0">
+              <div className="flex justify-center">
+                <Image
+                  className="h-40 w-40 object-cover"
+                  src="/images/how-it-works/third-step.png"
+                  alt=""
+                  width={160}
+                  height={160}
+                />
+              </div>
+
+              <h3 className="relative mt-4 text-sm">
+                <span className="relative z-10 bg-[#f7f6f3] px-2">Step 3</span>
+                <div className="absolute top-1/2 h-px w-full -translate-y-1/2 bg-[#ec8b33]" />
+              </h3>
+              <p className="mt-4 text-xl font-medium text-balance">
+                When you&apos;re ready, you can print a single book or as many copies as you want.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <section>
         <div className="aspect-h-9 aspect-w-16 md:aspect-h-6">
-          <Image className="object-cover" src="/images/video-placeholder.png" alt="" fill />
+          <video controls>
+            <source src="/videos/video_preview_h264.mp4" type="video/mp4" />
+          </video>
         </div>
 
         <div className="container grid grid-cols-1 items-center gap-8 pb-12 pt-14 md:grid-cols-2 md:pb-14 md:pt-16 lg:gap-16 lg:pb-24">
@@ -141,9 +213,7 @@ export default function Home(): JSX.Element {
               </p>
             </div>
 
-            <h2 className="mt-4 font-serif text-4xl font-semibold lg:text-6xl">
-              Start right away!
-            </h2>
+            <h2 className="mt-4 font-fair text-4xl lg:text-6xl">Start right away!</h2>
 
             <div className="mt-4 space-y-2 text-lg text-gray-600">
               <p>
@@ -236,7 +306,7 @@ export default function Home(): JSX.Element {
               </p>
             </div>
 
-            <h2 className="mt-4 font-serif text-4xl lg:text-6xl">Your story starts here</h2>
+            <h2 className="mt-4 font-fair text-4xl lg:text-6xl">Your story starts here</h2>
 
             <div className="mt-10">
               <div className="inline-flex items-end">
