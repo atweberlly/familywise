@@ -226,7 +226,7 @@ export default function Home(): JSX.Element {
 
             <div className="mt-6 md:mt-12">
               <button
-                className="rounded-lg bg-[#013882] px-5 py-3 font-semibold text-[#ede7df]"
+                className="rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
                 type="button"
               >
                 Get started
@@ -321,14 +321,14 @@ export default function Home(): JSX.Element {
               <div className="my-8 space-y-4">
                 <div className="relative flex">
                   <input
-                    className="peer absolute left-5 top-6 h-6 w-6 accent-[#0063e8] focus:outline-none"
+                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
                     id="classic-plan"
                     name="plan"
                     type="radio"
                     value="classic"
                   />
                   <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition peer-checked:border-[#0063e8] peer-focus:ring-4 peer-focus:ring-[#0063e8]/50"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition peer-checked:border-blue-500 peer-focus:ring-4 peer-focus:ring-blue-500/50"
                     htmlFor="classic-plan"
                   >
                     <div>
@@ -345,14 +345,14 @@ export default function Home(): JSX.Element {
 
                 <div className="relative flex">
                   <input
-                    className="peer absolute left-5 top-6 h-6 w-6 accent-[#0063e8] focus:outline-none"
+                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
                     id="premium-plan"
                     name="plan"
                     type="radio"
                     value="premium"
                   />
                   <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition peer-checked:border-[#0063e8] peer-focus:ring-4 peer-focus:ring-[#0063e8]/50"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition peer-checked:border-blue-500 peer-focus:ring-4 peer-focus:ring-blue-500/50"
                     htmlFor="premium-plan"
                   >
                     <div>
@@ -368,7 +368,7 @@ export default function Home(): JSX.Element {
                 </div>
 
                 <Link
-                  className="block rounded-lg bg-[#013882] px-5 py-3 text-center font-semibold text-white"
+                  className="block rounded-lg bg-orange-500 px-5 py-3 text-center font-semibold text-white transition hover:bg-orange-600"
                   href="/pricing"
                 >
                   Membership Options
@@ -444,7 +444,7 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
-      <section className="bg-[#f7f6f3] py-8 md:py-16 lg:py-24">
+      <section className="bg-white-500 py-8 md:py-16 lg:py-24">
         <div className="container relative">
           <Swiper
           // modules={[Pagination]}
@@ -459,7 +459,7 @@ export default function Home(): JSX.Element {
                 ))}
               </div>
 
-              <blockquote className="mt-4 text-center font-serif text-4xl text-gray-900 [text-wrap:balance] lg:text-5xl xl:text-6xl">
+              <blockquote className="mt-4 text-center font-fair text-4xl text-gray-900 text-balance lg:text-5xl xl:text-6xl">
                 <p>
                   FamilyWise Stories guided me every week to gather my memoirs into a keepsake book.
                   All my children have a copy now, which will last for generations to come.
