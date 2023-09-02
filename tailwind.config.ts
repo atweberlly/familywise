@@ -93,6 +93,19 @@ export default {
           800: '#874e01',
           900: '#673b00',
         },
+        white: {
+          DEFAULT: '#fff',
+          50: '#fefefe',
+          100: '#fdfdfd',
+          200: '#fcfcfc',
+          300: '#fafafa',
+          400: '#f9f9f9',
+          500: '#f8f8f8', // Base
+          600: '#e2e2e2',
+          700: '#b0b0b0',
+          800: '#888888',
+          900: '#686868',
+        },
       },
       fontFamily: {
         sans: ['Manrope', ...defaultTheme.fontFamily.sans],
