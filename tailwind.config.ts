@@ -8,6 +8,9 @@ import files from './files'
 export default {
   content: [...files],
   darkMode: 'class',
+  future: {
+    disableColorOpacityUtilitiesByDefault: true,
+  },
   theme: {
     container: {
       center: true,
@@ -76,10 +79,25 @@ export default {
           500: '#0c0e1f',
           600: '#0a0c1b',
         },
+
+        // New colors
+        orange: {
+          50: '#fef4e6',
+          100: '#fcdcb0',
+          200: '#facb8a',
+          300: '#f8b355',
+          400: '#f7a434',
+          500: '#f58d01', // Base
+          600: '#df8001',
+          700: '#ae6401',
+          800: '#874e01',
+          900: '#673b00',
+        },
       },
       fontFamily: {
         sans: ['Manrope', ...defaultTheme.fontFamily.sans],
         serif: ['Freight Big Pro', ...defaultTheme.fontFamily.serif],
+        fair: ['Playfair Display', ...defaultTheme.fontFamily.serif],
       },
       minWidth: {
         xs: '320px',
