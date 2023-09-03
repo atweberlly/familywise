@@ -15,3 +15,9 @@
     content: '';
   }
 }
+
+@layer components {
+  .section {
+    @apply py-8 lg:py-16 xl:py-24;
+  }
+}

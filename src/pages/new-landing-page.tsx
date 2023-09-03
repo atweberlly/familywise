@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  ArrowLongDownIcon,
   CheckCircleIcon,
   LockClosedIcon,
   MinusIcon,
@@ -20,6 +20,7 @@ import Newsletter from '~/components/Newsletter'
 import Title from '~/components/Title'
 import FirstStep from '~/public/images/how-it-works/first-step.svg'
 import SecondStep from '~/public/images/how-it-works/second-step.svg'
+import Hero from '~/sections/Hero'
 
 export default function Home(): JSX.Element {
   // const [testimonials, setTestimonials] = useState([])
@@ -46,106 +47,53 @@ export default function Home(): JSX.Element {
     console.log(testimonials)
   }, [testimonials]) */
 
-  function scrollDown() {
-    const element = document.getElementById('get-started') as HTMLDivElement
+  useEffect(() => {
+    function marquee(selector: string, speed: number): void {
+      const parentSelector = document.querySelector(selector) as HTMLElement
+      const clone = parentSelector.innerHTML
+      const firstElement = parentSelector.children[0] as HTMLElement
+      let i = 0
 
-    if (element !== null) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      parentSelector.insertAdjacentHTML('beforeend', clone)
+
+      setInterval(() => {
+        firstElement.style.marginLeft = `-${i}px`
+
+        if (i > firstElement.clientWidth) {
+          i = 0
+        }
+
+        i += speed
+      }, 0)
     }
-  }
+
+    const speed = 0.25
+
+    // marquee('.gift', speed)
+    marquee('.how-it-works', speed)
+  }, [])
 
   return (
     <div>
       <Title>FamilyWise</Title>
       <Header />
+      <Hero />
 
-      <div className="container pt-16">
-        <div className="relative">
-          <Image
-            className="absolute left-1/2 top-0 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0 lg:h-[524px] lg:w-[356px]"
-            src="/images/hero/hero-image-1@4x.jpg"
-            alt=""
-            width="184"
-            height="264"
-          />
-          <Image
-            className="absolute left-0 top-48 z-10 h-[208px] w-[144px] shadow-xl lg:h-[340px] lg:w-[232px]"
-            src="/images/hero/hero-image-2@4x.jpg"
-            alt=""
-            width="144"
-            height="208"
-          />
-          <Image
-            className="absolute right-0 top-[calc(12rem+6px)] z-10 h-[192px] w-[128px] shadow-xl md:left-28 lg:left-48 lg:top-[calc(12rem+20px)] lg:h-[284px] lg:w-[192px]"
-            src="/images/hero/hero-image-3@4x.jpg"
-            alt=""
-            width="128"
-            height="192"
-          />
-
-          <Image
-            className="absolute right-8 top-0 z-10 hidden h-[264px] w-[184px] shadow-xl md:block lg:h-[456px] lg:w-[328px]"
-            src="/images/hero/hero-image-4.jpg"
-            alt=""
-            width="328"
-            height="456"
-          />
-          <Image
-            className="absolute right-28 top-48 z-20 hidden h-[208px] w-[144px] shadow-xl md:block lg:right-56 lg:h-[284px] lg:w-[192px]"
-            src="/images/hero/hero-image-5.jpg"
-            alt=""
-            width="192"
-            height="284"
-          />
-          <Image
-            className="absolute right-0 top-[calc(12rem+6px)] z-30 hidden h-[192px] w-[128px] shadow-xl md:block lg:h-[432px] lg:w-[296px]"
-            src="/images/hero/hero-image-6.jpg"
-            alt=""
-            width="296"
-            height="432"
-          />
-
-          <div className="relative z-50 mx-auto max-w-lg pt-80 text-[#112f45]">
-            <h1 className="text-center font-serif text-[3.25rem] font-bold leading-none lg:text-6xl">
-              Publish the <em className="text-orange-500">stories</em> of your life
-            </h1>
-            <p className="mt-5 text-center text-xl font-medium md:text-left">
-              We all carry amazing life stories with us, many untold.
-            </p>
-          </div>
-
-          <button
-            className="mx-auto mt-20 flex animate-bounce flex-col items-center lg:mt-28"
-            type="button"
-            onClick={scrollDown}
-          >
-            <div className="text-sm uppercase tracking-wide">Learn more</div>
-            <ArrowLongDownIcon className="mt-2 h-6 w-6" />
-          </button>
-        </div>
-
-        <div className="mx-auto my-8 max-w-4xl lg:my-16 xl:my-32">
-          <h2 className="text-center font-fair text-4xl lg:text-5xl xl:text-6xl">
-            &quot;FamilyWise sends you a question each week and your stories are compiled into your
-            very own book of memories.&quot;
-          </h2>
-        </div>
-      </div>
-
-      <div className="relative bg-[#f8f8f8] py-8">
+      <div className="section relative overflow-hidden bg-white-500">
         {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
-        {/* <div className="how-it-works absolute top-1/2 hidden -translate-y-1/2 whitespace-nowrap lg:flex">
-          <div className="mx-8 mr-4 select-none text-center font-serif text-8xl font-bold">
-            How it works
+        <div className="how-it-works hidden lg:flex lg:items-center lg:space-x-8 lg:whitespace-nowrap lg:text-[#112f45]">
+          <div className="flex select-none items-center text-center font-serif text-8xl font-bold">
+            <span>How it works</span>
+            <div className="ml-8 h-0.5 w-24 bg-black" />
           </div>
-        </div> */}
+        </div>
 
-        <div className="mx-8 mr-4 text-center font-serif text-5xl font-bold lg:text-6xl">
+        <div className="text-center font-serif text-6xl font-bold text-[#112f45] lg:hidden lg:text-6xl">
           How it works
         </div>
 
-        <div className="container mt-8">
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-0 lg:[&_p]:px-4">
+        <div className="container mt-8 md:mt-16 lg:mt-24">
+          <div className="flex flex-col gap-8 md:mx-auto md:max-w-xs lg:mx-0 lg:max-w-none lg:flex-row lg:gap-0 lg:[&_p]:px-4">
             <div className="text-center lg:w-4/12 lg:shrink-0">
               <div className="flex justify-center">
                 <FirstStep className="h-40 w-40 object-cover" />
@@ -178,7 +126,7 @@ export default function Home(): JSX.Element {
             <div className="text-center lg:w-4/12 lg:shrink-0">
               <div className="flex justify-center">
                 <Image
-                  className="h-40 w-40 object-cover"
+                  className="h-40 w-64 object-cover"
                   src="/images/how-it-works/third-step.png"
                   alt=""
                   width={160}
@@ -199,7 +147,7 @@ export default function Home(): JSX.Element {
       </div>
 
       <section>
-        <div className="aspect-h-9 aspect-w-16 md:aspect-h-6">
+        <div className="aspect-h-9 aspect-w-16 bg-black md:aspect-h-6">
           <video controls>
             <source src="/videos/video_preview_h264.mp4" type="video/mp4" />
           </video>
@@ -291,7 +239,7 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
-      <section className="bg-[#f7fafc] py-8 lg:py-16 xl:py-24" id="get-started">
+      <section className="section bg-white-500" id="get-started">
         <div className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16 xl:gap-24">
           <div>
             <div className="aspect-h-4 aspect-w-3">
@@ -481,7 +429,7 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
-      <section className="overflow-hidden px-10 py-8 lg:py-16 xl:py-24" id="founder">
+      <section className="section overflow-hidden px-10" id="founder">
         <div className="relative mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
           <Image
             className="pointer-events-none absolute -right-1/2 top-0 w-[70.25rem] select-none object-cover object-left"
