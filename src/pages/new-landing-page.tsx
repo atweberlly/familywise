@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  ArrowLongLeftIcon,
+  ArrowLongRightIcon,
   CheckCircleIcon,
   LockClosedIcon,
   MinusIcon,
@@ -11,66 +13,19 @@ import {
   ReceiptRefundIcon,
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
-// import axios from 'axios'
-// import { Pagination } from 'swiper'
+import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
 import Newsletter from '~/components/Newsletter'
 import Title from '~/components/Title'
-import FirstStep from '~/public/images/how-it-works/first-step.svg'
-import SecondStep from '~/public/images/how-it-works/second-step.svg'
+import marquee from '~/scripts/marquee'
 import Hero from '~/sections/Hero'
+import HowItWorks from '~/sections/HowItWorks'
 
 export default function Home(): JSX.Element {
-  // const [testimonials, setTestimonials] = useState([])
-
-  /* useEffect(() => {
-    async function fetchTestimonials(): Promise<void> {
-      const configuration = {
-        method: 'get',
-        url: 'api/testimonials',
-      }
-
-      // Make the API call
-      await axios(configuration)
-        .then((response) => {
-          setTestimonials(response.data.result)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-
-    void fetchTestimonials()
-
-    console.log(testimonials)
-  }, [testimonials]) */
-
   useEffect(() => {
-    function marquee(selector: string, speed: number): void {
-      const parentSelector = document.querySelector(selector) as HTMLElement
-      const clone = parentSelector.innerHTML
-      const firstElement = parentSelector.children[0] as HTMLElement
-      let i = 0
-
-      parentSelector.insertAdjacentHTML('beforeend', clone)
-
-      setInterval(() => {
-        firstElement.style.marginLeft = `-${i}px`
-
-        if (i > firstElement.clientWidth) {
-          i = 0
-        }
-
-        i += speed
-      }, 0)
-    }
-
-    const speed = 0.25
-
-    // marquee('.gift', speed)
-    marquee('.how-it-works', speed)
+    marquee('.gift', 0.25)
   }, [])
 
   return (
@@ -78,73 +33,7 @@ export default function Home(): JSX.Element {
       <Title>FamilyWise</Title>
       <Header />
       <Hero />
-
-      <div className="section relative overflow-hidden bg-white-500">
-        {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
-        <div className="how-it-works hidden lg:flex lg:items-center lg:space-x-8 lg:whitespace-nowrap lg:text-[#112f45]">
-          <div className="flex select-none items-center text-center font-serif text-8xl font-bold">
-            <span>How it works</span>
-            <div className="ml-8 h-0.5 w-24 bg-black" />
-          </div>
-        </div>
-
-        <div className="text-center font-serif text-6xl font-bold text-[#112f45] lg:hidden lg:text-6xl">
-          How it works
-        </div>
-
-        <div className="container mt-8 md:mt-16 lg:mt-24">
-          <div className="flex flex-col gap-8 md:mx-auto md:max-w-xs lg:mx-0 lg:max-w-none lg:flex-row lg:gap-0 lg:[&_p]:px-4">
-            <div className="text-center lg:w-4/12 lg:shrink-0">
-              <div className="flex justify-center">
-                <FirstStep className="h-40 w-40 object-cover" />
-              </div>
-
-              <h3 className="relative mt-4 text-sm">
-                <span className="relative z-10 bg-[#f7f6f3] px-2">Step 1</span>
-                <div className="absolute top-1/2 h-px w-full -translate-y-1/2 bg-[#ec8b33]" />
-              </h3>
-
-              <p className="mt-4 text-xl font-medium text-balance">
-                Each week we&apos;ll email a question to you.
-              </p>
-            </div>
-
-            <div className="text-center lg:w-4/12 lg:shrink-0">
-              <div className="flex justify-center">
-                <SecondStep className="h-40 w-40 object-cover" />
-              </div>
-
-              <h3 className="relative mt-4 text-sm">
-                <span className="relative z-10 bg-[#f7f6f3] px-2">Step 2</span>
-                <div className="absolute top-1/2 h-px w-full -translate-y-1/2 bg-[#ec8b33]" />
-              </h3>
-              <p className="mt-4 text-xl font-medium text-balance">
-                Your answers can be as long or short as you like. Add photos if you&apos;d like.
-              </p>
-            </div>
-
-            <div className="text-center lg:w-4/12 lg:shrink-0">
-              <div className="flex justify-center">
-                <Image
-                  className="h-40 w-64 object-cover"
-                  src="/images/how-it-works/third-step.png"
-                  alt=""
-                  width={160}
-                  height={160}
-                />
-              </div>
-
-              <h3 className="relative mt-4 text-sm">
-                <span className="relative z-10 bg-[#f7f6f3] px-2">Step 3</span>
-                <div className="absolute top-1/2 h-px w-full -translate-y-1/2 bg-[#ec8b33]" />
-              </h3>
-              <p className="mt-4 text-xl font-medium text-balance">
-                When you&apos;re ready, you can print a single book or as many copies as you want.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HowItWorks />
 
       <section>
         <div className="aspect-h-9 aspect-w-16 bg-black md:aspect-h-6">
@@ -426,6 +315,85 @@ export default function Home(): JSX.Element {
               </dl>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section overflow-hidden bg-black-pearl text-white">
+        <div className="container">
+          {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+          <div className="gift flex whitespace-nowrap">
+            <h2 className="mb-2 mr-4 bg-texture bg-clip-text font-serif text-[12rem] font-bold text-transparent">
+              The gift that lasts a lifetime.
+            </h2>
+          </div>
+
+          <Swiper
+            className="mt-8"
+            modules={[Navigation]}
+            navigation={{
+              prevEl: '.swiper-prev',
+              nextEl: '.swiper-next',
+            }}
+          >
+            <SwiperSlide className="flex flex-col items-center">
+              <h3 className="pb-2 font-serif text-3xl/none font-bold md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
+                <span className="block text-white/40">Preserve family memories to</span>
+                <span className="block sm:ml-4 md:ml-8">Pass on to future generations</span>
+              </h3>
+
+              <Image
+                className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
+                src="/images/slide-images/slide-image-1@1x.jpg"
+                alt=""
+                width="1060"
+                height="660"
+              />
+            </SwiperSlide>
+
+            <SwiperSlide className="flex flex-col items-center">
+              <h3 className="pb-2 font-serif text-3xl/none font-bold md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
+                <span className="block text-white/40">Give a gift to someone who&apos;s</span>
+                <span className="block sm:ml-4 md:ml-8">story you&apos;d like to hear</span>
+              </h3>
+
+              <Image
+                className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
+                src="/images/slide-images/slide-image-2@1x.jpg"
+                alt=""
+                width="1060"
+                height="660"
+              />
+            </SwiperSlide>
+
+            <SwiperSlide className="flex flex-col items-center">
+              <h3 className="pb-2 font-serif text-3xl/none font-bold md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
+                <span className="block text-white/40">Choose the date you&apos;d</span>
+                <span className="block sm:ml-4 md:ml-8">like your gift to commence</span>
+              </h3>
+
+              <Image
+                className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
+                src="/images/slide-images/slide-image-3@1x.jpg"
+                alt=""
+                width="1060"
+                height="660"
+              />
+            </SwiperSlide>
+
+            <button
+              className="swiper-prev right-0 top-[40%] z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2 lg:top-[42%]"
+              type="button"
+            >
+              <ArrowLongLeftIcon className="h-4 w-4 md:h-8 md:w-8 " />
+            </button>
+
+            <button
+              className="swiper-next right-0 top-1/2 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2"
+              type="button"
+            >
+              <ArrowLongRightIcon className="h-4 w-4 md:h-8 md:w-8 " />
+            </button>
+          </Swiper>
         </div>
       </section>
 
