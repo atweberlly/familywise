@@ -481,6 +481,60 @@ export default function Home(): JSX.Element {
         </div>
       </section>
 
+      <section className="overflow-hidden px-10 py-8 lg:py-16 xl:py-24" id="founder">
+        <div className="relative mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
+          <Image
+            className="pointer-events-none absolute -right-1/2 top-0 w-[70.25rem] select-none object-cover object-left"
+            src="/images/founder/golden-sand-explosion.jpg"
+            alt=""
+            width="1124"
+            height="736"
+          />
+
+          <div className="relative z-10">
+            <h2 className="font-fair text-6xl font-bold">
+              <span className="block text-[#ec8b33]/30">Preserving</span>{' '}
+              <span className="ml-16 block italic text-[#ec8b33]">precious memories.</span>
+            </h2>
+
+            <div className="mt-8 space-y-4 text-lg/8">
+              <p>
+                As a funeral celebrant of 9 years, our founder Rachel Michael has heard many stories
+                from families after their loved ones have passed away. Over time, she&apos;s
+                realized there are many more stories that families never get to hear.
+              </p>
+
+              <p>
+                Family Wise was inspired by her work and is designed to give families the
+                opportunity to gather precious memories whilst the opportunity is there.
+              </p>
+
+              <p>
+                Family Wise is dedicated to the thousands of people she has had the privilege to
+                assist as they grieve the loss of the people they love.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative z-10">
+            <div className="aspect-h-4 aspect-w-3">
+              <Image
+                className="object-cover object-center"
+                src="/images/founder/rachel-michael-portrait@4x.jpg"
+                alt="Rachel Michael"
+                width="312"
+                height="456"
+              />
+            </div>
+
+            <div className="mt-4">
+              <div className="font-fair text-4xl font-semibold">Rachel Michael</div>
+              <div className="mt-2 text-lg font-medium">Founder</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white-500 py-8 md:py-16 lg:py-24">
         <div className="container relative">
           <Swiper
