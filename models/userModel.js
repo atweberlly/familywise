@@ -104,8 +104,8 @@ const UserSchema = new mongoose.Schema(
     //subscription type
     planType: {
       type: String,
-      enum: ['Free-Trial', 'Classic', 'Premium'],
-      default: 'Free-Trial',
+      enum: ['Classic', 'Premium'],
+      default: 'Classic',
     },
 
     //user's timezone
@@ -113,13 +113,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-
-    //user's Free Plan Due
-    freeTrialEnd: {
-      type: Date,
-      unique: false,
-    },
-
     //   payment status
     status: {
       type: Boolean,

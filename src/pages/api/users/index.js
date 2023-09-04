@@ -53,7 +53,6 @@ export default async function handler(request, response) {
             roles: request.body.roles,
             token: resetToken,
             planType: request.body.planType,
-            freeTrialEnd: request.body.freeTrialEnd,
             timezone: userTimezone,
             status: request.body.status,
           }

@@ -5,5 +5,4 @@ module.exports = [
   './src/sections/**/*.{js,jsx,ts,tsx}',
   'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   'node_modules/flatpickr/dist/themes/light.css',
-  'node_modules/react-quill/dist/quill.snow.css',
 ]

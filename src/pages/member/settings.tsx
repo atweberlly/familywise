@@ -26,7 +26,6 @@ const Settings = () => {
     })()
   }, [dispatch])
   const expiryDate = new Date(user.createdAt)
-  const freeTrialEnd = user.freeTrialEnd ? new Date(user.freeTrialEnd) : null
 
   const [isClient, setIsClient] = useState(false)
   useEffect(() => {
@@ -65,10 +64,7 @@ const Settings = () => {
                   <h4 className="text-base font-light">{user.planType} Plan</h4>
                   <p className="text-sm text-secondary-500">
                     You are subscribed through{' '}
-                    {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear()), 'longDate')}{' '}
-                    {user.planType === 'Free-Trial' && freeTrialEnd && (
-                      <>Until {dateFormat(freeTrialEnd, 'longDate')}</>
-                    )}
+                    {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear() + 1), 'longDate')}
                   </p>
                 </div>
               </div>
@@ -123,7 +119,7 @@ const Settings = () => {
               </div>
               {isClient && (
                 <PDFDownloadLink
-                  document={<PDFDoc user_id={user._id} user={user} />}
+                  document={<PDFDoc user_id={user._id} />}
                   fileName={`${user._id}.pdf`}
                 >
                   {({ loading }) => (

@@ -219,7 +219,7 @@ const QuestionManager: NextPage = () => {
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={HiSearch}
+                  icon={MagnifyingGlassIcon}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />
@@ -433,7 +433,6 @@ const QuestionManager: NextPage = () => {
                       Premium
                     </label>
                   </div>
-
                   <div className="mr-4 flex items-center">
                     <input
                       id="both"

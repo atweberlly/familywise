@@ -41,7 +41,7 @@ const CouponSchema = mongoose.Schema(
     //membership type
     planType: {
       type: String,
-      enum: ['classic', 'premium', 'freetrial', 'both'],
+      enum: ['classic', 'premium', 'both'],
       default: 'both',
     },
     //User's timezone

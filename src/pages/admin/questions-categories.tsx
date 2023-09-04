@@ -184,7 +184,7 @@ const QuestionCategories: NextPage = () => {
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={HiSearch}
+                  icon={MagnifyingGlassIcon}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />

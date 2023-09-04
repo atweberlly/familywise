@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Heading from '../../components/Heading'
-import { freetrial, classic, premium } from '../../components/Lib/features'
+import { classic, premium } from '../../components/Lib/features'
 import Plans from '../../components/Plans'
 import Title from '../../components/Title'
 
@@ -44,10 +44,9 @@ export default function Pricing() {
             className="hidden select-none md:absolute md:bottom-0 md:right-0 md:z-20 md:block md:h-96 lg:h-[28rem] xl:h-[36rem]"
           />
           <div className="m-auto mt-4 block text-center lg:mt-8">
-            <Heading size={3}>Select your membership</Heading>
+            <Heading size={2}>Select your membership</Heading>
           </div>
           <div className="mx-auto mt-16 grid w-full max-w-4xl grid-cols-1 justify-center gap-8 md:grid-cols-2">
-            <Plans name={'Free-Trial'} features={freetrial} isPopular={false} userId={id} />
             <Plans name={'Classic'} price={'97'} features={classic} isPopular={false} userId={id} />
             <Plans name={'Premium'} price={'157'} features={premium} isPopular={true} userId={id} />
           </div>

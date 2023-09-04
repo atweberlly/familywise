@@ -16,7 +16,6 @@ const saveOwnQuestion = async (req, res) => {
       published: true,
       QuestionType: 'premium',
     })
-
     if (newQuestion) {
       await Story.create({
         user_id: user._id,

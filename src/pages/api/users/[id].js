@@ -53,7 +53,6 @@ export default async function handler(request, response) {
           status: request.body.status,
         },
       }
-      // ... (your PUT request logic)
 
       if (request.body.password) {
         bcrypt
