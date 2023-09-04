@@ -3,7 +3,7 @@ import { FaCheck } from 'react-icons/fa'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
-import QuillEditor from './QuilEditor'
+import QuillEditor from './quilEditor'
 import axios from 'axios'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { CloudArrowUpIcon, PencilIcon } from '@heroicons/react/24/solid'
@@ -86,9 +86,17 @@ const Edit = ({ question, id }: Props) => {
     }
   }
 
+  /* Add Delay to Automatic Save for 5 seconds when the user stop typing or recording */
   // Define the onChange handler for QuillEditor
+  let timeoutId: NodeJS.Timeout | undefined
   const handleEditorChange = (value: any) => {
-    setContent((prev) => ({ ...prev, story: value }))
+    // Clear the previous timeout, if any
+    clearTimeout(timeoutId)
+
+    // Set a new timeout to delay the execution of handleEditorChange
+    timeoutId = setTimeout(() => {
+      setContent((prev) => ({ ...prev, story: value }))
+    }, 500) // Adjust the delay time as needed (in milliseconds)
   }
 
   return (
@@ -150,7 +158,19 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            <QuillEditor value={content.story} onChange={handleEditorChange} />
+            {/*
+              <QuillEditor 
+            value={content.story} 
+            onChange={handleEditorChange}  
+            />
+            */}
+            {
+              //
+              <QuillEditor
+                value={content.story || defaultContent.story}
+                onChange={handleEditorChange}
+              />
+            }
 
             {/*
             <textarea
