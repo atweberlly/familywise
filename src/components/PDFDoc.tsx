@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, HTMLProps } from 'react'
 import { createTw } from 'react-pdf-tailwind'
-import { Document as PdfDocument, Page as PdfPage, Text, Image } from '@react-pdf/renderer'
+import { Document as PdfDocument, Page as PdfPage, Text, Image, View } from '@react-pdf/renderer'
 import axios from 'axios'
 import striptags from 'striptags'
 
@@ -33,7 +33,7 @@ const tw = createTw({
   },
 })
 
-const PDFDoc = ({ item, index, user_id }: any) => {
+const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivElement>) => {
   const pageSize = 500
 
   const [data, setData] = React.useState<any[]>([])
@@ -265,6 +265,20 @@ const PDFDoc = ({ item, index, user_id }: any) => {
 
     return data.slice(startIndex, endIndex).map(({ _id, heading, story, image, caption_img }) => (
       <PdfPage key={_id} size="A4" style={tw('px-20 py-12 font-sans')}>
+        {user.planType === 'Free-Trial' && (
+          <View
+            style={{
+              position: 'absolute',
+              top: '20%',
+              right: '20%',
+              width: '50vh',
+              height: '50vh',
+              opacity: 0.58, // Adjust the opacity as needed (0.0 to 1.0)
+            }}
+          >
+            <Image src={'/member/watermark.png'} style={{ width: '100%', height: '100%' }} />
+          </View>
+        )}
         {/* Render your content for each item */}
         {/* ... */}
         {/* HEADER */}
