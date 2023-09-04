@@ -188,8 +188,8 @@ const SignIn: NextPage = () => {
             </form>
             <p className="base mt-5 text-center text-sm md:mt-6 lg:mt-8">
               Don&apos;t have an account?{' '}
-              <Link className="inline text-secondary-500 hover:underline" href={'/get-started'}>
-                Create an account
+              <Link className="inline text-secondary-500 hover:underline" href={'/start-trial'}>
+                Start 14-day free trial now!
               </Link>
             </p>
           </div>

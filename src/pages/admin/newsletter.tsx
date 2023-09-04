@@ -76,7 +76,7 @@ export default function Newsletter() {
                 type="text"
                 placeholder="Search"
                 required={true}
-                icon={MagnifyingGlassIcon}
+                icon={HiSearch}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />

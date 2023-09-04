@@ -85,6 +85,11 @@ const Edit = ({ question, id }: Props) => {
     }
   }
 
+  // Define the onChange handler for QuillEditor
+  const handleEditorChange = (value: any) => {
+    setContent((prev) => ({ ...prev, story: value }))
+  }
+
   return (
     <div className="w-full ">
       <span className="font-normal">Heading</span>
@@ -144,7 +149,9 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            <span className="font-normal">Your story</span>
+            <QuillEditor value={content.story} onChange={handleEditorChange} />
+
+            {/*
             <textarea
               className="mt-[12px] min-h-[65vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark dark:text-white"
               placeholder="Write your story here..."
@@ -154,6 +161,7 @@ const Edit = ({ question, id }: Props) => {
                 // saveStory(e, 'story')
               }}
             />
+            */}
           </div>
         </div>
         <div className="w-[40%] px-[20px] py-[25px]">

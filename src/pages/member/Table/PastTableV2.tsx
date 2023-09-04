@@ -25,13 +25,7 @@ export function GlobalFilter(param: any) {
 
   return (
     <div className="mt-3 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-      <TextInput
-        id="search"
-        type="text"
-        placeholder="Search"
-        required={true}
-        icon={MagnifyingGlassIcon}
-      />
+      <TextInput id="search" type="text" placeholder="Search" required={true} icon={HiSearch} />
     </div>
   )
 }
