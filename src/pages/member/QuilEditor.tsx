@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+
+// Import Quill styles
 
 const modules = {
   toolbar: [
