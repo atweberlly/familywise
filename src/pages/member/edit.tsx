@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
 import { FaCheck } from 'react-icons/fa'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
@@ -95,8 +96,11 @@ const Edit = ({ question, id }: Props) => {
 
     // Set a new timeout to delay the execution of handleEditorChange
     timeoutId = setTimeout(() => {
+      toast('Saved', {
+        icon: '👌🏽',
+      })
       setContent((prev) => ({ ...prev, story: value }))
-    }, 500) // Adjust the delay time as needed (in milliseconds)
+    }, 2000) // Adjust the delay time as needed (in milliseconds)
   }
 
   return (
@@ -158,12 +162,6 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            {/*
-              <QuillEditor 
-            value={content.story} 
-            onChange={handleEditorChange}  
-            />
-            */}
             {
               //
               <QuillEditor
