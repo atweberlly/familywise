@@ -1,6 +1,9 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+
+// Import Quill styles
 
 const modules = {
   toolbar: [
@@ -26,39 +29,78 @@ const ReactQuill = dynamic(() => import('react-quill'), {
 const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
   const resultRef = useRef<HTMLDivElement | null>(null)
   const [transcript, setTranscript] = useState<string>('')
+  const [recording, setRecording] = useState<boolean>(false) // Added state for recording
 
-  const handleStartConverting = () => {
+  const speechRecognizer = useRef<SpeechRecognition | null>(null) // useRef for sTT
+  const [duration, setDuration] = useState<number>(0) // added state for duration
+
+  useEffect(() => {
+    let timerId: NodeJS.Timeout | undefined
+    if (recording) {
+      timerId = setInterval(() => {
+        setDuration((prevDuration) => prevDuration + 1)
+      }, 1000)
+    } else {
+      clearInterval(timerId)
+    }
+
+    return () => clearInterval(timerId)
+  }, [recording])
+
+  const startRecording = () => {
     if ('webkitSpeechRecognition' in window) {
-      const speechRecognizer = new webkitSpeechRecognition()
-      speechRecognizer.continuous = true
-      speechRecognizer.interimResults = true
-      speechRecognizer.lang = 'en-US'
-      speechRecognizer.start()
+      if (!recording) {
+        const recognizer = new webkitSpeechRecognition() // Create a new instance
+        recognizer.continuous = true
+        recognizer.interimResults = true
+        recognizer.lang = 'en-US'
+        recognizer.start() // Start the STT
 
-      let finalTranscripts = ''
-      toast('Speak now!', {
-        icon: '🎤',
-      })
+        let finalTranscripts = ''
+        toast('Speak now!', {
+          icon: '🎤',
+        })
 
-      speechRecognizer.onresult = function (event) {
-        let interimTranscripts = ''
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          let transcript = event.results[i][0].transcript
-          transcript.replace('\n', '<br>')
-          if (event.results[i].isFinal) {
-            finalTranscripts += transcript
-          } else {
-            interimTranscripts += transcript
+        recognizer.onresult = function (event) {
+          let interimTranscripts = ''
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            let transcript = event.results[i][0].transcript
+            transcript.replace('\n', '<br>')
+            if (event.results[i].isFinal) {
+              finalTranscripts += transcript
+            } else {
+              interimTranscripts += transcript
+            }
           }
+
+          // Update the transcript with only the latest content
+          setTranscript(interimTranscripts)
+
+          // Insert the transcript into the editor
+          const newEditorValue = `${value}${finalTranscripts}${interimTranscripts}\n`
+          onChange(newEditorValue)
         }
 
-        setTranscript((prevTranscript) => prevTranscript + finalTranscripts + interimTranscripts)
+        recognizer.onerror = function (event) {}
 
-        // Insert the transcript into the editor
-        const newEditorValue = `${value}${finalTranscripts}${interimTranscripts}\n`
-        onChange(newEditorValue)
+        // Save the recognizer instance in the ref
+        speechRecognizer.current = recognizer
+
+        // Update recording state
+        setRecording(true)
+        setDuration(0) // Reset the duration when starting a new Recording
+      } else if (recording) {
+        // Stop the recording and recognition
+        const recognizer = speechRecognizer.current
+        if (recognizer) {
+          recognizer.stop() // Stop the STT
+        }
+        setRecording(false)
+
+        toast('Recording stopped', {
+          icon: '🛑',
+        })
       }
-      speechRecognizer.onerror = function (event) {}
     } else {
       if (resultRef.current) {
         toast.error(
@@ -71,15 +113,31 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
   return (
     <div>
       <span className="font-normal">Your story</span>
-      <button
-        onClick={handleStartConverting}
-        className="dark:bg-dark h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white"
-      >
-        Speak
-      </button>
+      <div className="dark:bg-dark h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white">
+        <button
+          onClick={startRecording}
+          className={`dark:bg-dark h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px]  border-[1.5px] px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black 
+          dark:text-white
+          ${
+            recording
+              ? 'bg-secondary-500 hover:border-red-400 hover:text-red-400'
+              : 'bg-secondary-500 hover:border-red-400 hover:text-blue-400'
+          }`}
+        >
+          {recording ? `Recording (${duration}s)` : 'Speak'}
+        </button>
+      </div>
+      {/* Display the transcript */}
+      {recording && transcript.length > 0 && (
+        <div className="dark:bg-dark h-100 text-3l dark.borderColor-white dark.bg-black mt-[12px] min-h-[5vh]  w-full rounded-[12px] border-[1.5px] px-[29px] py-[22px] text-xs text-gray-400 focus:border-none">
+          {transcript}
+        </div>
+      )}
+
+      {/* Display the Quill Editor*/}
       <ReactQuill
         theme="snow"
-        className="dark:bg-dark h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white"
+        className="dark:bg-dark h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
         placeholder="Write your story here..."
         value={value}
         onChange={onChange}
