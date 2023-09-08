@@ -104,7 +104,7 @@ const UserSchema = new mongoose.Schema(
     //subscription type
     planType: {
       type: String,
-      enum: ['Free-Trial', 'Classic', 'Premium'],
+      enum: ['Free-Trial', 'Classic', 'Premium', 'Your-Life-In-A-Book', 'Photo-Based-Book'],
       default: 'Free-Trial',
     },
 
