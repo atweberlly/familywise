@@ -114,6 +114,13 @@ const UserSchema = new mongoose.Schema(
       require: true,
     },
 
+    //user's timezone
+    reason: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+
     //user's Free Plan Due
     freeTrialEnd: {
       type: Date,

@@ -54,6 +54,7 @@ export default async function handler(request, response) {
             token: resetToken,
             planType: request.body.planType,
             freeTrialEnd: request.body.freeTrialEnd,
+            reason: request.body.reason,
             timezone: userTimezone,
             status: request.body.status,
           }

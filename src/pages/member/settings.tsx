@@ -155,11 +155,12 @@ const Settings = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-light text-red-600 lg:text-base">
-                    Warning: Deleting your account cannot be undone.
+                    Warning: Deactivating your account cannot be undone until a reactivation request
+                    is made.
                   </h4>
                   <p className="text-xs text-secondary-500 lg:text-sm">
                     If you no longer wish to keep your account or prefer to discontinue it,
-                    <br /> you can cancel it to permanently delete your Familywise account.
+                    <br /> you can deactivate it to temporarily suspend your Familywise account.
                   </p>
                 </div>
               </div>

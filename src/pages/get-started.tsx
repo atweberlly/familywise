@@ -49,6 +49,7 @@ export default function JoinUs() {
     giftOccasion: 'merry christmas!',
     giftMessage: '',
     planType: plan,
+    reason: '',
   }
 
   // getting the event handlers from our custom hook

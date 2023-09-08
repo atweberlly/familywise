@@ -45,6 +45,7 @@ export default function JoinUs() {
     giftMessage: '', //this can be empty
     planType: plan,
     freeTrialEnd: '',
+    reason: '',
   }
 
   // getting the event handlers from our custom hook
