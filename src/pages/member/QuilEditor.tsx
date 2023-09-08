@@ -59,6 +59,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
         let finalTranscripts = ''
         toast('Speak now!', {
           icon: '🎤',
+          duration: 3000, // 3 seconds
         })
 
         recognizer.onresult = function (event) {
@@ -99,12 +100,16 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
 
         toast('Recording stopped', {
           icon: '🛑',
+          duration: 3000, // 3 seconds
         })
       }
     } else {
       if (resultRef.current) {
         toast.error(
-          'Your browser is not supported. Please download Google Chrome or update your Google Chrome!'
+          'Your browser is not supported. Please download Google Chrome or update your Google Chrome!',
+          {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          }
         )
       }
     }

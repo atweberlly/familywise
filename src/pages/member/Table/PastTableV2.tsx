@@ -79,7 +79,9 @@ const PastTable = (funcProps: any) => {
               })
               setItems([...res.data])
               if (res.status === 200) {
-                toast.success('Successfully removed')
+                toast.success('Successfully removed', {
+                  duration: 3000, // Specify the duration in milliseconds (3 seconds)
+                })
               }
             }}
           >

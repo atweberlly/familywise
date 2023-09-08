@@ -43,7 +43,10 @@ export default function Newsletter() {
     await axios(configuration)
       .then(() => {
         toast.success(
-          'Success! 🎉 You are now subscribed to receive our example questions & tips for writing your story.'
+          'Success! 🎉 You are now subscribed to receive our example questions & tips for writing your story.',
+          {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          }
         )
         setTimeout(() => {
           // After 3 seconds set the show value to false
@@ -54,7 +57,9 @@ export default function Newsletter() {
         }, 3000)
       })
       .catch((err) => {
-        toast.success('You are already subscribed. We are glad you are interested in us.')
+        toast.success('You are already subscribed. We are glad you are interested in us.', {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setTimeout(() => {
           // After 3 seconds set the show value to false
           setLoading(false) //remove loader

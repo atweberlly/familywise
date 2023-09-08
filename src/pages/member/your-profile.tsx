@@ -76,14 +76,18 @@ const YourProfile = () => {
     await axios(configuration)
       .then((response) => {
         if (response) {
-          toast.success(`Great, we've updated your profile`)
+          toast.success(`Great, we've updated your profile`, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setPasswordBtnDisabled(true)
           setDisabled(true)
         }
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
       })
   }
 

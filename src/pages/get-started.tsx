@@ -88,7 +88,9 @@ export default function JoinUs() {
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setLoading(false) //remove loader
       })
   }

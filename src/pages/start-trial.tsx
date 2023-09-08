@@ -92,13 +92,17 @@ export default function JoinUs() {
           //Send onboarding email
           await axios.post('/api/mail/onboarding', data)
           //
-          toast.success('Congratulations! Your 14-Day Free Trial Registration Was Successful 🎉')
+          toast.success('Congratulations! Your 14-Day Free Trial Registration Was Successful 🎉', {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           router.push(`sign-in`)
         }, 3000)
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setLoading(false) //remove loader
       })
   }

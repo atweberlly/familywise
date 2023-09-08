@@ -95,7 +95,9 @@ const CouponManager: NextPage = () => {
     await axios(configuration)
       .then((response) => {
         if (response) {
-          toast.success(message)
+          toast.success(message, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setTimeout(() => {
             // After 3 seconds set the show value to false
             setShowAddEdit(false) //hide modal
@@ -168,7 +170,9 @@ const CouponManager: NextPage = () => {
         setValue('published', data?.published, { shouldValidate: true })
       })
       .catch((error) => {
-        toast.error(error)
+        toast.error(error, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
       })
 
     setShowAddEdit(!showAddEdit)
@@ -203,7 +207,9 @@ const CouponManager: NextPage = () => {
           setLoading(false)
         })
         .catch((error) => {
-          toast.error(error)
+          toast.error(error, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
         })
     }
     // fetch data

@@ -25,7 +25,9 @@ const Cancel = () => {
         dispatch(setUser(user.data.user[0]))
       } catch (error) {
         // Handle the case where the user is not logged in
-        toast.error('No user signed in.')
+        toast.error('No user signed in.', {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         router.push('/sign-in') // Redirect to the login page or homepage
       }
     })()
@@ -55,7 +57,9 @@ const Cancel = () => {
   const handleConfirmDeactivation = async () => {
     if (!isDecisionChecked) {
       // Display a message or toast indicating that the user must confirm their decision
-      toast.error('Please confirm your decision by checking the radio button.')
+      toast.error('Please confirm your decision by checking the radio button.', {
+        duration: 3000, // Specify the duration in milliseconds (3 seconds)
+      })
       return
     }
     try {
@@ -68,15 +72,21 @@ const Cancel = () => {
           data: { email: user.email, reason: deactivationReason }, // Send the user's email and reason as data
         })
 
-        toast.success('Account Deactivated')
+        toast.success('Account Deactivated', {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         // Redirect the user to the login page or homepage
         router.push('/')
       } catch (error) {
-        toast.error('Failed to deactivate account.')
+        toast.error('Failed to deactivate account.', {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
       }
     } catch (error) {
       // Handle any errors that occur during the deactivation process
-      toast.error('Failed to sign-out account.')
+      toast.error('Failed to sign-out account.', {
+        duration: 3000, // Specify the duration in milliseconds (3 seconds)
+      })
     }
   }
 
