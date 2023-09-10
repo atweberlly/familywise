@@ -322,25 +322,25 @@ export default function Home() {
                 <div className="relative flex">
                   <input
                     className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
-                    id="classic-plan"
+                    id="start-trial"
                     name="plan"
                     type="radio"
-                    value="classic"
+                    value="free-trial"
                     /* onClick={() => {
                       setProductInfo(classic)
                     }} */
                   />
                   <label
                     className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
-                    htmlFor="classic-plan"
+                    htmlFor="start-trial"
                   >
                     <div>
-                      <div className="text-lg font-bold">Classic</div>
-                      <div className="text-sm">Classic plan</div>
+                      <div className="text-lg font-bold">Free-Trial</div>
+                      <div className="text-sm">Set it in action</div>
                     </div>
 
                     <div className="">
-                      <span className="text-3xl font-semibold">$97</span>{' '}
+                      <span className="text-3xl font-semibold">$0.00</span>{' '}
                       <span className="text-sm">per year</span>
                     </div>
                   </label>
@@ -349,25 +349,52 @@ export default function Home() {
                 <div className="relative flex">
                   <input
                     className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
-                    id="premium-plan"
+                    id="questionbasedbook-plan"
                     name="plan"
                     type="radio"
-                    value="premium"
+                    value="questionbasedbook"
                     /* onClick={() => {
                       setProductInfo(premium)
                     }} */
                   />
                   <label
                     className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
-                    htmlFor="premium-plan"
+                    htmlFor="questionbasedbook-plan"
                   >
                     <div>
-                      <div className="text-lg font-bold">Premium</div>
+                      <div className="text-lg font-bold">Your Life In A Book</div>
+                      <div className="text-sm">Basic Packages</div>
+                    </div>
+
+                    <div className="">
+                      <span className="text-3xl font-semibold">$97.00</span>{' '}
+                      <span className="text-sm">per year</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="relative flex">
+                  <input
+                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
+                    id="photobasedbook-plan"
+                    name="plan"
+                    type="radio"
+                    value="photobasedbook"
+                    /* onClick={() => {
+                      setProductInfo(premium)
+                    }} */
+                  />
+                  <label
+                    className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
+                    htmlFor="photobasedbook-plan"
+                  >
+                    <div>
+                      <div className="text-lg font-bold">Photo Based Book</div>
                       <div className="text-sm">Most popular</div>
                     </div>
 
                     <div className="">
-                      <span className="text-3xl font-semibold">$157</span>{' '}
+                      <span className="text-3xl font-semibold">$97.00</span>{' '}
                       <span className="text-sm">per year</span>
                     </div>
                   </label>

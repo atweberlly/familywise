@@ -13,19 +13,47 @@ export const freetrial: Array<Props> = [
   },
   {
     id: uniqueId(),
+    item: 'Access to 30 questions',
+  },
+  {
+    id: uniqueId(),
+    item: 'Include your images in your stories',
+  },
+  {
+    id: uniqueId(),
+    item: 'Add your own questions',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the current question',
+  },
+  {
+    id: uniqueId(),
+    item: '.pdf preview of 10 pages with watermark',
+  },
+]
+
+//Replacement of Classic Question Based Book
+export const questionbasedbook: Array<Props> = [
+  {
+    id: uniqueId(),
     item: '500+ questions to choose from',
   },
   {
     id: uniqueId(),
-    item: 'Move through your questions as quickly or as slowly as you want',
+    item: 'One year membership',
   },
   {
     id: uniqueId(),
-    item: 'Change the frequency of your emails',
+    item: 'Write your book as quickly as you want',
   },
   {
     id: uniqueId(),
-    item: 'Publish from 20 to 550 pages in your book',
+    item: 'One 100-page book included',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish from 20 to 500 pages in your book',
   },
   {
     id: uniqueId(),
@@ -37,7 +65,23 @@ export const freetrial: Array<Props> = [
   },
   {
     id: uniqueId(),
-    item: 'Write your own questions',
+    item: 'Publish your book of poetry or other writings',
+  },
+  {
+    id: uniqueId(),
+    item: 'Unlimited editing of your stories',
+  },
+  {
+    id: uniqueId(),
+    item: 'Dedication page',
+  },
+  {
+    id: uniqueId(),
+    item: 'Include as many stories as you’d like',
+  },
+  {
+    id: uniqueId(),
+    item: 'Unlimited images can be included ',
   },
   {
     id: uniqueId(),
@@ -45,11 +89,15 @@ export const freetrial: Array<Props> = [
   },
   {
     id: uniqueId(),
-    item: 'Publish your book of poetry or other writings',
+    item: 'Write your own questions',
   },
   {
     id: uniqueId(),
-    item: 'Invite someone to have access to your account',
+    item: 'Change the order of your stories before printing',
+  },
+  {
+    id: uniqueId(),
+    item: 'Weekly reminders with additional questions & ideas for stories',
   },
   {
     id: uniqueId(),
@@ -57,15 +105,42 @@ export const freetrial: Array<Props> = [
   },
   {
     id: uniqueId(),
-    item: 'Design your own book cover',
+    item: 'Add our Voice-2-Text option so you don’t have to type your stories',
+  },
+]
+//Photo Based Book
+export const photobasedbook: Array<Props> = [
+  {
+    id: uniqueId(),
+    item: 'Unlimited editing of your book',
   },
   {
     id: uniqueId(),
-    item: 'Unlimited images included in your book',
+    item: 'Dedication page',
   },
   {
     id: uniqueId(),
-    item: 'Priority technical support',
+    item: 'Unlimited images can be included ',
+  },
+  {
+    id: uniqueId(),
+    item: 'One year membership',
+  },
+  {
+    id: uniqueId(),
+    item: 'Produce your book as quickly as you want',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish from 20 to 400 pages in your book',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your chapters before printing',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your stories before printing',
   },
 ]
 

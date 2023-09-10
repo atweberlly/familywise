@@ -52,13 +52,17 @@ const ForgotPassword: NextPage = () => {
     // make the API call
     await axios(configuration)
       .then((result) => {
-        toast.success(result.data.message)
+        toast.success(result.data.message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setLoading(false)
         router.push('sign-in')
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setLoading(false)
       })
   }

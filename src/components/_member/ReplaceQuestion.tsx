@@ -127,9 +127,13 @@ export default function ReplaceQuestion({
                         if (res.status === 200) {
                           setData([...res.data])
                           setshowReplace(false)
-                          toast.success('Successfully replaced')
+                          toast.success('Successfully replaced', {
+                            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+                          })
                         } else if (res.status === 201) {
-                          toast.error(res.data.message)
+                          toast.error(res.data.message, {
+                            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+                          })
                         }
                       }}
                     >

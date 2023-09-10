@@ -25,7 +25,9 @@ export default function AddCustomQuestion({ showCustom, setShowCustom, setData }
 
       if (res.status === 200) {
         setData([...res.data])
-        toast.success('Successfully added')
+        toast.success('Successfully added', {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setQuestion('')
         setLoading(false)
         setShowCustom(false)

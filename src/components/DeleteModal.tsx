@@ -36,7 +36,9 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
       .then(() => {
         setTimeout(() => {
           // After 3 seconds set the show value to false
-          toast.success('Successfully deleted.')
+          toast.success('Successfully deleted.', {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setShowDelete(false) //hide modal
           setLoading(false) //remove loader
         }, 3000)
@@ -45,7 +47,9 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
         const { error } = err.response.data
         setTimeout(() => {
           // After 3 seconds set the show value to false
-          toast.error(error)
+          toast.error(error, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setShowDelete(false)
           setLoading(false)
         }, 3000)

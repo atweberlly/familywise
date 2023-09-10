@@ -141,9 +141,13 @@ export default function AddQuestion({
                         if (res.status === 200) {
                           setData([...res.data])
                           setShowAdd(false)
-                          toast.success('Successfully added')
+                          toast.success('Successfully added', {
+                            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+                          })
                         } else if (res.status === 201) {
-                          toast.error(res.data.message)
+                          toast.error(res.data.message, {
+                            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+                          })
                         }
                       }}
                     >

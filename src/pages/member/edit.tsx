@@ -98,6 +98,7 @@ const Edit = ({ question, id }: Props) => {
     timeoutId = setTimeout(() => {
       toast('Saved', {
         icon: '👌🏽',
+        duration: 3000, // 3 seconds
       })
       setContent((prev) => ({ ...prev, story: value }))
     }, 2000) // Adjust the delay time as needed (in milliseconds)

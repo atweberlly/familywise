@@ -12,6 +12,7 @@ const TrialEndMsg = () => {
     //Direct user to page
     toast('Redirecting!', {
       icon: '🥰',
+      duration: 3000,
     })
     router.push('/pricing')
   }

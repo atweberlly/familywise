@@ -56,8 +56,8 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   }, [router, id])
 
   useEffect(() => {
-    setPrice(user?.planType === 'Premium' ? 159 : 97)
-    setOriginalPrice(user?.planType === 'Premium' ? 159 : 97)
+    setPrice(user?.planType === 'Your-Life-In-A-Book' ? 97 : 97)
+    setOriginalPrice(user?.planType === 'Your-Life-In-A-Book' ? 97 : 97)
   }, [user])
 
   useEffect(() => {
@@ -121,7 +121,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
               />
               <div>
                 <Heading size={6} className="text-white">
-                  {user?.planType} Family Wise Membership
+                  {user?.planType} Family Wise Packages
                 </Heading>
                 {user?.bookReceiver === 'gift' && (
                   <div className="mt-2 flex flex-col text-xs text-white/80">
