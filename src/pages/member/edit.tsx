@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { FaCheck } from 'react-icons/fa'
-import { ClipLoader, SkewLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
 import QuillEditor from './QuilEditor'
@@ -25,10 +25,6 @@ const Edit = ({ question, id }: Props) => {
   const [image, setImage] = useState(null)
   const [defaultContent, setDefaultContent] = useState({ heading: '', story: '', caption: '' })
   const [uploadedFile, setUploadedFile] = useState<any>()
-
-  const [unsavedChanges, setUnsavedChanges] = useState(false)
-  const [savingContent, setSavingContent] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     ;(async () => {
@@ -63,13 +59,6 @@ const Edit = ({ question, id }: Props) => {
       }
     })()
   }, [content, id, defaultContent.heading, isDisabled, question])
-
-  useEffect(() => {
-    // Simulate a delay to show loading spinner
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000) // Adjust the delay time as needed (in milliseconds)
-  }, [])
 
   const uploadFile = async (event: any) => {
     if (event.target.files[0] === undefined) {
@@ -107,21 +96,11 @@ const Edit = ({ question, id }: Props) => {
 
     // Set a new timeout to delay the execution of handleEditorChange
     timeoutId = setTimeout(() => {
-      setSavingContent(true) // Content is being saved
-      try {
-        // Simulate a save operation (you can replace this with your actual save logic)
-        setTimeout(() => {
-          toast('Saved', {
-            icon: '👌🏽',
-            duration: 3000, // 3 seconds
-          })
-          setContent((prev) => ({ ...prev, story: value }))
-          setSavingContent(false) // Content is saved, so set savingContent to false
-        }, 4000) // Adjust the delay time as needed (in milliseconds)
-      } catch (e) {
-        toast.error('Something went wrong')
-        setSavingContent(false) // Content saving failed, set savingContent to false
-      }
+      toast('Saved', {
+        icon: '👌🏽',
+        duration: 3000, // 3 seconds
+      })
+      setContent((prev) => ({ ...prev, story: value }))
     }, 2000) // Adjust the delay time as needed (in milliseconds)
   }
 
@@ -184,22 +163,13 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            {isLoading ? (
-              <div className="editor-loading">
-                <SkewLoader color="#9E7558" loading={true} size={20} />
-              </div>
-            ) : savingContent ? (
-              <div className="editor-loading">
-                <SkewLoader color="#9E7558" className="item-center" loading={true} size={20} />
-              </div>
-            ) : (
+            {
+              //
               <QuillEditor
                 value={content.story || defaultContent.story}
                 onChange={handleEditorChange}
-                disabled={false}
-                editorLoading={false}
               />
-            )}
+            }
 
             {/*
             <textarea
@@ -273,16 +243,11 @@ const Edit = ({ question, id }: Props) => {
             </>
           )}
         </div>
-
         <ButtonV2
           text="See Preview"
           onClick={() => {
             router.push('/member/preview')
           }}
-          className=""
-          hidden={unsavedChanges}
-          //disabled={true}
-          disabled={unsavedChanges || saving || isLoading || savingContent}
         />
         {/* <Button text="Done Writing" onClick={saveStory} /> */}
       </div>
