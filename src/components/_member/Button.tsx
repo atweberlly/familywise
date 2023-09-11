@@ -28,6 +28,7 @@ export default function ButtonV2({
             ? 'bg-primary-400 text-white hover:bg-primary-600 hover:text-white dark:bg-primary-600 dark:hover:bg-primary-600/70'
             : 'bg-transparent  text-primary-600 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600/70 dark:hover:text-white'
         }
+        ${disabled ? 'cursor-not-allowed hover:bg-gray-50' : ''}
         `}
           disabled={disabled}
         >
@@ -42,6 +43,7 @@ export default function ButtonV2({
               ? 'bg-primary-400 text-white hover:bg-primary-600 hover:text-white dark:bg-primary-600 dark:hover:bg-primary-600/70'
               : 'bg-transparent  text-primary-600 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-400/70 dark:hover:text-white'
           }
+          ${disabled ? 'cursor-not-allowed hover:bg-gray-500' : ''}
           `}
           disabled={disabled}
         >

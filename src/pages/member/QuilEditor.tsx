@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css'
+import { SyncLoader } from 'react-spinners'
 import dynamic from 'next/dynamic'
 
 // Import Quill styles
@@ -20,13 +21,15 @@ const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'al
 interface QuillEditorProps {
   value: string
   onChange: (value: string) => void
+  disabled: boolean
+  editorLoading: boolean
 }
 
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 })
 
-const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
+const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, disabled, editorLoading }) => {
   const resultRef = useRef<HTMLDivElement | null>(null)
   const [transcript, setTranscript] = useState<string>('')
   const [recording, setRecording] = useState<boolean>(false) // Added state for recording
@@ -139,16 +142,23 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
         </div>
       )}
 
-      {/* Display the Quill Editor*/}
-      <ReactQuill
-        theme="snow"
-        className="dark:bg-dark h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
-        placeholder="Write your story here..."
-        value={value}
-        onChange={onChange}
-        modules={modules}
-        formats={formats}
-      />
+      {/* Display the Quill Editor or SyncLoader */}
+      {editorLoading ? ( // Conditionally render SyncLoader when editorLoading is true
+        <div className="editor-loading">
+          <SyncLoader color="#9E7558" loading={true} size={20} />
+        </div>
+      ) : (
+        <ReactQuill
+          theme="snow"
+          className="dark:bg-dark h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
+          placeholder="Write your story here..."
+          value={value}
+          onChange={onChange}
+          modules={modules}
+          formats={formats}
+          readOnly={disabled}
+        />
+      )}
       <div ref={resultRef} />
     </div>
   )
