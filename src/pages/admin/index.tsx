@@ -76,7 +76,7 @@ const Administrator: NextPage = () => {
       <div className="mt-4 " role="grid">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 " role="row">
           <div role="gridcell">
-            <div className="dark:bg-dark rounded-lg bg-white px-6 py-5">
+            <div className="rounded-lg bg-white px-6 py-5 dark:bg-dark">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold">Subscribers</h2>
                 <Link
@@ -105,7 +105,7 @@ const Administrator: NextPage = () => {
           </div>
 
           <div role="gridcell">
-            <div className="dark:bg-dark rounded-lg bg-white px-6 py-5 ">
+            <div className="rounded-lg bg-white px-6 py-5 dark:bg-dark ">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold">10 Active Members</h2>
                 <Link

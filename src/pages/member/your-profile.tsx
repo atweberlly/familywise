@@ -173,7 +173,7 @@ const YourProfile = () => {
                 <label className="block w-full">
                   <p className="text-sm font-semibold">{'Email Address'}</p>
                   <input
-                    className="dark:bg-dark peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:text-white"
+                    className="peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:bg-dark dark:text-white"
                     placeholder={'Email Address'}
                     type={'text'}
                     defaultValue={user?.email}

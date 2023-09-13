@@ -42,7 +42,7 @@ export default function MemberLayout({ children }: any) {
   }
 
   return (
-    <div className="bg-secondary-100] dark:bg-dark flex min-h-screen flex-col dark:text-white">
+    <div className="bg-secondary-100] flex min-h-screen flex-col dark:bg-dark dark:text-white">
       <header className="bg-white px-4 py-6 dark:bg-woodsmoke dark:text-white xl:px-8 ">
         <div className="flex items-center gap-2">
           <button className="md:hidden" type="button" onClick={() => setShow(!show)}>
@@ -134,9 +134,9 @@ export default function MemberLayout({ children }: any) {
             <ul className="flex flex-col">
               <li className="flex flex-col" aria-label="Questions">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/member/questions' &&
-                    ' dark:bg-dark border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:text-white'
+                    ' border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:bg-dark dark:text-white'
                   }`}
                   href="/member/questions"
                   onClick={() => setShow(!show)}
@@ -158,9 +158,9 @@ export default function MemberLayout({ children }: any) {
               </li>
               <li className="flex flex-col" aria-label="Settings">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/member/stories' &&
-                    ' dark:bg-dark border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:text-white'
+                    ' border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:bg-dark dark:text-white'
                   }`}
                   href="/member/stories"
                   onClick={() => setShow(!show)}
@@ -183,9 +183,9 @@ export default function MemberLayout({ children }: any) {
               </li>
               <li className="flex flex-col" aria-label="Cover">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/member/cover' &&
-                    ' dark:bg-dark border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:text-white'
+                    ' border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:bg-dark dark:text-white'
                   }`}
                   href="/member/cover"
                   onClick={() => setShow(!show)}
@@ -227,9 +227,9 @@ export default function MemberLayout({ children }: any) {
               </li>
               <li className="flex flex-col" aria-label="Preview">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/member/preview' &&
-                    ' dark:bg-dark border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:text-white'
+                    ' border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:bg-dark dark:text-white'
                   }`}
                   href="/member/preview"
                   onClick={() => setShow(!show)}
@@ -256,9 +256,9 @@ export default function MemberLayout({ children }: any) {
               </li>
               <li className="flex flex-col" aria-label="Settings">
                 <Link
-                  className={`dark:hover:bg-dark -mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:text-white ${
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-[#697586] hover:border-r-4 hover:border-primary-400 hover:bg-[#F1ECE3] hover:font-bold hover:text-primary-600 dark:hover:border-[#D6C7B2] dark:hover:bg-dark dark:hover:text-white ${
                     router.pathname === '/member/settings' &&
-                    ' dark:bg-dark border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:text-white'
+                    ' border-primary-600 bg-[#F1ECE3] font-bold text-primary-600 dark:border-[#D6C7B2] dark:bg-dark dark:text-white'
                   }`}
                   href="/member/settings"
                   onClick={() => setShow(!show)}
