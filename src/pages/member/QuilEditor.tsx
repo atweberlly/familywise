@@ -21,7 +21,6 @@ const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'al
 interface QuillEditorProps {
   value: string
   onChange: (value: string) => void
-  disabled: boolean
   editorLoading: boolean
 }
 
@@ -29,7 +28,7 @@ const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 })
 
-const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, disabled, editorLoading }) => {
+const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoading }) => {
   const resultRef = useRef<HTMLDivElement | null>(null)
   const [transcript, setTranscript] = useState<string>('')
   const [recording, setRecording] = useState<boolean>(false) // Added state for recording
@@ -156,7 +155,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, disabled, ed
           onChange={onChange}
           modules={modules}
           formats={formats}
-          readOnly={disabled}
         />
       )}
       <div ref={resultRef} />
