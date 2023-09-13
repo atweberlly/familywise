@@ -98,7 +98,7 @@ const Edit = ({ question, id }: Props) => {
 
     // Set a new timeout to delay the execution of handleEditorChange
     timeoutId = setTimeout(() => {
-      toast('Saved', {
+      toast('Saving', {
         icon: '👌🏽',
         duration: 3000, // 3 seconds
       })
