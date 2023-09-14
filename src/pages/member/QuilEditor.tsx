@@ -120,10 +120,10 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
   return (
     <div>
       <span className="font-normal">Your story</span>
-      <div className="dark:bg-dark h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white">
+      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:bg-dark dark:text-white">
         <button
           onClick={startRecording}
-          className={`dark:bg-dark h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px]  border-[1.5px] px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black 
+          className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black dark:bg-dark 
           dark:text-white
           ${
             recording
@@ -136,27 +136,21 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
       </div>
       {/* Display the transcript */}
       {recording && transcript.length > 0 && (
-        <div className="dark:bg-dark h-100 text-3l dark.borderColor-white dark.bg-black mt-[12px] min-h-[5vh]  w-full rounded-[12px] border-[1.5px] px-[29px] py-[22px] text-xs text-gray-400 focus:border-none">
+        <div className="h-100 text-3l dark.borderColor-white dark.bg-black mt-[12px] min-h-[5vh] w-full  rounded-[12px] border-[1.5px] px-[29px] py-[22px] text-xs text-gray-400 focus:border-none dark:bg-dark">
           {transcript}
         </div>
       )}
 
-      {/* Display the Quill Editor or SyncLoader */}
-      {editorLoading ? ( // Conditionally render SyncLoader when editorLoading is true
-        <div className="editor-loading">
-          <SyncLoader color="#9E7558" loading={true} size={20} />
-        </div>
-      ) : (
-        <ReactQuill
-          theme="snow"
-          className="dark:bg-dark h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
-          placeholder="Write your story here..."
-          value={value}
-          onChange={onChange}
-          modules={modules}
-          formats={formats}
-        />
-      )}
+      {/* Display the Quill Editor*/}
+      <ReactQuill
+        theme="snow"
+        className="h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark"
+        placeholder="Write your story here..."
+        value={value}
+        onChange={onChange}
+        modules={modules}
+        formats={formats}
+      />
       <div ref={resultRef} />
     </div>
   )

@@ -178,7 +178,7 @@ const FAQCategories: NextPage = () => {
           <p className="text-base">Manage your FAQ Categories.</p>
           <div className="my-10 text-center">
             <Title>FAQ Categories Manager</Title>
-            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-dark">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
@@ -284,7 +284,7 @@ const FAQCategories: NextPage = () => {
             </div>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="dark:bg-dark flex h-full flex-col justify-between"
+              className="flex h-full flex-col justify-between dark:bg-dark"
             >
               <div className="dark:bg-dark-medium mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:text-white">
                 {addEditMessage?.message && (
@@ -301,8 +301,8 @@ const FAQCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm ">Name</p>
                   <input
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     type="text"
                     placeholder="Name"
                     {...register('name', { required: true })}
@@ -317,8 +317,8 @@ const FAQCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     rows={4}
                     placeholder="Description"
                     {...register('description')}
