@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css'
-import { SyncLoader } from 'react-spinners'
 import dynamic from 'next/dynamic'
 
 // Import Quill styles
@@ -157,6 +156,17 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
           formats={formats}
         />
       )}
+      
+      {/* Display the Quill Editor*/}
+      <ReactQuill
+        theme="snow"
+        className="dark:bg-dark h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
+        placeholder="Write your story here..."
+        value={value}
+        onChange={onChange}
+        modules={modules}
+        formats={formats}
+      />
       <div ref={resultRef} />
     </div>
   )
