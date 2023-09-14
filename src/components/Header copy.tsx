@@ -3,12 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import links from './Lib/links'
 import Logo from './Logo'
+import Button from './_member/Button'
 import clsx from 'clsx'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function Header(): JSX.Element {
+interface Props extends React.AllHTMLAttributes<HTMLElement> {
+  color?: 'dark' | 'light'
+}
+
+export default function Header({ color = 'light', ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -20,69 +25,9 @@ export default function Header(): JSX.Element {
       document.body.classList.remove('overflow-hidden')
     }
   }, [isOpen])
-
+  const colorClassname = color === 'dark' ? 'text-secondary-600' : 'text-white'
   return (
-    <header>
-      <div className="container flex items-center justify-between py-6">
-        <div className="relative">
-          <Link className="absolute inset-0" href="">
-            <span className="sr-only">FamilyWise Stories</span>
-          </Link>
-          <Logo
-            style={{
-              width: 160,
-              height: 72,
-            }}
-          />
-        </div>
-
-        <div className="hidden lg:block">
-          <ul className="flex items-center space-x-10 p-4">
-            {links.map((link) => (
-              <li key={link.id}>
-                <Link
-                  className="text-sm font-medium uppercase"
-                  href={'/' + link.href}
-                  aria-label={link.label}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            {/* Render the "Home" link only in the desktop version */}
-            <li>
-              <Link
-                className="text-sm font-medium uppercase"
-                href="/" // Link to the home page
-                aria-label="Home"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
-                href="start-trial"
-              >
-                Start Free Trial
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        <div className="lg:hidden">
-          <button
-            className="flex h-10 w-10 items-center justify-center"
-            type="button"
-            onClick={() => setIsOpen(true)} // Open the mobile menu on click
-          >
-            <span className="sr-only">Open menu</span>
-            <Bars3Icon className="h-6 w-6" />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
+    <>
       <div
         className={clsx(
           isOpen ? 'visible opacity-100' : 'invisible opacity-0',
@@ -136,6 +81,7 @@ export default function Header(): JSX.Element {
               </a>
             </div>
           </div>
+
           <Image
             className="pointer-events-none absolute bottom-0 right-0 h-auto w-full select-none object-cover object-left"
             src="/images/founder/golden-sand-explosion.jpg"
@@ -146,6 +92,36 @@ export default function Header(): JSX.Element {
           />
         </div>
       </div>
-    </header>
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
+        <Link className="relative h-28 w-48" href="/">
+          <Logo isWhite={color === 'dark' ? false : true} />
+        </Link>
+        <div className="hidden md:flex md:items-center md:space-x-4">
+          <nav
+            className={clsx(
+              'flex items-center space-x-4 text-sm font-medium uppercase tracking-wide',
+              colorClassname
+            )}
+          >
+            {links.map((link) => (
+              <a href={'/' + link.href} key={link.id}>
+                {link.label}
+              </a>
+            ))}
+            <Link href="start-trial">
+              <Button text={'Start Free Trial'} />
+            </Link>
+          </nav>
+        </div>
+
+        <button
+          className={clsx('h-8 w-8 lg:hidden', colorClassname)}
+          type="button"
+          onClick={() => setIsOpen(true)}
+        >
+          <Bars3Icon />
+        </button>
+      </div>
+    </>
   )
 }
