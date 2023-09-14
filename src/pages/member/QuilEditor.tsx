@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css'
-import { SyncLoader } from 'react-spinners'
 import dynamic from 'next/dynamic'
 
 // Import Quill styles

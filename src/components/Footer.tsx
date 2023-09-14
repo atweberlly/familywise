@@ -49,8 +49,8 @@ export default function Footer(): JSX.Element {
 
               <li>
                 <div className="font-semibold text-primary-600">E-mail us</div>
-                <a className="mt-1" href="mailto:hello@familywise.us">
-                  hello@familywise.us
+                <a className="mt-1" href="mailto:mystory@familywise.us">
+                  mystory@familywise.us
                 </a>
               </li>
 
