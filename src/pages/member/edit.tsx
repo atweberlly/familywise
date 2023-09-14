@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { FaCheck } from 'react-icons/fa'
-import { ClipLoader } from 'react-spinners'
+import { ClipLoader, SkewLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
 import QuillEditor from './QuilEditor'
@@ -174,13 +174,8 @@ const Edit = ({ question, id }: Props) => {
                 value={content.story || defaultContent.story}
                 onChange={handleEditorChange}
                 editorLoading={iseditorLoading}
-            {
-              //
-              <QuillEditor
-                value={content.story || defaultContent.story}
-                onChange={handleEditorChange}
               />
-            }
+            )}
 
             {/*
             <textarea
