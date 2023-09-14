@@ -25,7 +25,7 @@ export default function Header({ color = 'light' }): JSX.Element {
     <header>
       <div className="container flex items-center justify-between py-6">
         <div className="relative">
-          <Link className="absolute inset-0" href="">
+          <Link className="absolute inset-0" href="/">
             <span className="sr-only">FamilyWise Stories</span>
           </Link>
           <Logo
