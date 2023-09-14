@@ -1,6 +1,6 @@
 import { FaFacebook, FaPinterest } from 'react-icons/fa'
-import Image from 'next/image'
 import Link from 'next/link'
+import Logo from './Logo'
 import Instagram from '~/public/svg/instagram.svg'
 import Youtube from '~/public/svg/youtube.svg'
 
@@ -13,8 +13,8 @@ interface Hyperlink {
 const information: Hyperlink[] = [
   { id: 1, href: '/#founder', text: 'The Founder' },
   { id: 2, href: '/pricing', text: 'Membership Options' },
-  { id: 3, href: '/frequently-asked-questions', text: 'News and Blogs' },
-  { id: 4, href: '/#testimonials', text: 'FAQs' },
+  { id: 3, href: '/frequently-asked-questions', text: 'FAQs' },
+  { id: 4, href: '/#testimonials', text: 'Testimonials' },
 ]
 
 const legal: Hyperlink[] = [
@@ -24,18 +24,18 @@ const legal: Hyperlink[] = [
   { id: 4, href: '/refund', text: 'Refund' },
 ]
 
-export default function Footer(): JSX.Element {
+export default function Footer({ color = 'light' }): JSX.Element {
   return (
     <footer className="bg-[#001822] py-8 text-primary-100">
       <div className="container">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <div className="md:col-span-2">
-            <Image
-              className="inline-block h-20 w-40 object-contain"
-              src="/images/familywise-logotype-white.png"
-              alt="FamilyWise Stories"
-              width={250}
-              height={112}
+            <Logo
+              isWhite={color === 'dark' ? false : true}
+              style={{
+                width: 160,
+                height: 72,
+              }}
             />
             <p className="mt-1">Capturing Life&apos;s Priceless Moments</p>
 
