@@ -8,7 +8,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function Header(): JSX.Element {
+export default function Header({ color = 'light' }): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export default function Header(): JSX.Element {
             <span className="sr-only">FamilyWise Stories</span>
           </Link>
           <Logo
+            isWhite={color === 'dark' ? false : true}
             style={{
               width: 160,
               height: 72,
@@ -50,15 +51,6 @@ export default function Header(): JSX.Element {
               </li>
             ))}
             {/* Render the "Home" link only in the desktop version */}
-            <li>
-              <Link
-                className="text-sm font-medium uppercase"
-                href="/" // Link to the home page
-                aria-label="Home"
-              >
-                Home
-              </Link>
-            </li>
             <li>
               <Link
                 className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
