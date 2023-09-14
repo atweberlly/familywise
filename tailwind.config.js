@@ -135,10 +135,11 @@ module.exports = {
     aspectRatio: false,
   },
   plugins: [
-    plugin(({ addBase, addVariant }) => {
-      addBase({
-        body: {
-          fontSize: '16px',
+    plugin(({ addVariant, addUtilities }) => {
+      addVariant('open-details', '.open-details[open] &')
+      addUtilities({
+        '.text-balance': {
+          textWrap: 'balance',
         },
       })
 
