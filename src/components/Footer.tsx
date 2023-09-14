@@ -13,8 +13,8 @@ interface Hyperlink {
 const information: Hyperlink[] = [
   { id: 1, href: '/#founder', text: 'The Founder' },
   { id: 2, href: '/pricing', text: 'Membership Options' },
-  { id: 3, href: '/frequently-asked-questions', text: 'News and Blogs' },
-  { id: 4, href: '/#testimonials', text: 'FAQs' },
+  { id: 3, href: '/frequently-asked-questions', text: 'FAQs' },
+  { id: 4, href: '/#testimonials', text: 'Testimonials' },
 ]
 
 const legal: Hyperlink[] = [
