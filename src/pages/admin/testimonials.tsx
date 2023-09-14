@@ -183,7 +183,7 @@ const FAQManager: NextPage = () => {
           <p className="text-base">Manage your testimonial content.</p>
           <div className="my-10 text-center">
             <Title>Testimonials Manager</Title>
-            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-dark">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
@@ -283,7 +283,7 @@ const FAQManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l  bg-gray-100 transition-all ',
+              'absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100  transition-all dark:bg-dark ',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
@@ -320,8 +320,8 @@ const FAQManager: NextPage = () => {
                   <p className="mb-2 text-sm">Name</p>
                   <input
                     type="text"
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="Name"
                     {...register('name', { required: true })}
                   ></input>
@@ -335,8 +335,8 @@ const FAQManager: NextPage = () => {
                   <p className="mb-2 text-sm">Position</p>
                   <input
                     type="text"
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="Position"
                     {...register('position')}
                   ></input>
@@ -345,8 +345,8 @@ const FAQManager: NextPage = () => {
                   <p className="mb-2 text-sm">Location</p>
                   <input
                     type="text"
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="Location"
                     {...register('location')}
                   ></input>
@@ -354,8 +354,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Message</p>
                   <textarea
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="Message"
                     rows={4}
                     {...register('message', { required: true })}

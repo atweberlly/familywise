@@ -45,7 +45,8 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
       try {
         const res = await axios.post('/api/stories/getStories', { user_id: user_id })
         if (res.status === 200) {
-          setData([...res.data])
+          const limitedData = user.planType === 'Free-Trial' ? res.data.slice(0, 10) : res.data //Set 10 limit Free Trial
+          setData(limitedData)
         }
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -259,26 +260,29 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
     return styledText
   }
 
+  const watermark = user.planType === 'Free-Trial' && (
+    <View
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        opacity: 0.58, // Adjust the opacity as needed (0.0 to 1.0)
+        zIndex: -1, // Place the watermark behind other content
+      }}
+    >
+      <Image src={'/member/watermark.png'} style={{ width: '100%', height: '100%' }} />
+    </View>
+  )
+
   const renderPage = (pageIndex: number) => {
     const startIndex = pageIndex * pageSize
     const endIndex = startIndex + pageSize
 
     return data.slice(startIndex, endIndex).map(({ _id, heading, story, image, caption_img }) => (
       <PdfPage key={_id} size="A4" style={tw('px-20 py-12 font-sans')}>
-        {user.planType === 'Free-Trial' && (
-          <View
-            style={{
-              position: 'absolute',
-              top: '20%',
-              right: '20%',
-              width: '50vh',
-              height: '50vh',
-              opacity: 0.58, // Adjust the opacity as needed (0.0 to 1.0)
-            }}
-          >
-            <Image src={'/member/watermark.png'} style={{ width: '100%', height: '100%' }} />
-          </View>
-        )}
+        {watermark}
         {/* Render your content for each item */}
         {/* ... */}
         {/* HEADER */}

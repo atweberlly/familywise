@@ -2,7 +2,6 @@ import { useState } from 'react'
 import ReactFlagsSelect from 'react-flags-select'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import Button from './Button'
 import axios from 'axios'
 import { Spinner } from 'flowbite-react'
 
@@ -90,16 +89,21 @@ export default function Newsletter() {
           <div className="text-sm font-medium uppercase tracking-wide">
             Make every moment count!
           </div>
-          <h2 className="mt-6 font-serif text-4xl font-bold">Receive inspiration in your inbox</h2>
+          <h2 className="mt-6 font-serif text-4xl font-bold">
+            {' '}
+            We&apos;ll remind you before important dates
+          </h2>
         </div>
 
         <form className="mx-auto mt-8 max-w-screen-md" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 items-start justify-center gap-8 md:grid-cols-2">
-            <div>
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="first-name">
+                First name
+              </label>
               <input
-                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className=" border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
                 type="text"
-                placeholder="First name"
                 {...register('first_name', { required: 'Your must provide first name' })}
               />
               {errors.first_name && (
@@ -108,11 +112,13 @@ export default function Newsletter() {
                 </p>
               )}
             </div>
-            <div>
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="last-name">
+                Last name
+              </label>
               <input
-                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className=" border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
                 type="text"
-                placeholder="Last name"
                 {...register('last_name', { required: 'You must provide last name' })}
               />
               {errors.last_name && (
@@ -121,11 +127,13 @@ export default function Newsletter() {
                 </p>
               )}
             </div>
-            <div>
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="email-address">
+                Email address
+              </label>
               <input
-                className="w-full rounded-lg border-2 border-gray-300 px-3 py-2 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className="border-b border-b-gray-800 bg-transparent px-3 py-2 focus:outline-none"
                 type="email"
-                placeholder="Email address"
                 {...register('email', {
                   required: 'You must provide an email address',
                   pattern: {
@@ -140,26 +148,34 @@ export default function Newsletter() {
                 </p>
               )}
             </div>
-            <div>
+            <div className="flex flex-col">
+              <label className="text-sm font-medium" htmlFor="phone-number">
+                Phone number
+              </label>
+
               <ReactFlagsSelect
                 selected={selected}
                 onSelect={onSelect}
                 searchable={true}
-                className="flag-select w-full rounded-lg border-2 border-gray-300 bg-white !pb-0 shadow-sm transition focus:border-primary-600 focus:outline-none"
+                className="flag-select border-b border-b-gray-800 bg-transparent py-1"
+                //className="flag-select w-full rounded-lg border-2 border-gray-300 bg-white !pb-0 shadow-sm transition focus:border-primary-600 focus:outline-none"
               />
             </div>
           </div>
           <div className="mx-auto mt-4 max-w-sm text-center lg:mt-8">
-            <Button className="w-40" type={'submit'} color={'yellow'}>
+            <button
+              className="w-full rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600 lg:w-32"
+              type="submit"
+            >
               {isLoading ? (
                 <>
                   <Spinner aria-label="loading" />
-                  <span className="pl-3">Sending</span>
+                  <span className="ml-3">Sending</span>
                 </>
               ) : (
-                'Join Us'
+                'Join us'
               )}
-            </Button>
+            </button>
           </div>
         </form>
       </div>

@@ -20,13 +20,14 @@ const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'al
 interface QuillEditorProps {
   value: string
   onChange: (value: string) => void
+  editorLoading: boolean
 }
 
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 })
 
-const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
+const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoading }) => {
   const resultRef = useRef<HTMLDivElement | null>(null)
   const [transcript, setTranscript] = useState<string>('')
   const [recording, setRecording] = useState<boolean>(false) // Added state for recording
@@ -118,10 +119,10 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
   return (
     <div>
       <span className="font-normal">Your story</span>
-      <div className="dark:bg-dark h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:text-white">
+      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:bg-dark dark:text-white">
         <button
           onClick={startRecording}
-          className={`dark:bg-dark h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px]  border-[1.5px] px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black 
+          className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black dark:bg-dark 
           dark:text-white
           ${
             recording
@@ -134,7 +135,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
       </div>
       {/* Display the transcript */}
       {recording && transcript.length > 0 && (
-        <div className="dark:bg-dark h-100 text-3l dark.borderColor-white dark.bg-black mt-[12px] min-h-[5vh]  w-full rounded-[12px] border-[1.5px] px-[29px] py-[22px] text-xs text-gray-400 focus:border-none">
+        <div className="h-100 text-3l dark.borderColor-white dark.bg-black mt-[12px] min-h-[5vh] w-full  rounded-[12px] border-[1.5px] px-[29px] py-[22px] text-xs text-gray-400 focus:border-none dark:bg-dark">
           {transcript}
         </div>
       )}
@@ -142,7 +143,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
       {/* Display the Quill Editor*/}
       <ReactQuill
         theme="snow"
-        className="dark:bg-dark h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none"
+        className="h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark"
         placeholder="Write your story here..."
         value={value}
         onChange={onChange}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { FaCheck } from 'react-icons/fa'
-import { ClipLoader } from 'react-spinners'
+import { ClipLoader, SkewLoader } from 'react-spinners'
 import { useRouter } from 'next/router'
 import ButtonV2 from '../../components/_member/Button'
 import QuillEditor from './QuilEditor'
@@ -25,6 +25,7 @@ const Edit = ({ question, id }: Props) => {
   const [image, setImage] = useState(null)
   const [defaultContent, setDefaultContent] = useState({ heading: '', story: '', caption: '' })
   const [uploadedFile, setUploadedFile] = useState<any>()
+  const [iseditorLoading, seteditorLoading] = useState(true)
 
   useEffect(() => {
     ;(async () => {
@@ -37,6 +38,7 @@ const Edit = ({ question, id }: Props) => {
         })
         console.log(res.data)
         setImage(res.data.image)
+        seteditorLoading(false)
       }
     })()
   }, [id])
@@ -96,7 +98,7 @@ const Edit = ({ question, id }: Props) => {
 
     // Set a new timeout to delay the execution of handleEditorChange
     timeoutId = setTimeout(() => {
-      toast('Saved', {
+      toast('Saving', {
         icon: '👌🏽',
         duration: 3000, // 3 seconds
       })
@@ -136,7 +138,7 @@ const Edit = ({ question, id }: Props) => {
           type="text"
           className={`mt-2 w-full rounded-xl border-primary-600 ${
             isDisabled
-              ? 'dark:bg-dark  bg-secondary-200 dark:text-white/30'
+              ? 'bg-secondary-200  dark:bg-dark dark:text-white/30'
               : 'bg-white dark:bg-black dark:text-white'
           } px-8 py-6 text-sm text-secondary-600  outline-none`}
           defaultValue={defaultContent.heading ? defaultContent.heading : question}
@@ -163,13 +165,17 @@ const Edit = ({ question, id }: Props) => {
             />
           </div>
           <div className="py-[25px]">
-            {
-              //
+            {iseditorLoading ? (
+              <div className="editor-loading">
+                <SkewLoader color="#9E7558" className="item-center" loading={true} size={20} />
+              </div>
+            ) : (
               <QuillEditor
                 value={content.story || defaultContent.story}
                 onChange={handleEditorChange}
+                editorLoading={iseditorLoading}
               />
-            }
+            )}
 
             {/*
             <textarea
@@ -218,7 +224,7 @@ const Edit = ({ question, id }: Props) => {
           </div>
           <div className="py-[25px]">
             <textarea
-              className="dark:bg-dark mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:text-white"
+              className="mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark dark:text-white"
               placeholder="Add a caption for your image. The caption will appear below your image."
               defaultValue={defaultContent.caption}
               onChange={(e) => {
@@ -248,6 +254,7 @@ const Edit = ({ question, id }: Props) => {
           onClick={() => {
             router.push('/member/preview')
           }}
+          disabled={saving}
         />
         {/* <Button text="Done Writing" onClick={saveStory} /> */}
       </div>
