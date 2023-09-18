@@ -7,7 +7,6 @@ import { questionbasedbook, photobasedbook, all_1, all_2 } from '../../component
 import Newsletter from '../../components/Newsletter'
 import Payin4 from '../../components/Payin4'
 import Plans from '../../components/Plans'
-import Testimonials from '../../components/Testimonials'
 import Title from '../../components/Title'
 import { LockClosedIcon, ReceiptRefundIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
 
@@ -15,8 +14,9 @@ export default function Pricing() {
   return (
     <main>
       <Title suffix="Family Wise">Pricing</Title>
+
       <header className="relative min-h-screen bg-vanilla pb-16">
-        <Header />
+        <Header color="dark" />
         <div className="relative flex min-h-screen w-max overflow-y-auto">
           <div className="relative z-20 my-4 w-screen flex-1 px-6 text-center">
             <div className="m-auto mt-4 block text-center lg:mt-8">
@@ -153,7 +153,6 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-      <Testimonials />
       <Newsletter />
       <Footer />
     </main>
