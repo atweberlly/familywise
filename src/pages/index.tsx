@@ -119,8 +119,8 @@ export default function Home() {
               height="432"
             />
 
-            <div className="relative z-50 mx-auto max-w-lg pt-32 text-center">
-              <h1 className="font-fair text-5xl font-bold text-[#112f45] lg:text-6xl xl:text-8xl">
+            <div className="relative z-50 mx-auto max-w-screen-xl  pt-32 text-center">
+              <h1 className="font-fair text-5xl font-semibold text-[#112f45] lg:text-6xl xl:text-8xl">
                 Publish the <br />
                 <em className="text-orange-500">stories</em>
                 <br />

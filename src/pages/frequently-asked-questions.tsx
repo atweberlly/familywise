@@ -50,7 +50,7 @@ export default function Faqs() {
     <main className="relative min-h-screen bg-white">
       <Title suffix="Family Wise">Frequently Asked Questions</Title>
       <header>
-        <Header color="dark" />
+        <Header color="light" />
         <div className="my-8 text-center text-black-pearl lg:my-16">
           <div className="text-sm tracking-wider text-lemon-curry">FAQs</div>
           <Heading size={3} className="mt-0">
