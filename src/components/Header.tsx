@@ -29,7 +29,7 @@ export default function Header({ color = 'light' }): JSX.Element {
             <span className="sr-only">FamilyWise Stories</span>
           </Link>
           <Logo
-            isWhite={color === 'dark' ? false : true}
+            isWhite={color === 'light' ? false : true}
             style={{
               width: 160,
               height: 72,
