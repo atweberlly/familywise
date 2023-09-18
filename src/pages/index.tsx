@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
-import Button from '../components/Button'
+import Link from 'next/link'
 //import CheckIcon from '../components/CheckIcon'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Newsletter from '../components/Newsletter'
-import Payin4 from '../components/Payin4'
 import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
 import Swiper, { Navigation } from 'swiper'
@@ -13,10 +12,7 @@ import {
   ArrowLongDownIcon,
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
-  LockClosedIcon,
-  ReceiptRefundIcon,
 } from '@heroicons/react/24/outline'
-import { StarIcon } from '@heroicons/react/24/solid'
 
 export default function Home() {
   //const [productInfo, setProductInfo] = useState(classic)
@@ -666,215 +662,356 @@ export default function Home() {
         <section>
           <div className="aspect-h-9 aspect-w-16 bg-black md:aspect-h-6">
             <video controls>
-              <source src="/videos/video_preview_h264.mp4" type="video/mp4" />
+              <source src="/videos/familywise-preview.mp4" type="video/mp4" />
             </video>
           </div>
-        </section>
 
-        <div className="relative h-80">
-          <Image
-            className="object-cover object-center"
-            src="/images/hero/hero-video-placeholder@4x.jpg"
-            alt=""
-            fill
-          />
-        </div>
+          <div className="container grid grid-cols-1 items-center gap-8 pb-12 pt-14 md:grid-cols-2 md:pb-14 md:pt-16 lg:gap-16 lg:pb-24">
+            <div>
+              <div className="flex items-center">
+                <div className="h-px w-10 bg-[#111]"></div>
+                <p className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
+                  Capture the stories of your lifetime
+                </p>
+              </div>
+              <h2 className="mt-4 font-fair text-4xl lg:text-6xl">Start right away!</h2>
+              <div className="mt-4 space-y-2 text-lg text-gray-600">
+                <p>
+                  Your stories are worth sharing. Get started in minutes and with an email each
+                  week, you&apos;ll preserve your meaningful moments into a keepsake book to pass on
+                  to future generations.
+                </p>
+                <p>Receive immediate access - your first question will arrive in minutes.</p>
+              </div>
+              <div className="mt-6 md:mt-12">
+                <button
+                  className="rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
+                  type="button"
+                  onClick={scrollDown}
+                >
+                  Get started
+                </button>
+              </div>
+            </div>
+            <div className="-mx-10 flex items-start">
+              <div className="grid grow grid-cols-6 gap-4">
+                <div className="col-span-2 col-start-2 place-self-end">
+                  <Image
+                    alt=""
+                    loading="lazy"
+                    width="160"
+                    height="160"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-40 w-full object-cover"
+                    src="/svg/content/1.svg"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <Image
+                    alt=""
+                    loading="lazy"
+                    width="160"
+                    height="240"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-60 w-full object-cover"
+                    src="/svg/content/2.svg"
+                  />
+                </div>
+
+                <div className="col-span-2 justify-self-end">
+                  <Image
+                    alt=""
+                    loading="lazy"
+                    width="190"
+                    height="128"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-32 w-full object-cover"
+                    src="/svg/content/3.svg"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <Image
+                    alt=""
+                    loading="lazy"
+                    width="160"
+                    height="240"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-60 w-full object-cover"
+                    src="/svg/content/5.svg"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <Image
+                    alt=""
+                    loading="lazy"
+                    width="192"
+                    height="128"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-32 w-full object-cover"
+                    src="/svg/content/4.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </header>
 
-      <section className="bg-black-pearl px-10 pb-12 pt-14 text-white md:pb-14 md:pt-16">
-        <div className="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16">
-          <div className="md:order-1 md:col-span-2">
-            <h2 className="font-serif text-[3.25rem] font-bold leading-none lg:text-6xl">
-              <span className="block text-white/30">Start</span>{' '}
-              <span className="-mt-2 ml-16 block">right away</span>
-            </h2>
-            <p className="ml-8 mt-2 text-sm uppercase tracking-wide text-white/70">
-              Capture the stories of your lifetime
-            </p>
-          </div>
-
-          <div className="md:order-3">
-            <p className="text-lg text-white/70">
-              Your stories are worth sharing. Get started in minutes & with an email each week,
-              you&apos;ll preserve your meaningful moments into a keepsake book to pass on to future
-              generations.
-            </p>
-            <p className="mt-2.5 text-lg text-white/70">
-              Receive immediate access - your first question will arrive in minutes.
-            </p>
-
-            <div className="mt-6 md:mt-12">
-              <Button className="w-40" type={'button'} color={'yellow'} onClick={scrollDown}>
-                Get started
-              </Button>
+      <section className="section px-17 bg-white-500 py-8" id="get-started">
+        <div className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16 xl:gap-24">
+          <div>
+            <div className="aspect-h-4 aspect-w-3">
+              <Image
+                alt=""
+                loading="lazy"
+                quality={100}
+                className="rounded-lg object-cover"
+                width={800}
+                height={0}
+                src="/images/cover@4x.jpg"
+                priority={false}
+              />
             </div>
           </div>
 
-          <div className="relative -mx-10 h-48 md:order-4 md:mx-0 lg:mt-auto lg:h-64">
-            <Image
-              className="object-cover object-center"
-              src="/images/get-started/the-perfect-gift@4x.jpg"
-              alt="The Perfect Gift"
-              fill
-            />
-          </div>
-
-          <div className="md:order-2 md:row-span-2">
-            <Image
-              className="h-[416px] w-full object-cover object-center md:h-full"
-              src="/images/get-started/get-started-image@4x.jpg"
-              alt="Get Started"
-              width="312"
-              height="416"
-              priority={false}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-screen-lg px-10 py-8" id="get-started">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="md:order-2">
-            <h2 className="font-serif text-4xl font-bold text-warning-600">
-              Your story starts here
-            </h2>
-            <p className="mt-1.5 italic">Bringing families together</p>
+            <div className="flex items-center">
+              <div className="h-px w-10 bg-[#111]"></div>
+              <h2 className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
+                Bringing families together
+              </h2>
+            </div>
+            <p className="mt-4 font-fair text-4xl lg:text-6xl">Your story starts here</p>
+            <div className="mt-8 inline-flex items-end">
+              <div className="flex items-center space-x-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-6 w-6 text-yellow-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-6 w-6 text-yellow-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-6 w-6 text-yellow-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-6 w-6 text-yellow-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-6 w-6 text-yellow-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <span className="ml-2 text-sm">5 stars reviews</span>
+            </div>
+            <ul className="mt-8 space-y-2">
+              <li className="flex">
+                <div className="flex h-6 items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="h-6 w-6 rounded-full bg-[#eaf1ff] stroke-[#0063e8]"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <p className="ml-2 font-medium text-gray-600">
+                  One year membership, your first book is included!
+                </p>
+              </li>
+              <li className="flex">
+                <div className="flex h-6 items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="h-6 w-6 rounded-full bg-[#eaf1ff] stroke-[#0063e8]"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <p className="ml-2 font-medium text-gray-600">
+                  Complete your book as quickly as you want
+                </p>
+              </li>
+            </ul>
 
             <div className="mt-10">
-              <div className="flex items-end">
-                <div className="flex items-center space-x-1">
-                  {[...Array(5).keys()].map((x) => (
-                    <StarIcon className="h-6 w-6 text-yellow-500" key={x} />
-                  ))}
-                </div>
-                <span className="ml-2 text-sm">Reviews</span>
-              </div>
-
-              {/*    <ul className="mt-4 space-y-2">
-                {[...Array(3).keys()].map((x) => (
-                  <li className="flex" key={x}>
-                    <div className="flex h-6 items-center">
-                      <svg
-                        className="h-6 w-6 shrink-0 text-red-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="m9.973 14.175 5.9-5.9a.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275a.948.948 0 0 1 .275.7.948.948 0 0 1-.275.7l-6.6 6.6c-.2.2-.433.3-.7.3a.96.96 0 0 1-.7-.3l-2.6-2.6a.948.948 0 0 1-.275-.7.95.95 0 0 1 .275-.7.948.948 0 0 1 .7-.275c.284 0 .517.092.7.275l1.9 1.9Z"
-                        />
-                      </svg>
-                    </div>
-
-                    <p className="ml-2 font-medium">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    </p>
-                  </li>
-                ))}
-              </ul> */}
-
               <div className="my-8 space-y-4">
-                <div className="relative flex">
+                <div className="relative flex items-center">
                   <input
-                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
-                    id="start-trial"
+                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
+                    id="free-trial"
                     name="plan"
                     type="radio"
-                    value="free-trial"
-                    /* onClick={() => {
-                      setProductInfo(classic)
-                    }} */
+                    value="classic"
                   />
                   <label
-                    className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
-                    htmlFor="start-trial"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
+                    htmlFor="free-trial"
                   >
                     <div>
-                      <div className="text-lg font-bold">Free-Trial</div>
-                      <div className="text-sm">Set it in action</div>
+                      <div className="text-lg font-bold">Free trial</div>
+                      <div className="text-sm text-secondary-600">14 days</div>
                     </div>
-
-                    <div className="">
-                      <span className="text-3xl font-semibold">$0.00</span>{' '}
-                      <span className="text-sm">per year</span>
-                    </div>
+                    <div className="text-2xl font-semibold">$0.00</div>
                   </label>
                 </div>
 
-                <div className="relative flex">
+                <div className="relative flex items-center">
                   <input
-                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
-                    id="questionbasedbook-plan"
+                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
+                    id="your-life-in-a-book"
                     name="plan"
                     type="radio"
-                    value="questionbasedbook"
-                    /* onClick={() => {
-                      setProductInfo(premium)
-                    }} */
+                    value="your-life-in-a-book"
                   />
                   <label
-                    className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
-                    htmlFor="questionbasedbook-plan"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
+                    htmlFor="your-life-in-a-book"
                   >
                     <div>
                       <div className="text-lg font-bold">Your Life In A Book</div>
-                      <div className="text-sm">Basic Packages</div>
+                      <div className="text-sm">Questions about your life</div>
                     </div>
-
-                    <div className="">
-                      <span className="text-3xl font-semibold">$97.00</span>{' '}
-                      <span className="text-sm">per year</span>
-                    </div>
+                    <div className="text-2xl font-semibold">$97.00</div>
                   </label>
                 </div>
 
-                <div className="relative flex">
+                <div className="relative flex items-center">
                   <input
-                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none focus:outline-none"
-                    id="photobasedbook-plan"
+                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
+                    id="photo-based-book"
                     name="plan"
                     type="radio"
-                    value="photobasedbook"
-                    /* onClick={() => {
-                      setProductInfo(premium)
-                    }} */
+                    value="photo-based-book"
                   />
                   <label
-                    className="flex flex-1 items-center justify-between rounded-lg border p-4 transition peer-checked:border-primary-400 peer-checked:bg-primary-400 peer-checked:text-white peer-focus:ring-4 peer-focus:ring-primary-400/50"
-                    htmlFor="photobasedbook-plan"
+                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
+                    htmlFor="photo-based-book"
                   >
                     <div>
                       <div className="text-lg font-bold">Photo Based Book</div>
-                      <div className="text-sm">Most popular</div>
+                      <div className="text-sm">Start with a photo and tell that story</div>
                     </div>
-
-                    <div className="">
-                      <span className="text-3xl font-semibold">$97.00</span>{' '}
-                      <span className="text-sm">per year</span>
-                    </div>
+                    <div className="text-2xl font-semibold">$97.00</div>
                   </label>
                 </div>
 
-                <div className="flex">
-                  <Button
-                    type="link"
-                    color="dark"
-                    href="/pricing"
-                    className="mb-4 flex-1 rounded-md bg-secondary-600 p-3 text-sm uppercase tracking-wider text-white"
-                  >
-                    Membership Options
-                  </Button>
-                </div>
+                <Link
+                  className="block rounded-lg bg-orange-500 px-5 py-3 text-center font-semibold text-white transition hover:bg-orange-600"
+                  href="/pricing"
+                >
+                  Membership Options
+                </Link>
 
                 <div className="flex items-start justify-center space-x-8">
-                  {/* PLACE PAY IN 4 LOGO HERE */}
                   <div className="flex flex-col items-center text-primary-600">
-                    <Payin4 className="mx-auto" />
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fab"
+                      data-icon="paypal"
+                      className="svg-inline--fa fa-paypal h-6 w-6"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 384 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"
+                      ></path>
+                    </svg>
                     <div className="mt-1 text-center text-sm">Pay in 4</div>
                   </div>
+
                   <div className="flex flex-col items-center text-primary-600">
-                    <LockClosedIcon className="mx-auto h-6 w-6" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                      ></path>
+                    </svg>
                     <div className="mt-1 text-center text-sm">
                       Secure
                       <br />
@@ -883,7 +1020,21 @@ export default function Home() {
                   </div>
 
                   <div className="flex flex-col items-center text-primary-600">
-                    <ReceiptRefundIcon className="mx-auto h-6 w-6" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 9.75h4.875a2.625 2.625 0 010 5.25H12M8.25 9.75L10.5 7.5M8.25 9.75L10.5 12m9-7.243V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"
+                      ></path>
+                    </svg>
                     <div className="mt-1 text-center text-sm">
                       Money-Back
                       <br />
@@ -892,90 +1043,91 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              {/*  <hr className="w-full py-2" />
-              <dl className="order-3 space-y-4 divide-y divide-secondary-200 md:col-span-2 lg:mx-auto lg:w-full lg:max-w-prose">
-                <details className="open-details cursor-pointer">
-                  <summary>
-                    <div className="flex items-center justify-between text-secondary-600">
-                      <div className="text-xl font-medium">Product information</div>
-                      <PlusIcon className="h-6 w-6 open-details:hidden" />
-                      <MinusIcon className="hidden h-6 w-6 open-details:block" />
-                    </div>
-                  </summary>
-
-                  <div className="hidden py-4 open-details:block">
-                    <ul className="space-y-3">
-                      {productInfo?.map(({ id, item }: any) => (
-                        <li className="flex" key={id}>
-                          <div className="flex h-6 items-center">
-                            <CheckIcon className="text-primary-600" />
-                          </div>
-                          <p className="ml-2">{item}</p>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <h3 className="my-4 font-medium text-primary-400">All memberships receive</h3>
-
-                    <ul className="space-y-3">
-                      {all_1?.map(({ id, item }: any) => (
-                        <li className="flex" key={id}>
-                          <div className="flex h-6 items-center">
-                            <CheckIcon className="text-primary-600" />
-                          </div>
-                          <p className="ml-2">{item}</p>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <h3 className="my-4 font-medium text-primary-400">
-                      Full suite design options for book printing
-                    </h3>
-
-                    <ul className="space-y-3">
-                      {all_2?.map(({ id, item }: any) => (
-                        <li className="flex" key={id}>
-                          <div className="flex h-6 items-center">
-                            <CheckIcon className="text-primary-600" />
-                          </div>
-                          <p className="ml-2">{item}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </details>
-
-                <details className="open-details cursor-pointer pt-4">
-                  <summary>
-                    <div className="flex items-center justify-between text-secondary-600">
-                      <div className="text-xl font-medium">Money-Back Guarantee</div>
-                      <PlusIcon className="h-6 w-6 open-details:hidden" />
-                      <MinusIcon className="hidden h-6 w-6 open-details:block" />
-                    </div>
-                  </summary>
-
-                  <div className="hidden py-4 open-details:block">
-                    <p>
-                      The Family Wise experience is risk-free, with a 30 day money back
-                      guarantee. If for any reason you or your relative are not satisfied by the
-                      experience or the result, simply send us an email and we will give you a full
-                      refund, no questions asked.
-                    </p>
-                  </div>
-                </details>
-              </dl> */}
             </div>
-          </div>
-
-          <div className="md:order-1">
-            <Image
-              className="w-full"
-              src="/images/cover@4x.jpg"
-              alt="Cover"
-              width="548"
-              height="636"
-              priority={false}
-            />
+            <dl className="space-y-4 divide-y divide-secondary-200 border-y border-secondary-200 pb-4 md:col-span-2 lg:mx-auto lg:w-full lg:max-w-prose">
+              <details className="open-details pt-4">
+                <summary className="cursor-pointer">
+                  <div className="flex items-center justify-between text-secondary-600">
+                    <div className="text-xl font-medium">Product Information</div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="h-6 w-6 open-details:hidden"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      ></path>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="hidden h-6 w-6 open-details:block"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15"></path>
+                    </svg>
+                  </div>
+                </summary>
+                <div className="hidden py-4 open-details:block">
+                  <p>
+                    The Family Wise experience is risk-free, with a 30-day money-back guarantee. If
+                    for any reason you or your relative are not satisfied with the experience or the
+                    result, simply send us an email and we will give you a full refund, no questions
+                    asked.
+                  </p>
+                </div>
+              </details>
+              <details className="open-details pt-4">
+                <summary className="cursor-pointer">
+                  <div className="flex items-center justify-between text-secondary-600">
+                    <div className="text-xl font-medium">Money-Back Guarantee</div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="h-6 w-6 open-details:hidden"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      ></path>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="hidden h-6 w-6 open-details:block"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15"></path>
+                    </svg>
+                  </div>
+                </summary>
+                <div className="hidden py-4 open-details:block">
+                  <p>
+                    The Family Wise experience is risk-free, with a 30-day money-back guarantee. If
+                    for any reason you or your relative are not satisfied with the experience or the
+                    result, simply send us an email and we will give you a full refund, no questions
+                    asked.
+                  </p>
+                </div>
+              </details>
+            </dl>
           </div>
         </div>
       </section>
