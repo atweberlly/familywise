@@ -27,7 +27,7 @@ export default function Plans({
               <span className="text-xs font-bold text-lemon-curry ">Most Popular</span>
             </span>
           )}
-          <h3 className="mt-10 text-left text-lg font-semibold lg:text-2xl">{name} Packages</h3>
+          <h3 className="mt-10 text-left text-lg font-semibold lg:text-2xl">{name}</h3>
           <div className="flex items-start sm:items-center">
             <p className="flex items-start text-4xl font-bold lg:text-5xl">
               <span className="text-2xl lg:text-3xl">$</span>
@@ -44,7 +44,9 @@ export default function Plans({
           <p className="text-left text-sm font-bold text-gray-800">FEATURES</p>
           {isPopular && (
             <p className="mt-2 text-sm text-gray-600">
-              Everything in our <span className="font-bold">classic membership</span> plus....
+              The essence of FamilyWise is your stories. With over 500 questions, prompts, and
+              advice to guide you along the way, you’ll never lack inspiration. You’ll be surprised
+              how quickly your legacy book takes shape.
             </p>
           )}
           <p className="mt-2 text-sm text-gray-600">{description}</p>

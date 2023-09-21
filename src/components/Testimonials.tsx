@@ -73,11 +73,11 @@ export default function Testimonials({ className }: Props) {
                       </svg>
                     ))}
                   </div>
-                  <blockquote className="mt-4 text-center font-fair text-4xl text-gray-900 text-balance lg:text-5xl xl:text-6xl">
+                  <blockquote className="mt-4 text-center font-fair text-sm text-gray-900 text-balance lg:text-lg">
                     <p>{message}</p>
                   </blockquote>
                   <div className="mt-8 text-center">
-                    <div className="mx-auto h-16 w-16 rounded-full bg-gray-400"></div>
+                    {/*<div className="mx-auto h-16 w-16 rounded-full bg-gray-400"></div>*/}
                     <div className="mt-4 text-lg font-semibold text-primary-500">{name}</div>
                     <address className="mt-1 not-italic text-primary-500">{location}</address>
                   </div>

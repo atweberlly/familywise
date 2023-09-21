@@ -47,7 +47,7 @@ export default function Pricing() {
                 name={'Your Life In A Book'}
                 price={'97'}
                 features={questionbasedbook}
-                extra_name={'1 copy of your own professionally printed premium book'}
+                extra_name={'Design your professionally printed premium book'}
                 extra_features={questionbasedbook_extra}
                 isPopular={true}
               />
@@ -59,7 +59,7 @@ export default function Pricing() {
                   'Perfect for children’s birthday books, holiday books, wedding books, recipe books, and preserving your children’s drawings & art.  Any occasion you take lots of photos! Instead of starting with a question, choose a photo & write your memory of that moment in time.'
                 }
                 features={photobasedbook}
-                extra_name={'1 copy of your own professionally printed premium book'}
+                extra_name={'Design your professionally printed premium book'}
                 extra_features={photobasedbook_extra}
                 isPopular={false}
               />

@@ -16,14 +16,14 @@ export const questionbasedbook_extra: Array<Props> = [
     id: uniqueId(),
     item: 'Choose your own photo for the book cover',
   },
-  {
+  /*{
     id: uniqueId(),
     item: 'One 100-page A5 book ',
   },
   {
     id: uniqueId(),
     item: 'Longer books & additional copies are available',
-  },
+  },*/
   {
     id: uniqueId(),
     item: 'Premium satin stock - this paper is beautiful for photo & print quality',
@@ -39,14 +39,14 @@ export const photobasedbook_extra: Array<Props> = [
     id: uniqueId(),
     item: 'Paperback, perfect-bound book with a gloss finish',
   },
-  {
+  /*{
     id: uniqueId(),
     item: 'One 100-page A5 book ',
   },
   {
     id: uniqueId(),
     item: 'Longer books & additional copies available ',
-  },
+  },*/
   {
     id: uniqueId(),
     item: 'Premium satin stock - this paper is beautiful for photo & print quality',

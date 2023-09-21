@@ -141,7 +141,7 @@ export default function Home() {
           </button>
 
           <div className="mx-auto my-8 max-w-screen-xl lg:my-16 xl:my-32">
-            <h2 className="text-center font-fair text-4xl lg:text-5xl xl:text-6xl">
+            <h2 className="text-center font-fair text-4xl lg:text-5xl xl:text-5xl">
               &quot;FamilyWise sends you a question each week and your stories are compiled into
               your very own book of memories.&quot;
             </h2>
