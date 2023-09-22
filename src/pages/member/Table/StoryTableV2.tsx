@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { HiSearch } from 'react-icons/hi'
 import Spinner from '../../../components/_member/Spinner'
 import SortableList from '../../../components/_member/draggable/SortableList'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { TextInput } from 'flowbite-react'
-import { Bars3Icon, MagnifyingGlassIcon, PencilIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, PencilIcon } from '@heroicons/react/24/outline'
 
 /*interface Props extends React.AllHTMLAttributes<HTMLElement> {
   onClick?: () => void
@@ -23,13 +24,7 @@ export function GlobalFilter(param: any) {
   const { showCustom, setShowCustom } = param*/
   return (
     <div className="mt-3 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-      <TextInput
-        id="search"
-        type="text"
-        placeholder="Search"
-        required={true}
-        icon={MagnifyingGlassIcon}
-      />
+      <TextInput id="search" type="text" placeholder="Search" required={true} icon={HiSearch} />
     </div>
   )
 }

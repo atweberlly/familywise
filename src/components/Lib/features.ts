@@ -5,6 +5,149 @@ export interface Props {
   item: string
   icon?: string | null
 }
+
+export const freetrial: Array<Props> = [
+  {
+    id: uniqueId(),
+    item: '14-Days trial',
+  },
+  {
+    id: uniqueId(),
+    item: 'Access to 30 questions',
+  },
+  {
+    id: uniqueId(),
+    item: 'Include your images in your stories',
+  },
+  {
+    id: uniqueId(),
+    item: 'Add your own questions',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the current question',
+  },
+  {
+    id: uniqueId(),
+    item: '.pdf preview of 10 pages with watermark',
+  },
+]
+
+//Replacement of Classic Question Based Book
+export const questionbasedbook: Array<Props> = [
+  {
+    id: uniqueId(),
+    item: '500+ questions to choose from',
+  },
+  {
+    id: uniqueId(),
+    item: 'One year membership',
+  },
+  {
+    id: uniqueId(),
+    item: 'Write your book as quickly as you want',
+  },
+  {
+    id: uniqueId(),
+    item: 'One 100-page A5 book is included - longer books & additional copies are available',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish from 20 to 500 pages in your book',
+  },
+  {
+    id: uniqueId(),
+    item: 'Receive Pro Tips for writing throughout the year',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your stories before printing',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish your book of poetry or other writings',
+  },
+  {
+    id: uniqueId(),
+    item: 'Unlimited editing of your stories',
+  },
+  {
+    id: uniqueId(),
+    item: 'Dedication page',
+  },
+  {
+    id: uniqueId(),
+    item: 'Include as many stories as you’d like',
+  },
+  {
+    id: uniqueId(),
+    item: 'Unlimited images can be included ',
+  },
+  {
+    id: uniqueId(),
+    item: 'Rewrite a question to suit your style',
+  },
+  {
+    id: uniqueId(),
+    item: 'Write your own questions',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your stories before printing',
+  },
+  {
+    id: uniqueId(),
+    item: 'Weekly reminders with additional questions & ideas for stories',
+  },
+  {
+    id: uniqueId(),
+    item: 'Have the opportunity to have your story published by us',
+  },
+  {
+    id: uniqueId(),
+    item: 'Add our <strong>Voice-2-Text</strong> option so you don’t have to type your stories',
+  },
+]
+//Photo Based Book
+export const photobasedbook: Array<Props> = [
+  {
+    id: uniqueId(),
+    item: 'Unlimited editing of your book',
+  },
+  {
+    id: uniqueId(),
+    item: 'Dedication page',
+  },
+  {
+    id: uniqueId(),
+    item: 'Unlimited images can be included ',
+  },
+  {
+    id: uniqueId(),
+    item: `One 100-page A5 book is included - longer books & additional copies are available`,
+  },
+  {
+    id: uniqueId(),
+    item: 'One year membership',
+  },
+  {
+    id: uniqueId(),
+    item: 'Produce your book as quickly as you want',
+  },
+  {
+    id: uniqueId(),
+    item: 'Publish from 20 to 400 pages in your book',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your chapters before printing',
+  },
+  {
+    id: uniqueId(),
+    item: 'Change the order of your stories before printing',
+  },
+]
+
 export const classic: Array<Props> = [
   {
     id: uniqueId(),

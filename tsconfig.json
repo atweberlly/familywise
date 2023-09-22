@@ -15,6 +15,11 @@
     "jsx": "preserve",
     "incremental": true,
     "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"],
+      "~/public/*": ["public/*"]
+    },
     "plugins": [
       {
         "name": "next"
@@ -31,7 +36,8 @@
     "**/*.js",
     "src/middleware.js",
     ".next/types/**/*.ts",
-    "/Users/jonahcastro/Atweberlly/familyfortunate-v2/.next/types/**/*.ts"
+    "/Users/jonahcastro/Atweberlly/familyfortunate-v2/.next/types/**/*.ts",
+    "C:\\Users\\jeric\\Documents\\Development\\Github\\familywise\\.next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

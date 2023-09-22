@@ -1,4 +1,5 @@
 import { useState, useEffect, SetStateAction } from 'react'
+import { HiSearch } from 'react-icons/hi'
 import Heading from '../../components/Heading'
 import Pagination from '../../components/Paginations'
 import TableLayout from '../../components/TableLayout'
@@ -8,7 +9,6 @@ import axios from 'axios'
 import dateFormat from 'dateformat'
 import { Table, TextInput } from 'flowbite-react'
 import { NextPage } from 'next'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 const MemberList: NextPage = () => {
   /*let initialState = {
@@ -75,14 +75,14 @@ const MemberList: NextPage = () => {
         <p className="text-base">Lists of subscribers</p>
         <div className="my-10 text-center">
           <Title>Members</Title>
-          <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
+          <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-dark">
             <div className="mt-3 flex justify-between">
               <TextInput
                 id="search"
                 type="text"
                 placeholder="Search"
                 required={true}
-                icon={MagnifyingGlassIcon}
+                icon={HiSearch}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />

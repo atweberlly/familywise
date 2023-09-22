@@ -66,13 +66,17 @@ export default function ResetPassword() {
             router.push('/member/questions')
           }
 
-          toast.success(result.data.message)
+          toast.success(result.data.message, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setLoading(false)
         }, 3000)
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setLoading(false)
       })
   }

@@ -1,5 +1,6 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
+import { HiSearch } from 'react-icons/hi'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -12,7 +13,7 @@ import axios from 'axios'
 import clsx from 'clsx'
 import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
 import type { NextPage } from 'next'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const FAQCategories: NextPage = () => {
   let initialState = {
@@ -177,14 +178,14 @@ const FAQCategories: NextPage = () => {
           <p className="text-base">Manage your FAQ Categories.</p>
           <div className="my-10 text-center">
             <Title>FAQ Categories Manager</Title>
-            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-dark">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={MagnifyingGlassIcon}
+                  icon={HiSearch}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />
@@ -264,7 +265,7 @@ const FAQCategories: NextPage = () => {
           />
           <div
             className={clsx(
-              'absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
@@ -283,7 +284,7 @@ const FAQCategories: NextPage = () => {
             </div>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="dark:bg-dark flex h-full flex-col justify-between"
+              className="flex h-full flex-col justify-between dark:bg-dark"
             >
               <div className="dark:bg-dark-medium mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:text-white">
                 {addEditMessage?.message && (
@@ -300,8 +301,8 @@ const FAQCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm ">Name</p>
                   <input
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     type="text"
                     placeholder="Name"
                     {...register('name', { required: true })}
@@ -316,8 +317,8 @@ const FAQCategories: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     rows={4}
                     placeholder="Description"
                     {...register('description')}

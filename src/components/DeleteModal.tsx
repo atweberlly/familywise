@@ -36,7 +36,9 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
       .then(() => {
         setTimeout(() => {
           // After 3 seconds set the show value to false
-          toast.success('Successfully deleted.')
+          toast.success('Successfully deleted.', {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setShowDelete(false) //hide modal
           setLoading(false) //remove loader
         }, 3000)
@@ -45,7 +47,9 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
         const { error } = err.response.data
         setTimeout(() => {
           // After 3 seconds set the show value to false
-          toast.error(error)
+          toast.error(error, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setShowDelete(false)
           setLoading(false)
         }, 3000)
@@ -65,7 +69,7 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
       />
       <div
         className={clsx(
-          'absolute top-1/2 left-1/2 z-30 flex max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
+          'absolute left-1/2 top-1/2 z-30 flex max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-6 overflow-hidden rounded-xl bg-gray-100 shadow-md transition-all',
           showDelete ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >

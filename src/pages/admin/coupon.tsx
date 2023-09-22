@@ -1,6 +1,7 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
+import { HiSearch } from 'react-icons/hi'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -14,10 +15,9 @@ import axios from 'axios'
 import clsx from 'clsx'
 import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
-import 'flatpickr/dist/themes/light.css'
 import { Table, TextInput, Spinner } from 'flowbite-react'
 import type { NextPage } from 'next'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const CouponManager: NextPage = () => {
   let initialState = {
@@ -95,7 +95,9 @@ const CouponManager: NextPage = () => {
     await axios(configuration)
       .then((response) => {
         if (response) {
-          toast.success(message)
+          toast.success(message, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setTimeout(() => {
             // After 3 seconds set the show value to false
             setShowAddEdit(false) //hide modal
@@ -168,7 +170,9 @@ const CouponManager: NextPage = () => {
         setValue('published', data?.published, { shouldValidate: true })
       })
       .catch((error) => {
-        toast.error(error)
+        toast.error(error, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
       })
 
     setShowAddEdit(!showAddEdit)
@@ -203,7 +207,9 @@ const CouponManager: NextPage = () => {
           setLoading(false)
         })
         .catch((error) => {
-          toast.error(error)
+          toast.error(error, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
         })
     }
     // fetch data
@@ -242,14 +248,14 @@ const CouponManager: NextPage = () => {
           <p className="text-base">Manage your coupon details</p>
           <div className="my-10 text-center">
             <Title>Coupon Manager</Title>
-            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-dark">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={MagnifyingGlassIcon}
+                  icon={HiSearch}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />
@@ -373,7 +379,7 @@ const CouponManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all dark:bg-dark',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
@@ -403,8 +409,8 @@ const CouponManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Code</p>
                   <input
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="E.g. CHRISTMAS2023"
                     {...register('code', { required: true })}
                   />
@@ -417,8 +423,8 @@ const CouponManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Description</p>
                   <textarea
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="E.g. Coupon for Christmas 2023"
                     rows={4}
                     {...register('description', { required: true })}
@@ -432,8 +438,8 @@ const CouponManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Type</p>
                   <select
-                    className="dark:bg-dark block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 capitalize text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 capitalize text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     {...register('type', { required: true })}
                   >
                     {type.map((item) => {
@@ -450,8 +456,8 @@ const CouponManager: NextPage = () => {
                   <p className="mb-2 text-sm">Amount</p>
                   <input
                     type={'number'}
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="E.g 10"
                     {...register('amount', {
                       required: true,
@@ -471,8 +477,8 @@ const CouponManager: NextPage = () => {
                   <p className="mb-2 text-sm">Expiry Date</p>
                   <input
                     type={'text'}
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="MM/DD/YYY"
                     id="datepicker"
                     {...register('expiryDate')}
@@ -528,7 +534,7 @@ const CouponManager: NextPage = () => {
 
                 <label className="flex items-center gap-2">
                   <input
-                    className="dark:bg-dark h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500 dark:text-white"
+                    className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500 dark:bg-dark dark:text-white"
                     type="checkbox"
                     {...register('published')}
                   />

@@ -1,5 +1,6 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
+import { HiSearch } from 'react-icons/hi'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
 import Heading from '../../components/Heading'
@@ -12,7 +13,7 @@ import axios from 'axios'
 import clsx from 'clsx'
 import { Table, TextInput, Spinner, Alert } from 'flowbite-react'
 import type { NextPage } from 'next'
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const FAQManager: NextPage = () => {
   let initialState = {
@@ -208,14 +209,14 @@ const FAQManager: NextPage = () => {
           <p className="text-base">Manage your FAQs content.</p>
           <div className="my-10 text-center">
             <Title>FAQs Manager</Title>
-            <div className="max-w-auto dark:bg-dark relative overflow-x-auto rounded-lg bg-white p-6">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-dark">
               <div className="mt-3 flex justify-between">
                 <TextInput
                   id="search"
                   type="text"
                   placeholder="Search"
                   required={true}
-                  icon={MagnifyingGlassIcon}
+                  icon={HiSearch}
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                 />
@@ -307,7 +308,7 @@ const FAQManager: NextPage = () => {
           />
           <div
             className={clsx(
-              'dark:bg-dark absolute top-0 bottom-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all',
+              'absolute bottom-0 top-0 z-40 flex w-full min-w-[20rem] max-w-sm flex-col border-l bg-gray-100 transition-all dark:bg-dark',
               showAddEdit ? 'right-0' : '-right-full'
             )}
           >
@@ -343,8 +344,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Category</p>
                   <select
-                    className="dark:bg-dark block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white/50"
+                    className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white/50"
                     {...register('category_id', { required: true })}
                   >
                     <option value="" defaultValue={''}>
@@ -368,8 +369,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Question</p>
                   <textarea
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     placeholder="Question"
                     rows={4}
                     {...register('question', { required: true })}
@@ -384,8 +385,8 @@ const FAQManager: NextPage = () => {
                 <label>
                   <p className="mb-2 text-sm">Answer</p>
                   <textarea
-                    className="dark:bg-dark block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500
-                    focus:ring-primary-500 dark:text-white"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
+                    dark:bg-dark dark:text-white"
                     rows={4}
                     placeholder="Answer"
                     {...register('answer', { required: true })}

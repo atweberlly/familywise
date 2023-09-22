@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { HiSearch } from 'react-icons/hi'
 import AddCustomQuestion from '../../../components/_member/AddCustomQuestion'
 import AddQuestion from '../../../components/_member/AddQuestion'
 import Button from '../../../components/_member/Button'
@@ -11,7 +12,6 @@ import dateFormat from 'dateformat'
 import { TextInput } from 'flowbite-react'
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
   PencilIcon,
   PencilSquareIcon,
   PlusIcon,
@@ -36,15 +36,9 @@ export function GlobalFilter(param: any) {
   const { setShowCustom } = param
   return (
     <div className="mt-3 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-      <TextInput
-        id="search"
-        type="text"
-        placeholder="Search"
-        required={true}
-        icon={MagnifyingGlassIcon}
-      />
+      <TextInput id="search" type="text" placeholder="Search" required={true} icon={HiSearch} />
       <div className="flex items-center gap-3">
-        {param.planType === 'Premium' && (
+        {(param.planType === 'Premium' || param.planType === 'Free-Trial') && (
           <Button
             isActive={false}
             text="Write your own"
@@ -143,7 +137,9 @@ const UpcomingTable = (funcProps: any) => {
               })
               setItems([...res.data])
               if (res.status === 200) {
-                toast.success('Successfully removed')
+                toast.success('Successfully removed', {
+                  duration: 3000, // Specify the duration in milliseconds (3 seconds)
+                })
               }
             }}
           >

@@ -76,14 +76,18 @@ const YourProfile = () => {
     await axios(configuration)
       .then((response) => {
         if (response) {
-          toast.success(`Great, we've updated your profile`)
+          toast.success(`Great, we've updated your profile`, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
           setPasswordBtnDisabled(true)
           setDisabled(true)
         }
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
       })
   }
 
@@ -173,7 +177,7 @@ const YourProfile = () => {
                 <label className="block w-full">
                   <p className="text-sm font-semibold">{'Email Address'}</p>
                   <input
-                    className="dark:bg-dark peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:text-white"
+                    className="peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:bg-dark dark:text-white"
                     placeholder={'Email Address'}
                     type={'text'}
                     defaultValue={user?.email}

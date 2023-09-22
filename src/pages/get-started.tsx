@@ -16,7 +16,7 @@ import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import flatpickr from 'flatpickr'
-import 'flatpickr/dist/themes/light.css'
+//import 'flatpickr/dist/themes/light.css'
 import { Spinner } from 'flowbite-react'
 
 export default function JoinUs() {
@@ -49,6 +49,7 @@ export default function JoinUs() {
     giftOccasion: 'merry christmas!',
     giftMessage: '',
     planType: plan,
+    reason: '',
   }
 
   // getting the event handlers from our custom hook
@@ -87,7 +88,9 @@ export default function JoinUs() {
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message)
+        toast.error(message, {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        })
         setLoading(false) //remove loader
       })
   }
@@ -182,7 +185,7 @@ export default function JoinUs() {
             <Logo className="mx-auto h-20 w-auto lg:mx-0" />
           </Link>
           <form
-            className="mt-5 mb-4 grid grid-flow-row gap-6 text-left"
+            className="mb-4 mt-5 grid grid-flow-row gap-6 text-left"
             method="post"
             onSubmit={handleSubmit(onSubmit)}
           >

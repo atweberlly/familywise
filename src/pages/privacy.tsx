@@ -18,7 +18,7 @@ export default function privacy_policy() {
         </div>
       </header>
       <section className="bg-primary-100 leading-normal md:leading-loose">
-        <div className="mx-auto max-w-screen-xl py-10 px-8 md:py-20 md:px-16">
+        <div className="mx-auto max-w-screen-xl px-8 py-10 md:px-16 md:py-20">
           <p className="mt-0 text-justify text-base md:text-lg">
             This Privacy Policy describes how Family Wise (the &quot;Site&quot; or &quot;we&quot;)
             collects, uses, and discloses your Personal Information when you visit or make a

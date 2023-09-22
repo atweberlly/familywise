@@ -12,7 +12,12 @@ import { setUser } from '../../slices/slice'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import axios from 'axios'
 import dateFormat from 'dateformat'
-import { PencilIcon, Cog8ToothIcon, CloudArrowDownIcon } from '@heroicons/react/24/outline'
+import {
+  PencilIcon,
+  Cog8ToothIcon,
+  CloudArrowDownIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline'
 
 const Settings = () => {
   const dispatch = useAppDispatch()
@@ -26,6 +31,7 @@ const Settings = () => {
     })()
   }, [dispatch])
   const expiryDate = new Date(user.createdAt)
+  const freeTrialEnd = user.freeTrialEnd ? new Date(user.freeTrialEnd) : null
 
   const [isClient, setIsClient] = useState(false)
   useEffect(() => {
@@ -64,7 +70,10 @@ const Settings = () => {
                   <h4 className="text-base font-light">{user.planType} Plan</h4>
                   <p className="text-sm text-secondary-500">
                     You are subscribed through{' '}
-                    {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear() + 1), 'longDate')}
+                    {dateFormat(expiryDate.setFullYear(expiryDate.getFullYear()), 'longDate')}{' '}
+                    {user.planType === 'Free-Trial' && freeTrialEnd && (
+                      <>Until {dateFormat(freeTrialEnd, 'longDate')}</>
+                    )}
                   </p>
                 </div>
               </div>
@@ -119,7 +128,7 @@ const Settings = () => {
               </div>
               {isClient && (
                 <PDFDownloadLink
-                  document={<PDFDoc user_id={user._id} />}
+                  document={<PDFDoc user_id={user._id} user={user} />}
                   fileName={`${user._id}.pdf`}
                 >
                   {({ loading }) => (
@@ -135,6 +144,37 @@ const Settings = () => {
                   )}
                 </PDFDownloadLink>
               )}
+            </div>
+          </div>
+          <div>
+            <Heading size={5}>Cancel Account</Heading>
+            <div className="mt-4 flex items-start justify-between rounded-xl p-4 shadow-sm lg:items-center">
+              <div className="flex items-start gap-2 lg:items-center lg:gap-6">
+                <div className="rounded-full p-2 ring-1 ring-primary-600 ">
+                  <Cog8ToothIcon className="w-4 text-primary-600 lg:w-8" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-light text-red-600 lg:text-base">
+                    Warning: Deactivating your account cannot be undone until a reactivation request
+                    is made.
+                  </h4>
+                  <p className="text-xs text-secondary-500 lg:text-sm">
+                    If you no longer wish to keep your account or prefer to discontinue it,
+                    <br /> you can deactivate it to temporarily suspend your Familywise account.
+                  </p>
+                </div>
+              </div>
+              <ButtonV2
+                text={'Account'}
+                isActive={false}
+                className="inline-flex !rounded-full"
+                onClick={() => {
+                  router.push('/member/cancel')
+                }}
+              >
+                {' '}
+                <UserIcon className="mr-2 inline-block w-4" />
+              </ButtonV2>
             </div>
           </div>
         </div>

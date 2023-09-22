@@ -22,11 +22,11 @@ const links: Array<Props> = [
     href: 'frequently-asked-questions',
     label: 'FAQs',
   },
-  {
+  /*{
     id: uniqueId(),
     href: 'pricing',
     label: 'Pricing',
-  },
+  },*/
   {
     id: uniqueId(),
     href: 'sign-in',

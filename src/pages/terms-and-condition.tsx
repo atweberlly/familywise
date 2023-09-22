@@ -16,7 +16,7 @@ export default function terms_and_condition() {
         </div>
       </header>
       <section className="bg-primary-100 leading-normal md:leading-loose">
-        <div className="mx-auto max-w-screen-xl py-10 px-8 md:py-20 md:px-16">
+        <div className="mx-auto max-w-screen-xl px-8 py-10 md:px-16 md:py-20">
           <ol className="mt-4 flex list-none flex-col gap-4 text-justify md:gap-8">
             <li>
               <h3 className="py-5 text-lg font-semibold text-black-pearl md:text-xl">

@@ -26,7 +26,7 @@ const QuestionSchema = mongoose.Schema(
 
     QuestionType: {
       type: String,
-      enum: ['classic', 'premium', 'both'],
+      enum: ['classic', 'premium', 'freetrial', 'both'],
       default: 'both',
     },
 

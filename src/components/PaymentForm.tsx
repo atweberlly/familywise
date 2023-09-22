@@ -364,7 +364,10 @@ export const PaymentForm = (props: {
 
           //show success notification
           toast.success(
-            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon."
+            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon.",
+            {
+              duration: 3000, // Specify the duration in milliseconds (3 seconds)
+            }
           )
           //redirect to sign in page
           router.push('/sign-in')
@@ -417,7 +420,7 @@ export const PaymentForm = (props: {
       </PayPalScriptProvider>  */}
 
       <Heading size={5}>Payment</Heading>
-      <p className="mt-2 mb-4 text-sm text-secondary-600">
+      <p className="mb-4 mt-2 text-sm text-secondary-600">
         All transactions are secure and encrypted.
       </p>
 
