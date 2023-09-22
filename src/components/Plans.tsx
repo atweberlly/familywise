@@ -57,7 +57,10 @@ export default function Plans({
                 key={feature.id}
               >
                 <CheckIcon className="h-4 w-4 shrink-0 text-lemon-curry lg:h-8 lg:w-8" />
-                <span className="lg:text-normal text-sm text-secondary-600">{feature.item}</span>
+                <span
+                  className="lg:text-normal text-sm text-secondary-600"
+                  dangerouslySetInnerHTML={{ __html: feature.item }}
+                />
               </li>
             ))}
             {/*Extra features*/}

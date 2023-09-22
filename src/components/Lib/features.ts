@@ -2,7 +2,7 @@ import uniqueId from '../../utils/uniqueId'
 
 export interface Props {
   id: string
-  item: React.ReactNode
+  item: string
   icon?: string | null
 }
 
@@ -105,7 +105,7 @@ export const questionbasedbook: Array<Props> = [
   },
   {
     id: uniqueId(),
-    item: `Add our <strong> Voice-2-Text </strong> option so you don’t have to type your stories`,
+    item: 'Add our <strong>Voice-2-Text</strong> option so you don’t have to type your stories',
   },
 ]
 //Photo Based Book
