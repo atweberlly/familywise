@@ -73,7 +73,7 @@ export default function Testimonials({ className }: Props) {
                       </svg>
                     ))}
                   </div>
-                  <blockquote className="mt-4 text-center font-fair text-sm text-gray-900 text-balance lg:text-lg">
+                  <blockquote className="text-md mt-4 text-center font-fair text-gray-900 text-balance md:text-xl">
                     <p>{message}</p>
                   </blockquote>
                   <div className="mt-8 text-center">
