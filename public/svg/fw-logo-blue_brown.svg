@@ -15,10 +15,10 @@
         color-interpolation-filters="sRGB"
       /></filter><g /><clipPath id="9c77bbc9ac"><path
         d="M 34 155 L 182 155 L 182 303 L 34 303 Z M 34 155 "
-        clip-rule="nonzero"
+        clipRule="nonzero"
       /></clipPath><clipPath id="abb876477b"><path
         d="M 34.253906 166.714844 L 170.839844 155.472656 L 182.085938 292.058594 L 45.5 303.300781 Z M 34.253906 166.714844 "
-        clip-rule="nonzero"
+        clipRule="nonzero"
       /></clipPath><image
       x="0"
       y="0"
@@ -47,10 +47,10 @@
       preserveAspectRatio="xMidYMid meet"
     /><clipPath id="dca56c6dc3"><path
         d="M 171 156 L 319 156 L 319 303 L 171 303 Z M 171 156 "
-        clip-rule="nonzero"
+        clipRule="nonzero"
       /></clipPath><clipPath id="0f0f16fd9b"><path
         d="M 182.464844 155.542969 L 319.058594 166.636719 L 307.964844 303.234375 L 171.367188 292.140625 Z M 182.464844 155.542969 "
-        clip-rule="nonzero"
+        clipRule="nonzero"
       /></clipPath><image
       x="0"
       y="0"

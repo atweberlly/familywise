@@ -54,9 +54,9 @@ export default function Header({ color = 'light' }): JSX.Element {
             <li>
               <Link
                 className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
-                href="start-trial"
+                href="/pricing"
               >
-                Start Free Trial
+                START NOW
               </Link>
             </li>
           </ul>
@@ -103,6 +103,14 @@ export default function Header({ color = 'light' }): JSX.Element {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
+                  href="/pricing"
+                >
+                  START NOW
+                </Link>
+              </li>
             </ul>
           </nav>
 

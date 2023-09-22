@@ -49,7 +49,7 @@ export const questionbasedbook: Array<Props> = [
   },
   {
     id: uniqueId(),
-    item: 'One 100-page book included',
+    item: 'One 100-page A5 book is included - longer books & additional copies are available',
   },
   {
     id: uniqueId(),
@@ -105,7 +105,7 @@ export const questionbasedbook: Array<Props> = [
   },
   {
     id: uniqueId(),
-    item: 'Add our Voice-2-Text option so you don’t have to type your stories',
+    item: 'Add our <strong>Voice-2-Text</strong> option so you don’t have to type your stories',
   },
 ]
 //Photo Based Book
@@ -121,6 +121,10 @@ export const photobasedbook: Array<Props> = [
   {
     id: uniqueId(),
     item: 'Unlimited images can be included ',
+  },
+  {
+    id: uniqueId(),
+    item: `One 100-page A5 book is included - longer books & additional copies are available`,
   },
   {
     id: uniqueId(),

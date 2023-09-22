@@ -150,7 +150,7 @@ export default function Newsletter() {
             </div>
             <div className="flex flex-col">
               <label className="text-sm font-medium" htmlFor="phone-number">
-                Phone number
+                Country
               </label>
 
               <ReactFlagsSelect

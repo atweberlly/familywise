@@ -120,7 +120,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Manrope', ...defaultTheme.fontFamily.sans],
-        serif: ['Freight Big Pro', ...defaultTheme.fontFamily.serif],
+        serif: ['Playfair Display', ...defaultTheme.fontFamily.serif],
         fair: ['Playfair Display', ...defaultTheme.fontFamily.serif],
       },
       minWidth: {
