@@ -3,29 +3,29 @@
 <path
     d="M2.1875 3.5H3.35417H12.6875"
     stroke="#6C92B2"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   />
 <path
     d="M5.10547 3.50008V2.33341C5.10547 2.024 5.22839 1.72725 5.44718 1.50846C5.66597 1.28966 5.96272 1.16675 6.27214 1.16675H8.60547C8.91489 1.16675 9.21163 1.28966 9.43043 1.50846C9.64922 1.72725 9.77214 2.024 9.77214 2.33341V3.50008M11.5221 3.50008V11.6667C11.5221 11.9762 11.3992 12.2729 11.1804 12.4917C10.9616 12.7105 10.6649 12.8334 10.3555 12.8334H4.52214C4.21272 12.8334 3.91597 12.7105 3.69718 12.4917C3.47839 12.2729 3.35547 11.9762 3.35547 11.6667V3.50008H11.5221Z"
     stroke="#6C92B2"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   />
 <path
     d="M6.26953 6.41675V9.91675"
     stroke="#6C92B2"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   />
 <path
     d="M8.60547 6.41675V9.91675"
     stroke="#6C92B2"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   />
 </svg>
