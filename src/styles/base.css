@@ -16,39 +16,40 @@
   font-display: swap;
 }
 
+/* Playfair Display Font Family */
 @font-face {
   font-weight: 700;
-  font-family: 'Freight Big Pro';
+  font-family: 'Playfair Display';
   font-style: normal;
-  src: url('/fonts/FreightBigPro-Bold.woff') format('woff'),
-    url('/fonts/FreightBigPro-Bold.woff2') format('woff2');
+  src: url('/fonts/Playfair-Display/PlayfairDisplay-Bold.woff') format('woff'),
+    url('/fonts/Playfair-Display/PlayfairDisplay-Bold.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
   font-weight: 700;
-  font-family: 'Freight Big Pro';
+  font-family: 'Playfair Display';
   font-style: italic;
-  src: url('/fonts/FreightBigPro-BoldItalic.woff') format('woff'),
-    url('/fonts/FreightBigPro-BoldItalic.woff2') format('woff2');
+  src: url('/fonts/Playfair-Display/PlayfairDisplay-BoldItalic.woff') format('woff'),
+    url('/fonts/Playfair-Display/PlayfairDisplay-BoldItalic.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
   font-weight: 500;
-  font-family: 'Freight Big Pro';
-  font-style: normal;
-  src: url('/fonts/FreightBigPro-Medium.woff') format('woff'),
-    url('/fonts/FreightBigPro-Medium.woff2') format('woff2');
+  font-family: 'Playfair Display';
+  font-style: italic;
+  src: url('/fonts/Playfair-Display/PlayfairDisplay-Italic.woff') format('woff'),
+    url('/fonts/Playfair-Display/PlayfairDisplay-Italic.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
   font-weight: 500;
-  font-family: 'Freight Big Pro';
-  font-style: italic;
-  src: url('/fonts/FreightBigPro-MediumItalic.woff') format('woff'),
-    url('/fonts/FreightBigPro-MediumItalic.woff2') format('woff2');
+  font-family: 'Playfair Display';
+  font-style: normal;
+  src: url('/fonts/Playfair-Display/PlayfairDisplay-Regular.woff') format('woff'),
+    url('/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2') format('woff2');
   font-display: swap;
 }
 
