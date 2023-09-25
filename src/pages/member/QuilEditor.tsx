@@ -118,11 +118,11 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
 
   return (
     <div>
-      <span className="font-normal">Your story</span>
-      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:bg-dark dark:text-white">
+      <span className="font-normal dark:text-gray-600">Your story</span>
+      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-dark dark:bg-white dark:text-white">
         <button
           onClick={startRecording}
-          className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black dark:bg-dark 
+          className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-dark 
           dark:text-white
           ${
             recording
@@ -143,7 +143,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
       {/* Display the Quill Editor*/}
       <ReactQuill
         theme="snow"
-        className="h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark"
+        className="h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-gray-500 focus:border-none dark:border-dark-500 dark:bg-white"
         placeholder="Write your story here..."
         value={value}
         onChange={onChange}
