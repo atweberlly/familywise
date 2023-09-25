@@ -660,7 +660,7 @@ export default function Home() {
         </div>
 
         <section>
-          <div className="aspect-video h-auto bg-black lg:h-[500px]">
+          <div className="aspect-video h-auto bg-black">
             <video controls autoPlay>
               <source
                 src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/videos/FamilyWise-preview.mp4"
