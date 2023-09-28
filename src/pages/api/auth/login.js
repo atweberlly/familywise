@@ -1,5 +1,6 @@
 import dbConnect from '../../../../lib/dbConnect'
 import User from '../../../../models/userModel'
+import logActivity from '../activity/logActivity'
 import bcrypt from 'bcrypt'
 import * as jose from 'jose'
 
@@ -42,6 +43,8 @@ export default async function handler(request, response) {
                 .sign(SECRET)
 
               console.log(token)
+              const email = user.email
+              const description = 'Logging in...'
 
               //   return success response
               response.status(200).send({
@@ -50,6 +53,7 @@ export default async function handler(request, response) {
                 roles: user.roles,
                 token,
               })
+              logActivity(email, description)
             })
             // catch error if password does not match
             .catch((error) => {

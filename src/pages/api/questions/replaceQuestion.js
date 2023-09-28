@@ -1,6 +1,7 @@
 import dbConnect from '../../../../lib/dbConnect'
 //import Questions from '../../../../models/questionModel'
 import Story from '../../../../models/storyModel'
+import logActivity from '../activity/logActivity'
 import { getUser } from '../users/getUserV2'
 
 const replaceQuestion = async (req, res) => {
@@ -28,6 +29,9 @@ const replaceQuestion = async (req, res) => {
       const replaceStories = stories.filter(
         (e) => new Date() - new Date(e.createdAt) < 3600 * 24 * 7 * 1000
       )
+      const email = user.email
+      const description = 'Replace a question: ' + replaceStories
+      logActivity(email, description)
       res.status(200).json(replaceStories)
     }
   } catch (error) {

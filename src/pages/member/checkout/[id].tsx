@@ -7,11 +7,10 @@ import { RootState } from '../../../app/store'
 import Button from '../../../components/Button'
 import Heading from '../../../components/Heading'
 import Logo from '../../../components/Logo'
+import { PaymentForm } from '../../../components/Member_PaymentForm'
 import Payin4 from '../../../components/Payin4'
-import { PaymentForm } from '../../../components/PaymentForm'
 import { setUser } from '../../../slices/slice'
 import axios from 'axios'
-import dateFormat from 'dateformat'
 import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
@@ -134,17 +133,6 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                 <Heading size={6} className="text-white">
                   Speech-To-Text Upgrade
                 </Heading>
-                {user?.bookReceiver === 'gift' && (
-                  <div className="mt-2 flex flex-col text-xs text-white/80">
-                    <p>First name: {user?.firstname}</p>
-                    <p>Last name: {user?.lastname}</p>
-                    <p>Email Address: {user?.email}</p>
-                    <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')} </p>
-                    <p>Occasion: {user?.giftOccasion}</p>
-                    <p>From: {user?.giftSender}</p>
-                    <p>Message: {user?.giftMessage}</p>
-                  </div>
-                )}
               </div>
             </div>
 

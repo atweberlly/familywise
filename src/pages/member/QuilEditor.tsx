@@ -3,8 +3,7 @@ import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { RootState } from '../../app/store'
+import { useAppDispatch } from '../../app/hooks'
 import { setUser } from '../../slices/slice'
 import axios from 'axios'
 
@@ -122,7 +121,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
   }
 
   const dispatch = useAppDispatch()
-  const user = useAppSelector((state: RootState) => state.userSlice.user)
   const [isSpeakToTextAvailable, setIsSpeakToTextAvailable] = useState(false)
 
   useEffect(() => {
