@@ -145,6 +145,19 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
 
   return (
     <div>
+      <style>
+        {`
+          .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
+            content: 'Heading 1';
+          }
+          .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+            content: 'Heading 2';
+          }
+          .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+            content: 'Heading 3';
+          }
+        `}
+      </style>
       <span className="font-normal dark:text-gray-600">Your story</span>
       <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-dark dark:bg-white dark:text-white">
         {/*<button onClick={startRecording}

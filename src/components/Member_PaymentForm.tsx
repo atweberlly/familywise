@@ -364,7 +364,7 @@ export const PaymentForm = (props: {
 
           //show success notification
           toast.success(
-            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon.",
+            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family!",
             {
               duration: 3000, // Specify the duration in milliseconds (3 seconds)
             }
