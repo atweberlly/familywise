@@ -12,6 +12,7 @@ import { Analytics } from '@vercel/analytics/react'
 import 'flatpickr/dist/themes/light.css'
 import moment from 'moment-timezone'
 import 'moment/locale/en-gb'
+import { ThemeProvider } from 'next-themes'
 
 // optional - set locale for formatting dates
 
@@ -44,37 +45,40 @@ function App({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router])
+
   return (
     <div>
-      <Provider store={store}>
-        <Head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <ThemeProvider attribute="class">
+        <Provider store={store}>
+          <Head>
+            <meta charSet="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-          {/* GENERAL META */}
-          <meta name="description" content={description} />
-          <meta name="keywords" content={keywords} />
-          <meta name="author" content={author} />
-          <meta name="robots" content="index, follow" />
-          {/* FACEBOOK META */}
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="og:image" content={img} />
-          <meta property="og:url" content="https://familywise.us" />
-          <meta property="og:type" content="website" />
-          {/* TWITTER META */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content={img} />
-          <meta name="twitter:url" content="https://familywise.us" />
+            {/* GENERAL META */}
+            <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
+            <meta name="author" content={author} />
+            <meta name="robots" content="index, follow" />
+            {/* FACEBOOK META */}
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={img} />
+            <meta property="og:url" content="https://familywise.us" />
+            <meta property="og:type" content="website" />
+            {/* TWITTER META */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={title} />
+            <meta name="twitter:description" content={description} />
+            <meta name="twitter:image" content={img} />
+            <meta name="twitter:url" content="https://familywise.us" />
 
-          <link rel="icon" type="image/png" href="/favicon.png" />
-        </Head>
-        <Component {...pageProps} />
-        <Toaster />
-        <Analytics />
-      </Provider>
+            <link rel="icon" type="image/png" href="/favicon.png" />
+          </Head>
+          <Component {...pageProps} />
+          <Toaster />
+          <Analytics />
+        </Provider>
+      </ThemeProvider>
     </div>
   )
 }

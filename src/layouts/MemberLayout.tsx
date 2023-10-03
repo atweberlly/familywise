@@ -7,7 +7,9 @@ import PopUpTrial from '../components/_member/PopupTrial'
 import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
-import { Dropdown, Avatar, Flowbite, DarkThemeToggle } from 'flowbite-react'
+import { Dropdown, Avatar } from 'flowbite-react'
+import { DarkThemeToggle } from 'flowbite-react'
+import { useTheme } from 'next-themes'
 import Cookies from 'universal-cookie'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -17,8 +19,6 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 export default function MemberLayout({ children }: any) {
   const [show, setShow] = useState(false)
   const router = useRouter()
-
-  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const dispatch = useAppDispatch()
   const user = useAppSelector((state: RootState) => state.userSlice.user)
@@ -37,8 +37,14 @@ export default function MemberLayout({ children }: any) {
     router.push('/sign-in')
   }
 
-  const handleToggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    // Toggle the theme
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+
+    // Apply the appropriate class to the html element
+    document.documentElement.classList.toggle('dark', theme === 'light')
   }
 
   return (
@@ -79,7 +85,8 @@ export default function MemberLayout({ children }: any) {
 
           <div className="ml-auto flex items-center gap-2">
             {
-              <Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
+              <DarkThemeToggle className="text-dark dark:text-white-200" onClick={toggleTheme} />
+              /*<Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
                 <DarkThemeToggle />
               </Flowbite>
 
