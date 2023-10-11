@@ -145,6 +145,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
 
   return (
     <div>
+      {/* Refactor */}
       <style>
         {`
           .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
