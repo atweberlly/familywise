@@ -124,7 +124,7 @@ export default function AddQuestion({
               </div>
             </div>
             <hr className="w-full border bg-secondary-300" />
-            <div className="max-h-80 overflow-auto">
+            <div className="max-h-80 overflow-auto dark:text-gray-200">
               {filteredQuestions.map((question: any, i: any) => {
                 return (
                   <div className="my-2 flex items-center justify-between" key={i}>

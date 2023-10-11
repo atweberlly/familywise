@@ -108,7 +108,7 @@ const Edit = ({ question, id }: Props) => {
 
   return (
     <div className="w-full ">
-      <span className="font-normal">Heading</span>
+      <span className="font-normal dark:text-gray-600">Heading</span>
       <div className="relative w-full">
         <div className="absolute inset-y-0 right-6 flex items-center pl-3">
           <span
@@ -138,7 +138,7 @@ const Edit = ({ question, id }: Props) => {
           type="text"
           className={`mt-2 w-full rounded-xl border-primary-600 ${
             isDisabled
-              ? 'bg-secondary-200  dark:bg-dark dark:text-white/30'
+              ? 'bg-secondary-200  dark:bg-dark dark:text-white/60'
               : 'bg-white dark:bg-black dark:text-white'
           } px-8 py-6 text-sm text-secondary-600  outline-none`}
           defaultValue={defaultContent.heading ? defaultContent.heading : question}
@@ -224,7 +224,7 @@ const Edit = ({ question, id }: Props) => {
           </div>
           <div className="py-[25px]">
             <textarea
-              className="mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark dark:text-white"
+              className="mt-[12px] min-h-[359px] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-gray-500 dark:bg-dark dark:text-white"
               placeholder="Add a caption for your image. The caption will appear below your image."
               defaultValue={defaultContent.caption}
               onChange={(e) => {

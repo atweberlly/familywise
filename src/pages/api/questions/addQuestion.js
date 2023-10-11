@@ -1,6 +1,7 @@
 import dbConnect from '../../../../lib/dbConnect'
 //import Questions from '../../../../models/questionModel'
 import Story from '../../../../models/storyModel'
+import logActivity from '../activity/logActivity'
 import { getUser } from '../users/getUserV2'
 
 const addQuestion = async (req, res) => {
@@ -18,6 +19,8 @@ const addQuestion = async (req, res) => {
     } else {
       //const newStory =
 
+      const email = user.email
+      const description = 'Added a Question: ' + req.body.question
       await Story.create({
         user_id: user._id,
         question_id: req.body.question_id,
@@ -29,6 +32,7 @@ const addQuestion = async (req, res) => {
         createdAt: { $gte: today },
       }).populate('question_id')
       res.status(200).json(addStories)
+      logActivity(email, description)
     }
   } catch (error) {
     console.log(error)

@@ -116,20 +116,20 @@ const UpcomingTable = (funcProps: any) => {
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
-          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-white " />
+          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-secondary-600 " />
           <div className="flex flex-col gap-1">
             <h2 className="text-md">
               {detail} <span className="hidden">Index - {index}</span>
             </h2>
-            <span className="text-sm text-secondary-300 dark:text-mercury">
+            <span className="text-sm text-secondary-300 dark:text-gray-400">
               {dateFormat(new Date(date), 'longDate')}
             </span>
           </div>
         </div>
         <div className="flex gap-2">
           <button
-            className="dark:hover:bg-dark-medium rounded-xl border-none bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600 hover:text-white
-            dark:text-white dark:hover:text-white/90 lg:px-4"
+            className="dark:hover:bg-dark-medium rounded-xl border border-secondary-500 bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600
+            hover:text-white dark:border-secondary-500 dark:text-secondary-500 dark:hover:text-white/90 lg:px-4"
             onClick={async () => {
               // setDeleteId(row.original.id)
               const res = await axios.post('/api/questions/removeQuestion', {

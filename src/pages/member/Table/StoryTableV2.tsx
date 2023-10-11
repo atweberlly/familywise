@@ -57,12 +57,12 @@ const StoryTable = (funcProps: any) => {
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
-          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-white" />
-          <div className="flex flex-col gap-1">
+          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-secondary-600" />
+          <div className="flex flex-col gap-1 dark:text-gray-600">
             <h2 className="text-md">
               {detail} <span className="hidden">Index - {index}</span>
             </h2>
-            <span className="text-sm text-secondary-300 dark:text-mercury">
+            <span className="text-sm text-secondary-300 dark:text-gray-400">
               {dateFormat(new Date(date), 'longDate')}
             </span>
           </div>
