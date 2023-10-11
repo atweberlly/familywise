@@ -105,6 +105,13 @@ const Edit = ({ question, id }: Props) => {
       setContent((prev) => ({ ...prev, story: value }))
     }, 2000) // Adjust the delay time as needed (in milliseconds)
   }
+  const handleSeePreview = () => {
+    setSaving(true) // Set saving to true
+    setTimeout(() => {
+      router.push('/member/preview') // Navigate to preview after 3-5 seconds
+      setSaving(false) // Reset saving after navigation
+    }, 3000) // Adjust the delay in milliseconds (e.g., 3000 for 3 seconds)
+  }
 
   return (
     <div className="w-full ">
@@ -249,13 +256,7 @@ const Edit = ({ question, id }: Props) => {
             </>
           )}
         </div>
-        <ButtonV2
-          text="See Preview"
-          onClick={() => {
-            router.push('/member/preview')
-          }}
-          disabled={saving}
-        />
+        <ButtonV2 text="See Preview" onClick={handleSeePreview} disabled={saving} />
         {/* <Button text="Done Writing" onClick={saveStory} /> */}
       </div>
     </div>

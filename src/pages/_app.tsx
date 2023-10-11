@@ -8,6 +8,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { store } from '../app/store'
 import '../styles/main.css'
+import { MyThemeContextProvider } from './api/store/myThemeContext'
 import { Analytics } from '@vercel/analytics/react'
 import 'flatpickr/dist/themes/light.css'
 import moment from 'moment-timezone'
@@ -44,8 +45,9 @@ function App({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router])
+
   return (
-    <div>
+    <MyThemeContextProvider>
       <Provider store={store}>
         <Head>
           <meta charSet="utf-8" />
@@ -75,7 +77,7 @@ function App({ Component, pageProps }: AppProps) {
         <Toaster />
         <Analytics />
       </Provider>
-    </div>
+    </MyThemeContextProvider>
   )
 }
 

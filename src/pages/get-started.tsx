@@ -43,6 +43,7 @@ export default function JoinUs() {
     country: selected,
     bookReceiver: 'myself',
     giftDate: '',
+    senderEmail: '',
     giftSender: '',
     giftSalutation: '',
     giftRelation: 'mom',
@@ -391,19 +392,32 @@ export default function JoinUs() {
                     )}
                   </div>
                 </div>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"></div>
-                <Input
-                  label={`Your name & anyone else the gift is from`}
-                  type={'text'}
-                  placeholder={'E.g. Jane Doe'}
-                  name={'giftSender'}
-                  error={errors?.giftSender?.message}
-                  onChange={(e) =>
-                    setValue('giftSender', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                ></Input>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                  <Input
+                    label={`Your Email`}
+                    type={'text'}
+                    placeholder={'jane@mail.com'}
+                    name={'senderEmail'}
+                    error={errors?.senderEmail?.message}
+                    onChange={(e) =>
+                      setValue('senderEmail', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  ></Input>
+                  <Input
+                    label={`Your name & anyone else the gift is from`}
+                    type={'text'}
+                    placeholder={'E.g. Jane Doe'}
+                    name={'giftSender'}
+                    error={errors?.giftSender?.message}
+                    onChange={(e) =>
+                      setValue('giftSender', (e.target as HTMLInputElement).value, {
+                        shouldValidate: true,
+                      })
+                    }
+                  ></Input>
+                </div>
                 <Input
                   label={`Salutation`}
                   type={'text'}

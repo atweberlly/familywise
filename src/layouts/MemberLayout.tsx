@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { RootState } from '../app/store'
 import PopUpTrial from '../components/_member/PopupTrial'
+import MyThemeContext from '../pages/api/store/myThemeContext'
 import { setUser } from '../slices/slice'
 import axios from 'axios'
 import clsx from 'clsx'
-import { Dropdown, Avatar, Flowbite, DarkThemeToggle } from 'flowbite-react'
+import { Dropdown, Avatar } from 'flowbite-react'
+import { DarkThemeToggle } from 'flowbite-react'
 import Cookies from 'universal-cookie'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -17,8 +19,6 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 export default function MemberLayout({ children }: any) {
   const [show, setShow] = useState(false)
   const router = useRouter()
-
-  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const dispatch = useAppDispatch()
   const user = useAppSelector((state: RootState) => state.userSlice.user)
@@ -37,12 +37,46 @@ export default function MemberLayout({ children }: any) {
     router.push('/sign-in')
   }
 
-  const handleToggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
+  const themeCtx: { isDarkMode?: boolean; toggleThemeHandler: () => void } =
+    useContext(MyThemeContext)
+
+  function toggleThemeHandler(): void {
+    themeCtx.toggleThemeHandler()
   }
 
   return (
     <div className="flex min-h-screen flex-col bg-secondary-100 dark:bg-dark dark:text-white">
+      <script>
+        {`
+          :root {
+            --background-light: white;
+            --text-color-light: black;
+            --link-color-light: blue;
+            
+            --background-dark: black;
+            --text-color-dark: white;
+            --link-color-dark: lightblue;
+          }
+      
+          .content {
+            background-color: var(--background-light);
+            color: var(--text-color-light);
+          }
+      
+          .content a {
+            color: var(--link-color-light);
+          }
+      
+          .content.dark {
+            background-color: var(--background-dark);
+            color: var(--text-color-dark);
+          }
+      
+          .content.dark a {
+            color: var(--link-color-dark);
+          }
+        `}
+      </script>
       <header className="bg-white px-4 py-6 dark:bg-woodsmoke dark:text-white xl:px-8">
         <div className="flex items-center gap-2">
           <button className="md:hidden" type="button" onClick={() => setShow(!show)}>
@@ -79,7 +113,11 @@ export default function MemberLayout({ children }: any) {
 
           <div className="ml-auto flex items-center gap-2">
             {
-              <Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
+              <DarkThemeToggle
+                className="text-dark dark:text-white-200"
+                onClick={toggleThemeHandler}
+              />
+              /*<Flowbite id="darkmode-fb" onClick={handleToggleDarkMode}>
                 <DarkThemeToggle />
               </Flowbite>
 
@@ -124,7 +162,7 @@ export default function MemberLayout({ children }: any) {
         </div>
       </header>
 
-      <div className="relative flex flex-1  ">
+      <div className="content relative flex flex-1  ">
         <aside
           className={clsx(
             'absolute bottom-0 top-0 z-10 min-w-[256px] bg-white  px-4 pt-4 shadow-lg transition-all dark:bg-woodsmoke dark:text-white md:static xl:min-w-[320px]',
