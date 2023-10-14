@@ -1,19 +1,22 @@
 /* Container styles */
 .activity-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 /* Heading styles */
 .activity-heading {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: #333; /* Adjust text color for better visibility */
+  text-align: left; /* Align the heading to the left */
 }
 
 /* Table container styles */
 .activity-table-container {
+  width: 100%;
   overflow-x: auto;
 }
 
@@ -21,7 +24,7 @@
 .activity-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-top: 10px; /* Adjust spacing from heading */
 }
 
 .activity-table th,
@@ -34,6 +37,14 @@
 .activity-table th {
   background-color: #f5f5f5;
   font-weight: bold;
+}
+
+.activity-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternate row background color */
+}
+
+.activity-table tr:hover {
+  background-color: #f0f0f0; /* Hovered row background color */
 }
 
 /* Description styles */
@@ -80,54 +91,45 @@
 }
 
 .pagination .page-link {
-  padding: 10px 20px;
-  border: 1px solid #3498db;
+  padding: 10px 15px;
+  border: 1px solid #96621e;
   background-color: #fff;
-  color: #3498db;
+  color: #96621e;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .pagination .page-link:hover {
-  background-color: #3498db;
+  background-color: #96621e;
   color: #fff;
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #3498db;
+  background-color: #96621e;
   color: #fff;
-  border: 1px solid #3498db;
+  border: 1px solid #96621e;
 }
 
-/* Modal styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Adjust pagination items for smaller screens */
+@media (max-width: 600px) {
+  .pagination .page-link {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .pagination .page-item {
+    flex-grow: 1;
+    text-align: center;
+  }
+  .pagination .page-item:nth-child(n + 2):nth-last-child(n + 2)::before {
+    content: attr(data-page);
+  }
 }
 
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  max-width: 80%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: auto;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: #e74c3c;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  text-decoration: underline;
+/* Adjust pagination items for larger screens */
+@media (min-width: 601px) {
+  .pagination .page-item {
+    flex-basis: 20%;
+    text-align: center;
+  }
 }
