@@ -1,42 +1,73 @@
 import React, { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { RootState } from '../../app/store'
 import Heading from '../../components/Heading'
 import Title from '../../components/Title'
 import MemberLayout from '../../layouts/MemberLayout'
+import { setUser } from '../../slices/slice'
 // Import moment for date formatting
 import '../../styles/Activity.css'
+import axios from 'axios'
 import moment from 'moment'
 
 // Import custom styles
 
 const Activity = () => {
-  const [data, setData] = useState<any[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
   const maxDisplayPages = 5
+  const dispatch = useAppDispatch()
+  const user = useAppSelector((state: RootState) => state.userSlice.user)
+  const [loading, setLoading] = useState(false)
+  const [activityLogs, setActivityLogs] = useState<Array<any>>([])
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/activity/getData')
-        const result = await response.json()
-        if (result.success) {
-          setData(result.data)
-        } else {
-          console.error('Failed to fetch data.')
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
+    ;(async () => {
+      const user = await axios('/api/users/getUser')
+      dispatch(setUser(user.data.user[0]))
+    })()
+  }, [dispatch])
 
-    fetchData()
-  }, [])
+  useEffect(() => {
+    // Make sure user._id is available
+    if (user._id) {
+      const fetchData = async () => {
+        setLoading(true)
+        try {
+          // Set the API endpoint with the user._id as a query parameter
+          const configuration = {
+            method: 'get',
+            url: `/api/activity?email=${user.email}`,
+          }
+
+          // Assuming that the response contains an 'activityLogs' property
+          await axios(configuration)
+            .then((response) => {
+              // console.log(response)
+              setActivityLogs(response.data.result)
+              setLoading(false)
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+        } catch (error) {
+          console.log(error) // Log the error for debugging
+          setLoading(false)
+        }
+      }
+
+      // Fetch data
+      fetchData()
+    } else {
+      setLoading(false)
+    }
+  }, [user.email])
 
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = activityLogs.slice(indexOfFirstItem, indexOfLastItem)
 
-  const totalPages = Math.ceil(data.length / itemsPerPage)
+  const totalPages = Math.ceil(activityLogs.length / itemsPerPage)
   const maxPage = Math.min(totalPages, maxDisplayPages)
 
   const paginate = (pageNumber: number) => {
@@ -89,24 +120,26 @@ const Activity = () => {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((item) => (
-                <tr key={item._id}>
-                  <td className="activity-description">
-                    {shortenDescription(item.description, 100)}{' '}
-                    {item.description.length > 100 && (
-                      <button
-                        className="see-more-button"
-                        onClick={() => alert(item.description)} // Replace with your modal logic
-                      >
-                        See More
-                      </button>
-                    )}
-                  </td>
-                  <td className="activity-date">
-                    {moment(item.date).format('MMMM D, YYYY h:mm A')}
-                  </td>
-                </tr>
-              ))}
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                currentItems.map(({ _id, description, date }) => (
+                  <tr key={_id}>
+                    <td className="activity-description">
+                      {shortenDescription(description, 100)}{' '}
+                      {description.length > 100 && (
+                        <button
+                          className="see-more-button"
+                          onClick={() => alert(description)} // Replace with your modal logic
+                        >
+                          See More
+                        </button>
+                      )}
+                    </td>
+                    <td className="activity-date">{moment(date).format('MMMM D, YYYY h:mm A')}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -1,4 +1,4 @@
-import ActivityLog from '../models/activity-log'
+import ActivityLog from '../../../../models/activityModel'
 
 const logActivity = async (email, description) => {
   try {

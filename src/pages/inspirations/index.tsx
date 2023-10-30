@@ -52,13 +52,13 @@ export default function Blog() {
 
   const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber)
 
-  const sanitizedDescription =
+  /*const sanitizedDescription =
     "This is a <strong>formatted</strong> description with <a href='#'>HTML</a> tags."
 
   // Render the description using dangerouslySetInnerHTML
   const formattedDescription = (
     <p className="mt-2 text-gray-600" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
-  )
+  )*/
 
   return (
     <div>
@@ -85,71 +85,75 @@ export default function Blog() {
       <div className="pb-16 lg:pb-24">
         <div className="mx-auto max-w-screen-md px-4 lg:px-8">
           <div className="space-y-12">
-            {currentPosts.map(
-              ({
-                _id,
-                image,
-                title,
-                description,
-                author,
-                tags,
-                createdAt,
-                timezone,
-                visibility,
-              }) => {
-                if (visibility) {
-                  return (
-                    <div className="md:flex md:gap-5" key={_id}>
-                      <div className="h-60 bg-gray-300 md:h-[12.5rem] md:min-w-xs">
-                        <div className="text-center">
-                          {image ? (
-                            <img
-                              src={image}
-                              className="h-60 bg-gray-300 object-cover md:h-[12.5rem] md:min-w-xs"
-                            />
-                          ) : (
-                            <label
-                              htmlFor="cover-photo"
-                              className="text-secondary-800 mt-[8px] cursor-pointer whitespace-nowrap"
-                            >
-                              {'No Image'}
-                            </label>
-                          )}
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              currentPosts.map(
+                ({
+                  _id,
+                  image,
+                  title,
+                  description,
+                  author,
+                  tags,
+                  createdAt,
+                  timezone,
+                  visibility,
+                }) => {
+                  if (visibility) {
+                    return (
+                      <div className="md:flex md:gap-5" key={_id}>
+                        <div className="h-60 bg-gray-300 md:h-[12.5rem] md:min-w-xs">
+                          <div className="text-center">
+                            {image ? (
+                              <img
+                                src={image}
+                                className="h-60 bg-gray-300 object-cover md:h-[12.5rem] md:min-w-xs"
+                              />
+                            ) : (
+                              <label
+                                htmlFor="cover-photo"
+                                className="text-secondary-800 mt-[8px] cursor-pointer whitespace-nowrap"
+                              >
+                                {'No Image'}
+                              </label>
+                            )}
+                          </div>
                         </div>
-                      </div>
 
-                      <div>
-                        <div className="mt-5 md:mt-0">
-                          <div className="text-sm font-semibold text-orange-500">{tags}</div>
-                          <h3 className="mt-2 text-xl font-semibold text-gray-900">{title}</h3>
-                          <p
-                            className="mt-2 text-gray-600"
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                description.length > 100
-                                  ? description.slice(0, 100) + '...'
-                                  : description,
-                            }}
-                          />
-                        </div>
-                        <div className="mt-6 flex items-center gap-2">
-                          <div className="h-10 w-10 rounded-full bg-gray-300"></div>
-                          <div className="text-sm">
-                            <div className="font-semibold text-gray-900">{author}</div>
-                            <time className="text-gray-600" dateTime="2024-01-20">
-                              {dateFormat(
-                                convertTimezone(new Date(createdAt), timezone, timezone),
-                                'longDate'
-                              )}
-                            </time>
+                        <div>
+                          <div className="mt-5 md:mt-0">
+                            <div className="text-sm font-semibold text-orange-500">{tags}</div>
+                            <h3 className="mt-2 text-xl font-semibold text-gray-900">{title}</h3>
+                            <p
+                              className="mt-2 text-gray-600"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  description.length > 100
+                                    ? description.slice(0, 100) + '...'
+                                    : description,
+                              }}
+                            />
+                          </div>
+                          <div className="mt-6 flex items-center gap-2">
+                            <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+                            <div className="text-sm">
+                              <div className="font-semibold text-gray-900">{author}</div>
+                              <time className="text-gray-600" dateTime="2024-01-20">
+                                {dateFormat(
+                                  convertTimezone(new Date(createdAt), timezone, timezone),
+                                  'longDate'
+                                )}
+                              </time>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )
+                    )
+                  }
+                  return null // Return null if visibility is false
                 }
-                return null // Return null if visibility is false
-              }
+              )
             )}
           </div>
 
