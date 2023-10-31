@@ -60,6 +60,8 @@
     "moment-timezone": "^0.5.42",
     "mongoose": "^6.12.0",
     "next": "^13.0.6",
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^21.4.1",
     "quill-to-pdf": "^1.0.7",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.3",

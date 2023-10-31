@@ -19,7 +19,7 @@ import { Spinner, Table, TextInput } from 'flowbite-react'
 import { NextPage } from 'next'
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const MemberList: NextPage = () => {
+const AdminList: NextPage = () => {
   let initialState = {
     _id: '',
     firstname: '',
@@ -48,6 +48,7 @@ const MemberList: NextPage = () => {
     getValues,
     watch,
     formState: { errors },
+    control,
   } = useForm({ mode: 'onBlur', defaultValues: initialState })
 
   const [selected, setSelected] = useState('AU')
@@ -58,11 +59,11 @@ const MemberList: NextPage = () => {
   const [selectedID, setSelectedID] = useState(null)
 
   const onSubmit = async (data: any) => {
-    const url = !data._id ? `/api/admin` : `/api/admin/${data._id}`
+    const url = !data._id ? `/api/admin` : `/api/users/${data._id}`
     const method = !data._id ? 'post' : 'put'
     const message = !data._id ? 'Successfully created' : 'Successfully updated'
     setLoadingBtn(true)
-
+    console.log(method, url)
     const configuration = {
       method: method,
       url: url,
@@ -98,13 +99,6 @@ const MemberList: NextPage = () => {
       })
   }
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [country, setCountry] = useState('')
-  const [password, setPassword] = useState('')
-  const [description, setDescription] = useState('')
-  const [PageDescription, setPageDescription] = useState('')
   const [showAddEdit, setShowAddEdit] = useState(false)
 
   const [loading, setLoading] = useState(false)
@@ -195,25 +189,34 @@ const MemberList: NextPage = () => {
     // set configurations
     const configuration = {
       method: 'get',
-      url: `/api/admin/${id}`,
+      url: `/api/users/${id}`,
     }
 
-    // make the API call
-    await axios(configuration)
-      .then((response) => {
-        // console.log(response)
-        const userData = response.data.result
-        setFirstName(userData.firstName)
-        setLastName(userData.lastName)
-        setEmail(userData.email)
-        setCountry(userData.country)
-        setPassword(userData.password)
-      })
-      .catch((error) => {
-        toast.error(error, {
-          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+    try {
+      // make the API call
+      const response = await axios(configuration)
+      const userData = response.data.result
+
+      setData(userData)
+      setValue('_id', id, { shouldValidate: true })
+      setValue('firstname', data?.firstname, { shouldValidate: true })
+      setValue('lastname', data?.lastname, { shouldValidate: true })
+      setValue('email', data?.email, { shouldValidate: true })
+      setValue('country', data?.country, { shouldValidate: true })
+      setValue('password', data?.password, { shouldValidate: true })
+    } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        // Handle the 404 error by displaying a user-friendly message
+        toast.error('Resource not found. Please check the ID or try again later.', {
+          duration: 3000,
         })
-      })
+      } else {
+        // Handle other errors
+        toast.error('An error occurred while fetching data. Please try again later.', {
+          duration: 3000,
+        })
+      }
+    }
 
     setShowAddEdit(!showAddEdit)
   }
@@ -368,9 +371,9 @@ const MemberList: NextPage = () => {
                   label={'First Name'}
                   type={'text'}
                   placeholder={'Ex: John'}
-                  name={'firstname'}
-                  error={errors?.firstname?.message}
-                  value={firstName}
+                  defaultValue={data.firstname}
+                  {...register('firstname', { required: 'You must provide your first name' })}
+                  error={errors?.firstname?.message} //error={data.firstname ? '' : errors?.firstname?.message}
                   onChange={(e) =>
                     setValue('firstname', (e.target as HTMLInputElement).value, {
                       shouldValidate: true,
@@ -381,7 +384,8 @@ const MemberList: NextPage = () => {
                   label={'Last Name'}
                   type={'text'}
                   placeholder={'Ex: Doe'}
-                  name={'lastname'}
+                  defaultValue={data.lastname}
+                  {...register('lastname', { required: 'You must provide your last name' })}
                   error={errors?.lastname?.message}
                   onChange={(e) =>
                     setValue('lastname', (e.target as HTMLInputElement).value, {
@@ -396,7 +400,14 @@ const MemberList: NextPage = () => {
                   label={'Email Address'}
                   type={'email'}
                   placeholder={'johndoe@mail.com'}
-                  name={'email'}
+                  defaultValue={data.email}
+                  {...register('email', {
+                    required: 'You must provide an email address',
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: 'Please enter a valid email address',
+                    },
+                  })}
                   error={errors?.email?.message}
                   autoComplete={'email'}
                   onChange={(e) => {
@@ -408,7 +419,7 @@ const MemberList: NextPage = () => {
                 <div>
                   <p className="text-sm font-semibold ">Country</p>
                   <ReactFlagsSelect
-                    selected={selected}
+                    selected={data.country}
                     onSelect={onSelect}
                     searchable={true}
                     blacklistCountries={blacklistCountries}
@@ -422,7 +433,14 @@ const MemberList: NextPage = () => {
                     label={'Password'}
                     type={'password'}
                     placeholder={'•••••••••'}
-                    name={'password'}
+                    defaultValue={data.password}
+                    {...register('password', {
+                      required: 'You must specify a password',
+                      minLength: {
+                        value: 8,
+                        message: 'Password must have at least 8 characters',
+                      },
+                    })}
                     autoComplete={'current-password'}
                     onChange={(e) =>
                       setValue('password', (e.target as HTMLInputElement).value, {
@@ -437,7 +455,12 @@ const MemberList: NextPage = () => {
                     label={'Confirm Password'}
                     type={'password'}
                     placeholder={'•••••••••'}
-                    name={'cpassword'}
+                    defaultValue={data.password}
+                    {...register('cpassword', {
+                      required: 'You must confirm your password',
+                      validate: (val: string) =>
+                        val === watch('password', '') || 'The passwords do not match',
+                    })}
                     autoComplete={'current-password'}
                     onChange={(e) =>
                       setValue('cpassword', (e.target as HTMLInputElement).value, {
@@ -468,4 +491,4 @@ const MemberList: NextPage = () => {
   )
 }
 
-export default MemberList
+export default AdminList
