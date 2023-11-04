@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import router from 'next/router'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { RootState } from '../app/store'
+import { setUser } from '../slices/slice'
 import { isSameDate } from '../utils/globalFnx'
 import { convertTimezone } from '../utils/userTimezone'
 import Heading from './Heading'
@@ -283,8 +286,53 @@ export const PaymentForm = (props: {
     )
   }
 */
+  const dispatch = useAppDispatch()
+  const user = useAppSelector((state: RootState) => state.userSlice.user)
+  useEffect(() => {
+    ;(async () => {
+      const user = await axios('/api/users/getUser')
+      dispatch(setUser(user.data.user[0]))
+    })()
+  }, [dispatch])
 
-  const createOrder = (
+  const createOrder = async (data: any, actions: any) => {
+    let finalAmount = amount // Use the provided amount
+    if (finalAmount <= 0) {
+      finalAmount = 0.01 // Set a minimum amount (e.g., $0.01)
+    }
+
+    try {
+      const order = await actions.order.create({
+        purchase_units: [
+          {
+            description: 'Family Wise',
+            amount: {
+              currency_code: currency, // Change the currency if needed
+              value: finalAmount.toString(), // Ensure a non-zero value
+            },
+          },
+        ],
+        application_context: {
+          shipping_preference: 'NO_SHIPPING',
+        },
+      })
+
+      // Handle the order creation success here
+      // E.g., update the user's planType
+      if (order) {
+        // Update the user's planType after successful payment
+        const response = await axios.post(`../pages/api/update-plan-type/${user.id}`)
+        console.log('User planType updated to Premium:', response.data)
+      }
+
+      return order
+    } catch (error) {
+      console.error('Error creating order:', error)
+      throw error
+    }
+  }
+
+  /*const createOrder = (
     data: any,
     /*actions: {
           order: {
@@ -298,7 +346,7 @@ export const PaymentForm = (props: {
             }) => Promise<any>
           }
         }*/
-    actions: any
+  /*  actions: any
   ) => {
     return actions.order
       .create({
@@ -319,7 +367,7 @@ export const PaymentForm = (props: {
       .then((orderID: boolean | ((prevState: boolean) => boolean)) => {
         return orderID
       })
-  }
+  }*/
 
   const onApprove = async (
     /*data: { subscriptionID: any },*/

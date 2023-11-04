@@ -56,8 +56,8 @@ const Activity = () => {
 
   const renderPageNumbers = () => {
     const pageNumbers = []
-    const startPage = Math.max(1, currentPage - Math.floor(maxDisplayPages / 2))
-    const endPage = Math.min(totalPages, startPage + maxDisplayPages - 1)
+    const startPage = Math.max(1, currentPage - Math.floor(maxDisplayPages / 3))
+    const endPage = Math.min(totalPages, startPage + maxDisplayPages - 3)
 
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
@@ -74,9 +74,9 @@ const Activity = () => {
 
   return (
     <MemberLayout>
-      <div className="activity-container">
-        <Title>Activity Log</Title>
-        <Heading className="activity-heading" size={3}>
+      <Title>Activity Log</Title>
+      <div className="activity-container dark:bg-transparent dark:text-white-700 dark:outline">
+        <Heading className="activity-heading dark:text-white-700" size={3}>
           Activity Log
         </Heading>
 
@@ -117,13 +117,13 @@ const Activity = () => {
             <ul className="pagination">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                 <button onClick={() => paginate(currentPage - 1)} className="page-link">
-                  Previous
+                  {`<`}
                 </button>
               </li>
               {renderPageNumbers()}
               <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
                 <button onClick={() => paginate(currentPage + 1)} className="page-link">
-                  Next
+                  {`>`}
                 </button>
               </li>
             </ul>

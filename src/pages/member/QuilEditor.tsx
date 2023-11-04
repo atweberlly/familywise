@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useAppDispatch } from '../../app/hooks'
 import { setUser } from '../../slices/slice'
+import { isCompatible } from '../../utils/browser'
 import axios from 'axios'
 
 // Import Quill styles
@@ -53,7 +54,19 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
   }, [recording])
 
   const startRecording = () => {
-    if ('webkitSpeechRecognition' in window) {
+    const isSpeechRecognitionSupported =
+      'webkitSpeechRecognition' in window || 'SpeechRecognition' in window
+
+    const isBrave = isCompatible()
+
+    if (isBrave) {
+      toast.error('This browser is not compatible with our Speech-to-text', {
+        duration: 3000,
+      })
+      return // Stop further execution for Brave browser
+    }
+
+    if (isSpeechRecognitionSupported) {
       if (!recording) {
         const recognizer = new webkitSpeechRecognition() // Create a new instance
         recognizer.continuous = true
@@ -109,14 +122,12 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
         })
       }
     } else {
-      if (resultRef.current) {
-        toast.error(
-          'Your browser is not supported. Please download Google Chrome or update your Google Chrome!',
-          {
-            duration: 3000, // Specify the duration in milliseconds (3 seconds)
-          }
-        )
-      }
+      toast.error(
+        'Your browser is not supported. Please download Google Chrome or update your Google Chrome!',
+        {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        }
+      )
     }
   }
 
