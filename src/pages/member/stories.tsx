@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Heading from '../../components/Heading'
-import PDFDoc from '../../components/PDFDoc'
 import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
 import StoryTable from './Table/StoryTableV2'
 import Edit from './edit'
-import { Document, Page, pdf, Text } from '@react-pdf/renderer'
 import axios from 'axios'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 
@@ -31,56 +29,38 @@ const Stories = () => {
 
   const [isUploading, setIsUploading] = useState(false)
 
-  const handlePublishClick = async (user: { _id: any }) => {
+  const handlePublishClick = async (user: any) => {
+    setIsUploading(true)
+
+    const data = {
+      user,
+      name: user._id + '.pdf', // Specify the desired file name
+      type: 'application/pdf',
+    }
+
     try {
-      setIsUploading(true)
+      const response = await fetch('/api/s3/uploadPDF', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // Pass user data as needed
+      })
 
-      // Introduce a delay before rendering the PDF
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      // Generate the PDF blob using the generatePDFBlob function
-      const pdfBlob = await generatePDFBlob(user)
-
-      if (pdfBlob) {
-        // Send a request to your uploadPDF endpoint to get the S3 signed URL
-        const response = await axios.post('/api/s3/uploadPDF', {
-          name: `${user._id}.pdf`,
-          type: 'application/pdf', // PDF content type
-        })
-
-        const { url } = response.data
-
-        // Upload the entire PDF Blob to the obtained URL
-        await axios.put(url, pdfBlob, {
-          headers: {
-            'Content-type': 'application/pdf',
-            'Access-Control-Allow-Origin': '*',
-          },
-        })
-
-        // Handle the successful upload here
-        console.log('PDF uploaded to S3 successfully')
+      if (response.ok) {
+        const data = await response.json()
+        console.log('PDF uploaded to S3:', data.location)
+        // Handle success, e.g., show a success message or navigate to the generated PDF.
+      } else {
+        console.error('Failed to upload PDF to S3')
+        // Handle the error, e.g., show an error message.
       }
     } catch (error) {
-      // Handle any errors that occur during the upload process
-      console.error('Error uploading PDF:', error)
+      console.error('Error:', error)
+      // Handle the error, e.g., show an error message.
     } finally {
       setIsUploading(false)
     }
-  }
-
-  const generatePDFBlob = async (user: { _id: any }) => {
-    /*const MyPDFDocument = (
-      <Document>
-        <Page bookmark="Harry Potter and the Philosopher's Stone">
-          <PDFDoc user_id={user._id} user={user} />
-        </Page>
-      </Document>
-    );*/
-    const MyPDFDocument = <PDFDoc user_id={user._id} user={user} />
-    const blob = await pdf(MyPDFDocument).toBlob()
-
-    return blob
   }
 
   return (
