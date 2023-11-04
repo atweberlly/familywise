@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import router from 'next/router'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { RootState } from '../app/store'
-import { setUser } from '../slices/slice'
 import { isSameDate } from '../utils/globalFnx'
 import { convertTimezone } from '../utils/userTimezone'
 import Heading from './Heading'
@@ -286,50 +283,45 @@ export const PaymentForm = (props: {
     )
   }
 */
-  const dispatch = useAppDispatch()
-  const user = useAppSelector((state: RootState) => state.userSlice.user)
-  useEffect(() => {
-    ;(async () => {
-      const user = await axios('/api/users/getUser')
-      dispatch(setUser(user.data.user[0]))
-    })()
-  }, [dispatch])
-
-  const createOrder = async (data: any, actions: any) => {
+  const createOrder = (
+    data: any,
+    /*actions: {
+          order: {
+            create: (arg0: {
+              purchase_units: {
+                description: string
+                amount: { currency_code: string; value: number }
+              }[]
+              // not needed if a shipping address is actually needed
+              application_context: { shipping_preference: string }
+            }) => Promise<any>
+          }
+        }*/
+    actions: any
+  ) => {
     let finalAmount = amount // Use the provided amount
     if (finalAmount <= 0) {
       finalAmount = 0.01 // Set a minimum amount (e.g., $0.01)
     }
-
-    try {
-      const order = await actions.order.create({
+    return actions.order
+      .create({
         purchase_units: [
           {
             description: 'Family Wise',
             amount: {
-              currency_code: currency, // Change the currency if needed
-              value: finalAmount.toString(), // Ensure a non-zero value
+              currency_code: currency, // Here change the currency if needed
+              value: finalAmount.toString(), // Here change the amount if needed
             },
           },
         ],
+        // not needed if a shipping address is actually needed
         application_context: {
           shipping_preference: 'NO_SHIPPING',
         },
       })
-
-      // Handle the order creation success here
-      // E.g., update the user's planType
-      if (order) {
-        // Update the user's planType after successful payment
-        const response = await axios.post(`../pages/api/update-plan-type/${user.id}`)
-        console.log('User planType updated to Premium:', response.data)
-      }
-
-      return order
-    } catch (error) {
-      console.error('Error creating order:', error)
-      throw error
-    }
+      .then((orderID: boolean | ((prevState: boolean) => boolean)) => {
+        return orderID
+      })
   }
 
   /*const createOrder = (
@@ -375,8 +367,22 @@ export const PaymentForm = (props: {
     data: any,
     actions: any
   ) => {
-    return await actions.order.capture().then(function (details: { id: any }) {
+    return await actions.order.capture().then(async function (details: { id: any }) {
       const { id } = details
+
+      // Update the user's planType to 'Premium'
+      console.log(props.user._id)
+      const updatePlanTypeResponse = await axios.put(`/api/update-plan-type/${props.user._id}`, {
+        planType: 'Premium', // Set the plan type you want to update to
+      })
+
+      if (updatePlanTypeResponse.status === 201) {
+        console.log('User planType updated to Premium:', updatePlanTypeResponse.data.message)
+      } else {
+        console.error('Failed to update user planType. Status:', updatePlanTypeResponse.status)
+        console.error('Response data:', updatePlanTypeResponse.data)
+      }
+
       const configuration = {
         method: 'put',
         url: '/api/users/' + props.user._id,
@@ -418,7 +424,7 @@ export const PaymentForm = (props: {
             }
           )
           //redirect to sign in page
-          router.push('../../pages/member/questions')
+          router.push('../stories')
         }
       })
     })
