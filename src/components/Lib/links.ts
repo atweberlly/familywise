@@ -32,6 +32,11 @@ const links: Array<Props> = [
     href: 'sign-in',
     label: 'Sign In',
   },
+  {
+    id: uniqueId(),
+    href: 'inspirations/',
+    label: 'Blogs',
+  },
 ]
 
 export default links

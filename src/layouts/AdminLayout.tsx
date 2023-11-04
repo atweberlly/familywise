@@ -374,6 +374,13 @@ export default function AdminLayout({ children }: any) {
                     >
                       Coupon
                     </Link>
+                    <Link
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
+                      href="/admin/blog"
+                      onClick={() => setOpenSettings(!show)}
+                    >
+                      Blog Posts
+                    </Link>
                   </div>
                 )}
               </li>
