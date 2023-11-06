@@ -16,9 +16,10 @@ interface Testimonial {
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   className?: string
+  background?: string
 }
 
-export default function Testimonials({ className }: Props) {
+export default function Testimonials({ className, background }: Props) {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
 
   useEffect(() => {
@@ -48,7 +49,10 @@ export default function Testimonials({ className }: Props) {
   }, [])
 
   return (
-    <section className={clsx('bg-white px-10 pb-8 pt-12 text-white', className)} id="testimonials">
+    <section
+      className={clsx('px-10 pb-8 pt-12 text-white ', className) + background}
+      id="testimonials"
+    >
       <div className="relative mx-auto max-w-screen-xl pb-10">
         <div className="swiper testimonials">
           <div className="swiper-wrapper">
