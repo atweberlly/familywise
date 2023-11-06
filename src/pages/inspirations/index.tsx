@@ -50,7 +50,14 @@ export default function Blog() {
 
   const totalTruePosts = blogs.filter((blog) => blog.visibility === true).length
 
-  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber)
+  const pageNumbers = []
+  for (let i = 1; i <= Math.ceil(totalTruePosts / postsPerPage); i++) {
+    pageNumbers.push(i)
+  }
+
+  const displayEllipsis = pageNumbers.length > 5
+
+  //const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber)
 
   /*const sanitizedDescription =
     "This is a <strong>formatted</strong> description with <a href='#'>HTML</a> tags."
@@ -159,12 +166,57 @@ export default function Blog() {
 
           {/* Pagination Start*/}
           <div className="mt-16 flex items-center justify-between border-t border-gray-200 pt-4">
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={totalTruePosts} // Use the filtered count
-              paginate={paginate}
-              currentPage={currentPage}
-            />
+            {/*
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={totalTruePosts} // Use the filtered count
+                paginate={paginate}
+                currentPage={currentPage}
+              />
+            */}
+            <button
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gray-300 md:h-auto md:w-auto md:justify-normal md:gap-1.5 md:border-0"
+              type="button"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <span className="sr-only md:not-sr-only md:order-2 md:flex-1 md:text-sm md:font-semibold">
+                Previous
+              </span>
+              <ArrowLeftIcon className="h-5 w-5 text-gray-700 md:order-1 md:shrink-0" />
+            </button>
+
+            <div className="text-sm md:hidden">
+              Page <span className="font-semibold">{currentPage}</span> of{' '}
+              <span className="font-semibold">{Math.ceil(totalTruePosts / postsPerPage)}</span>
+            </div>
+
+            <div className="hidden md:flex md:items-center md:gap-0.5">
+              {pageNumbers.map((number, index) => (
+                <button
+                  className={`h-10 w-10 rounded-lg font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-800${
+                    number === currentPage ? ' bg-gray-50' : ''
+                  }`}
+                  type="button"
+                  onClick={() => setCurrentPage(number)}
+                  key={number}
+                >
+                  {displayEllipsis && index === 2 && pageNumbers.length > 5 ? '...' : number}
+                </button>
+              ))}
+            </div>
+
+            <button
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gray-300 md:h-auto md:w-auto md:justify-normal md:gap-1.5 md:border-0"
+              type="button"
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage === Math.ceil(totalTruePosts / postsPerPage)}
+            >
+              <span className="sr-only md:not-sr-only md:order-1 md:flex-1 md:text-sm md:font-semibold">
+                Next
+              </span>
+              <ArrowRightIcon className="h-5 w-5 text-gray-700 md:order-2 md:shrink-0" />
+            </button>
           </div>
           {/* Pagination End*/}
         </div>
