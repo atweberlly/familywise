@@ -36,9 +36,11 @@ export default async function handler(request, response) {
         author: request.body.author,
         tags: request.body.tags,
         modified: request.body.modified,
+        url: request.body.title.replace(/ /g, '-').replace(/\?/g, ''), //convert space to dash and remove ?
         timezone: userTimezone,
         visibility: request.body.visibility,
       }
+      console.log(blog)
 
       await Blogs.create(blog)
         // return success if the new coupon is added to the database successfully
