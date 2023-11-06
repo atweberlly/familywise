@@ -1,19 +1,17 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-//import CheckIcon from '../components/CheckIcon'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import Newsletter from '../components/Newsletter'
-import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
+import Newsletter from '../components/sections/Newsletter'
+import Testimonials from '../components/sections/Testimonials'
 import Swiper, { Navigation } from 'swiper'
-import {
-  ArrowLongDownIcon,
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-} from '@heroicons/react/24/outline'
-import PricingSection from '~/components/PricingThumbnail'
+import { ArrowLongDownIcon } from '@heroicons/react/24/outline'
+import CaptureStories from '~/components/sections/CaptureStories'
+import CoverCarousel from '~/components/sections/CoverCarousel'
+import FounderSection from '~/components/sections/Founder'
+import GiftCarousel from '~/components/sections/GiftCarousel'
+import PricingSection from '~/components/sections/PricingThumbnail'
 
 export default function Home() {
   //const [productInfo, setProductInfo] = useState(classic)
@@ -53,7 +51,6 @@ export default function Home() {
 
     presentation.init()
   }, [])
-
   const scrollDown = () => {
     const howItWorks = document.getElementById('how-it-works')?.offsetTop
     const getStarted = document.getElementById('get-started')?.offsetTop
@@ -669,235 +666,15 @@ export default function Home() {
               />
             </video>
           </div>
-
-          <div className="container grid grid-cols-1 items-center gap-8 pb-12 pt-14 md:grid-cols-2 md:pb-14 md:pt-16 lg:gap-16 lg:pb-24">
-            <div>
-              <div className="flex items-center">
-                <div className="h-px w-10 bg-[#111]"></div>
-                <p className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
-                  Capture the stories of your lifetime
-                </p>
-              </div>
-              <h2 className="mt-4 font-fair text-4xl lg:text-6xl">Start right away!</h2>
-              <div className="mt-4 space-y-2 text-lg text-gray-600">
-                <p>
-                  Your stories are worth sharing. Get started in minutes and with an email each
-                  week, you&apos;ll preserve your meaningful moments into a keepsake book to pass on
-                  to future generations.
-                </p>
-                <p>Receive immediate access - your first question will arrive in minutes.</p>
-              </div>
-              <div className="mt-6 md:mt-12">
-                <button
-                  className="rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
-                  type="button"
-                  onClick={scrollDown}
-                >
-                  Get started
-                </button>
-              </div>
-            </div>
-            <div className="-mx-10 flex items-start">
-              <div className="grid grow grid-cols-6 gap-4">
-                <div className="col-span-2 col-start-2 place-self-end">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="160"
-                    height="160"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-40 w-full object-cover"
-                    src="/svg/content/1.svg"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="160"
-                    height="240"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-60 w-full object-cover"
-                    src="/svg/content/2.svg"
-                  />
-                </div>
-
-                <div className="col-span-2 justify-self-end">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="190"
-                    height="128"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-32 w-full object-cover"
-                    src="/svg/content/3.svg"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="160"
-                    height="240"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-60 w-full object-cover"
-                    src="/svg/content/5.svg"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="192"
-                    height="128"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-32 w-full object-cover"
-                    src="/svg/content/4.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <CaptureStories />
         </section>
       </header>
+      <CoverCarousel />
       <PricingSection />
-      <section className="bg-black-pearl pb-16 pt-32 text-white">
-        <div className="container">
-          <div className="marquee gift flex overflow-hidden whitespace-nowrap">
-            <h2 className="mr-4 bg-texture bg-clip-text pb-2 font-serif text-[12rem] font-bold text-transparent">
-              The gift that lasts a lifetime.
-            </h2>
-          </div>
-
-          <div className="swiper presentation">
-            <div className="swiper-wrapper mt-8 pb-4">
-              <div className="swiper-slide flex flex-col items-center">
-                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
-                  <span className="block text-white/40">Preserve family memories to</span>
-                  <span className="block sm:ml-4 md:ml-8">Pass on to future generations</span>
-                </h3>
-
-                <Image
-                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                  src="/images/slide-images/slide-image-1@1x.jpg"
-                  alt=""
-                  width="1060"
-                  height="660"
-                />
-              </div>
-
-              <div className="swiper-slide flex flex-col items-center">
-                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
-                  <span className="block text-white/40">Give a gift to someone who&apos;s</span>
-                  <span className="block sm:ml-4 md:ml-8">story you&apos;d like to hear</span>
-                </h3>
-
-                <Image
-                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                  src="/images/slide-images/slide-image-2@1x.jpg"
-                  alt=""
-                  width="1060"
-                  height="660"
-                />
-              </div>
-
-              <div className="swiper-slide flex flex-col items-center">
-                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
-                  <span className="block text-white/40">Choose the date you&apos;d</span>
-                  <span className="block sm:ml-4 md:ml-8">like your gift to commence</span>
-                </h3>
-
-                <Image
-                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                  src="/images/slide-images/slide-image-3@1x.jpg"
-                  alt=""
-                  width="1060"
-                  height="660"
-                />
-              </div>
-            </div>
-            <button
-              className="swiper-prev right-0 top-[40%] z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2 lg:top-[42%]"
-              type="button"
-            >
-              <ArrowLongLeftIcon className="h-4 w-4 md:h-8 md:w-8 " />
-            </button>
-            <button
-              className="swiper-next right-0 top-1/2 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2"
-              type="button"
-            >
-              <ArrowLongRightIcon className="h-4 w-4 md:h-8 md:w-8 " />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="overflow-hidden px-10 pb-6 pt-14" id="founder">
-        <div className="relative mx-auto grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
-          <div className="relative z-10">
-            <h2 className="font-serif text-6xl font-bold">
-              <span className="block text-[#ca8e22]/30">Preserving</span>{' '}
-              <span className="ml-16 block italic text-[#ca8e22]">precious memories.</span>
-            </h2>
-
-            <p className="mt-8">
-              As a funeral celebrant of 9 years, our founder Rachel Michael has heard many stories
-              from families after their loved ones have passed away. Over time, she&apos;s realized
-              there are many more stories that families never get to hear.
-            </p>
-
-            <p className="mt-4">
-              Family Wise was inspired by her work and is designed to give families the opportunity
-              to gather precious memories whilst the opportunity is there.
-            </p>
-
-            <p className="mt-4">
-              Family Wise is dedicated to the thousands of people she has had the privilege to
-              assist as they grieve the loss of the people they love.
-            </p>
-          </div>
-
-          <div className="relative z-10">
-            <div className="aspect-h-4 aspect-w-3">
-              <Image
-                className="object-cover object-center"
-                src="/images/founder/rachel-michael-portrait@4x.jpg"
-                alt="Rachel Michael"
-                width="312"
-                height="456"
-                priority={false}
-              />
-            </div>
-
-            <div className="mt-4">
-              <div className="font-serif text-[2rem] font-bold leading-none">Rachel Michael</div>
-              <div className="mt-1 text-lg font-medium">Founder</div>
-            </div>
-          </div>
-
-          <Image
-            className="pointer-events-none absolute -right-1/2 top-0 h-auto w-full select-none object-cover object-left"
-            src="/images/founder/golden-sand-explosion.jpg"
-            alt=""
-            width="1124"
-            height="736"
-            priority={false}
-          />
-        </div>
-      </section>
-
+      <GiftCarousel />
+      <FounderSection />
       <Testimonials />
-
       <Newsletter />
-
       <Footer />
     </div>
   )

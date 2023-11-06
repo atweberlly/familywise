@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
-import CoverCarousel from '~/components/CoverCarousel'
+import CoverCarousel from '~/components/sections/CoverCarousel'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
 import { booksFeatures1, booksFeatures2 } from '~/components/Lib/booksFeatures'
-import Newsletter from '~/components/Newsletter'
-import PricingSection from '~/components/PricingThumbnail'
-import Testimonials from '~/components/Testimonials'
+import Newsletter from '~/components/sections/Newsletter'
+import Testimonials from '~/components/sections/Testimonials'
 import Title from '~/components/Title'
+import PricingSection from '~/components/sections/PricingThumbnail'
 
 export default function Books(): JSX.Element {
   useEffect(() => {
