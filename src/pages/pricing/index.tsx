@@ -4,10 +4,10 @@ import Header from '../../components/Header'
 import Heading from '../../components/Heading'
 import { questionbasedbook_extra, photobasedbook_extra } from '../../components/Lib/extra_features'
 import { questionbasedbook, photobasedbook, all_1, all_2 } from '../../components/Lib/features'
-import Newsletter from '../../components/sections/Newsletter'
 import Payin4 from '../../components/Payin4'
 import Plans from '../../components/Plans'
 import Title from '../../components/Title'
+import Newsletter from '../../components/sections/Newsletter'
 import { LockClosedIcon, ReceiptRefundIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
 
 export default function Pricing() {
