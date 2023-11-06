@@ -35,6 +35,11 @@ const BlogsSchema = mongoose.Schema(
       type: String,
       unique: false,
     },
+    url: {
+      type: String,
+      required: false,
+      unique: false,
+    },
     modified: {
       type: Date,
       required: false,
