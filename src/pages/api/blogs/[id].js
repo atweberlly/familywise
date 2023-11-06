@@ -2,94 +2,68 @@ import dbConnect from '../../../../lib/dbConnect'
 import Blogs from '../../../../models/blogsModel'
 
 export default async function handler(request, response) {
+  await dbConnect()
+
   const {
     query: { id },
     method,
+    body,
   } = request
+
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
-  await dbConnect()
+  try {
+    switch (method) {
+      case 'GET':
+        const blog = await Blogs.findById(id)
+        if (blog) {
+          response.status(200).json({ message: 'Success', result: blog })
+        } else {
+          response.status(404).json({ message: 'Blog not found' })
+        }
+        break
 
-  switch (method) {
-    case 'GET' /* Get a model by its ID */:
-      await Blogs.findById(id)
+      case 'PUT':
+        const newValues = {
+          title: body.title,
+          description: body.description,
+          pagetitle: body.pagetitle,
+          pagedescription: body.pagedescription,
+          image: body.image,
+          author: body.author,
+          tags: body.tags,
+          modified: body.modified,
+          timezone: userTimezone,
+          visibility: body.visibility,
+        }
 
-        //return success
-        .then((result) => {
-          response.status(201).send({
-            message: 'Success',
-            result,
-          })
+        const updatedBlog = await Blogs.findByIdAndUpdate(id, newValues, {
+          new: true,
+          runValidators: true,
         })
 
-        // catch error
-        .catch((error) => {
-          response.status(500).send({
-            message: 'Error getting blogs posts',
-            error,
-          })
-        })
+        if (updatedBlog) {
+          response.status(200).json({ message: 'Blog updated successfully', result: updatedBlog })
+        } else {
+          response.status(404).json({ message: 'Blog not found' })
+        }
+        break
 
-      break
+      case 'DELETE':
+        const deletedBlog = await Blogs.deleteOne({ _id: id })
 
-    case 'PUT' /* Edit a model by its ID */:
-      console.log(userTimezone)
-      let newValues = {
-        title: request.body.title,
-        description: request.body.description,
-        pagetitle: request.body.pagetitle,
-        pagedescription: request.body.pagedescription,
-        image: request.body.description,
-        author: request.body.author,
-        tags: request.body.tags,
-        modified: request.body.modified,
-        timezone: userTimezone,
-        visibility: request.body.visibility,
-      }
-      //update newValues by id
-      await Blogs.findByIdAndUpdate(id, newValues, {
-        new: true,
-        runValidators: true,
-      })
-        // return success message if new coupon is updated successfully
-        .then((result) => {
-          response.status(201).send({
-            message: 'Blog updated successfully',
-            result,
-          })
-        })
-        // catch error if new coupon wasn't updating successfully
-        .catch((error) => {
-          response.status(500).send({
-            message: 'Error updating',
-            error,
-          })
-        })
+        if (deletedBlog.deletedCount > 0) {
+          response.status(200).json({ message: 'Blog post deleted successfully' })
+        } else {
+          response.status(404).json({ message: 'Blog not found' })
+        }
+        break
 
-      break
-
-    case 'DELETE' /* Delete a model by its ID */:
-      await Blogs.deleteOne({ _id: id })
-
-        //return success
-        .then((result) => {
-          response.status(201).send({
-            message: 'Blog post Deleted Successfully',
-            result,
-          })
-        })
-
-        // catch error
-        .catch((error) => {
-          response.status(500).send({
-            message: 'Error deleting Blog post',
-            error,
-          })
-        })
-      break
-
-    default:
-      response.status(400).json({ success: false })
-      break
+      default:
+        response.status(405).json({ message: 'Method Not Allowed' })
+        break
+    }
+  } catch (error) {
+    response.status(500).json({ message: 'Server Error', error: error.message })
   }
 }

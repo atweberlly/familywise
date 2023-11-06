@@ -76,7 +76,7 @@ const AdminList: NextPage = () => {
         country: selected,
         bookReceiver: data.bookReceiver,
         roles: data.roles,
-        status: false,
+        status: true,
       },
     }
     console.log(configuration)
