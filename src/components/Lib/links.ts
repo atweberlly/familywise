@@ -9,33 +9,33 @@ export interface Props {
 const links: Array<Props> = [
   {
     id: uniqueId(),
-    href: '#how-it-works',
+    href: 'how-it-works',
     label: 'How it works',
   },
   {
     id: uniqueId(),
-    href: '#founder',
-    label: 'The Founder',
+    href: 'books',
+    label: 'Books',
+  },
+  {
+    id: uniqueId(),
+    href: 'shop',
+    label: 'Shop',
   },
   {
     id: uniqueId(),
     href: 'frequently-asked-questions',
     label: 'FAQs',
   },
-  /*{
+  {
     id: uniqueId(),
-    href: 'pricing',
-    label: 'Pricing',
-  },*/
+    href: 'inspirations/',
+    label: 'Inspirations',
+  },
   {
     id: uniqueId(),
     href: 'sign-in',
     label: 'Sign In',
-  },
-  {
-    id: uniqueId(),
-    href: 'inspirations/',
-    label: 'Blogs',
   },
 ]
 
