@@ -13,4 +13,8 @@ const isSameDate = (date1: Date, date2: Date): Boolean => {
   )
 }
 
-export { capitalizeFirstLetter, isSameDate }
+const truncate = (text: string, count: number): string => {
+  return text?.length > count ? `${text.substring(0, count)}...` : text
+}
+
+export { capitalizeFirstLetter, isSameDate, truncate }

@@ -2,14 +2,14 @@ import { useState, useEffect, SetStateAction } from 'react'
 import { toast } from 'react-hot-toast'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-import Newsletter from '../../components/Newsletter'
 import Pagination from '../../components/Paginations'
-import Testimonials from '../../components/Testimonials'
 import Title from '../../components/Title'
 import { convertTimezone } from '../../utils/userTimezone'
 import axios from 'axios'
 import dateFormat from 'dateformat'
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
+import { truncate } from '~/utils/globalFnx'
+import Newsletter from '~/components/sections/Newsletter'
+import Testimonials from '~/components/sections/Testimonials'
 
 export default function Blog() {
   const [blogs, setBlogs] = useState<Array<any>>([])
@@ -83,7 +83,7 @@ export default function Blog() {
       {/* Header section end */}
 
       <div className="pb-16 lg:pb-24">
-        <div className="mx-auto max-w-screen-md px-4 lg:px-8">
+        <div className="mx-auto max-w-screen-xl px-4 lg:px-8">
           <div className="space-y-12">
             {loading ? (
               <div>Loading...</div>
@@ -102,7 +102,7 @@ export default function Blog() {
                 }) => {
                   if (visibility) {
                     return (
-                      <div className="md:flex md:gap-5" key={_id}>
+                      <div className="md:flex md:gap-10" key={_id}>
                         <div className="h-60 bg-gray-300 md:h-[12.5rem] md:min-w-xs">
                           <div className="text-center">
                             {image ? (
@@ -128,15 +128,11 @@ export default function Blog() {
                             <p
                               className="mt-2 text-gray-600"
                               dangerouslySetInnerHTML={{
-                                __html:
-                                  description.length > 100
-                                    ? description.slice(0, 100) + '...'
-                                    : description,
+                                __html: truncate(description, 100),
                               }}
                             />
                           </div>
                           <div className="mt-6 flex items-center gap-2">
-                            <div className="h-10 w-10 rounded-full bg-gray-300"></div>
                             <div className="text-sm">
                               <div className="font-semibold text-gray-900">{author}</div>
                               <time className="text-gray-600" dateTime="2024-01-20">
