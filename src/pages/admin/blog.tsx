@@ -26,8 +26,8 @@ const BlogManager: NextPage = () => {
     _id: '',
     title: '',
     description: '',
-    pagetitle: '',
-    pagedescription: '',
+    pageTitle: '',
+    pageDescription: '',
     image: '',
     author: '',
     tags: '',
@@ -78,7 +78,7 @@ const BlogManager: NextPage = () => {
       data: {
         title: data.title,
         description: data.description,
-        pagetitle: data.pagetitle,
+        pageTitle: data.pageTitle,
         pagedescription: data.pagedescription,
         image: data.image,
         author: data.author,
@@ -200,44 +200,51 @@ const BlogManager: NextPage = () => {
   // Change page
   const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber)
 
-  const [title, setTitle] = useState('')
-  const [PageTitle, setPageTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [PageDescription, setPageDescription] = useState('')
-  const [author, setAuthor] = useState<string>('') // Initialize with an empty string and specify the type as 'string'
-  const [tags, setTags] = useState('')
+  const [title, setTitle] = useState(data?.title)
+  const [PageTitle, setPageTitle] = useState(data?.pageTitle)
+  const [description, setDescription] = useState(data?.description)
+  const [PageDescription, setPageDescription] = useState(data?.pageDescription)
   const [image, setImage] = useState('')
-  const [visibility, setVisibility] = useState<boolean>(false) // Initialize with an empty string or undefined
   const [uploadedFile, setUploadedFile] = useState<any>()
   const [buttonDisabled, setButtonDisabled] = useState(true)
 
   const handlerEdit = async (id: any) => {
-    // set configurations
-    const configuration = {
+    // Display a loading indicator here (e.g., set a loading state)
+
+    const getRequestConfig = {
       method: 'get',
       url: `/api/blogs/${id}`,
     }
 
-    // make the API call
-    await axios(configuration)
-      .then((response) => {
-        const blogsData = response.data.result
-        // Update the state using useState functions
-        setTitle(blogsData.title)
-        setPageTitle(blogsData.pageTitle)
-        setDescription(blogsData.description)
-        setPageDescription(blogsData.pageDescription)
-        setAuthor(blogsData.author)
-        setTags(blogsData.tags)
-        setImage(blogsData.image)
-        setVisibility(blogsData.visibility)
-      })
-      .catch((error) => {
-        toast.error(error, {
+    try {
+      const response = await axios(getRequestConfig)
+      const blogData = response.data.result
+
+      setData(blogData)
+      setValue('_id', id, { shouldValidate: true })
+      setValue('title', blogData?.title, { shouldValidate: true })
+      setValue('pageTitle', blogData?.pageTitle, { shouldValidate: true })
+      setValue('description', blogData?.description, { shouldValidate: true })
+      setValue('pageDescription', blogData?.pageDescription, { shouldValidate: true })
+      setValue('author', blogData?.author, { shouldValidate: true })
+      setValue('tags', blogData?.tags, { shouldValidate: true })
+      setValue('image', blogData?.image, { shouldValidate: true })
+      setValue('visibility', blogData?.visibility, { shouldValidate: true })
+    } catch (error: any) {
+      console.error(error)
+
+      if (error.response && error.response.status === 404) {
+        toast.error('Resource not found. Please check the ID or try again later.', {
           duration: 3000,
         })
-      })
+      } else {
+        toast.error('An error occurred while fetching data. Please try again later.', {
+          duration: 3000,
+        })
+      }
+    }
 
+    // Remove the loading indicator (e.g., set the loading state to false)
     setShowAddEdit(!showAddEdit)
   }
 
@@ -278,14 +285,6 @@ const BlogManager: NextPage = () => {
       //register('image')
     }
   }
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newTitle = event.target.value
-
-    setTitle(newTitle)
-    setTitleInSync(newTitle === PageTitle)
-    setButtonDisabled(newTitle === '')
-    setValue('title', newTitle)
-  }
 
   const handlePageTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newPTitle = event.target.value
@@ -297,7 +296,7 @@ const BlogManager: NextPage = () => {
     }
     setPageTitleInSync(newPTitle === title)
     setButtonDisabled(newPTitle === '')
-    setValue('pagetitle', PageTitle)
+    setValue('pageTitle', PageTitle)
   }
 
   // Handle changes in the Quill editor
@@ -321,34 +320,7 @@ const BlogManager: NextPage = () => {
     }
     setPageDescriptionInSync(newPDesc === description)
     setButtonDisabled(newPDesc === '')
-    setValue('pagedescription', newPDesc) // Use newPDesc instead of PageDescription
-  }
-
-  const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newTags = event.target.value
-    const normalizedTags = newTags.replace(/\s+/g, ', ').replace(/,+/g, ', ')
-
-    setTags(normalizedTags)
-    setButtonDisabled(normalizedTags === '')
-    setValue('tags', normalizedTags)
-  }
-
-  const handleAuthor = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newAuthor = event.target.value
-
-    setAuthor(newAuthor)
-    setButtonDisabled(newAuthor === '')
-    setValue('author', newAuthor)
-  }
-
-  const handleVisibility = (e: React.MouseEvent<HTMLInputElement>) => {
-    const isChecked = e.currentTarget.checked // Get the checked status
-
-    setVisibility(isChecked)
-
-    // Enable or disable the button based on the isChecked value
-    setButtonDisabled(false)
-    setValue('visibility', isChecked)
+    setValue('pageDescription', newPDesc) // Use newPDesc instead of PageDescription
   }
 
   useEffect(() => {
@@ -520,16 +492,33 @@ const BlogManager: NextPage = () => {
                     <input
                       type="text"
                       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                        dark:bg-dark dark:text-white"
+                          dark:bg-dark dark:text-white"
                       placeholder="E.g. Blog about your latest products or deals"
                       id="title"
-                      value={title}
-                      onChange={handleTitleChange}
+                      defaultValue={data?.title}
+                      onChange={(e) => {
+                        const newTitle = e.target.value
+
+                        setTitle(newTitle)
+                        setTitleInSync(newTitle === data?.pageTitle)
+                        setButtonDisabled(newTitle === '')
+                        setValue('title', newTitle)
+                      }}
                     />
                   </label>
                   <label>
                     <p className="mb-2 text-sm">Description</p>
-                    <QuillEditor value={description} onChange={handleDescriptionChange} />
+                    <QuillEditor
+                      defaultValue={data?.description}
+                      onChange={(value) => {
+                        const newDesc = value
+
+                        setPageDescription(newDesc)
+                        setDescriptionInSync(newDesc === data?.pageDescription)
+                        setButtonDisabled(newDesc === '')
+                        setValue('description', newDesc)
+                      }}
+                    />
                   </label>
                 </div>
                 <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
@@ -571,8 +560,14 @@ const BlogManager: NextPage = () => {
                     <input
                       className="h-4 w-4 border-gray-300 text-primary-400 focus:ring-primary-500 dark:bg-dark dark:text-white"
                       type="checkbox"
-                      checked={visibility}
-                      onClick={handleVisibility}
+                      defaultChecked={data?.visibility}
+                      onClick={(e) => {
+                        const isChecked = e.currentTarget.checked // Get the checked status
+
+                        // Enable or disable the button based on the isChecked value
+                        setButtonDisabled(false)
+                        setValue('visibility', isChecked)
+                      }}
                     />
                     <p className="text-sm">Visible</p>
                   </label>
@@ -589,8 +584,8 @@ const BlogManager: NextPage = () => {
                           alt=""
                           className="mx-auto max-h-32 w-auto object-cover"
                         />
-                      ) : image ? (
-                        <img src={image} className="mx-auto max-h-32 w-auto object-cover" />
+                      ) : data?.image ? (
+                        <img src={data?.image} className="mx-auto max-h-32 w-auto object-cover" />
                       ) : (
                         <div className='border-secondary-100" rounded-[15px] border-[2px] p-1.5'>
                           <label
@@ -601,6 +596,12 @@ const BlogManager: NextPage = () => {
                           </label>
                         </div>
                       )}
+                      <label
+                        htmlFor="cover-photo"
+                        className="mt-[8px] cursor-pointer whitespace-nowrap text-secondary-300"
+                      >
+                        {'Browse to upload'}
+                      </label>
                       <input
                         type="file"
                         id="cover-photo"
@@ -620,8 +621,13 @@ const BlogManager: NextPage = () => {
                     <input
                       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:bg-dark dark:text-white"
                       placeholder="E.g. Lorem Ipsum"
-                      value={author}
-                      onChange={handleAuthor} // Ensure you handle input changes to update the 'author' state
+                      defaultValue={data?.author}
+                      onChange={(e) => {
+                        const newAuthor = e.target.value
+
+                        setButtonDisabled(newAuthor === '')
+                        setValue('author', newAuthor)
+                      }}
                     />
 
                     {errors.author && (
@@ -634,10 +640,19 @@ const BlogManager: NextPage = () => {
                     <p className="mb-2 text-sm">Tags</p>
                     <input
                       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500
-                            dark:bg-dark dark:text-white"
+                        dark:bg-dark dark:text-white"
                       placeholder="Product, Design, Management"
-                      value={tags}
-                      onChange={handleTagsChange}
+                      defaultValue={data?.tags} // Set the initial value using defaultValue
+                      onChange={(e) => {
+                        const newTags = e.target.value
+                        const normalizedTags = newTags.replace(/\s+/g, ', ').replace(/,+/g, ', ')
+
+                        // Update the input value in the DOM, but don't affect 'data?.tags'
+                        e.target.value = normalizedTags
+
+                        setButtonDisabled(normalizedTags === '')
+                        setValue('tags', normalizedTags)
+                      }}
                     />
                   </label>
                 </div>

@@ -151,6 +151,35 @@ const Cover = () => {
     })()
   }, [dispatch])
 
+  useEffect(() => {
+    // Check if all the required parameters are available
+    if (user._id && title && author && coverImage) {
+      // Create the data object for the cover image upload
+      const data = {
+        user: { _id: user._id },
+        title: title,
+        author: author,
+        coverImage: coverImage,
+      }
+
+      // Perform the cover image upload
+      fetch('/api/s3/uploadCover', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.message)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    }
+  }, [user._id, title, author, coverImage])
+
   return (
     <>
       <MemberLayout>

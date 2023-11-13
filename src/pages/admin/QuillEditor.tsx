@@ -20,15 +20,15 @@ const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'image', 'al
 
 interface QuillEditorProps extends ReactQuillProps {
   // Extend ReactQuillProps
-  value: string
-  onChange: (value: string, delta: any, source: any, editor: any) => void // Update the onChange function signature
+  defaultValue: string
+  onChange: (defaultValue: string, delta: any, source: any, editor: any) => void // Update the onChange function signature
 }
 
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 })
 
-const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
+const QuillEditor: React.FC<QuillEditorProps> = ({ defaultValue, onChange }) => {
   return (
     <div>
       {/* Refactor */}
@@ -49,7 +49,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
         theme="snow"
         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:bg-dark dark:text-white"
         placeholder="Text here..."
-        value={value}
+        defaultValue={defaultValue}
         onChange={onChange}
         modules={modules}
         formats={formats}
