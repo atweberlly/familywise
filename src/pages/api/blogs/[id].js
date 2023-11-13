@@ -23,18 +23,20 @@ export default async function handler(request, response) {
         }
         break
 
-      case 'PUT':
-        const newValues = {
-          title: body.title,
-          description: body.description,
-          pagetitle: body.pagetitle,
-          pagedescription: body.pagedescription,
-          image: body.image,
-          author: body.author,
-          tags: body.tags,
-          modified: body.modified,
+      case 'PUT' /* Edit a model by its ID */:
+        console.log(userTimezone)
+        let newValues = {
+          title: request.body.title,
+          description: request.body.description,
+          pagetitle: request.body.pagetitle,
+          pagedescription: request.body.pagedescription,
+          image: request.body.description,
+          author: request.body.author,
+          tags: request.body.tags,
+          modified: request.body.modified,
+          url: request.body.title.replace(/ /g, '-').replace(/\?/g, ''), //convert space to dash and remove ?
           timezone: userTimezone,
-          visibility: body.visibility,
+          visibility: request.body.visibility,
         }
 
         const updatedBlog = await Blogs.findByIdAndUpdate(id, newValues, {

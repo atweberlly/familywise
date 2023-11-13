@@ -8,6 +8,8 @@ import { convertTimezone } from '../../utils/userTimezone'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { truncate } from '~/utils/globalFnx'
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
+import Link from '~/components/Link'
 import Newsletter from '~/components/sections/Newsletter'
 import Testimonials from '~/components/sections/Testimonials'
 
@@ -105,6 +107,7 @@ export default function Blog() {
                   tags,
                   createdAt,
                   timezone,
+                  url,
                   visibility,
                 }) => {
                   if (visibility) {
@@ -131,7 +134,9 @@ export default function Blog() {
                         <div>
                           <div className="mt-5 md:mt-0">
                             <div className="text-sm font-semibold text-orange-500">{tags}</div>
-                            <h3 className="mt-2 text-xl font-semibold text-gray-900">{title}</h3>
+                            <Link href={`inspirations/` + url}>
+                              <h3 className="mt-2 text-xl font-semibold text-gray-900">{title}</h3>
+                            </Link>
                             <p
                               className="mt-2 text-gray-600"
                               dangerouslySetInnerHTML={{
