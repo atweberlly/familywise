@@ -1,9 +1,7 @@
-import ReactDOMServer from 'react-dom/server'
-// Import ReactDOMServer
 import PdfGen from '../../../components/PDFGen'
 import createPrintJob from '../LuluAPI/create-print'
+import { renderToBuffer } from '@react-pdf/renderer'
 import S3 from 'aws-sdk/clients/s3'
-import puppeteer from 'puppeteer'
 
 const s3 = new S3({
   region: 'ap-southeast-2',
@@ -14,34 +12,12 @@ const s3 = new S3({
 
 export default async (req, res) => {
   try {
-    const browser = await puppeteer.launch({ headless: 'new' })
-    const page = await browser.newPage()
-
     // Retrieve the user data from the request body sent by handlePublish
-    const { title, pages, user, name, type } = req.body
+    const { title, pages, user, name, type, stories } = req.body
 
-    // Use viewport and page size settings for A5
-    await page.setViewport({ width: 420, height: 595 }) // A5 size in pixels (5.8in x 8.3in)
-
-    const content = (
-      <div style={{ width: '5.83in', height: '8.27in' }}>
-        <PdfGen user_id={user._id} user={user} />
-      </div>
+    const pdfBuffer = await renderToBuffer(
+      <PdfGen user_id={user._id} user={user} stories={stories} />
     )
-
-    // Render the React component to HTML using ReactDOMServer.renderToString
-    const html = ReactDOMServer.renderToString(content)
-
-    console.log(html) // Log the HTML content
-    await page.setContent(html, { waitUntil: 'networkidle0' })
-    const pdfBuffer = await page.pdf({
-      format: 'A5',
-      printBackground: true,
-      displayHeaderFooter: false,
-      preferCSSPageSize: true,
-    })
-
-    await browser.close()
 
     // Set S3 parameters
     const params = {

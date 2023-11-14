@@ -1,73 +1,276 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
+import { createTw } from 'react-pdf-tailwind'
+import {
+  Document as PdfDocument,
+  Page as PdfPage,
+  Text,
+  Image,
+  View,
+  Font,
+} from '@react-pdf/renderer'
+import striptags from 'striptags'
 
-interface MyComponentProps {
-  user: string
+Font.register({
+  family: 'Roboto',
+  src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-light-webfont.ttf',
+})
+
+const tw = createTw({
+  theme: {
+    fontFamily: {
+      sans: ['Helvetica'],
+      sansItalic: ['Helvetica-Oblique'],
+      title: ['Times-Roman'],
+    },
+    extend: {
+      colors: {
+        custom: '#bada55',
+      },
+    },
+    fontWeight: {
+      thin: 100,
+      hairline: 100,
+      extralight: 200,
+      light: 300,
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+      extrabold: 800,
+      'extra-bold': 800,
+      black: 900,
+    },
+  },
+})
+
+interface Story {
+  _id: string
+  heading: string
+  story: string
+  image: string
+  caption_img: string
+}
+
+interface PDFDocProps {
+  stories: Story[]
   user_id: string
+  user: any // Adjust the type accordingly
 }
 
-const PdfGen: React.FC<MyComponentProps> = ({ user, user_id }: { user: any; user_id: string }) => {
-  const containerStyle: React.CSSProperties = {
-    backgroundColor: '#f0f0f0',
-    padding: '29520px', // 29520px
-    fontFamily: 'Arial, sans-serif',
-  }
+const PdfGen: React.FC<PDFDocProps & HTMLProps<HTMLDivElement>> = ({ stories, user_id, user }) => {
+  const pageSize = 500
 
-  const greetingStyle: React.CSSProperties = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: 'blue',
-    marginBottom: '10px',
-  }
+  const currentPage = 0
 
-  const userIdStyle: React.CSSProperties = {
-    fontSize: '16px',
-    color: 'green',
-  }
+  const processTextWithFormatting = (text: string) => {
+    const parsedText = striptags(text, [
+      'b',
+      'i',
+      'u',
+      'em',
+      'strong',
+      'p',
+      's',
+      'img',
+      'h1',
+      'h2',
+      'h3',
+    ])
 
-  return (
-    <div style={containerStyle}>
-      <div style={greetingStyle}>Hello, {user.firstname}!</div>
-      <div style={userIdStyle}>User ID: {user_id}</div>
-    </div>
-  )
-}
+    const segments = parsedText.split(
+      /(<b>)|(<\/b>)|(<i>)|(<\/i>)|(<u>)|(<\/u>)|(<em>)|(<\/em>)|(<strong>)|(<\/strong>)|(<p>)|(<p\s+class="ql-align-center">)|(<p\s+class="ql-align-left">)|(<p\s+class="ql-align-right">)|(<p\s+class="ql-align-justify">)|(<\/p>)|(<s>)|(<\/s>)|(<img>)|(<h1>)|(<h1\s+class="ql-align-center">)|(<h1\s+class="ql-align-left">)|(<h1\s+class="ql-align-right">)|(<h1\s+class="ql-align-justify">)|(<\/h1>)|(<h2>)|(<h2\s+class="ql-align-center">)|(<h2\s+class="ql-align-left">)|(<h2\s+class="ql-align-right">)|(<h2\s+class="ql-align-justify">)|(<\/h2>)|(<h3>)|(<h3\s+class="ql-align-center">)|(<h3\s+class="ql-align-left">)|(<h3\s+class="ql-align-right">)|(<h3\s+class="ql-align-justify">)|(<\/h3>)/g
+    )
 
-export default PdfGen
-/*
-import React, { useState, useEffect, HTMLProps } from 'react';
-import axios from 'axios';
+    let heading1 = false
+    let heading2 = false
+    let heading3 = false
+    let italicActive = false
+    let boldActive = false
+    let underlineActive = false
+    let strikeThroughActive = false
+    let alignment = ''
+    let indexCount = 0
 
-const PdfGen = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivElement>) => {
-  const pageSize = 500;
+    const styledText = segments.map((segment, segmentIndex) => {
+      if (segment && segment.startsWith('<img')) {
+        //Upload Image S3
+        const srcMatch = segment.match(/src="(.*?)"/)
 
-  const [data, setData] = React.useState<any[]>([]);
+        if (srcMatch) {
+          const imageUrl = srcMatch[1]
 
-  const [currentPage] = useState(0);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.post('/api/stories/getStories', { user_id: user_id });
-        if (res.status === 200) {
-          const limitedData = user.planType === 'Free-Trial' ? res.data.slice(0, 10) : res.data; // Set 10 limit for Free Trial
-          setData(limitedData);
+          return <Image key={`image-${segmentIndex}`} style={tw('w-full')} src={imageUrl} />
+        } else {
+          return null
         }
-      } catch (error) {
-        console.error('Error fetching data:', error);
+      } else if (segment) {
+        switch (segment) {
+          case '<strong>':
+            boldActive = true
+            return null
+          case '<em>':
+            italicActive = true
+            return null
+          case '<u>':
+            underlineActive = true
+            return null
+          case '<s>':
+            strikeThroughActive = true
+            return null
+          case '</strong>':
+            boldActive = false
+            return null
+          case '</em>':
+            italicActive = false
+            return null
+          case '</u>':
+            underlineActive = false
+            return null
+          case '</s>':
+            strikeThroughActive = false
+            return null
+          case '<p class="ql-align-center">':
+            alignment = 'ql-align-center'
+            return null
+          case '<p class="ql-align-left">':
+            alignment = 'ql-align-left'
+            return null
+          case '<p class="ql-align-right">':
+            alignment = 'ql-align-right'
+            return null
+          case '<p class="ql-align-justify">':
+            alignment = 'ql-align-justify'
+            return null
+
+          case '<h1>':
+            heading1 = true
+            return null
+          case '<h1 class="ql-align-center">':
+            heading1 = true
+            alignment = 'ql-align-center'
+            return null
+          case '<h1 class="ql-align-left">':
+            heading1 = true
+            alignment = 'ql-align-left'
+            return null
+          case '<h1 class="ql-align-right">':
+            heading1 = true
+            alignment = 'ql-align-right'
+            return null
+          case '<h1 class="ql-align-justify">':
+            heading1 = true
+            alignment = 'ql-align-justify'
+            return null
+
+          case '<h2>':
+            heading2 = true
+            return null
+          case '<h2 class="ql-align-center">':
+            heading2 = true
+            alignment = 'ql-align-center'
+            return null
+          case '<h2 class="ql-align-left">':
+            heading2 = true
+            alignment = 'ql-align-left'
+            return null
+          case '<h2 class="ql-align-right">':
+            heading2 = true
+            alignment = 'ql-align-right'
+            return null
+          case '<h2 class="ql-align-justify">':
+            heading2 = true
+            alignment = 'ql-align-justify'
+            return null
+
+          case '<h3>':
+            heading3 = true
+            return null
+          case '<h3 class="ql-align-center">':
+            heading3 = true
+            alignment = 'ql-align-center'
+            return null
+          case '<h3 class="ql-align-left">':
+            heading3 = true
+            alignment = 'ql-align-left'
+            return null
+          case '<h3 class="ql-align-right">':
+            heading3 = true
+            alignment = 'ql-align-right'
+            return null
+          case '<h3 class="ql-align-justify">':
+            heading3 = true
+            alignment = 'ql-align-justify'
+            return null
+
+          case '<p>':
+            alignment = ''
+            return null
+          case '</p>':
+            alignment = ''
+            return null
+          case '</h1>':
+            heading1 = false
+            return null
+          case '</h2>':
+            heading2 = false
+            return null
+          case '</h3>':
+            heading3 = false
+            return null
+          case '<p>':
+            alignment = ''
+            return null
+          case '</p>':
+            alignment = ''
+            return null
+
+          default:
+            if (segment) {
+              const textStyle = tw(`
+                
+                ${alignment === 'ql-align-center' ? 'text-center' : ''}
+                ${alignment === 'ql-align-right' ? 'text-right' : ''}
+                ${alignment === 'ql-align-left' ? 'text-left' : ''}
+                ${alignment === 'ql-align-justify' ? 'text-justify' : ''}  
+                leading-loose 
+                m-0 
+                ${italicActive && boldActive ? 'text-base font-bold font-roboto text-black' : ''}
+                ${italicActive && !boldActive ? 'text-base font-roboto text-[#3E3F5E]' : ''}
+                ${!italicActive && boldActive ? 'text-base font-bold text-black ' : ''}
+                ${
+                  italicActive && boldActive && underlineActive
+                    ? 'text-base underline font-bold font-roboto text-black text-[#3E3F5E]'
+                    : 'text-base'
+                }
+                ${!italicActive && !boldActive && underlineActive ? 'underline text-[#3E3F5E]' : ''}
+                ${
+                  !italicActive && boldActive && underlineActive
+                    ? 'text-base underline v font-bold text-black'
+                    : ''
+                }
+                ${strikeThroughActive ? 'text-base line-through' : ''}
+                ${heading1 ? 'text-5xl leading-snug font-extrabold' : ''}
+                ${heading2 ? 'text-4xl leading-snug  font-bold' : ''}
+                ${heading3 ? 'text-3xl leading-snug font-bold' : ''}
+              `)
+
+              return (
+                <Text key={`text-${indexCount}`} style={{ ...textStyle, fontFamily: 'Roboto' }}>
+                  {segment}
+                </Text>
+              )
+            } else {
+              return null
+            }
+        }
       }
-    };
+    })
 
-    fetchData();
-  }, [user_id]);
-
-  // This is your modified processTextWithFormatting function to handle the HTML content
-  const processTextWithFormatting = (html: string) => {
-    // Use a library like 'dangerouslySetInnerHTML' to render HTML content
-    return <div dangerouslySetInnerHTML={{ __html: html }} />;
-  };
+    return styledText
+  }
 
   const watermark = user.planType === 'Free-Trial' && (
-    <div
+    <View
       style={{
         position: 'absolute',
         top: 0,
@@ -78,63 +281,56 @@ const PdfGen = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
         zIndex: -1, // Place the watermark behind other content
       }}
     >
-      <img src="/member/watermark.png" style={{ width: '100%', height: '100%' }} alt="Watermark" />
-    </div>
-  );
+      <Image src={'public/member/watermark.png'} style={{ width: '100%', height: '100%' }} />
+    </View>
+  )
 
   const renderPage = (pageIndex: number) => {
-    const startIndex = pageIndex * pageSize;
-    const endIndex = startIndex + pageSize;
+    const startIndex = pageIndex * pageSize
+    const endIndex = startIndex + pageSize
 
-    return data.slice(startIndex, endIndex).map(({ _id, heading, story, image, caption_img }) => (
-      <div key={_id} style={{ margin: '20px', fontFamily: 'Helvetica', position: 'relative' }}>
-        {watermark}
-        {/* Render your content for each item /}
-        {/* ... /}
-        {/* HEADER /}
-        <div style={{ fontSize: '12px', textAlign: 'center', color: '#888' }}>My Happy Life</div>
-        {/* STORY TITLE /}
-        <div
-          style={{
-            fontSize: '24px',
-            lineHeight: '1.4',
-            margin: '20px auto',
-            textAlign: 'center',
-            fontFamily: 'Times-Roman',
-            color: '#3E3F5E',
-          }}
-        >
-          {heading}
-        </div>
-        <img src="/member/border.png" style={{ width: '128px', margin: '10px auto', display: 'block' }} alt="Border" />
-        {/* CONTENT /}
-        {processTextWithFormatting(story)}
-        {/* Render Image from quill here /}
-        {/* FOOTER /}
-        <div style={{ fontSize: '12px', textAlign: 'center', color: '#888', position: 'absolute', bottom: '8px', left: 0, right: 0 }}>
-          Page {pageIndex + 1}
-        </div>
-        {/* IMAGE /}
-        {image && (
-          <>
-            <img src={image} style={{ width: '100%' }} alt="Story Image" />
-            <div style={{ fontSize: '12px', textAlign: 'center', fontFamily: 'Helvetica', color: '#888', marginTop: '5px' }}>
-              {caption_img}
-            </div>
-          </>
-        )}
-      </div>
-    ));
-  };
+    return stories
+      .slice(startIndex, endIndex)
+      .map(({ _id, heading, story, image, caption_img }) => (
+        <PdfPage key={_id} size="A5" style={tw('px-20 py-12 font-roboto')}>
+          {watermark}
+          {/* Render your content for each item */}
+          {/* ... */}
+          {/* HEADER */}
+          <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
+          {/* STORY TITLE */}
+          <Text
+            style={tw(
+              'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-roboto text-[#3E3F5E]'
+            )}
+          >
+            {heading}
+          </Text>
+          <Image style={tw('mx-auto w-32 mb-10')} src={`public/member/border.png`} />
+          {/* CONTENT */}
 
-  // Render PDF
-  return (
-    <div>
-      <title>My Happy Life</title>
-      {renderPage(currentPage)}
-    </div>
-  );
-};
+          {processTextWithFormatting(story)}
 
-export default PdfGen;
-*/
+          {/* Render Image from quill here*/}
+          {/* FOOTER */}
+          <Text
+            style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
+            render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+            fixed
+          />
+          {/* IMAGE */}
+          {image && (
+            <>
+              <Image style={tw('w-full')} src={image} />
+              <Text style={tw('text-sm text-center font-roboto mt-5 text-gray-400')}>
+                {caption_img}
+              </Text>
+            </>
+          )}
+        </PdfPage>
+      ))
+  }
+  return <PdfDocument title="My Happy Life">{renderPage(currentPage)}</PdfDocument>
+}
+
+export default PdfGen

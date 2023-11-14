@@ -1,10 +1,20 @@
-import React, { useState, useEffect, HTMLProps } from 'react'
+import React, { HTMLProps } from 'react'
 import { createTw } from 'react-pdf-tailwind'
-import { Document as PdfDocument, Page as PdfPage, Text, Image, View } from '@react-pdf/renderer'
-import axios from 'axios'
+import {
+  Document as PdfDocument,
+  Page as PdfPage,
+  Text,
+  Image,
+  View,
+  Font,
+} from '@react-pdf/renderer'
 import striptags from 'striptags'
 
-// Create your tw object with your theme configuration
+Font.register({
+  family: 'Roboto',
+  src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-light-webfont.ttf',
+})
+
 const tw = createTw({
   theme: {
     fontFamily: {
@@ -33,30 +43,25 @@ const tw = createTw({
   },
 })
 
-const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivElement>) => {
+interface Story {
+  _id: string
+  heading: string
+  story: string
+  image: string
+  caption_img: string
+}
+
+interface PDFDocProps {
+  stories: Story[]
+  user_id: string
+  user: any // Adjust the type accordingly
+}
+
+const PDFDoc: React.FC<PDFDocProps & HTMLProps<HTMLDivElement>> = ({ stories, user_id, user }) => {
   const pageSize = 500
 
-  const [data, setData] = React.useState<any[]>([])
+  const currentPage = 0
 
-  const [currentPage] = useState(0)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.post('/api/stories/getStories', { user_id: user_id })
-        if (res.status === 200) {
-          const limitedData = user.planType === 'Free-Trial' ? res.data.slice(0, 10) : res.data //Set 10 limit Free Trial
-          setData(limitedData)
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-
-    fetchData()
-  }, [user_id])
-
-  //This is incredibly hard! 'It gave me brain cancer' Quill Function
   const processTextWithFormatting = (text: string) => {
     const parsedText = striptags(text, [
       'b',
@@ -212,6 +217,12 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
           case '</h3>':
             heading3 = false
             return null
+          case '<p>':
+            alignment = ''
+            return null
+          case '</p>':
+            alignment = ''
+            return null
 
           default:
             if (segment) {
@@ -223,14 +234,12 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
                 ${alignment === 'ql-align-justify' ? 'text-justify' : ''}  
                 leading-loose 
                 m-0 
-                ${
-                  italicActive && boldActive ? 'text-base font-bold font-sansItalic text-black' : ''
-                }
-                ${italicActive && !boldActive ? 'text-base font-sansItalic text-[#3E3F5E]' : ''}
+                ${italicActive && boldActive ? 'text-base font-bold font-roboto text-black' : ''}
+                ${italicActive && !boldActive ? 'text-base font-roboto text-[#3E3F5E]' : ''}
                 ${!italicActive && boldActive ? 'text-base font-bold text-black ' : ''}
                 ${
                   italicActive && boldActive && underlineActive
-                    ? 'text-base underline font-bold font-sansItalic text-black text-[#3E3F5E]'
+                    ? 'text-base underline font-bold font-roboto text-black text-[#3E3F5E]'
                     : 'text-base'
                 }
                 ${!italicActive && !boldActive && underlineActive ? 'underline text-[#3E3F5E]' : ''}
@@ -246,7 +255,7 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
               `)
 
               return (
-                <Text key={`text-${indexCount}`} style={textStyle}>
+                <Text key={`text-${indexCount}`} style={{ ...textStyle, fontFamily: 'Roboto' }}>
                   {segment}
                 </Text>
               )
@@ -280,46 +289,47 @@ const PDFDoc = ({ item, index, user_id, user }: any, props: HTMLProps<HTMLDivEle
     const startIndex = pageIndex * pageSize
     const endIndex = startIndex + pageSize
 
-    return data.slice(startIndex, endIndex).map(({ _id, heading, story, image, caption_img }) => (
-      <PdfPage key={_id} size="A4" style={tw('px-20 py-12 font-sans')}>
-        {watermark}
-        {/* Render your content for each item */}
-        {/* ... */}
-        {/* HEADER */}
-        <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
-        {/* STORY TITLE */}
-        <Text
-          style={tw(
-            'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-title text-[#3E3F5E]'
+    return stories
+      .slice(startIndex, endIndex)
+      .map(({ _id, heading, story, image, caption_img }) => (
+        <PdfPage key={_id} size="A5" style={tw('px-20 py-12 font-roboto')}>
+          {watermark}
+          {/* Render your content for each item */}
+          {/* ... */}
+          {/* HEADER */}
+          <Text style={tw('text-sm text-center mb-5 text-gray-400')}>{'My Happy Life'}</Text>
+          {/* STORY TITLE */}
+          <Text
+            style={tw(
+              'mx-auto w-2/3 text-3xl leading-snug mb-5 text-center font-roboto text-[#3E3F5E]'
+            )}
+          >
+            {heading}
+          </Text>
+          <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
+          {/* CONTENT */}
+
+          {processTextWithFormatting(story)}
+
+          {/* Render Image from quill here*/}
+          {/* FOOTER */}
+          <Text
+            style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
+            render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+            fixed
+          />
+          {/* IMAGE */}
+          {image && (
+            <>
+              <Image style={tw('w-full')} src={image} />
+              <Text style={tw('text-sm text-center font-roboto mt-5 text-gray-400')}>
+                {caption_img}
+              </Text>
+            </>
           )}
-        >
-          {heading}
-        </Text>
-        <Image style={tw('mx-auto w-32 mb-10')} src={`/member/border.png`} />
-        {/* CONTENT */}
-
-        {processTextWithFormatting(story)}
-
-        {/* Render Image from quill here*/}
-        {/* FOOTER */}
-        <Text
-          style={tw('absolute text-sm text-gray-400 bottom-8 left-0 right-0 text-center')}
-          render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
-          fixed
-        />
-        {/* IMAGE */}
-        {image && (
-          <>
-            <Image style={tw('w-full')} src={image} />
-            <Text style={tw('text-sm text-center font-sansItalic mt-5 text-gray-400')}>
-              {caption_img}
-            </Text>
-          </>
-        )}
-      </PdfPage>
-    ))
+        </PdfPage>
+      ))
   }
-  //Render PDF
   return <PdfDocument title="My Happy Life">{renderPage(currentPage)}</PdfDocument>
 }
 
