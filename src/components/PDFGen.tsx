@@ -254,11 +254,21 @@ const PdfGen: React.FC<PDFDocProps & HTMLProps<HTMLDivElement>> = ({ stories, us
                 ${heading3 ? 'text-3xl leading-snug font-bold' : ''}
               `)
 
-              return (
-                <Text key={`text-${indexCount}`} style={{ ...textStyle, fontFamily: 'Roboto' }}>
-                  {segment}
-                </Text>
-              )
+              if (boldActive) {
+                // Apply your styling for bold text here
+                return (
+                  <Text key={`text-${indexCount}`} style={{ ...textStyle, fontWeight: 'bold' }}>
+                    {segment}
+                  </Text>
+                )
+              } else {
+                // Default text style
+                return (
+                  <Text key={`text-${indexCount}`} style={{ ...textStyle, fontFamily: 'Roboto' }}>
+                    {segment}
+                  </Text>
+                )
+              }
             } else {
               return null
             }

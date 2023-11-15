@@ -369,11 +369,12 @@ export const PaymentForm = (props: {
   ) => {
     return await actions.order.capture().then(async function (details: { id: any }) {
       const { id } = details
-
+      // Convert today to the specified timezone
+      const today = convertTimezone(new Date(), props.user.timezone, props.user.timezone)
       // Update the user's planType to 'Premium'
-      console.log(props.user._id)
       const updatePlanTypeResponse = await axios.put(`/api/update-plan-type/${props.user._id}`, {
         planType: 'Premium', // Set the plan type you want to update to
+        FreeTrialEnd: today,
       })
 
       if (updatePlanTypeResponse.status === 201) {
@@ -403,12 +404,10 @@ export const PaymentForm = (props: {
             props.user.bookReceiver === 'gift' ? new Date(props.user.giftDate) : new Date()
           // Convert schedule date to the specified timezone
           const emailSchedule = convertTimezone(schedule, props.user.timezone, props.user.timezone)
-          // Convert today to the specified timezone
-          const today = convertTimezone(new Date(), props.user.timezone, props.user.timezone)
           // Check if today's date is the same as the scheduled email date
           if (isSameDate(emailSchedule, today)) {
             // Send the onboarding email
-            await axios.post('/api/mail/onboarding', props.user)
+            await axios.post('/api/mail/stt', props.user)
             // Delay the email sending for 5 minutes
             setTimeout(async () => {
               // Get the first question for the user and send it to them

@@ -19,6 +19,7 @@ const Stories = () => {
   const [id, setId] = useState('')
   const [totalPages, setTotalPages] = useState(null)
   const [uploadProgress, setUploadProgress] = useState(0)
+  const [storiesExist, setStoriesExist] = useState(true)
   const editClick = () => {
     setEdit(true)
   }
@@ -33,25 +34,18 @@ const Stories = () => {
   }, [dispatch])
 
   useEffect(() => {
-    ;(async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/cover/getCover?userId=${user._id}`)
-        const coverData = response.data
+        const coverResponse = await axios.get(`/api/cover/getCover?userId=${user._id}`)
+        const coverData = coverResponse.data
 
         if (coverData && coverData.length > 0) {
           const data = coverData[0]
           setTitle(data.title)
+        } else {
+          return // No cover data, exit useEffect
         }
-      } catch (error) {
-        console.error('Failed to fetch cover data:', error)
-      }
-    })()
-  }, [user._id])
 
-  useEffect(() => {
-    // Fetch stories data before getting total pages
-    const fetchData = async () => {
-      try {
         const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
         if (storiesResponse.status === 200) {
           const storiesData =
@@ -59,22 +53,26 @@ const Stories = () => {
               ? storiesResponse.data.slice(0, 10)
               : storiesResponse.data
 
-          // Include stories data in the request to get total pages
-          fetch('/api/totalPages', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ user, stories: storiesData }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
+          if (storiesData && storiesData.length > 0) {
+            setStoriesExist(true)
+            const totalPagesResponse = await fetch('/api/totalPages', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ user, stories: storiesData }),
+            })
+
+            if (totalPagesResponse.ok) {
+              const data = await totalPagesResponse.json()
               const totalPages = data.totalPages
               setTotalPages(totalPages)
-            })
-            .catch((error) => {
-              console.error('Error getting total pages:', error)
-            })
+            } else {
+              console.error('Error getting total pages:', totalPagesResponse.statusText)
+            }
+          } else {
+            setStoriesExist(false)
+          }
         } else {
           console.error('Unexpected status code:', storiesResponse.status)
         }
@@ -82,12 +80,14 @@ const Stories = () => {
         if (error.code === 'ECONNREFUSED') {
           console.error('Connection refused. Make sure the server is running.')
         } else {
-          console.error('Error fetching stories data:', error.message)
+          console.error('Error fetching data:', error.message)
         }
       }
     }
 
-    fetchData()
+    if (user._id) {
+      fetchData()
+    }
   }, [user._id, user.planType])
 
   const [isUploading, setIsUploading] = useState(false)
@@ -188,6 +188,29 @@ const Stories = () => {
               <div className="progress" style={{ width: uploadProgress + '%' }}></div>
             </div>
           </div>
+        ) : totalPages === null ? (
+          <div></div>
+        ) : totalPages < 50 ? (
+          <div></div>
+        ) : storiesExist ? (
+          <ButtonV2
+            text="Publish"
+            className="inline-flex !rounded-full dark:text-gray-200"
+            disabled={isUploading || totalPages < 50}
+            onClick={() => handlePublishClick(user)}
+          />
+        ) : (
+          <div></div>
+        )}
+        {/*
+          {isUploading ? (
+          // Show a loading indicator or progress bar
+          <div>
+            Uploading...
+            <div className="progress-bar">
+              <div className="progress" style={{ width: uploadProgress + '%' }}></div>
+            </div>
+          </div>
         ) : (
           <ButtonV2
             text={
@@ -202,6 +225,7 @@ const Stories = () => {
             onClick={() => handlePublishClick(user)}
           />
         )}
+        */}
       </div>
 
       {!edit && (
