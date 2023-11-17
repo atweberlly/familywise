@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Heading from '../../components/Heading'
@@ -18,6 +19,7 @@ const Stories = () => {
   const [id, setId] = useState('')
   const [totalPages, setTotalPages] = useState(null)
   const [uploadProgress, setUploadProgress] = useState(0)
+  const [storiesExist, setStoriesExist] = useState(true)
   const editClick = () => {
     setEdit(true)
   }
@@ -32,71 +34,115 @@ const Stories = () => {
   }, [dispatch])
 
   useEffect(() => {
-    ;(async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/cover/getCover?userId=${user._id}`)
-        const coverData = response.data
+        const coverResponse = await axios.get(`/api/cover/getCover?userId=${user._id}`)
+        const coverData = coverResponse.data
 
         if (coverData && coverData.length > 0) {
           const data = coverData[0]
           setTitle(data.title)
+        } else {
+          return // No cover data, exit useEffect
         }
-      } catch (error) {
-        console.error('Failed to fetch cover data:', error)
-      }
-    })()
-  }, [user._id])
 
-  useEffect(() => {
-    // Make a request to the server-side function to get the total pages
-    fetch('/api/totalPages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const totalPages = data.totalPages
-        setTotalPages(totalPages)
-      })
-      .catch((error) => {
-        console.error('Error getting total pages:', error)
-      })
-  }, [])
+        const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
+        if (storiesResponse.status === 200) {
+          const storiesData =
+            user.planType === 'Free-Trial'
+              ? storiesResponse.data.slice(0, 10)
+              : storiesResponse.data
+
+          if (storiesData && storiesData.length > 0) {
+            setStoriesExist(true)
+            const totalPagesResponse = await fetch('/api/totalPages', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ user, stories: storiesData }),
+            })
+
+            if (totalPagesResponse.ok) {
+              const data = await totalPagesResponse.json()
+              const totalPages = data.totalPages
+              setTotalPages(totalPages)
+            } else {
+              console.error('Error getting total pages:', totalPagesResponse.statusText)
+            }
+          } else {
+            setStoriesExist(false)
+          }
+        } else {
+          console.error('Unexpected status code:', storiesResponse.status)
+        }
+      } catch (error: any) {
+        if (error.code === 'ECONNREFUSED') {
+          console.error('Connection refused. Make sure the server is running.')
+        } else {
+          console.error('Error fetching data:', error.message)
+        }
+      }
+    }
+
+    if (user._id) {
+      fetchData()
+    }
+  }, [user._id, user.planType])
 
   const [isUploading, setIsUploading] = useState(false)
 
   const handlePublishClick = async (user: any) => {
     setIsUploading(true)
 
-    const data = {
-      title: title,
-      pages: totalPages,
-      user,
-      name: user._id + '.pdf',
-      type: 'application/pdf',
-    }
-
+    // Fetch stories data before uploading PDF
     try {
-      const response = await fetch('/api/s3/uploadPDF', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
+      const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
+      if (storiesResponse.status === 200) {
+        const storiesData =
+          user.planType === 'Free-Trial' ? storiesResponse.data.slice(0, 10) : storiesResponse.data
 
-      if (response.ok) {
-        const data = await response.json()
-        console.log('PDF uploaded to S3:', data.location)
+        const data = {
+          title: title,
+          pages: totalPages,
+          user,
+          name: user._id + '.pdf',
+          type: 'application/pdf',
+          stories: storiesData, // Include stories data in the request
+        }
+
+        try {
+          const response = await fetch('/api/s3/uploadPDF', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+
+          if (response.ok) {
+            const responseData = await response.json()
+            console.log('PDF uploaded to S3:', responseData.location)
+            toast.success('PDF upload successful!')
+          } else {
+            console.error('Failed to upload PDF to S3')
+            toast.error('Failed to upload PDF')
+          }
+        } catch (error) {
+          console.error('Error:', error)
+        } finally {
+          setIsUploading(false)
+        }
       } else {
-        console.error('Failed to upload PDF to S3')
+        console.error('Unexpected status code:', storiesResponse.status)
+        setIsUploading(false)
       }
-    } catch (error) {
-      console.error('Error:', error)
-    } finally {
+    } catch (error: any) {
+      if (error.code === 'ECONNREFUSED') {
+        console.error('Connection refused. Make sure the server is running.')
+      } else {
+        console.error('Error fetching stories data:', error.message)
+      }
       setIsUploading(false)
     }
   }
@@ -142,6 +188,29 @@ const Stories = () => {
               <div className="progress" style={{ width: uploadProgress + '%' }}></div>
             </div>
           </div>
+        ) : totalPages === null ? (
+          <div></div>
+        ) : totalPages < 50 ? (
+          <div></div>
+        ) : storiesExist ? (
+          <ButtonV2
+            text="Publish"
+            className="inline-flex !rounded-full dark:text-gray-200"
+            disabled={isUploading || totalPages < 50}
+            onClick={() => handlePublishClick(user)}
+          />
+        ) : (
+          <div></div>
+        )}
+        {/*
+          {isUploading ? (
+          // Show a loading indicator or progress bar
+          <div>
+            Uploading...
+            <div className="progress-bar">
+              <div className="progress" style={{ width: uploadProgress + '%' }}></div>
+            </div>
+          </div>
         ) : (
           <ButtonV2
             text={
@@ -152,10 +221,11 @@ const Stories = () => {
                 : 'Publish'
             }
             className="inline-flex !rounded-full dark:text-gray-200"
-            disabled={isUploading || totalPages === null}
+            disabled={isUploading || totalPages === null || totalPages < 50}
             onClick={() => handlePublishClick(user)}
           />
         )}
+        */}
       </div>
 
       {!edit && (
@@ -198,6 +268,7 @@ const Stories = () => {
           </div>
         </div>
       )}
+      <Toaster />
     </MemberLayout>
   )
 }

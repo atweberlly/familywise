@@ -14,6 +14,7 @@ export default async function handler(request, response) {
       console.log(id)
       let newValues = {
         planType: request.body.planType,
+        freeTrialEnd: request.body.FreeTrialEnd,
       }
       //update newValues by id
       await User.findByIdAndUpdate(id, newValues, {
