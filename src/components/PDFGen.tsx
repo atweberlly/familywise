@@ -8,7 +8,7 @@ interface MyComponentProps {
 const PdfGen: React.FC<MyComponentProps> = ({ user, user_id }: { user: any; user_id: string }) => {
   const containerStyle: React.CSSProperties = {
     backgroundColor: '#f0f0f0',
-    padding: '20px',
+    padding: '29520px', // 29520px
     fontFamily: 'Arial, sans-serif',
   }
 

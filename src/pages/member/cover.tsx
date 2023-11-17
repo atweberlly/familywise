@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
+import '../../styles/CustomStyle.css'
 import axios from 'axios'
 import { CloudArrowUpIcon } from '@heroicons/react/24/solid'
 
@@ -183,97 +184,6 @@ const Cover = () => {
   return (
     <>
       <MemberLayout>
-        <style>
-          {`
-            /* CSS */
-            .cover-container {
-              display: flex;
-              justify-content: space-between;
-              margin-bottom: 150px;
-            }
-            
-            .preview {
-                flex: .5;
-                padding: 20px;
-                background-color: #ffffff;
-                position: relative;
-                height: 105%;
-                font-family: roboto;
-                max-width: 650px;
-            }
-            
-            .preview h1 {
-                font-size: 50px;
-                text-align: center;
-                width: 35%;
-                margin-bottom: 70px;
-            }
-            
-            .cover {
-                position: relative;
-                width: 100mm; /* A5 width 148mm */
-                height: 150mm; /* A5 height 210mm */
-                margin: 0 auto;
-                overflow: hidden;
-                box-shadow: 0px 5px 15px 10px rgba(0, 0, 0, 0.5);
-            }
-
-            .cover img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            
-            .overlay {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 140%;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              background-color: rgba(0, 0, 0, 0.5);
-              color: black;
-            }
-            
-            .overlay h3{
-                font-size: 50px;
-                font-family: roboto;
-            }
-
-            .info-container {
-                background-color: white;
-                padding: 20px;
-                text-align: center;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-            }
-
-            .Title,
-            .Author{
-                width: 73%;
-                height: 70px;
-            }
-            .form-container {
-              flex: .5;
-              padding: 20px;
-              margin-top: 300px;
-            }
-            
-            .form-group {
-              margin: 10px 0;
-            }
-            
-            label {
-              display: block;
-              font-weight: bold;
-            }
-                     
-            `}
-        </style>
         <div className="cover-container">
           <div className="form-container">
             <div className="form-group">

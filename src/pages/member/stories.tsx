@@ -5,6 +5,7 @@ import Heading from '../../components/Heading'
 import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
+import '../../styles/CustomStyle.css'
 import StoryTable from './Table/StoryTableV2'
 import Edit from './edit'
 import axios from 'axios'
@@ -13,7 +14,10 @@ import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 const Stories = () => {
   const [edit, setEdit] = useState(false)
   const [question, setQuestion] = useState('')
+  const [title, setTitle] = useState('')
   const [id, setId] = useState('')
+  const [totalPages, setTotalPages] = useState(null)
+  const [uploadProgress, setUploadProgress] = useState(0)
   const editClick = () => {
     setEdit(true)
   }
@@ -27,14 +31,51 @@ const Stories = () => {
     })()
   }, [dispatch])
 
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const response = await axios.get(`/api/cover/getCover?userId=${user._id}`)
+        const coverData = response.data
+
+        if (coverData && coverData.length > 0) {
+          const data = coverData[0]
+          setTitle(data.title)
+        }
+      } catch (error) {
+        console.error('Failed to fetch cover data:', error)
+      }
+    })()
+  }, [user._id])
+
+  useEffect(() => {
+    // Make a request to the server-side function to get the total pages
+    fetch('/api/totalPages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const totalPages = data.totalPages
+        setTotalPages(totalPages)
+      })
+      .catch((error) => {
+        console.error('Error getting total pages:', error)
+      })
+  }, [])
+
   const [isUploading, setIsUploading] = useState(false)
 
   const handlePublishClick = async (user: any) => {
     setIsUploading(true)
 
     const data = {
+      title: title,
+      pages: totalPages,
       user,
-      name: user._id + '.pdf', // Specify the desired file name
+      name: user._id + '.pdf',
       type: 'application/pdf',
     }
 
@@ -44,24 +85,48 @@ const Stories = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data), // Pass user data as needed
+        body: JSON.stringify(data),
       })
 
       if (response.ok) {
         const data = await response.json()
         console.log('PDF uploaded to S3:', data.location)
-        // Handle success, e.g., show a success message or navigate to the generated PDF.
       } else {
         console.error('Failed to upload PDF to S3')
-        // Handle the error, e.g., show an error message.
       }
     } catch (error) {
       console.error('Error:', error)
-      // Handle the error, e.g., show an error message.
     } finally {
       setIsUploading(false)
     }
   }
+
+  // Simulate upload progress for demonstration purposes
+  const simulateUpload = () => {
+    setIsUploading(true)
+    let progress = 0
+    const uploadInterval = 100 // Update the interval based on your requirements (milliseconds)
+
+    const interval = setInterval(() => {
+      // Simulate a linear increase in progress for demonstration
+      progress += 5 // You can adjust this based on your actual upload progress
+
+      if (progress >= 100) {
+        clearInterval(interval)
+        setIsUploading(false)
+        setUploadProgress(100)
+      } else {
+        setUploadProgress(progress)
+      }
+    }, uploadInterval)
+  }
+
+  useEffect(() => {
+    // Simulate an upload process (you should replace this with your actual upload logic)
+    if (isUploading) {
+      simulateUpload()
+    }
+  }, [isUploading])
 
   return (
     <MemberLayout>
@@ -69,16 +134,25 @@ const Stories = () => {
         <Heading className="pb-[17px]" size={3}>
           Your Stories
         </Heading>
-
         {isUploading ? (
           // Show a loading indicator or progress bar
-          <div>Uploading...</div>
+          <div>
+            Uploading...
+            <div className="progress-bar">
+              <div className="progress" style={{ width: uploadProgress + '%' }}></div>
+            </div>
+          </div>
         ) : (
-          // Show the "Publish" button when not uploading
           <ButtonV2
-            text="Publish"
+            text={
+              totalPages === null
+                ? 'Rendering your Stories'
+                : totalPages < 50
+                ? 'You cannot publish yet. You should have 50 pages before publishing.'
+                : 'Publish'
+            }
             className="inline-flex !rounded-full dark:text-gray-200"
-            disabled={isUploading}
+            disabled={isUploading || totalPages === null}
             onClick={() => handlePublishClick(user)}
           />
         )}

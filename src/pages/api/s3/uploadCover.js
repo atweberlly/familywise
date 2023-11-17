@@ -20,7 +20,11 @@ export default async (req, res) => {
     // Generate a unique file name for the PDF cover
     const fileName = `Cover_${user._id}.pdf`
 
-    await page.setViewport({ width: 420, height: 595 }) // A5 size in pixels (5.8in x 8.3in)
+    await page.setViewport({
+      width: Math.round((305.54 * 96) / 25.4),
+      height: Math.round((214.82 * 96) / 25.4),
+    })
+
     // Generate the PDF cover using the PdfGen component
     const content = (
       <PdfGen user={user} newTitle={title} newAuthor={author} newCoverImage={coverImage} />
@@ -31,7 +35,8 @@ export default async (req, res) => {
     console.log(html) // Log the HTML content
     await page.setContent(html, { waitUntil: 'networkidle0' })
     const pdfBuffer = await page.pdf({
-      format: 'A5',
+      width: Math.round((305.54 * 96) / 25.4),
+      height: Math.round((214.82 * 96) / 25.4),
       printBackground: true,
       displayHeaderFooter: false,
       preferCSSPageSize: true,

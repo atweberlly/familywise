@@ -1,6 +1,7 @@
 import ReactDOMServer from 'react-dom/server'
 // Import ReactDOMServer
 import PdfGen from '../../../components/PDFGen'
+import createPrintJob from '../LuluAPI/create-print'
 import S3 from 'aws-sdk/clients/s3'
 import puppeteer from 'puppeteer'
 
@@ -17,13 +18,13 @@ export default async (req, res) => {
     const page = await browser.newPage()
 
     // Retrieve the user data from the request body sent by handlePublish
-    const { user, name, type } = req.body
+    const { title, pages, user, name, type } = req.body
 
     // Use viewport and page size settings for A5
     await page.setViewport({ width: 420, height: 595 }) // A5 size in pixels (5.8in x 8.3in)
 
     const content = (
-      <div style={{ width: '5.8in', height: '8.3in' }}>
+      <div style={{ width: '5.83in', height: '8.27in' }}>
         <PdfGen user_id={user._id} user={user} />
       </div>
     )
@@ -46,19 +47,39 @@ export default async (req, res) => {
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
       Key: name,
-      Body: pdfBuffer, // Set the Body property to the PDF buffer
+      Body: pdfBuffer,
       Expires: 600,
       ContentType: type,
     }
 
-    // Upload the PDF to S3
+    console.log(pages)
     s3.upload(params, (err, data) => {
       if (err) {
         console.error('Error uploading to S3', err)
         res.status(500).send('Error uploading to S3')
       } else {
         console.log('File uploaded to S3', data.Location)
-        res.status(200).json({ location: data.Location })
+
+        // Call the createPrintJob function
+        createPrintJob(user, title, pages) // Pass user details as needed
+          .then(function (response) {
+            if (response) {
+              if (response.id) {
+                console.log('Print job created with ID:', response.id)
+                res.status(200).json({ location: data.Location, printJobId: response.id })
+              } else {
+                console.error('Print job response is missing the expected properties:', response)
+                res.status(500).send('Error creating print job')
+              }
+            } else {
+              console.error('Unexpected response from createPrintJob:', response)
+              res.status(500).send('Error creating print job')
+            }
+          })
+          .catch(function (error) {
+            console.error('Error creating print job:', error)
+            res.status(500).send('Error creating print job')
+          })
       }
     })
   } catch (error) {
