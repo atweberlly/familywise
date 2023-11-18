@@ -149,7 +149,7 @@ const Cancel = () => {
                 We&lsquo;re going to miss you.
                 <br />
                 Perhaps we can change your mind with some new packages and enticing offers (
-                <Link className="text-yellow-600 underline" href="/pricing">
+                <Link className="text-yellow-600 underline" href="/shop">
                   here
                 </Link>
                 )

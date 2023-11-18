@@ -29,8 +29,8 @@ const links: Array<Props> = [
   },
   {
     id: uniqueId(),
-    href: 'inspirations/',
-    label: 'Inspirations',
+    href: 'inspiration/',
+    label: 'Inspiration',
   },
   {
     id: uniqueId(),

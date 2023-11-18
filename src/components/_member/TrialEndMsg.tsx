@@ -19,7 +19,7 @@ const TrialEndMsg = () => {
       icon: '🥰',
       duration: 3000,
     })
-    router.push('/pricing')
+    router.push('/shop')
   }
 
   useEffect(() => {

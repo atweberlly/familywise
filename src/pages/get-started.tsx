@@ -491,7 +491,7 @@ export async function getServerSideProps({ query }: any) {
   if (!query.plan) {
     return {
       redirect: {
-        destination: '/pricing',
+        destination: '/shop',
         permanent: false,
       },
     }
