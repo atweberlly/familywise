@@ -1,8 +1,7 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-import Pagination from '../../components/Paginations'
 import Title from '../../components/Title'
 import { convertTimezone } from '../../utils/userTimezone'
 import axios from 'axios'
@@ -134,7 +133,7 @@ export default function Blog() {
                         <div>
                           <div className="mt-5 md:mt-0">
                             <div className="text-sm font-semibold text-orange-500">{tags}</div>
-                            <Link href={`inspirations/` + url}>
+                            <Link href={`inspiration/` + url}>
                               <h3 className="mt-2 text-xl font-semibold text-gray-900">{title}</h3>
                             </Link>
                             <p
@@ -167,14 +166,6 @@ export default function Blog() {
 
           {/* Pagination Start*/}
           <div className="mt-16 flex items-center justify-between border-t border-gray-200 pt-4">
-            {/*
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={totalTruePosts} // Use the filtered count
-                paginate={paginate}
-                currentPage={currentPage}
-              />
-            */}
             <button
               className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gray-300 md:h-auto md:w-auto md:justify-normal md:gap-1.5 md:border-0"
               type="button"

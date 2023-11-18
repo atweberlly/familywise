@@ -19,7 +19,7 @@ const information: Hyperlink[] = [
 
 const legal: Hyperlink[] = [
   { id: 1, href: '/terms-and-condition', text: 'Terms and Conditions' },
-  { id: 2, href: '/privacy-policy', text: 'Privacy Options' },
+  { id: 2, href: '/privacy', text: 'Privacy' },
   { id: 3, href: '/cookies', text: 'Cookies' },
   { id: 4, href: '/refund', text: 'Refund' },
 ]

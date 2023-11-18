@@ -96,7 +96,7 @@ export default function PricingSection(): JSX.Element {
                 ></path>
               </svg>
             </div>
-            <span className="ml-2 text-sm">5 stars reviews</span>
+            <span className="ml-2 text-sm">5 star reviews</span>
           </div>
           <ul className="mt-8 space-y-2">
             <li className="flex">
@@ -318,48 +318,7 @@ export default function PricingSection(): JSX.Element {
               </summary>
               <div className="hidden py-4 open-details:block">
                 <p>
-                  The Family Wise experience is risk-free, with a 30-day money-back guarantee. If
-                  for any reason you or your relative are not satisfied with the experience or the
-                  result, simply send us an email and we will give you a full refund, no questions
-                  asked.
-                </p>
-              </div>
-            </details>
-            <details className="open-details pt-4">
-              <summary className="cursor-pointer">
-                <div className="flex items-center justify-between text-secondary-600">
-                  <div className="text-xl font-medium">Money-Back Guarantee</div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    className="h-6 w-6 open-details:hidden"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 4.5v15m7.5-7.5h-15"
-                    ></path>
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    className="hidden h-6 w-6 open-details:block"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15"></path>
-                  </svg>
-                </div>
-              </summary>
-              <div className="hidden py-4 open-details:block">
-                <p>
-                  The Family Wise experience is risk-free, with a 30-day money-back guarantee. If
+                  The Family Wise experience is risk-free, with a 14-day money-back guarantee. If
                   for any reason you or your relative are not satisfied with the experience or the
                   result, simply send us an email and we will give you a full refund, no questions
                   asked.
