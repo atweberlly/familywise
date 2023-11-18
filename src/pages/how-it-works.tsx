@@ -46,7 +46,7 @@ export default function HowItWorks(): JSX.Element {
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-serif text-4xl font-medium text-gray-900 lg:text-5xl">
-                In a few simple steps, craft your story into a FamilyWise Stories book so it&apos;s
+                In a few simple steps, craft your story into a FamilyWise book so it&apos;s
                 preserved forever.
               </h2>
             </div>
