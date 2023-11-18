@@ -210,7 +210,7 @@ export default function PricingSection(): JSX.Element {
 
               <Link
                 className="block rounded-lg bg-orange-500 px-5 py-3 text-center font-semibold text-white transition hover:bg-orange-600"
-                href="/pricing"
+                href="/shop"
               >
                 Membership Options
               </Link>

@@ -1,50 +1,57 @@
-import Image from 'next/image'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-import Heading from '../../components/Heading'
 import { questionbasedbook_extra, photobasedbook_extra } from '../../components/Lib/extra_features'
-import { questionbasedbook, photobasedbook, all_1, all_2 } from '../../components/Lib/features'
-import Payin4 from '../../components/Payin4'
+import { questionbasedbook, photobasedbook, freetrial } from '../../components/Lib/features'
 import Plans from '../../components/Plans'
 import Title from '../../components/Title'
-import Newsletter from '../../components/sections/Newsletter'
-import { LockClosedIcon, ReceiptRefundIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
+import CaptureStories from '~/components/sections/CaptureStories'
+import CoverCarousel from '~/components/sections/CoverCarousel'
 
 export default function Pricing() {
   return (
     <main>
       <Title suffix="Family Wise">Pricing</Title>
 
-      <header className="relative min-h-screen bg-vanilla pb-16">
-        <Header color="dark" />
+      <header className="relative min-h-screen bg-white pb-16">
+        <Header color="light" />
         <div className="relative flex min-h-screen w-max overflow-y-auto">
           <div className="relative z-20 my-4 w-screen flex-1 px-6 text-center">
-            <div className="m-auto mt-4 block text-center lg:mt-8">
-              <Heading size={2} eyebrow={'pricing'}>
-                Compare our packages and find yours
-              </Heading>
-              <p className="mt-4 text-xs text-secondary-600 lg:text-sm">
-                Your parent&apos;s stories printed in a beautiful personalized book
-              </p>
+            {/* Header section start */}
+            <div className="py-16 lg:py-24">
+              {/* Container start */}
+              <div className="mx-auto max-w-screen-xl px-4 lg:px-8">
+                <div className="text-center">
+                  <h1 className="text-sm font-semibold text-orange-500 lg:text-base">Pricing</h1>
+                  <p className="mt-3 font-serif text-4xl font-medium lg:text-5xl">
+                    Compare our membership and find yours
+                  </p>
+                  <p className="mt-4 text-lg text-gray-600 lg:mt-6 lg:text-xl">
+                    Simple, transparent pricing that grows with you. Try any plan free for 14 days.
+                  </p>
+                </div>
+              </div>
+              {/* Container end */}
             </div>
-            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 justify-center gap-8 md:grid-cols-2">
+            {/* Header section end */}
+            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 justify-center gap-8 md:grid-cols-3">
               {/*
               <Plans name={'Premium'} price={'157'} features={premium} isPopular={true} />
               <Plans name={'Classic'} price={'97'} features={classic} isPopular={false} />
               */}
-              {/*
+
               <Plans
                 package_tag={'Free-Trial'}
                 name={'Free Trial'}
+                description={'14 Days'}
                 price={'0'}
                 features={freetrial}
                 isPopular={false}
               />
-              */}
 
               <Plans
                 package_tag={'Your-Life-In-A-Book'}
                 name={'Your Life In A Book'}
+                description={'Questions about your life'}
                 price={'97'}
                 features={questionbasedbook}
                 extra_name={'Design your professionally printed premium book'}
@@ -54,10 +61,8 @@ export default function Pricing() {
               <Plans
                 package_tag={'Photo-Based-Book'}
                 name={'Photo Based Book'}
+                description={'Start with a photo and tell that story'}
                 price={'97'}
-                description={
-                  'Perfect for children’s birthday books, holiday books, wedding books, recipe books, and preserving your children’s drawings & art.  Any occasion you take lots of photos! Instead of starting with a question, choose a photo & write your memory of that moment in time.'
-                }
                 features={photobasedbook}
                 extra_name={'Design your professionally printed premium book'}
                 extra_features={photobasedbook_extra}
@@ -67,7 +72,7 @@ export default function Pricing() {
           </div>
         </div>
       </header>
-      <section className="bg-black-pearl px-8 py-8 lg:p-16 lg:px-16">
+      {/* <section className="bg-black-pearl px-8 py-8 lg:p-16 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <p className="font-semibold text-white">Additional Features</p>
           <h2 className="mt-2 text-left text-2xl font-bold text-white">All memberships receive</h2>
@@ -87,7 +92,6 @@ export default function Pricing() {
               </ul>
 
               <div className="mt-8 flex items-start justify-center space-x-16">
-                {/* PLACE PAY IN 4 LOGO HERE */}
                 <div className="flex flex-col items-center text-white">
                   <Payin4 className="mx-auto" />
                   <div className="mt-1 text-center text-sm">Pay in 4</div>
@@ -152,8 +156,9 @@ export default function Pricing() {
             </div>
           </div>
         </div>
-      </section>
-      <Newsletter />
+      </section>*/}
+      <CoverCarousel />
+      <CaptureStories />
       <Footer />
     </main>
   )
