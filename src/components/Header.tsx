@@ -38,7 +38,12 @@ export default function Header({ color = 'light' }): JSX.Element {
         </div>
 
         <div className="hidden lg:block">
-          <ul className="flex items-center space-x-10 p-4">
+          <ul
+            className={clsx(
+              'flex items-center space-x-10 p-4 ',
+              color === 'light' ? 'text-black' : 'text-white'
+            )}
+          >
             {links.map((link) => (
               <li key={link.id}>
                 <Link
