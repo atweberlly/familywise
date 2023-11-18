@@ -355,7 +355,7 @@ export default function MemberLayout({ children }: any) {
           {children}
           <p className="mt-auto text-center text-secondary-500 dark:text-white">
             Copyright &copy; FamilyWise Stories {new Date().getFullYear()} |{' '}
-            <Link href={'/privacy'}>Privacy Policy</Link>
+            <Link href={'/legal/privacy'}>Privacy Policy</Link>
           </p>
         </main>
       </div>
