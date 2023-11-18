@@ -108,10 +108,10 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
           <hr className="mt-16 w-full lg:mt-20" />
           <ul className="my-5 flex space-x-3">
             <li className="block text-xs text-black-pearl hover:text-black-pearl/75">
-              <Link href={'/legal/refund-policy'}>Refund Policy</Link>
+              <Link href={'/refund-policy'}>Refund Policy</Link>
             </li>
             <li className="block text-xs text-black-pearl hover:text-black-pearl/75">
-              <Link href={'/legal/privacy'}>Privacy Policy</Link>
+              <Link href={'/privacy-policy'}>Privacy Policy</Link>
             </li>
             <li className="block text-xs text-black-pearl hover:text-black-pearl/75">
               <Link href={'/terms-of-service'}>Terms of Service</Link>

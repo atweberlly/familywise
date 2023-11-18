@@ -1,14 +1,14 @@
-import Footer from '~/components/Footer'
-import Header from '~/components/Header'
-import Heading from '~/components/Heading'
-import Title from '~/components/Title'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import Heading from '../components/Heading'
+import Title from '../components/Title'
 
 export default function refund_policy() {
   return (
     <main className="relative min-h-screen bg-black-pearl">
       <Title suffix="Family Wise">Cookie Policy</Title>
       <header>
-        <Header color="dark" />
+        <Header color="light" />
         <div className="mx-auto my-8 max-w-screen-xl text-center md:text-left lg:my-16">
           <Heading size={1} className="text-white">
             Cookie Policy
