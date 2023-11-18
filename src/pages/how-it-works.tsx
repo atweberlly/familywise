@@ -100,7 +100,7 @@ export default function HowItWorks(): JSX.Element {
           <div className="mt-4 flex items-center justify-center">
             <Link
               className="flex h-12 w-full items-center justify-center rounded-lg bg-orange-500 px-6 font-semibold text-white-50 lg:w-auto"
-              href="/pricing"
+              href="/shop"
             >
               Get started
             </Link>
