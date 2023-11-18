@@ -10,7 +10,7 @@ export const featuresFirst: Array<Props> = [
     body: `<p>Can&apos;t type, or don&apos;t like typing?</p>
     <p>
       You can tell your story with our app & we&apos;ll convert it to text for you.
-      Your book will almost write itself.
+      Your book will almost write itself!
     </p>`,
   },
   {
@@ -23,7 +23,7 @@ export const featuresFirst: Array<Props> = [
   {
     id: 3,
     heading: 'Write as quickly as you want',
-    body: `<p>You don&apos;t have to be a professional writer to publish a book. We guide you with questions, tips and inspiration so your legacy book truly captures your life. </p>
+    body: `<p>You don&apos;t have to be a professional writer to publish your book. We guide you with questions, tips and inspiration so your legacy book truly captures your life. </p>
     <p>Once you start writing you&apos;ll see how easy it is to write a paragraph or a few pages.</p>`,
   },
   {

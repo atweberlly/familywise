@@ -37,7 +37,7 @@ export const booksFeatures2: Array<Props> = [
   {
     id: 1,
     heading: 'Write as quickly as you want',
-    body: `<p>You don't have to be a professional writer to publish a book. We guide you with questions, tips and inspiration so your legacy book truly captures your life.  <p>
+    body: `<p>You don't have to be a professional writer to publish your book. We guide you with questions, tips and inspiration so your legacy book truly captures your life.  <p>
     Once you start writing you&apos;ll see how easy it is to write a paragraph or a few pages.</p>`,
   },
   {
