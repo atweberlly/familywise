@@ -101,7 +101,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
               <Link href={'/refund-policy'}>Refund Policy</Link>
             </li>
             <li className="block text-xs text-black-pearl hover:text-black-pearl/75">
-              <Link href={'/privacy-policy'}>Privacy Policy</Link>
+              <Link href={'/privacy'}>Privacy Policy</Link>
             </li>
             <li className="block text-xs text-black-pearl hover:text-black-pearl/75">
               <Link href={'/terms-of-service'}>Terms of Service</Link>
