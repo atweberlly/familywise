@@ -18,10 +18,10 @@ const information: Hyperlink[] = [
 ]
 
 const legal: Hyperlink[] = [
-  { id: 1, href: '/terms-and-condition', text: 'Terms and Conditions' },
-  { id: 2, href: '/privacy-policy', text: 'Privacy Options' },
-  { id: 3, href: '/cookies', text: 'Cookies' },
-  { id: 4, href: '/refund', text: 'Refund' },
+  { id: 1, href: '/legal/terms-and-condition', text: 'Terms and Conditions' },
+  { id: 2, href: '/legal/privacy', text: 'Privacy Options' },
+  { id: 3, href: '/legal/cookies', text: 'Cookies' },
+  { id: 4, href: '/legal/refund', text: 'Refund' },
 ]
 
 export default function Footer({ color = 'light' }): JSX.Element {
