@@ -38,7 +38,12 @@ export default function Header({ color = 'light' }): JSX.Element {
         </div>
 
         <div className="hidden lg:block">
-          <ul className="flex items-center space-x-10 p-4">
+          <ul
+            className={clsx(
+              'flex items-center space-x-10 p-4 ',
+              color === 'light' ? 'text-black' : 'text-white'
+            )}
+          >
             {links.map((link) => (
               <li key={link.id}>
                 <Link
@@ -54,7 +59,7 @@ export default function Header({ color = 'light' }): JSX.Element {
             <li>
               <Link
                 className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
-                href="/pricing"
+                href="/shop"
               >
                 START NOW
               </Link>
@@ -106,7 +111,7 @@ export default function Header({ color = 'light' }): JSX.Element {
               <li>
                 <Link
                   className="inline-block rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
-                  href="/pricing"
+                  href="/shop"
                 >
                   START NOW
                 </Link>

@@ -458,7 +458,7 @@ export default function JoinUs() {
                 Privacy Policy
               </Link>
               . <br className="hidden md:block" /> By creating an account, you agree to our{' '}
-              <Link className="underline hover:text-primary-400" href="/terms-and-condition">
+              <Link className="underline hover:text-primary-400" href="/legal/terms-and-condition">
                 Terms and Conditions
               </Link>
               .
@@ -491,7 +491,7 @@ export async function getServerSideProps({ query }: any) {
   if (!query.plan) {
     return {
       redirect: {
-        destination: '/pricing',
+        destination: '/shop',
         permanent: false,
       },
     }
