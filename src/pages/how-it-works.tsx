@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -53,7 +54,15 @@ export default function HowItWorks(): JSX.Element {
           </div>
         </div>
 
-        <div className="h-[18rem] bg-gray-300 lg:h-[35rem]">{/* Image */}</div>
+        <div className="h-[100%] bg-gray-300 lg:h-[100%]">
+          <Image
+            className="h-full w-full object-cover"
+            src="/images/how-it-works/how-it-works-1.svg"
+            alt=""
+            width="184"
+            height="264"
+          />
+        </div>
 
         <div className="overflow-x-hidden py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -125,7 +134,15 @@ export default function HowItWorks(): JSX.Element {
           </div>
         </div>
 
-        <div className="h-[18rem] bg-gray-300 lg:h-[35rem]">{/* Image */}</div>
+        <div className="h-[100%] bg-gray-300 lg:h-[100%]">
+          <Image
+            className="h-full w-full object-cover"
+            src="/images/how-it-works/how-it-works-2.svg"
+            alt=""
+            width="184"
+            height="264"
+          />
+        </div>
 
         <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 lg:py-24">
           <div className="grid gap-8 md:grid-cols-2 lg:gap-16">

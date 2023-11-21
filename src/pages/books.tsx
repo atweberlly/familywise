@@ -53,7 +53,7 @@ export default function Books(): JSX.Element {
         </div>
       </div>
 
-      <div className="h-[18rem] bg-gray-300 lg:h-[35rem]">
+      <div className="h-[100%] bg-gray-300 lg:h-[100%]">
         <Image
           className="h-full w-full object-cover"
           src="/images/books/books-pages/books-pages-1.svg"
@@ -137,7 +137,7 @@ export default function Books(): JSX.Element {
         </div>
       </div>
 
-      <div className="h-[18rem] bg-gray-300 lg:h-[35rem]">
+      <div className="h-[100%] bg-gray-300 lg:h-[100%]">
         <Image
           className="h-full w-full object-cover"
           src="/images/books/books-pages/books-pages-2.svg"
