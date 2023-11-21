@@ -69,14 +69,14 @@ export default function Blog() {
   )*/
 
   return (
-    <div>
+    <div className="bg-white">
       <Title>Blog</Title>
       {/* Header section start */}
-      <header className="bg-white text-black">
+      <header className=" text-black">
         <Header />
       </header>
 
-      <div className="py-16 lg:py-24">
+      <div className="py-16 lg:py-24 ">
         {/* Container start */}
         <div className="mx-auto max-w-screen-xl px-4 lg:px-8">
           <div className="text-center">

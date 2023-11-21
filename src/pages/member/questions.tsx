@@ -57,7 +57,7 @@ const Questions = () => {
                 isActive={past}
               />
             </div>
-            <div className="max-w-auto dark:bg-dark-medium relative overflow-x-auto rounded-lg bg-white p-6 dark:text-gray-600">
+            <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-6 dark:bg-gray-600 dark:bg-shark dark:text-gray-600">
               <div className="max-w-auto mb-10 mt-8 flex items-center justify-center">
                 {upcoming && (
                   <UpcomingTableV2

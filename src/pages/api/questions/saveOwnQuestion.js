@@ -14,7 +14,7 @@ const saveOwnQuestion = async (req, res) => {
       question: req.body.question,
       description: 'related to custom question',
       published: true,
-      QuestionType: 'premium',
+      QuestionType: 'ylb',
     })
 
     if (newQuestion) {

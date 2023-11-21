@@ -111,7 +111,7 @@ const UpcomingTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="dark:bg-dark-medium dark:hover:bg-dark-medium/90 flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm
+        className=" flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100  hover:shadow-sm dark:bg-shark dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white
         md:flex-row md:items-center"
         style={{ border: '1px dotted #ccc' }}
       >

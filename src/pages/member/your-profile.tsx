@@ -134,7 +134,7 @@ const YourProfile = () => {
       <Heading className="mb-10" size={3}>
         Your Profile
       </Heading>
-      <div className="max-w-auto dark:bg-dark-medium relative overflow-x-auto rounded-lg bg-white p-8">
+      <div className="max-w-auto relative overflow-x-auto rounded-lg bg-white p-8 dark:bg-shark">
         <div className="max-w-auto flex flex-col gap-4 lg:gap-8">
           <div>
             <Heading size={5}>Personal Information</Heading>

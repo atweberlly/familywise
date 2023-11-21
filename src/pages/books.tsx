@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Image from 'next/image'
 import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
@@ -39,7 +40,7 @@ export default function Books(): JSX.Element {
         <Header />
       </header>
 
-      <div className="py-16 lg:py-24">
+      <div className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-serif text-4xl font-medium text-gray-900 lg:text-5xl">
@@ -52,7 +53,15 @@ export default function Books(): JSX.Element {
         </div>
       </div>
 
-      <div className="h-[18rem] bg-gray-300 lg:h-[35rem]">{/* Image */}</div>
+      <div className="h-[100%] bg-gray-300 lg:h-[100%]">
+        <Image
+          className="h-full w-full object-cover"
+          src="/images/books/books-pages/books-pages-1.svg"
+          alt=""
+          width="184"
+          height="264"
+        />
+      </div>
 
       <div className="overflow-x-hidden py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -128,7 +137,16 @@ export default function Books(): JSX.Element {
         </div>
       </div>
 
-      <div className="h-[18rem] bg-gray-300 lg:h-[35rem]">{/* Image */}</div>
+      <div className="h-[100%] bg-gray-300 lg:h-[100%]">
+        <Image
+          className="h-full w-full object-cover"
+          src="/images/books/books-pages/books-pages-2.svg"
+          alt=""
+          width="184"
+          height="264"
+        />
+      </div>
+
       <Testimonials />
       <PricingSection />
       <Newsletter />

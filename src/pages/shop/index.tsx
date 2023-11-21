@@ -12,7 +12,7 @@ export default function Pricing() {
     <main>
       <Title suffix="Family Wise">Pricing</Title>
 
-      <header className="relative min-h-screen bg-white pb-16">
+      <header className="relative min-h-screen bg-white pb-16 text-black">
         <Header color="light" />
         <div className="relative flex min-h-screen w-max overflow-y-auto">
           <div className="relative z-20 my-4 w-screen flex-1 px-6 text-center">

@@ -106,12 +106,12 @@ const Activity = () => {
   return (
     <MemberLayout>
       <Title>Activity Log</Title>
-      <div className="activity-container dark:bg-transparent dark:text-white-700 dark:outline">
+      <div className="activity-container dark:bg-transparent dark:text-white-700  dark:outline">
         <Heading className="activity-heading dark:text-white-700" size={3}>
           Activity Log
         </Heading>
 
-        <div className="activity-table-container">
+        <div className="activity-table-container ">
           <table className="activity-table">
             <thead>
               <tr>

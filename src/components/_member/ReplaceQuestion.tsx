@@ -42,7 +42,7 @@ export default function ReplaceQuestion({
           showReplace ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >
-        <div className="dark:bg-dark-medium flex items-center justify-between bg-white p-4">
+        <div className="dark:bg-dark-medium flex items-center justify-between bg-white p-4 dark:bg-shark">
           <div className="">
             <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
               Replace a question for yourself
@@ -55,7 +55,7 @@ export default function ReplaceQuestion({
           </button>
         </div>
         <div className="flex h-full flex-col justify-between px-5 py-10 dark:bg-dark">
-          <div className="dark:bg-dark-medium flex flex-col gap-y-5 rounded-md bg-white px-5 py-10">
+          <div className="flex flex-col gap-y-5 rounded-md bg-white px-5 py-10 dark:bg-shark">
             <div className="grid grid-cols-2 gap-4 ">
               <div>
                 <label
@@ -86,8 +86,7 @@ export default function ReplaceQuestion({
                   Category
                 </label>
                 <select
-                  className="block w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-secondary-600 placeholder:text-secondary-300 focus:border-primary-600 focus:ring-primary-600
-                  dark:bg-dark dark:text-mercury"
+                  className="block w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-secondary-600 placeholder:text-secondary-300 focus:border-primary-600 focus:ring-primary-600 dark:bg-dark dark:text-mercury"
                   id="category"
                   onChange={(e) => {
                     setFilterCategory(e.target.value)
@@ -107,7 +106,7 @@ export default function ReplaceQuestion({
               </div>
             </div>
             <hr className="w-full border bg-secondary-300 " />
-            <div className="max-h-80 overflow-auto ">
+            <div className="max-h-80 overflow-auto dark:text-gray-200">
               {(filterCategory !== ''
                 ? questions.filter((e) => e.category_id === filterCategory)
                 : questions
