@@ -115,7 +115,7 @@ const Edit = ({ question, id }: Props) => {
 
   return (
     <div className="w-full ">
-      <span className="font-normal dark:text-gray-600">Heading</span>
+      <span className="font-normal dark:text-gray-200">Heading</span>
       <div className="relative w-full">
         <div className="absolute inset-y-0 right-6 flex items-center pl-3">
           <span

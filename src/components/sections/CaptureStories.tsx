@@ -15,7 +15,7 @@ export default function CaptureStories() {
     })
   }
   return (
-    <section className="max-w-screen-full ">
+    <section className="max-w-screen-full bg-white text-black">
       <div className="container grid grid-cols-1 items-center gap-8 pb-12 pt-14 md:grid-cols-2 md:pb-14 md:pt-16 lg:gap-16 lg:pb-24">
         <div>
           <div className="flex items-center">

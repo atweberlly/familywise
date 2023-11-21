@@ -26,7 +26,7 @@ export default function CoverCarousel(): JSX.Element {
   }, [])
 
   return (
-    <div className="cover-carousel children:-ml-32 flex flex-row flex-nowrap items-center gap-16 overflow-x-hidden">
+    <div className="cover-carousel children:-ml-32 flex flex-row flex-nowrap items-center gap-16 overflow-x-hidden bg-white">
       <Image src="/images/books/01-down-book.png" alt="" width={400} height={400} />
       <Image src="/images/books/02-up-book.png" alt="" width={400} height={400} />
       <Image src="/images/books/03-down-book.png" alt="" width={400} height={400} />

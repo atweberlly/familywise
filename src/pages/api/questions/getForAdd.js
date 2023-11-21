@@ -11,6 +11,10 @@ const getForAdd = async (req, res) => {
     //classic users are only classic questions
     //freetrial users are both and trial questions
     //premium users are both and premium questions
+    //PackagesS
+    //'yourlifeinabook', 'photobasedbook'
+    //yourlifeinabook users are both and trial questions
+    //photobasedbook users are both questions
     switch (user.planType.toLowerCase()) {
       case 'premium':
         const questionsPremium = await Questions.find({
@@ -19,6 +23,22 @@ const getForAdd = async (req, res) => {
         })
         res.status(200).json({ questions: questionsPremium, categories: categories })
 
+        break
+
+      case 'your-life-in-a-book':
+        const questionsYLB = await Questions.find({
+          published: true,
+          QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },
+        })
+        res.status(200).json({ questions: questionsYLB, categories: categories })
+        break
+
+      case 'photo-based-book':
+        const questionsPBB = await Questions.find({
+          published: true,
+          QuestionType: { $in: [user.planType.toLowerCase(), 'both'] },
+        })
+        res.status(200).json({ questions: questionsPBB, categories: categories })
         break
 
       case 'free-trial':

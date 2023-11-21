@@ -170,8 +170,8 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
           }
         `}
       </style>
-      <span className="font-normal dark:text-gray-600">Your story</span>
-      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-dark dark:bg-white dark:text-white">
+      <span className="font-normal dark:text-gray-200">Your story</span>
+      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-dark dark:bg-shark dark:text-white">
         {/*<button onClick={startRecording}
             className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-dark 
             dark:text-white
