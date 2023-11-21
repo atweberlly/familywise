@@ -101,7 +101,7 @@ const Cancel = () => {
       </header>
       <div className="max-w-auto dark:bg-dark-medium relative overflow-x-auto rounded-lg p-2 lg:p-8 ">
         <div className="max-w-auto flex flex-col gap-4 lg:gap-8 ">
-          <div className="flex flex-col items-center gap-2 text-center lg:gap-6">
+          <div className="flex flex-col items-center gap-2 text-center lg:gap-6 ">
             <Title>Cancel</Title>
             <Heading className="mb-10" size={3}>
               Hi, you are about to cancel your account. Are you sure about this?
@@ -139,9 +139,9 @@ const Cancel = () => {
 
       {/* Popup for entering the reason for deactivation */}
       {showPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <h1 className="text-center text-8xl">🥺</h1>
-          <div className="rounded-lg bg-white p-4 shadow-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 ">
+          <h1 className="text-center text-8xl ">🥺</h1>
+          <div className="rounded-lg bg-white p-4 shadow-md dark:bg-shark dark:text-white">
             <h2 className="mb-2 text-center text-lg font-semibold">Please don&lsquo;t go away!</h2>
             <div className="text-justify">
               <p className="font-bold">I&lsquo;m so sorry if we&lsquo;ve disappointed you.</p>
