@@ -326,7 +326,19 @@ export default function AdminLayout({ children }: any) {
                   <span className="">Testimonials</span>
                 </Link>
               </li>
-
+              <li className="flex flex-col" aria-label="Newsletter">
+                <Link
+                  className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
+                    router.pathname === '/admin/admin-members' &&
+                    ' border-primary-600 bg-primary-100 font-bold text-primary-600 dark:border-primary-300 dark:bg-dark dark:text-white'
+                  }`}
+                  href="/admin/admin-members"
+                  onClick={() => setShow(!show)}
+                >
+                  <UserGroupIcon className="h-6 w-6 text-dark-200" />
+                  <span className="">Admins</span>
+                </Link>
+              </li>
               <li className="flex flex-col" aria-label="Newsletter">
                 <Link
                   className={`-mx-4 flex flex-1 items-center gap-4 border-r-4 border-transparent px-4 py-4 text-palesky hover:border-r-4 hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white ${
@@ -374,6 +386,13 @@ export default function AdminLayout({ children }: any) {
                     >
                       Coupon
                     </Link>
+                    <Link
+                      className="-ml-14 -mr-4 py-2 pl-14 pr-4 text-palesky hover:border-primary-400 hover:bg-primary-100 hover:font-bold hover:text-primary-600 dark:hover:border-primary-300 dark:hover:bg-dark dark:hover:text-white"
+                      href="/admin/blog"
+                      onClick={() => setOpenSettings(!show)}
+                    >
+                      Blog Posts
+                    </Link>
                   </div>
                 )}
               </li>
@@ -395,7 +414,7 @@ export default function AdminLayout({ children }: any) {
 
           <p className="mt-auto text-center text-secondary-500 dark:text-white">
             Copyright &copy; FamilyWise Stories {new Date().getFullYear()} |{' '}
-            <Link href={'/privacy-policy'}>Privacy Policy</Link>
+            <Link href={'/legal/privacy'}>Privacy Policy</Link>
           </p>
         </main>
       </div>

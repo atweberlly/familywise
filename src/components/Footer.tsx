@@ -12,16 +12,16 @@ interface Hyperlink {
 
 const information: Hyperlink[] = [
   { id: 1, href: '/#founder', text: 'The Founder' },
-  { id: 2, href: '/pricing', text: 'Membership Options' },
+  { id: 2, href: '/shop', text: 'Membership Options' },
   { id: 3, href: '/frequently-asked-questions', text: 'FAQs' },
   { id: 4, href: '/#testimonials', text: 'Testimonials' },
 ]
 
 const legal: Hyperlink[] = [
-  { id: 1, href: '/terms-and-condition', text: 'Terms and Conditions' },
-  { id: 2, href: '/privacy-policy', text: 'Privacy Options' },
-  { id: 3, href: '/cookies', text: 'Cookies' },
-  { id: 4, href: '/refund', text: 'Refund' },
+  { id: 1, href: '/legal/terms-and-condition', text: 'Terms and Conditions' },
+  { id: 2, href: '/legal/privacy', text: 'Privacy Options' },
+  { id: 3, href: '/legal/cookies', text: 'Cookies' },
+  { id: 4, href: '/legal/refund', text: 'Refund' },
 ]
 
 export default function Footer({ color = 'light' }): JSX.Element {

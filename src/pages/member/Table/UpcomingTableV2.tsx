@@ -111,25 +111,25 @@ const UpcomingTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="dark:bg-dark-medium dark:hover:bg-dark-medium/90 flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm
+        className=" flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100  hover:shadow-sm dark:bg-shark dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white
         md:flex-row md:items-center"
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
-          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-white " />
+          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-secondary-600 " />
           <div className="flex flex-col gap-1">
             <h2 className="text-md">
               {detail} <span className="hidden">Index - {index}</span>
             </h2>
-            <span className="text-sm text-secondary-300 dark:text-mercury">
+            <span className="text-sm text-secondary-300 dark:text-gray-400">
               {dateFormat(new Date(date), 'longDate')}
             </span>
           </div>
         </div>
         <div className="flex gap-2">
           <button
-            className="dark:hover:bg-dark-medium rounded-xl border-none bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600 hover:text-white
-            dark:text-white dark:hover:text-white/90 lg:px-4"
+            className="dark:hover:bg-dark-medium rounded-xl border border-secondary-500 bg-transparent px-2 py-2 text-sm font-bold text-secondary-500 hover:bg-secondary-600
+            hover:text-white dark:border-secondary-500 dark:text-secondary-500 dark:hover:text-white/90 lg:px-4"
             onClick={async () => {
               // setDeleteId(row.original.id)
               const res = await axios.post('/api/questions/removeQuestion', {

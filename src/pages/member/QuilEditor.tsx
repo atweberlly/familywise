@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useAppDispatch } from '../../app/hooks'
+import { setUser } from '../../slices/slice'
+import { isCompatible } from '../../utils/browser'
+import axios from 'axios'
 
 // Import Quill styles
 
@@ -49,7 +54,19 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
   }, [recording])
 
   const startRecording = () => {
-    if ('webkitSpeechRecognition' in window) {
+    const isSpeechRecognitionSupported =
+      'webkitSpeechRecognition' in window || 'SpeechRecognition' in window
+
+    const isBrave = isCompatible()
+
+    if (isBrave) {
+      toast.error('This browser is not compatible with our Speech-to-text', {
+        duration: 3000,
+      })
+      return // Stop further execution for Brave browser
+    }
+
+    if (isSpeechRecognitionSupported) {
       if (!recording) {
         const recognizer = new webkitSpeechRecognition() // Create a new instance
         recognizer.continuous = true
@@ -105,33 +122,95 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
         })
       }
     } else {
-      if (resultRef.current) {
-        toast.error(
-          'Your browser is not supported. Please download Google Chrome or update your Google Chrome!',
-          {
-            duration: 3000, // Specify the duration in milliseconds (3 seconds)
-          }
-        )
-      }
+      toast.error(
+        'Your browser is not supported. Please download Google Chrome or update your Google Chrome!',
+        {
+          duration: 3000, // Specify the duration in milliseconds (3 seconds)
+        }
+      )
     }
   }
 
+  const dispatch = useAppDispatch()
+  const [isSpeakToTextAvailable, setIsSpeakToTextAvailable] = useState(false)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const respo = await axios.get('/api/users/getUser')
+        const userData = respo.data.user[0]
+
+        const planTypes = ['Free-Trial', 'Your-life-in-a-book', 'Premium']
+        if (planTypes.includes(userData.planType)) {
+          dispatch(setUser(userData))
+          setIsSpeakToTextAvailable(true)
+        } else {
+          setIsSpeakToTextAvailable(false)
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+      }
+    }
+    fetchData()
+  }, [dispatch])
+
   return (
     <div>
-      <span className="font-normal">Your story</span>
-      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-white dark:bg-black dark:bg-dark dark:text-white">
-        <button
-          onClick={startRecording}
-          className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-black dark:bg-dark 
+      {/* Refactor */}
+      <style>
+        {`
+          .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
+            content: 'Heading 1';
+          }
+          .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+            content: 'Heading 2';
+          }
+          .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+            content: 'Heading 3';
+          }
+        `}
+      </style>
+      <span className="font-normal dark:text-gray-200">Your story</span>
+      <div className="h-100 mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:border-dark dark:bg-shark dark:text-white">
+        {/*<button onClick={startRecording}
+            className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-dark 
+            dark:text-white
+            ${
+              recording
+                ? 'bg-secondary-500 hover:border-red-400 hover:text-red-400'
+                : 'bg-secondary-500 hover:border-red-400 hover:text-blue-400'
+              }`}
+          >
+            {recording ? `Recording (${duration}s)` : 'Speak'}
+            </button>*/}
+        {isSpeakToTextAvailable ? (
+          <button
+            onClick={startRecording}
+            className={`h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  px-[29px] py-[22px] text-white focus:border-none dark:border-white dark:bg-dark 
           dark:text-white
           ${
             recording
               ? 'bg-secondary-500 hover:border-red-400 hover:text-red-400'
               : 'bg-secondary-500 hover:border-red-400 hover:text-blue-400'
           }`}
-        >
-          {recording ? `Recording (${duration}s)` : 'Speak'}
-        </button>
+          >
+            {recording ? `Recording (${duration}s)` : 'Speak'}
+          </button>
+        ) : (
+          <div className="disabled-button">
+            <Link href="checkout/[id].tsx">
+              <button
+                className="h-100 text-3l mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px]  bg-secondary-500 px-[29px] py-[22px] text-white hover:border-red-200 hover:text-white-400 
+            focus:border-none dark:border-white dark:bg-dark dark:text-white"
+              >
+                Unlock Speech-To-Text Feature{' '}
+                <span className="mr-2 rounded border border-green-400 bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-500 dark:bg-gray-700 dark:text-green-400">
+                  Buy now
+                </span>
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
       {/* Display the transcript */}
       {recording && transcript.length > 0 && (
@@ -143,7 +222,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange, editorLoadin
       {/* Display the Quill Editor*/}
       <ReactQuill
         theme="snow"
-        className="h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-secondary-600 focus:border-none dark:bg-dark"
+        className="h-100 dark.borderColor-white dark.bg-black dark.textColor-white mt-[12px] min-h-[5vh] w-full rounded-[12px] border-[1.5px] border-secondary-500 px-[29px] py-[22px] text-[14px] text-gray-500 focus:border-none dark:border-dark-500 dark:bg-white"
         placeholder="Write your story here..."
         value={value}
         onChange={onChange}

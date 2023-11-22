@@ -188,7 +188,7 @@ const SignIn: NextPage = () => {
             </form>
             <p className="base mt-5 text-center text-sm md:mt-6 lg:mt-8">
               Don&apos;t have an account?{' '}
-              <Link className="inline text-secondary-500 hover:underline" href={'/pricing'}>
+              <Link className="inline text-secondary-500 hover:underline" href={'/shop'}>
                 Create an account
               </Link>
             </p>

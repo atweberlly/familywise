@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
-import Button from '../components/Button'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import Heading from '../components/Heading'
-import Newsletter from '../components/Newsletter'
 import Title from '../components/Title'
+import Newsletter from '../components/sections/Newsletter'
 import axios from 'axios'
 import clsx from 'clsx'
 import {
@@ -13,6 +11,8 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from '@heroicons/react/24/outline'
+import CaptureStories from '~/components/sections/CaptureStories'
+import FounderSection from '~/components/sections/Founder'
 
 export default function Faqs() {
   const [faqs, setFaq] = useState([])
@@ -51,33 +51,21 @@ export default function Faqs() {
       <Title suffix="Family Wise">Frequently Asked Questions</Title>
       <header>
         <Header color="light" />
-        <div className="my-8 text-center text-black-pearl lg:my-16">
-          <div className="text-sm tracking-wider text-lemon-curry">FAQs</div>
-          <Heading size={3} className="mt-0">
-            We’re here to help
-          </Heading>
-
-          <p className="mt-3 text-xs text-secondary-600 lg:mt-5 lg:text-lg">
-            Have questions? We&apos;re here to help.
-          </p>
-          <Button
-            color={'yellow'}
-            className="mt-8 rounded-md px-4 py-3 lg:px-6 lg:py-4"
-            href="/pricing"
-          >
-            Get started
-          </Button>
-        </div>
       </header>
-      <section className="bg-ghost-white">
-        <div className="p-4 py-20 text-center">
-          <Heading size={3} className="text-4xl font-semibold">
-            Frequently asked questions
-          </Heading>
-          <p className="py-5 text-gray-600">
-            Everything you need to know about your Family Wise membership
-          </p>
+      <section>
+        <div className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <h1 className="font-serif text-4xl font-medium text-gray-900 lg:text-5xl">
+                Frequently Asked Questions
+              </h1>
+              <p className="mt-4 text-lg text-gray-600 lg:mt-6 lg:text-xl">
+                Need something cleared up? Here are our most frequently asked questions.
+              </p>
+            </div>
+          </div>
         </div>
+
         <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-8 px-8 pb-8 text-black-pearl lg:mt-16">
           {faqs?.map(({ _id, question, answer, published }, index: any) => {
             return (
@@ -126,6 +114,8 @@ export default function Faqs() {
           </div>
         </div>
       </section>
+      <FounderSection />
+      <CaptureStories />
       <Newsletter />
       <Footer />
     </main>

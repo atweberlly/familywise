@@ -20,3 +20,8 @@
   padding: 0px !important;
   border: 0px !important;
 }
+/* Styles for dark mode */
+body.dark {
+  background-color: black;
+  color: white;
+}

@@ -2,3 +2,104 @@
   display: inline-block;
   margin-right: -4px;
 }
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #4caf50; /* Green color for the progress bar */
+  border-radius: 4px;
+  transition: width 0.3s; /* Smooth transition for the width change */
+}
+
+.cover-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 150px;
+}
+
+.preview {
+  flex: 0.5;
+  padding: 20px;
+  background-color: #ffffff;
+  position: relative;
+  height: 105%;
+  font-family: roboto;
+  max-width: 650px;
+}
+
+.preview h1 {
+  font-size: 50px;
+  text-align: center;
+  width: 35%;
+  margin-bottom: 70px;
+}
+
+.cover {
+  position: relative;
+  width: 100mm; /* A5 width 148mm */
+  height: 150mm; /* A5 height 210mm */
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0px 5px 15px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: black;
+}
+
+.overlay h3 {
+  font-size: 50px;
+  font-family: roboto;
+}
+
+.info-container {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.Title,
+.Author {
+  width: 73%;
+  height: 70px;
+}
+.form-container {
+  flex: 0.5;
+  padding: 20px;
+  margin-top: 300px;
+}
+
+.form-group {
+  margin: 10px 0;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}

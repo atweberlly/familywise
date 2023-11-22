@@ -1,5 +1,6 @@
 import dbConnect from '../../../../lib/dbConnect'
 import User from '../../../../models/userModel'
+import logActivity from '../activity/logActivity'
 import bcrypt from 'bcrypt'
 
 export default async function handler(request, response) {
@@ -53,6 +54,8 @@ export default async function handler(request, response) {
           status: request.body.status,
         },
       }
+      const email = request.body.email
+      const description = 'Updated their information...'
       // ... (your PUT request logic)
 
       if (request.body.password) {
@@ -127,7 +130,7 @@ export default async function handler(request, response) {
             })
           })
       }
-
+      logActivity(email, description)
       break
 
     case 'DELETE' /* Delete a model by its ID */:

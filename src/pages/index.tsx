@@ -1,18 +1,17 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-//import CheckIcon from '../components/CheckIcon'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import Newsletter from '../components/Newsletter'
-import Testimonials from '../components/Testimonials'
 import Title from '../components/Title'
+import Newsletter from '../components/sections/Newsletter'
+import Testimonials from '../components/sections/Testimonials'
 import Swiper, { Navigation } from 'swiper'
-import {
-  ArrowLongDownIcon,
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-} from '@heroicons/react/24/outline'
+import { ArrowLongDownIcon } from '@heroicons/react/24/outline'
+import CaptureStories from '~/components/sections/CaptureStories'
+import CoverCarousel from '~/components/sections/CoverCarousel'
+import FounderSection from '~/components/sections/Founder'
+import GiftCarousel from '~/components/sections/GiftCarousel'
+import PricingSection from '~/components/sections/PricingThumbnail'
 
 export default function Home() {
   //const [productInfo, setProductInfo] = useState(classic)
@@ -52,7 +51,6 @@ export default function Home() {
 
     presentation.init()
   }, [])
-
   const scrollDown = () => {
     const howItWorks = document.getElementById('how-it-works')?.offsetTop
     const getStarted = document.getElementById('get-started')?.offsetTop
@@ -77,21 +75,21 @@ export default function Home() {
           <div className="relative">
             <Image
               className="absolute left-1/2 top-0 z-0 h-[264px] w-[184px] -translate-x-1/2 shadow-xl md:left-16 md:translate-x-0 lg:h-[524px] lg:w-[356px]"
-              src="/images/hero/hero-image-1@4x.jpg"
+              src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/hero/hero-image-1%404x.jpg"
               alt=""
               width="184"
               height="264"
             />
             <Image
               className="absolute left-0 top-48 z-10 h-[208px] w-[144px] shadow-xl lg:h-[340px] lg:w-[232px]"
-              src="/images/hero/hero-image-2@4x.jpg"
+              src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/hero/hero-image-2%404x.jpg"
               alt=""
               width="144"
               height="208"
             />
             <Image
               className="absolute right-0 top-[calc(12rem+6px)] z-10 h-[192px] w-[128px] shadow-xl md:left-28 lg:left-48 lg:top-[calc(12rem+20px)] lg:h-[284px] lg:w-[192px]"
-              src="/images/hero/hero-image-3@4x.jpg"
+              src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/hero/hero-image-3%404x.jpg"
               alt=""
               width="128"
               height="192"
@@ -99,21 +97,21 @@ export default function Home() {
 
             <Image
               className="absolute right-8 top-0 z-10 hidden h-[264px] w-[184px] shadow-xl md:block lg:h-[456px] lg:w-[328px]"
-              src="/images/hero/hero-image-4.jpg"
+              src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/hero/hero-image-4.jpg"
               alt=""
               width="328"
               height="456"
             />
             <Image
               className="absolute right-28 top-48 z-20 hidden h-[208px] w-[144px] shadow-xl md:block lg:right-56 lg:h-[284px] lg:w-[192px]"
-              src="/images/hero/hero-image-5.jpg"
+              src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/hero/hero-image-5.jpg"
               alt=""
               width="192"
               height="284"
             />
             <Image
               className="absolute right-0 top-[calc(12rem+6px)] z-30 hidden h-[192px] w-[128px] shadow-xl md:block lg:h-[432px] lg:w-[296px]"
-              src="/images/hero/hero-image-6.jpg"
+              src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/hero/hero-image-6.jpg"
               alt=""
               width="296"
               height="432"
@@ -661,609 +659,22 @@ export default function Home() {
 
         <section>
           <div className="aspect-video h-auto bg-black">
-            <video controls autoPlay>
+            <video controls autoPlay muted>
               <source
                 src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/videos/FamilyWise-preview.mp4"
                 type="video/mp4"
               />
             </video>
           </div>
-
-          <div className="container grid grid-cols-1 items-center gap-8 pb-12 pt-14 md:grid-cols-2 md:pb-14 md:pt-16 lg:gap-16 lg:pb-24">
-            <div>
-              <div className="flex items-center">
-                <div className="h-px w-10 bg-[#111]"></div>
-                <p className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
-                  Capture the stories of your lifetime
-                </p>
-              </div>
-              <h2 className="mt-4 font-fair text-4xl lg:text-6xl">Start right away!</h2>
-              <div className="mt-4 space-y-2 text-lg text-gray-600">
-                <p>
-                  Your stories are worth sharing. Get started in minutes and with an email each
-                  week, you&apos;ll preserve your meaningful moments into a keepsake book to pass on
-                  to future generations.
-                </p>
-                <p>Receive immediate access - your first question will arrive in minutes.</p>
-              </div>
-              <div className="mt-6 md:mt-12">
-                <button
-                  className="rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
-                  type="button"
-                  onClick={scrollDown}
-                >
-                  Get started
-                </button>
-              </div>
-            </div>
-            <div className="-mx-10 flex items-start">
-              <div className="grid grow grid-cols-6 gap-4">
-                <div className="col-span-2 col-start-2 place-self-end">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="160"
-                    height="160"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-40 w-full object-cover"
-                    src="/svg/content/1.svg"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="160"
-                    height="240"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-60 w-full object-cover"
-                    src="/svg/content/2.svg"
-                  />
-                </div>
-
-                <div className="col-span-2 justify-self-end">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="190"
-                    height="128"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-32 w-full object-cover"
-                    src="/svg/content/3.svg"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="160"
-                    height="240"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-60 w-full object-cover"
-                    src="/svg/content/5.svg"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="192"
-                    height="128"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-32 w-full object-cover"
-                    src="/svg/content/4.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <CaptureStories />
         </section>
       </header>
-
-      <section className="section px-17 bg-white-500 py-8" id="get-started">
-        <div className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16 xl:gap-24">
-          <div>
-            <div className="aspect-h-4 aspect-w-3">
-              <Image
-                alt=""
-                loading="lazy"
-                quality={100}
-                className="rounded-lg object-cover"
-                width={800}
-                height={0}
-                src="/images/cover@4x.jpg"
-                priority={false}
-              />
-            </div>
-          </div>
-
-          <div className="md:order-2">
-            <div className="flex items-center">
-              <div className="h-px w-10 bg-[#111]"></div>
-              <h2 className="ml-3 text-sm font-medium uppercase tracking-wide text-[#464444]/70">
-                Bringing families together
-              </h2>
-            </div>
-            <p className="mt-4 font-fair text-4xl lg:text-6xl">Your story starts here</p>
-            <div className="mt-8 inline-flex items-end">
-              <div className="flex items-center space-x-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6 text-yellow-500"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6 text-yellow-500"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6 text-yellow-500"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6 text-yellow-500"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6 text-yellow-500"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <span className="ml-2 text-sm">5 stars reviews</span>
-            </div>
-            <ul className="mt-8 space-y-2">
-              <li className="flex">
-                <div className="flex h-6 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    className="h-6 w-6 rounded-full bg-[#eaf1ff] stroke-[#0063e8]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                </div>
-                <p className="ml-2 font-medium text-gray-600">
-                  One year membership, your first book is included!
-                </p>
-              </li>
-              <li className="flex">
-                <div className="flex h-6 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    className="h-6 w-6 rounded-full bg-[#eaf1ff] stroke-[#0063e8]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                </div>
-                <p className="ml-2 font-medium text-gray-600">
-                  Complete your book as quickly as you want
-                </p>
-              </li>
-            </ul>
-
-            <div className="mt-10">
-              <div className="my-8 space-y-4">
-                <div className="relative flex items-center">
-                  <input
-                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
-                    id="free-trial"
-                    name="plan"
-                    type="radio"
-                    value="classic"
-                  />
-                  <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
-                    htmlFor="free-trial"
-                  >
-                    <div>
-                      <div className="text-lg font-bold">Free trial</div>
-                      <div className="text-sm text-secondary-600">14 days</div>
-                    </div>
-                    <div className="text-2xl font-semibold">$0.00</div>
-                  </label>
-                </div>
-
-                <div className="relative flex items-center">
-                  <input
-                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
-                    id="your-life-in-a-book"
-                    name="plan"
-                    type="radio"
-                    value="your-life-in-a-book"
-                  />
-                  <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
-                    htmlFor="your-life-in-a-book"
-                  >
-                    <div>
-                      <div className="text-lg font-bold">Your Life In A Book</div>
-                      <div className="text-sm">Questions about your life</div>
-                    </div>
-                    <div className="text-2xl font-semibold">$97.00</div>
-                  </label>
-                </div>
-
-                <div className="relative flex items-center">
-                  <input
-                    className="peer absolute left-5 top-6 h-6 w-6 accent-blue-500 focus:outline-none"
-                    id="photo-based-book"
-                    name="plan"
-                    type="radio"
-                    value="photo-based-book"
-                  />
-                  <label
-                    className="flex flex-1 cursor-pointer items-center justify-between rounded-lg border border-[#e0e0e1] py-5 pl-[calc(1.25rem+1.5rem+0.75rem)] pr-5 transition-all peer-checked:border-blue-500 peer-checked:shadow-md peer-focus:ring-4 peer-focus:ring-blue-500/50"
-                    htmlFor="photo-based-book"
-                  >
-                    <div>
-                      <div className="text-lg font-bold">Photo Based Book</div>
-                      <div className="text-sm">Start with a photo and tell that story</div>
-                    </div>
-                    <div className="text-2xl font-semibold">$97.00</div>
-                  </label>
-                </div>
-
-                <Link
-                  className="block rounded-lg bg-orange-500 px-5 py-3 text-center font-semibold text-white transition hover:bg-orange-600"
-                  href="/pricing"
-                >
-                  Membership Options
-                </Link>
-
-                <div className="flex items-start justify-center space-x-8">
-                  <div className="flex flex-col items-center text-primary-600">
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      data-prefix="fab"
-                      data-icon="paypal"
-                      className="svg-inline--fa fa-paypal h-6 w-6"
-                      role="img"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 384 512"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"
-                      ></path>
-                    </svg>
-                    <div className="mt-1 text-center text-sm">Pay in 4</div>
-                  </div>
-
-                  <div className="flex flex-col items-center text-primary-600">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                      ></path>
-                    </svg>
-                    <div className="mt-1 text-center text-sm">
-                      Secure
-                      <br />
-                      Checkout
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center text-primary-600">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8.25 9.75h4.875a2.625 2.625 0 010 5.25H12M8.25 9.75L10.5 7.5M8.25 9.75L10.5 12m9-7.243V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"
-                      ></path>
-                    </svg>
-                    <div className="mt-1 text-center text-sm">
-                      Money-Back
-                      <br />
-                      Guarantee
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <dl className="space-y-4 divide-y divide-secondary-200 border-y border-secondary-200 pb-4 md:col-span-2 lg:mx-auto lg:w-full lg:max-w-prose">
-              <details className="open-details pt-4">
-                <summary className="cursor-pointer">
-                  <div className="flex items-center justify-between text-secondary-600">
-                    <div className="text-xl font-medium">Product Information</div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="h-6 w-6 open-details:hidden"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                      ></path>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="hidden h-6 w-6 open-details:block"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15"></path>
-                    </svg>
-                  </div>
-                </summary>
-                <div className="hidden py-4 open-details:block">
-                  <p>
-                    The Family Wise experience is risk-free, with a 30-day money-back guarantee. If
-                    for any reason you or your relative are not satisfied with the experience or the
-                    result, simply send us an email and we will give you a full refund, no questions
-                    asked.
-                  </p>
-                </div>
-              </details>
-              <details className="open-details pt-4">
-                <summary className="cursor-pointer">
-                  <div className="flex items-center justify-between text-secondary-600">
-                    <div className="text-xl font-medium">Money-Back Guarantee</div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="h-6 w-6 open-details:hidden"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                      ></path>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="hidden h-6 w-6 open-details:block"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15"></path>
-                    </svg>
-                  </div>
-                </summary>
-                <div className="hidden py-4 open-details:block">
-                  <p>
-                    The Family Wise experience is risk-free, with a 30-day money-back guarantee. If
-                    for any reason you or your relative are not satisfied with the experience or the
-                    result, simply send us an email and we will give you a full refund, no questions
-                    asked.
-                  </p>
-                </div>
-              </details>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-black-pearl pb-16 pt-32 text-white">
-        <div className="container">
-          <div className="marquee gift flex overflow-hidden whitespace-nowrap">
-            <h2 className="mr-4 bg-texture bg-clip-text pb-2 font-serif text-[12rem] font-bold text-transparent">
-              The gift that lasts a lifetime.
-            </h2>
-          </div>
-
-          <div className="swiper presentation">
-            <div className="swiper-wrapper mt-8 pb-4">
-              <div className="swiper-slide flex flex-col items-center">
-                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
-                  <span className="block text-white/40">Preserve family memories to</span>
-                  <span className="block sm:ml-4 md:ml-8">Pass on to future generations</span>
-                </h3>
-
-                <Image
-                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                  src="/images/slide-images/slide-image-1@1x.jpg"
-                  alt=""
-                  width="1060"
-                  height="660"
-                />
-              </div>
-
-              <div className="swiper-slide flex flex-col items-center">
-                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
-                  <span className="block text-white/40">Give a gift to someone who&apos;s</span>
-                  <span className="block sm:ml-4 md:ml-8">story you&apos;d like to hear</span>
-                </h3>
-
-                <Image
-                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                  src="/images/slide-images/slide-image-2@1x.jpg"
-                  alt=""
-                  width="1060"
-                  height="660"
-                />
-              </div>
-
-              <div className="swiper-slide flex flex-col items-center">
-                <h3 className="font-serif text-3xl font-bold leading-none md:order-2 md:mt-8 md:text-5xl lg:text-6xl">
-                  <span className="block text-white/40">Choose the date you&apos;d</span>
-                  <span className="block sm:ml-4 md:ml-8">like your gift to commence</span>
-                </h3>
-
-                <Image
-                  className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                  src="/images/slide-images/slide-image-3@1x.jpg"
-                  alt=""
-                  width="1060"
-                  height="660"
-                />
-              </div>
-            </div>
-            <button
-              className="swiper-prev right-0 top-[40%] z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2 lg:top-[42%]"
-              type="button"
-            >
-              <ArrowLongLeftIcon className="h-4 w-4 md:h-8 md:w-8 " />
-            </button>
-            <button
-              className="swiper-next right-0 top-1/2 z-50 ml-auto flex h-8 w-8 items-center justify-center rounded-full border border-primary-100/30 disabled:opacity-50 md:absolute md:ml-0 md:h-16 md:w-16 md:-translate-y-1/2"
-              type="button"
-            >
-              <ArrowLongRightIcon className="h-4 w-4 md:h-8 md:w-8 " />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="overflow-hidden px-10 pb-6 pt-14" id="founder">
-        <div className="relative mx-auto grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
-          <div className="relative z-10">
-            <h2 className="font-serif text-6xl font-bold">
-              <span className="block text-[#ca8e22]/30">Preserving</span>{' '}
-              <span className="ml-16 block italic text-[#ca8e22]">precious memories.</span>
-            </h2>
-
-            <p className="mt-8">
-              As a funeral celebrant of 9 years, our founder Rachel Michael has heard many stories
-              from families after their loved ones have passed away. Over time, she&apos;s realized
-              there are many more stories that families never get to hear.
-            </p>
-
-            <p className="mt-4">
-              Family Wise was inspired by her work and is designed to give families the opportunity
-              to gather precious memories whilst the opportunity is there.
-            </p>
-
-            <p className="mt-4">
-              Family Wise is dedicated to the thousands of people she has had the privilege to
-              assist as they grieve the loss of the people they love.
-            </p>
-          </div>
-
-          <div className="relative z-10">
-            <div className="aspect-h-4 aspect-w-3">
-              <Image
-                className="object-cover object-center"
-                src="/images/founder/rachel-michael-portrait@4x.jpg"
-                alt="Rachel Michael"
-                width="312"
-                height="456"
-                priority={false}
-              />
-            </div>
-
-            <div className="mt-4">
-              <div className="font-serif text-[2rem] font-bold leading-none">Rachel Michael</div>
-              <div className="mt-1 text-lg font-medium">Founder</div>
-            </div>
-          </div>
-
-          <Image
-            className="pointer-events-none absolute -right-1/2 top-0 h-auto w-full select-none object-cover object-left"
-            src="/images/founder/golden-sand-explosion.jpg"
-            alt=""
-            width="1124"
-            height="736"
-            priority={false}
-          />
-        </div>
-      </section>
-
+      <CoverCarousel />
+      <PricingSection />
+      <GiftCarousel />
+      <FounderSection />
       <Testimonials />
-
       <Newsletter />
-
       <Footer />
     </div>
   )

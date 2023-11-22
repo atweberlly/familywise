@@ -52,17 +52,17 @@ const StoryTable = (funcProps: any) => {
     const date = item.createdAt ? item.createdAt : 'unknown'
     return (
       <div
-        className="dark:bg-dark-medium dark:hover:bg-dark-medium/90 flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100 hover:shadow-sm
+        className="flex animate-[animation-move] cursor-move flex-col justify-between gap-4 bg-white p-4 hover:bg-primary-100  hover:shadow-sm dark:bg-shark dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white
         md:flex-row md:items-center"
         style={{ border: '1px dotted #ccc' }}
       >
         <div className="flex items-center gap-4">
-          <Bars3Icon className="h-8 w-8 text-secondary-600 dark:text-white" />
+          <Bars3Icon className="h-8 w-8 text-secondary-600" />
           <div className="flex flex-col gap-1">
             <h2 className="text-md">
               {detail} <span className="hidden">Index - {index}</span>
             </h2>
-            <span className="text-sm text-secondary-300 dark:text-mercury">
+            <span className="text-sm text-secondary-300 ">
               {dateFormat(new Date(date), 'longDate')}
             </span>
           </div>
