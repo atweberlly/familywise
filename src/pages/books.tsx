@@ -56,10 +56,10 @@ export default function Books(): JSX.Element {
       <div className="h-[100%] bg-gray-300 lg:h-[100%]">
         <Image
           className="h-full w-full object-cover"
-          src="/images/books/books-pages/books-pages-1.svg"
+          src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/books/Books+page+-+top+image.png"
           alt=""
-          width="184"
-          height="264"
+          width={4535}
+          height={264}
         />
       </div>
 
@@ -140,10 +140,10 @@ export default function Books(): JSX.Element {
       <div className="h-[100%] bg-gray-300 lg:h-[100%]">
         <Image
           className="h-full w-full object-cover"
-          src="/images/books/books-pages/books-pages-2.svg"
+          src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/books/books-pages-2.svg"
           alt=""
-          width="184"
-          height="264"
+          width={184}
+          height={264}
         />
       </div>
 
