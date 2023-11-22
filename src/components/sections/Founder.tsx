@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function FounderSection() {
   return (
-    <section className="overflow-hidden px-10 pb-6 pt-14" id="founder">
+    <section className="overflow-hidden bg-white px-10 pb-6 pt-14 text-black" id="founder">
       <div className="relative mx-auto grid max-w-screen-md grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
         <div className="relative z-10">
           <h2 className="font-serif text-6xl font-bold">

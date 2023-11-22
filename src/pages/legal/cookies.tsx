@@ -5,7 +5,7 @@ import Title from '~/components/Title'
 
 export default function refund_policy() {
   return (
-    <main className="relative min-h-screen bg-black-pearl">
+    <main className="relative min-h-screen bg-black-pearl text-black">
       <Title suffix="Family Wise">Cookie Policy</Title>
       <header>
         <Header color="dark" />
