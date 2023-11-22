@@ -21,10 +21,10 @@ export default function GiftCarousel() {
 
               <Image
                 className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                src="/images/slide-images/slide-image-1@1x.jpg"
+                src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/slide-images/Landing+page+in+place+of+clip.png"
                 alt=""
-                width="1060"
-                height="660"
+                width={4535}
+                height={1890}
               />
             </div>
 
@@ -36,10 +36,10 @@ export default function GiftCarousel() {
 
               <Image
                 className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                src="/images/slide-images/slide-image-2@1x.jpg"
+                src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/slide-images/Landing+page+-+in+carousel+replace+the+gift+image+with+this.png"
                 alt=""
-                width="1060"
-                height="660"
+                width={4535}
+                height={1890}
               />
             </div>
 
@@ -51,10 +51,10 @@ export default function GiftCarousel() {
 
               <Image
                 className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
-                src="/images/slide-images/slide-image-3@1x.jpg"
+                src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/slide-images/Landing+page+-+in+carousel+replace+child+%26+grandparents+with+this.png"
                 alt=""
-                width="1060"
-                height="660"
+                width={4535}
+                height={1890}
               />
             </div>
           </div>
