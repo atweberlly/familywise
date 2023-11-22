@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
+import Image from 'next/image'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Title from '../../components/Title'
@@ -115,9 +116,12 @@ export default function Blog() {
                         <div className="h-60 bg-gray-300 md:h-[12.5rem] md:min-w-xs">
                           <div className="text-center">
                             {image ? (
-                              <img
+                              <Image
                                 src={image}
                                 className="h-60 bg-gray-300 object-cover md:h-[12.5rem] md:min-w-xs"
+                                height={0}
+                                width={0}
+                                alt={''}
                               />
                             ) : (
                               <label

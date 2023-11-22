@@ -17,7 +17,7 @@ const Cover = () => {
   const [coverImage, setCoverImage] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<any>()
-  const [defaultContent, setDefaultContent] = useState({
+  const [defaultContent] = useState({
     title: 'A Happy Life',
     author: 'Alex Green',
     image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783',

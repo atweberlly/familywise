@@ -68,7 +68,7 @@ const Activity = () => {
   const currentItems = activityLogs.slice(indexOfFirstItem, indexOfLastItem)
 
   const totalPages = Math.ceil(activityLogs.length / itemsPerPage)
-  const maxPage = Math.min(totalPages, maxDisplayPages)
+  //const maxPage = Math.min(totalPages, maxDisplayPages) never used
 
   const paginate = (pageNumber: number) => {
     if (pageNumber < 1) {

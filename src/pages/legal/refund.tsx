@@ -7,7 +7,7 @@ export default function refund_policy() {
   const dev = process.env.NODE_ENV !== 'production'
   const server = dev ? 'http://localhost:3000' : process.env.PRODUCTION_URL
   return (
-    <main className="relative min-h-screen bg-black-pearl">
+    <main className="relative min-h-screen bg-black-pearl text-black">
       <Title suffix="Family Wise">Refund Policy</Title>
       <header>
         <Header color="dark" />

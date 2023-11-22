@@ -50,7 +50,7 @@ export default function Testimonials({ className, background }: Props) {
 
   return (
     <section
-      className={clsx('px-10 pb-8 pt-12 text-white ', className) + background}
+      className={clsx('bg-white px-10 pb-8 pt-12 text-white ', className) + background}
       id="testimonials"
     >
       <div className="relative mx-auto max-w-screen-xl pb-10">

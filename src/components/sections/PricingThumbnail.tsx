@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function PricingSection(): JSX.Element {
   return (
-    <section className="section px-17 bg-white-500 py-8" id="get-started">
+    <section className="section px-17 bg-white-500 py-8 text-black" id="get-started">
       <div className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-16 xl:gap-24">
         <div>
           <div className="aspect-h-4 aspect-w-3">

@@ -34,7 +34,7 @@ export default function Books(): JSX.Element {
   }, [])
 
   return (
-    <div>
+    <div className="bg-white text-black">
       <Title>Books</Title>
       <header className="bg-white text-black">
         <Header />
@@ -82,7 +82,7 @@ export default function Books(): JSX.Element {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
+      <div className="mx-auto max-w-7xl px-4 md:px-8 ">
         <div className="grid gap-8 md:grid-cols-2 lg:gap-16">
           {booksFeatures1.map((feature: { id: number; heading: string; body: string }) => (
             <div key={feature.id}>
@@ -103,7 +103,7 @@ export default function Books(): JSX.Element {
 
       <CoverCarousel />
 
-      <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 lg:py-24 ">
         <div className="grid gap-8 md:grid-cols-2 lg:gap-16">
           {booksFeatures2.map((feature: { id: number; heading: string; body: string }) => (
             <div key={feature.id}>
