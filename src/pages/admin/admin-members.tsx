@@ -14,7 +14,7 @@ import Title from '../../components/Title'
 import AdminLayout from '../../layouts/AdminLayout'
 import axios from 'axios'
 import clsx from 'clsx'
-import dateFormat from 'dateformat'
+//import dateFormat from 'dateformat'
 import { Spinner, Table, TextInput } from 'flowbite-react'
 import { NextPage } from 'next'
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -48,7 +48,7 @@ const AdminList: NextPage = () => {
     getValues,
     watch,
     formState: { errors },
-    control,
+    //control,
   } = useForm({ mode: 'onBlur', defaultValues: initialState })
 
   const [selected, setSelected] = useState('AU')
