@@ -58,8 +58,8 @@ export default function Books(): JSX.Element {
           className="h-full w-full object-cover"
           src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/books/Books+page+-+top+image.png"
           alt=""
-          width={4535}
-          height={264}
+          width={1280}
+          height={800}
         />
       </div>
 
@@ -142,8 +142,8 @@ export default function Books(): JSX.Element {
           className="h-full w-full object-cover"
           src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/books/books-pages-2.svg"
           alt=""
-          width={184}
-          height={264}
+          width={1280}
+          height={800}
         />
       </div>
 

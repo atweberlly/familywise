@@ -22,9 +22,9 @@ export default function GiftCarousel() {
               <Image
                 className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
                 src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/slide-images/Landing+page+in+place+of+clip.png"
-                alt=""
-                width={4535}
-                height={1890}
+                alt="Preserve family memories to pass on to future generations"
+                width={1060}
+                height={660}
               />
             </div>
 
@@ -38,8 +38,8 @@ export default function GiftCarousel() {
                 className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
                 src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/slide-images/Landing+page+-+in+carousel+replace+the+gift+image+with+this.png"
                 alt=""
-                width={4535}
-                height={1890}
+                width={1060}
+                height={660}
               />
             </div>
 
@@ -53,8 +53,8 @@ export default function GiftCarousel() {
                 className="mt-8 w-full md:order-1 md:mt-0 md:pr-24"
                 src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/slide-images/Landing+page+-+in+carousel+replace+child+%26+grandparents+with+this.png"
                 alt=""
-                width={4535}
-                height={1890}
+                width={1060}
+                height={660}
               />
             </div>
           </div>

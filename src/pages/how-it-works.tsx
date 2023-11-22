@@ -59,8 +59,8 @@ export default function HowItWorks(): JSX.Element {
             className="h-full w-full object-cover"
             src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/how-it-works/How+It+Works+-+Top+image.png"
             alt=""
-            width={4535}
-            height={264}
+            width={1280}
+            height={800}
           />
         </div>
 
@@ -139,8 +139,8 @@ export default function HowItWorks(): JSX.Element {
             className="h-full w-full object-cover"
             src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/how-it-works/How+It+Works+Page+-+2nd+image.png"
             alt=""
-            width={4535}
-            height={264}
+            width={1280}
+            height={800}
           />
         </div>
 
