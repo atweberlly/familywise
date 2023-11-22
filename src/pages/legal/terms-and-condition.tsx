@@ -5,7 +5,7 @@ import Title from '~/components/Title'
 
 export default function terms_and_condition() {
   return (
-    <main className="relative min-h-screen bg-black-pearl">
+    <main className="relative min-h-screen bg-black-pearl text-black">
       <Title suffix="Family Wise">Terms & Conditions</Title>
       <header>
         <Header color="dark" />

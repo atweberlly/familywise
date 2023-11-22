@@ -7,7 +7,7 @@ export default async function handler(request, response) {
   const {
     query: { id },
     method,
-    body,
+    //body,
   } = request
 
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone

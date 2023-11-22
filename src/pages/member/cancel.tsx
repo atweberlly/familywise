@@ -33,7 +33,7 @@ const Cancel = () => {
     })()
   }, [dispatch, router])
 
-  const [isClient, setIsClient] = useState(false)
+  const [, setIsClient] = useState(false)
   useEffect(() => {
     setIsClient(true)
   }, [])

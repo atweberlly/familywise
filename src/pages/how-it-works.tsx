@@ -57,10 +57,10 @@ export default function HowItWorks(): JSX.Element {
         <div className="h-[100%] bg-gray-300 lg:h-[100%]">
           <Image
             className="h-full w-full object-cover"
-            src="/images/how-it-works/how-it-works-1.svg"
+            src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/how-it-works/How+It+Works+-+Top+image.png"
             alt=""
-            width="184"
-            height="264"
+            width={1280}
+            height={800}
           />
         </div>
 
@@ -137,10 +137,10 @@ export default function HowItWorks(): JSX.Element {
         <div className="h-[100%] bg-gray-300 lg:h-[100%]">
           <Image
             className="h-full w-full object-cover"
-            src="/images/how-it-works/how-it-works-2.svg"
+            src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/how-it-works/How+It+Works+Page+-+2nd+image.png"
             alt=""
-            width="184"
-            height="264"
+            width={1280}
+            height={800}
           />
         </div>
 

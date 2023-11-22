@@ -177,7 +177,7 @@ export default function JoinUs() {
   }, [relationVisible, register, watch])
 
   return (
-    <main className="flex min-h-screen justify-center bg-gray-100">
+    <main className="flex min-h-screen justify-center bg-gray-100 text-black">
       <Title suffix="Family Wise">Get Started</Title>
       <section className="m-0 flex max-w-screen-2xl flex-1 justify-center bg-white shadow sm:m-20 sm:rounded-lg">
         <div className="p-6 sm:p-12 lg:w-1/2 xl:w-6/12">
