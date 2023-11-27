@@ -81,9 +81,10 @@ export default function JoinUs() {
         const _id = response.data.result._id
 
         // redirect user to the auth page
-        setTimeout(() => {
+        setTimeout(async () => {
           destroyDatePicker()
           setLoading(false)
+
           router.push(`/checkout/${_id}`)
         }, 3000)
       })

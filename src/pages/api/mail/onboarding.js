@@ -19,6 +19,34 @@ const onboarding = async (req, res) => {
       }
 
       await sendMailFnx(onboardingEmailConfig)
+    } else if (user.planType === 'Your-Life-In-A-Book') {
+      // Send onboarding email for Your-Life-In-A-Book users
+      const onboardingSubject =
+        'Ready to get started, ' + capitalizeFirstLetter(user.firstname) + '?'
+      const onboardingTemplate = 'YourLifeInABook/onboarding-1.html'
+
+      const onboardingEmailConfig = {
+        subject: onboardingSubject,
+        template: onboardingTemplate,
+        param: { name: capitalizeFirstLetter(user.firstname) },
+        to: user.email,
+      }
+
+      await sendMailFnx(onboardingEmailConfig)
+    } else if (user.planType === 'Photo-Based-Book') {
+      // Send onboarding email for Photo-Based-Book users
+      const onboardingSubject =
+        'Ready to get started, ' + capitalizeFirstLetter(user.firstname) + '?'
+      const onboardingTemplate = 'PhotoBasedBook/onboarding-1.html'
+
+      const onboardingEmailConfig = {
+        subject: onboardingSubject,
+        template: onboardingTemplate,
+        param: { name: capitalizeFirstLetter(user.firstname) },
+        to: user.email,
+      }
+
+      await sendMailFnx(onboardingEmailConfig)
     } else {
       //params { subject, template, param, to }
       const subject =
