@@ -342,6 +342,7 @@ export const PaymentForm = (props: {
       return axios(configuration).then(async (response) => {
         //send emails
         //confirmation page
+
         if (response) {
           //send onboarding
           //Check if the user has set a gift date and use that as the schedule, otherwise use today's date

@@ -85,9 +85,6 @@ export default function JoinUs() {
           destroyDatePicker()
           setLoading(false)
 
-          //Send onboarding email
-          await axios.post('/api/mail/onboarding', data)
-
           router.push(`/checkout/${_id}`)
         }, 3000)
       })
