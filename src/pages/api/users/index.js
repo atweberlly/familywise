@@ -73,7 +73,7 @@ export default async function handler(request, response) {
             .catch((error) => {
               if (error.code === 11000) {
                 response.status(500).send({
-                  message: 'This email address is already exist. Please provide different account',
+                  message: 'This email address already exist. Please provide different account',
                   error,
                 })
               } else {
