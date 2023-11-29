@@ -356,11 +356,11 @@ export const PaymentForm = (props: {
           if (isSameDate(emailSchedule, today)) {
             // Send the onboarding email
             await axios.post('/api/mail/onboarding', props.user)
-            // Delay the email sending for 5 minutes
+            // Delay the email sending for 1 minute
             setTimeout(async () => {
               // Get the first question for the user and send it to them
               await axios.post('/api/questions/getFirstQuestion', props.user)
-            }, 300000)
+            }, 60000)
           }
 
           //show success notification
