@@ -10,17 +10,15 @@ export default async function handler(request, response) {
   await dbConnect()
 
   switch (method) {
-    case 'GET': //find all users
+    case 'GET': // find all users
       await User.find({ roles: 'subscriber' })
         .sort({ createdAt: -1 })
-        // return success
         .then((result) => {
           response.status(201).send({
             message: 'List of Users',
             result,
           })
         })
-        // catch error if getting user account
         .catch((error) => {
           response.status(500).send({
             message: 'Error getting all users',
@@ -30,7 +28,7 @@ export default async function handler(request, response) {
 
       break
 
-    case 'POST': //create user
+    case 'POST': // create user
       const resetToken =
         request.body.bookReceiver === 'gift' ? crypto.randomBytes(32).toString('hex') : ''
 
@@ -61,22 +59,24 @@ export default async function handler(request, response) {
 
           // save the new user
           await User.create(newUser)
-
-            // return success if the new user is added to the database successfully
             .then((result) => {
               response.status(201).send({
                 message: 'User Created Successfully',
                 result,
               })
             })
-            // catch erroe if the new user wasn't added successfully to the database
-            .catch((error) => {
+            .catch(async (error) => {
               if (error.code === 11000) {
+                const existingUser = await User.findOne({ email: newUser.email })
+
                 response.status(500).send({
-                  message: 'This email address is already exist. Please provide different account',
+                  message: `This email address already exists. Please provide a different account.`,
+                  idValue: `${existingUser ? existingUser._id : null}`,
+                  currentStatus: `${existingUser ? existingUser.status : null}`,
                   error,
                 })
               } else {
+                console.error('Error details:', error)
                 response.status(500).send({
                   message: "We're sorry, something went wrong when attempting to sign up.",
                   error,
@@ -84,7 +84,6 @@ export default async function handler(request, response) {
               }
             })
         })
-        // catch error if the password hash isn't successful
         .catch((error) => {
           response.status(500).send({
             message: 'Password was not hashed successfully',
