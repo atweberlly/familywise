@@ -51,7 +51,7 @@ export default function JoinUs() {
     giftSender: '',
     giftSalutation: '',
     giftRelation: 'mom',
-    giftOccasion: 'merry christmas!',
+    giftOccasion: 'Merry Christmas!',
     giftMessage: '',
     planType: plan,
     reason: '',
@@ -364,7 +364,7 @@ export default function JoinUs() {
                         <p className="text-sm font-semibold">Occasion</p>
                         <select
                           className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                          defaultValue={'merry christmas!'}
+                          defaultValue={'Merry Christmas!'}
                           name={'giftOccasion'}
                           onChange={(e) => {
                             if ((e.target as HTMLSelectElement).value === 'other') {
