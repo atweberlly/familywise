@@ -13,36 +13,38 @@ export default function Success(): JSX.Element {
       {' '}
       {/* Set min-h-screen to make sure the container covers the entire screen */}
       <Title>Congratulations!</Title>
-      <Confetti width={width} height={height} numberOfPieces={20} tweenDuration={5000} />
       <header className="bg-white text-black">
         <Header />
       </header>
-      <div className="bg-white lg:py-24">
+      <div className="lg:pb-18 bg-white pt-12 lg:pt-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
+            <Confetti width={width} height={height} numberOfPieces={20} tweenDuration={5000} />
             <h2 className="font-serif text-4xl font-medium text-gray-900 lg:text-5xl">
               Congratulations, your story starts here!
             </h2>
           </div>
         </div>
-        <div className="mx-auto my-4 max-w-7xl px-4 md:px-8 ">
-          <p className="mt-4 text-lg text-gray-600 lg:mt-6 lg:text-xl">
+        <div className="mx-auto my-12 max-w-7xl px-4 text-center md:px-8 ">
+          <p className="mt-4 text-gray-600 lg:mt-6">
             With carefully selected questions designed to spark your memories, FamilyWise Stories
             will lead you through your life&apos;s meaningful moments & treasured memories and will
             guide you as you author your own keepsake book.
           </p>
-          <div className="my-4 text-left">
-            <h3 className="text-lg font-semibold text-gray-900 lg:text-2xl">
+          <div className="my-4">
+            <h3 className="font-semibold text-gray-900">
               You&apos;ll receive an email soon so you can start right away.
             </h3>
-            <p className="mt-4 text-lg text-gray-600 lg:text-xl">
+            <p className="mt-4 text-gray-600">
               I hope you enjoy your walk down memory lane as you create a keepsake your whole family
               will enjoy once your very own life story is published!
             </p>
           </div>
           <div className="pt-4">
-            <div className="font-serif text-[2rem] font-bold leading-none">Rachel</div>
-            <div className="mt-1 text-lg font-medium italic">Founder of FamilyWise Stories</div>
+            <div className="font-bold leading-none">Rachel</div>
+            <div className="mt-1font-medium italic text-gray-500">
+              Founder of FamilyWise Stories
+            </div>
           </div>
         </div>
       </div>
