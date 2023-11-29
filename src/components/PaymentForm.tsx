@@ -371,7 +371,7 @@ export const PaymentForm = (props: {
             }
           )
           //redirect to sign in page
-          router.push('/sign-in')
+          router.push('/success')
         }
       })
     })
