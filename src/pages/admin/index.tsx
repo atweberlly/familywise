@@ -90,7 +90,7 @@ const Administrator: NextPage = () => {
               <hr className="my-2" />
 
               <div className="children:pt-2 space-y-2 divide-y ">
-                {Newsletter?.map(({ id, full_name, email_address }) => {
+                {Newsletter?.slice(0, 10).map(({ id, full_name, email_address }) => {
                   return (
                     <div key={id}>
                       <div>{full_name}</div>
@@ -119,25 +119,23 @@ const Administrator: NextPage = () => {
               <hr className="my-2" />
 
               <div className="children:pt-2 space-y-2 divide-y ">
-                {Subscribers?.map(
-                  ({ _id, firstname, lastname, email, roles, planType, status }) => {
+                {Subscribers?.filter((subscriber) => subscriber.status === true)
+                  .slice(0, 10)
+                  .map(({ _id, firstname, lastname, email, roles, planType, status }) => {
                     return (
-                      status === true && (
-                        <div className="flex items-center justify-between" key={_id}>
-                          <div>
-                            <p>
-                              {firstname} {lastname}
-                            </p>
-                            <p className="text-sm text-secondary-500 dark:text-mercury ">{email}</p>
-                          </div>
-                          <span className="rounded-full bg-primary-400 px-3 py-1 text-sm text-white dark:bg-[#a07b60] dark:text-white">
-                            {planType}
-                          </span>
+                      <div className="flex items-center justify-between" key={_id}>
+                        <div>
+                          <p>
+                            {firstname} {lastname}
+                          </p>
+                          <p className="text-sm text-secondary-500 dark:text-mercury ">{email}</p>
                         </div>
-                      )
+                        <span className="rounded-full bg-primary-400 px-3 py-1 text-sm text-white dark:bg-[#a07b60] dark:text-white">
+                          {planType}
+                        </span>
+                      </div>
                     )
-                  }
-                )}
+                  })}
               </div>
             </div>
           </div>
