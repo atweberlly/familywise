@@ -98,9 +98,11 @@ export default function JoinUs() {
         const { currentStatus } = err.response.data
         setshowID(idValue)
         setshowStatus(currentStatus)
-        toast.error(message, {
-          duration: 3000, // Specify the duration in milliseconds (3 seconds)
-        })
+        if (currentStatus === 'true') {
+          toast.error(message, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
+        }
         setLoading(false) //remove loader
       })
   }
