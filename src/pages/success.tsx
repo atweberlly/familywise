@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import Confetti from 'react-confetti'
 import Image from 'next/image'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
@@ -8,6 +8,7 @@ export default function Books(): JSX.Element {
   return (
     <div className="bg-white text-black">
       <Title>Congratulations!</Title>
+      <Confetti width={4000} height={4000} />
       <header className="bg-white text-black">
         <Header />
       </header>
