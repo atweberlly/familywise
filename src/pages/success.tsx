@@ -1,18 +1,22 @@
 import Confetti from 'react-confetti'
+import { useWindowSize } from 'react-use'
 import Image from 'next/image'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
 import Title from '~/components/Title'
 
-export default function Books(): JSX.Element {
+export default function Success(): JSX.Element {
+  const { width, height } = useWindowSize()
+
   return (
-    <div className="bg-white text-black">
+    <div className="min-h-screen bg-white text-black">
+      {' '}
+      {/* Set min-h-screen to make sure the container covers the entire screen */}
       <Title>Congratulations!</Title>
-      <Confetti width={4000} height={4000} />
+      <Confetti width={width} height={height} numberOfPieces={20} tweenDuration={5000} />
       <header className="bg-white text-black">
         <Header />
       </header>
-
       <div className="bg-white lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -42,8 +46,7 @@ export default function Books(): JSX.Element {
           </div>
         </div>
       </div>
-
-      <div className="h-[100%] bg-gray-300 lg:h-[100%]">
+      <div className="h-full bg-gray-300 lg:h-full">
         <Image
           className="h-full w-full object-cover"
           src="https://familyfortunate.s3.ap-southeast-2.amazonaws.com/assets/books/Books+page+-+top+image.png"

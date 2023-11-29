@@ -83,6 +83,7 @@
     "react-scrollspy": "^3.4.3",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
+    "react-use": "^17.4.1",
     "redraft": "^0.10.2",
     "slick-carousel": "^1.8.1",
     "striptags": "^3.2.0",
