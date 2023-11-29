@@ -314,7 +314,7 @@ export default function JoinUs() {
             <hr />
             <p className="px-0 text-center text-sm font-light text-secondary-500 lg:px-5">
               Family Wise collects and uses personal data in accordance with our{' '}
-              <Link className="underline hover:text-primary-400" href="/privacy">
+              <Link className="underline hover:text-primary-400" href="/legal/privacy">
                 Privacy Policy
               </Link>
               . <br className="hidden md:block" /> By creating an account, you agree to our{' '}
