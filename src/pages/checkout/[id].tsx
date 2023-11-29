@@ -129,7 +129,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     <p>Last name: {user?.lastname}</p>
                     <p>Email Address: {user?.email}</p>
                     <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')} </p>
-                    <p>Occasion: {user?.giftOccasion}</p>
+                    <p className="capitalize">Occasion: {user?.giftOccasion}</p>
                     <p>From: {user?.giftSender}</p>
                     <p>Message: {user?.giftMessage}</p>
                   </div>
@@ -137,9 +137,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
               </div>
             </div>
 
-            <Heading size={4} className="text-white">
-              ${price}
-            </Heading>
+            <p className="text-bold text-xl text-white">${price}</p>
           </div>
           {showDiscount && (
             <>
