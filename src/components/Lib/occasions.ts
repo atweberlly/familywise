@@ -7,27 +7,27 @@ export interface Props {
 export const occasionOptions: Array<Props> = [
   {
     id: uniqueId(),
-    value: 'merry christmas!',
+    value: 'Merry Christmas!',
   },
   {
     id: uniqueId(),
-    value: 'happy birthday!',
+    value: 'Happy Birthday!',
   },
   {
     id: uniqueId(),
-    value: "happy mother's Day!",
+    value: "Happy Mother's Day!",
   },
   {
     id: uniqueId(),
-    value: "happy father's day!",
+    value: "Happy Father's Day!",
   },
   {
     id: uniqueId(),
-    value: 'congratulations!',
+    value: 'Congratulations!',
   },
   {
     id: uniqueId(),
-    value: 'happy new year!',
+    value: 'Happy New Year!',
   },
   {
     id: uniqueId(),
