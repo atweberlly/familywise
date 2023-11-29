@@ -11,6 +11,7 @@ import { occasionOptions } from '../components/Lib/occasions'
 import { relationOptions } from '../components/Lib/relations'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
+import SmoothPrompt from '../components/SmoothPrompt'
 import Title from '../components/Title'
 import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
@@ -27,6 +28,9 @@ export default function JoinUs() {
   const [relationVisible, setRelationVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [showOtherField, setShowOtherField] = useState(false)
+  //Client Properties
+  const [showID, setshowID] = useState('')
+  const [showStatus, setshowStatus] = useState('')
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
@@ -90,6 +94,10 @@ export default function JoinUs() {
       })
       .catch((err) => {
         const { message } = err.response.data
+        const { idValue } = err.response.data
+        const { currentStatus } = err.response.data
+        setshowID(idValue)
+        setshowStatus(currentStatus)
         toast.error(message, {
           duration: 3000, // Specify the duration in milliseconds (3 seconds)
         })
@@ -180,6 +188,13 @@ export default function JoinUs() {
   return (
     <main className="flex min-h-screen justify-center bg-gray-100 text-black">
       <Title suffix="Family Wise">Get Started</Title>
+      <SmoothPrompt
+        description={
+          'We noticed that this email has not completed the registration. Would you like to finish the registration process?'
+        }
+        route={showID}
+        userStatus={showStatus}
+      />
       <section className="m-0 flex max-w-screen-2xl flex-1 justify-center bg-white shadow sm:m-20 sm:rounded-lg">
         <div className="p-6 sm:p-12 lg:w-1/2 xl:w-6/12">
           <Link href="/" className="!block lg:inline-block">
