@@ -129,7 +129,6 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     <p>First name: {user?.firstname}</p>
                     <p>Last name: {user?.lastname}</p>
                     <p>Email Address: {user?.email}</p>
-                    <p>Sender Email: {user?.senderEmail}</p>
                     <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')} </p>
                     <p>Occasion: {user?.giftOccasion}</p>
                     <p>From: {user?.giftSender}</p>
