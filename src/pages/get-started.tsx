@@ -154,6 +154,9 @@ export default function JoinUs() {
       register('giftSender', {
         required: 'You must provide your name',
       })
+      register('senderEmail', {
+        required: 'You must provide your name',
+      })
       register('giftMessage', {
         required: 'You must provide a gift message',
       })

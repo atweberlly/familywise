@@ -3,7 +3,8 @@ import { capitalizeFirstLetter } from '../../../utils/globalFnx'
 import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
-  const ownerEmail = 'member@familywise.us'
+  //const ownerEmail = 'member@familywise.us'
+  const ownerEmail = 'jerichoyestares2001@gmail.com'
   try {
     const user = req.body
     //Check if the planType is Free-Trial
@@ -28,6 +29,11 @@ const onboarding = async (req, res) => {
       const onboardingTemplate = 'YourLifeInABook/onboarding-1.html'
       const notifyOwner = 'Alert/myself-yliab.html'
       const notifyOwnerGift = 'Alert/gift-yliab.html'
+      //Gift
+      const onboardingRecipientSubject =
+        'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
+      const notifyGifter = 'Gift/purchaser.html'
+      const notifyRecipient = 'Gift/receiver.html'
 
       const onboardingEmailConfig = {
         subject: onboardingSubject,
@@ -71,6 +77,18 @@ const onboarding = async (req, res) => {
             },
             to: ownerEmail,
           }
+          const notifyPurchaserEmailConfig = {
+            subject: onboardingSubject,
+            template: notifyGifter,
+            param: {
+              name: capitalizeFirstLetter(user.firstname),
+              r_name: user.giftSender,
+              email: user.email,
+              receiver: user.bookReceiver,
+            },
+            to: user.senderEmail,
+          }
+          await sendMailFnx(notifyPurchaserEmailConfig)
           await sendMailFnx(notifyOwnerEmailGiftConfig)
         }
       } catch (err) {
