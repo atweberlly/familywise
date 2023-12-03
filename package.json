@@ -5,7 +5,6 @@
     "dev": "next dev",
     "format": "prettier --write .",
     "lint": "next lint",
-    "prepare": "husky install",
     "preview": "next build && next start"
   },
   "browserslist": {
@@ -36,7 +35,7 @@
     "@paypal/react-paypal-js": "^7.8.2",
     "@react-pdf/renderer": "^3.1.6",
     "@reduxjs/toolkit": "^1.9.2",
-    "@sendgrid/mail": "^7.7.0",
+    "@sendgrid/mail": "^6.5.5",
     "@sveltejs/adapter-vercel": "^2.4.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
@@ -77,7 +76,7 @@
     "react-pdf": "^7.3.3",
     "react-pdf-html": "^1.1.18",
     "react-pdf-tailwind": "^2.1.0",
-    "react-quill": "^2.0.0",
+    "react-quill": "^0.0.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
     "react-scrollspy": "^3.4.3",
@@ -119,14 +118,12 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
     "postcss": "^8.4.19",
     "postcss-import": "^15.1.0",
     "postcss-sort-media-queries": "^4.3.0",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
-    "sharp": "^0.31.3",
+    "sharp": "^0.33.0",
     "tailwindcss": "^3.2.4",
     "typescript": "4.9.4"
   }
