@@ -119,6 +119,11 @@ const onboarding = async (req, res) => {
       const notifyOwner = 'Alert/myself-pbb.html'
       const notifyOwnerGift = 'Alert/gift-pbb.html'
 
+      const onboardingRecipientSubject =
+        'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
+      const notifyGifter = 'Gift/purchaser.html'
+      const notifyRecipient = 'Gift/recipient.html'
+
       const onboardingEmailConfig = {
         subject: onboardingSubject,
         template: onboardingTemplate,
@@ -161,6 +166,33 @@ const onboarding = async (req, res) => {
             },
             to: ownerEmail,
           }
+          const notifyPurchaserEmailConfig = {
+            subject: onboardingSubject,
+            template: notifyGifter,
+            param: {
+              name: capitalizeFirstLetter(user.firstname),
+              r_name: user.giftSender,
+              email: user.email,
+              receiver: user.bookReceiver,
+            },
+            to: user.senderEmail,
+          }
+          const notifyReceiverEmailConfig = {
+            subject: onboardingRecipientSubject,
+            template: notifyRecipient,
+            param: {
+              name: capitalizeFirstLetter(user.firstname),
+              r_name: user.giftSender,
+              email: user.email,
+              occasion: user.giftOccasion,
+              s_msg_gift: user.giftSalutation,
+              type: user.planType,
+              receiver: user.bookReceiver,
+            },
+            to: user.email,
+          }
+          await sendMailFnx(notifyReceiverEmailConfig)
+          await sendMailFnx(notifyPurchaserEmailConfig)
           await sendMailFnx(notifyOwnerEmailGiftConfig)
         }
       } catch (err) {
