@@ -44,7 +44,6 @@ export default async function handler(request, response) {
             bookReceiver: request.body.bookReceiver,
             giftDate: request.body.giftDate,
             giftSender: request.body.giftSender,
-            senderEmail: request.body.senderEmail,
             giftRelation: request.body.giftRelation,
             giftOccasion: request.body.giftOccasion,
             giftSalutation: request.body.giftSalutation,

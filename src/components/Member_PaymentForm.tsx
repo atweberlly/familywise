@@ -301,7 +301,7 @@ export const PaymentForm = (props: {
   ) => {
     let finalAmount = amount // Use the provided amount
     if (finalAmount <= 0) {
-      finalAmount = 0 // Set a minimum amount (e.g., $0.01)
+      finalAmount = 0.01 // Set a minimum amount (e.g., $0.01)
     }
     return actions.order
       .create({

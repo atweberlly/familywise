@@ -57,13 +57,6 @@ const UserSchema = new mongoose.Schema(
       required: false,
       unique: false,
     },
-
-    //Purchaser
-    senderEmail: {
-      type: String,
-      required: false,
-      unique: false,
-    },
     // gift relation field
     giftRelation: {
       type: String,
