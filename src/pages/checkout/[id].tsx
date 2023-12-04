@@ -11,6 +11,7 @@ import axios from 'axios'
 import dateFormat from 'dateformat'
 import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/solid'
+import { occasionOptions } from '~/components/Lib/occasions'
 
 export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   const [user, setUser] = useState({
@@ -24,6 +25,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
     giftMessage: '',
     giftOccasion: '',
     bookReceiver: '',
+    status: false,
   })
 
   const [couponCode, setCouponCode] = useState('')
@@ -32,10 +34,27 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   const [discountAmount, setDiscountAmount] = useState(0)
   const [originalPrice, setOriginalPrice] = useState(97)
   const [showDiscount, setShowDiscount] = useState(true)
+  const [isEditing, setIsEditing] = useState(false)
+  const [showOtherField, setShowOtherField] = useState(false)
 
   const { ClientToken, ClientID } = props
   const router = useRouter()
   const { id } = router.query
+
+  const handleEditClick = async () => {
+    if (isEditing) {
+      try {
+        // Send a request to update user data
+        await axios.put(`/api/users/${id}`, user)
+        setIsEditing(false) // Disable editing mode after successful update
+      } catch (error) {
+        console.error(error)
+        // Handle error appropriately
+      }
+    } else {
+      setIsEditing(true)
+    }
+  }
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -124,24 +143,179 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                 <Heading size={6} className="text-white">
                   {user?.planType} Family Wise Packages
                 </Heading>
-                {user?.bookReceiver === 'gift' && (
+
+                {isEditing ? (
+                  user?.bookReceiver === 'myself' ? (
+                    // Editable fields in editing mode for 'myself'
+                    <div className="mt-2 flex flex-col text-xs text-black">
+                      <div className="mb-3">
+                        <label
+                          htmlFor="firstName"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          value={user?.firstname}
+                          onChange={(e) => setUser({ ...user, firstname: e.target.value })}
+                          placeholder="Enter your first name"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label
+                          htmlFor="lastName"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          value={user?.lastname}
+                          onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+                          placeholder="Enter your last name"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label htmlFor="email" className="mb-1 block font-semibold text-gray-600">
+                          Email Address
+                        </label>
+                        <input
+                          type="text"
+                          id="email"
+                          value={user?.email}
+                          onChange={(e) => setUser({ ...user, email: e.target.value })}
+                          placeholder="Enter your email address"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      {/* Add more fields as needed */}
+                    </div>
+                  ) : (
+                    // Editable fields in editing mode for 'gift'
+                    <div className="mt-2 flex flex-col text-xs text-black">
+                      <div className="mb-3">
+                        <label
+                          htmlFor="firstName"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          value={user?.firstname}
+                          onChange={(e) => setUser({ ...user, firstname: e.target.value })}
+                          placeholder="Enter your first name"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label
+                          htmlFor="lastName"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          value={user?.lastname}
+                          onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+                          placeholder="Enter your last name"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label htmlFor="email" className="mb-1 block font-semibold text-gray-600">
+                          Email Address
+                        </label>
+                        <input
+                          type="text"
+                          id="email"
+                          value={user?.email}
+                          onChange={(e) => setUser({ ...user, email: e.target.value })}
+                          placeholder="Enter your email address"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label
+                          htmlFor="giftSender"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          From
+                        </label>
+                        <input
+                          type="text"
+                          id="giftSender"
+                          value={user?.giftSender}
+                          onChange={(e) => setUser({ ...user, giftSender: e.target.value })}
+                          placeholder="Your name & anyone else the gift is from"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label
+                          htmlFor="giftMessage"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          Message
+                        </label>
+                        <input
+                          type="text"
+                          id="giftMessage"
+                          value={user?.giftMessage}
+                          onChange={(e) => setUser({ ...user, giftMessage: e.target.value })}
+                          placeholder="You must provide a gift message"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+
+                      {/* Add more fields as needed */}
+                    </div>
+                  )
+                ) : (
+                  // Display only mode
                   <div className="mt-2 flex flex-col text-xs text-white/80">
                     <p>First name: {user?.firstname}</p>
                     <p>Last name: {user?.lastname}</p>
                     <p>Email Address: {user?.email}</p>
-                    <p>Sender Email: {user?.senderEmail}</p>
-                    <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')} </p>
-                    <p className="capitalize">Occasion: {user?.giftOccasion}</p>
-                    <p>From: {user?.giftSender}</p>
-                    <p>Message: {user?.giftMessage}</p>
+
+                    {user?.bookReceiver === 'gift' && (
+                      <>
+                        <p>Occasion: {user?.giftOccasion}</p>
+                        <p>From: {user?.giftSender}</p>
+                        <p>Message: {user?.giftMessage}</p>
+                        {/* Display other gift-specific fields as needed */}
+                      </>
+                    )}
+
+                    {user?.bookReceiver === 'gift' && (
+                      <p>Gift Date: {dateFormat(user?.giftDate, 'longDate')}</p>
+                    )}
                   </div>
                 )}
               </div>
             </div>
 
-            <p className="text-bold text-xl text-white">${price}</p>
+            <Heading size={4} className="text-white">
+              ${price}
+            </Heading>
           </div>
-          {showDiscount && (
+
+          {user && user.status !== true && showDiscount && (
             <>
               <hr className="mt-5 w-full border-white/80" />
               <div className="m-5 flex items-start gap-4 lg:m-8">
@@ -195,6 +369,14 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                   }}
                 >
                   Apply
+                </Button>
+                <Button
+                  className="w-20 shrink-0"
+                  type={'button'}
+                  color={'secondary'}
+                  onClick={handleEditClick}
+                >
+                  {isEditing ? 'Save' : 'Edit'}
                 </Button>
               </div>
             </>
