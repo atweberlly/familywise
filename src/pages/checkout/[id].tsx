@@ -309,6 +309,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                 )}
               </div>
             </div>
+
             <Heading size={4} className="text-white">
               ${price}
             </Heading>
