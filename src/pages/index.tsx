@@ -6,6 +6,7 @@ import Title from '../components/Title'
 import Newsletter from '../components/sections/Newsletter'
 import Testimonials from '../components/sections/Testimonials'
 import Swiper, { Navigation } from 'swiper'
+import MetaPixel from '~/utils/meta/MetaPixel'
 import { ArrowLongDownIcon } from '@heroicons/react/24/outline'
 import CaptureStories from '~/components/sections/CaptureStories'
 import CoverCarousel from '~/components/sections/CoverCarousel'
@@ -68,7 +69,7 @@ export default function Home() {
   return (
     <div>
       <Title>Family Wise</Title>
-
+      <MetaPixel />
       <header className="bg-white text-black">
         <Header />
         <div className="section container">
