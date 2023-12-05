@@ -16,6 +16,19 @@ module.exports = {
       padding: '2.5rem',
     },
     extend: {
+      animation: {
+        scroll: 'scroll 40s linear infinite',
+      },
+      keyframes: {
+        scroll: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            transform: 'translateX(calc(-256px * 8))',
+          },
+        },
+      },
       backgroundImage: {
         texture: "url('/images/hero/hero-video-placeholder@4x.jpg')",
         'book-cover': "url('/images/book-cover.png')",

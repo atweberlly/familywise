@@ -5,7 +5,6 @@
     "dev": "next dev",
     "format": "prettier --write .",
     "lint": "next lint",
-    "prepare": "husky install",
     "preview": "next build && next start"
   },
   "browserslist": {
@@ -119,8 +118,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
     "postcss": "^8.4.19",
     "postcss-import": "^15.1.0",
     "postcss-sort-media-queries": "^4.3.0",
