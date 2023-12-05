@@ -34,6 +34,7 @@ const onboarding = async (req, res) => {
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'
+      const notifyRecipientGift = 'Gift/fw-gift.html'
 
       const onboardingEmailConfig = {
         subject: onboardingSubject,
@@ -102,6 +103,23 @@ const onboarding = async (req, res) => {
             },
             to: user.email,
           }
+          //Gift Design
+          const notifyReceiverEmailGiftConfig = {
+            subject: onboardingRecipientSubject,
+            template: notifyRecipientGift,
+            param: {
+              name: capitalizeFirstLetter(user.firstname),
+              r_name: user.giftSender,
+              email: user.email,
+              occasion: user.giftOccasion,
+              s_msg_gift: user.giftSalutation,
+              type: user.planType,
+              msg_gift: user.giftMessage,
+              receiver: user.bookReceiver,
+            },
+            to: user.email,
+          }
+          await sendMailFnx(notifyReceiverEmailGiftConfig)
           await sendMailFnx(notifyReceiverEmailConfig)
           await sendMailFnx(notifyPurchaserEmailConfig)
           await sendMailFnx(notifyOwnerEmailGiftConfig)
