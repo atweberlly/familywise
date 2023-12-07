@@ -3,8 +3,8 @@ import { capitalizeFirstLetter } from '../../../utils/globalFnx'
 import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
-  //const ownerEmail = 'member@familywise.us'
-  const ownerEmail = 'jonahmay.castro08@gmail.com'
+  const ownerEmail = 'member@familywise.us'
+  const bccEmail = 'jonahmay.castro08@gmail.com'
 
   try {
     const user = req.body
@@ -56,6 +56,7 @@ const onboarding = async (req, res) => {
               receiver: user.bookReceiver,
             },
             to: ownerEmail,
+            bcc: bccEmail,
           }
           await sendMailFnx(notifyOwnerEmailConfig)
         } else if (user.bookReceiver === 'gift') {
@@ -78,6 +79,7 @@ const onboarding = async (req, res) => {
               }),
             },
             to: ownerEmail,
+            bcc: bccEmail,
           }
           const notifyPurchaserEmailConfig = {
             subject: onboardingSubject,
@@ -162,6 +164,7 @@ const onboarding = async (req, res) => {
               receiver: user.bookReceiver,
             },
             to: ownerEmail,
+            bcc: bccEmail,
           }
           await sendMailFnx(notifyOwnerEmailConfig)
         } else if (user.bookReceiver === 'gift') {
@@ -184,6 +187,7 @@ const onboarding = async (req, res) => {
               }),
             },
             to: ownerEmail,
+            bcc: bccEmail,
           }
           const notifyPurchaserEmailConfig = {
             subject: onboardingSubject,
