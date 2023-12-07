@@ -3,7 +3,8 @@ import { capitalizeFirstLetter } from '../../../utils/globalFnx'
 import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
-  const ownerEmail = 'member@familywise.us'
+  //const ownerEmail = 'member@familywise.us'
+  const ownerEmail = 'jonahmay.castro08@gmail.com'
 
   try {
     const user = req.body
