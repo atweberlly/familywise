@@ -136,6 +136,12 @@ module.exports = {
         serif: ['Playfair Display', ...defaultTheme.fontFamily.serif],
         fair: ['Playfair Display', ...defaultTheme.fontFamily.serif],
       },
+      maxHeight: {
+        'book-height': '1748px',
+      },
+      maxWidth: {
+        'book-width': '1240px',
+      },
       minWidth: {
         xs: '320px',
       },
