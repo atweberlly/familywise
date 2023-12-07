@@ -6,11 +6,13 @@ interface IEmailParams {
   subject: string
   html: string
   to: string
+  bcc: string
   from: string
 }
 
 const sendEmail = async (emailParams: IEmailParams) => {
   const email = {
+    bcc: emailParams.bcc,
     to: emailParams.to,
     from: emailParams.from,
     subject: emailParams.subject,
