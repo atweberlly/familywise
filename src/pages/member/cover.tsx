@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
+import { book_templates, Props as BookTemplateProps } from '../../components/Lib/book_templates'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
 import '../../styles/CustomStyle.css'
@@ -22,6 +23,8 @@ const Cover = () => {
     author: 'Alex Green',
     image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783',
   })
+
+  const [selectedTemplate, setSelectedTemplate] = useState<BookTemplateProps>(book_templates[0])
 
   useEffect(() => {
     ;(async () => {
@@ -185,7 +188,31 @@ const Cover = () => {
     <>
       <MemberLayout>
         <div className="cover-container">
-          <div className="form-container">
+          <div className="form-group">
+            <>
+              <div className="form-group">
+                <label htmlFor="template">Choose a Template</label>
+                <div className="mt-3  max-h-80 overflow-auto">
+                  <div className="grid grid-cols-2 gap-1">
+                    {book_templates.map((template) => (
+                      <div
+                        key={template.id}
+                        className={`flex cursor-pointer flex-col items-start rounded-md border border-secondary-300 p-6 ${
+                          selectedTemplate.id === template.id ? 'bg-primary-100' : ''
+                        }`}
+                        onClick={() => setSelectedTemplate(template)}
+                      >
+                        <img
+                          src={template.showcaseImage}
+                          alt={`Template ${template.item}`}
+                          className="mb-2 max-h-32 w-auto rounded-md object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <input
