@@ -27,40 +27,44 @@ const Cover = () => {
   const [selectedTemplate, setSelectedTemplate] = useState<BookTemplateProps>(book_templates[0])
 
   useEffect(() => {
-    ;(async () => {
+    // Fetch existing cover data when user changes
+    const fetchCoverData = async () => {
       try {
-        // Make an API request to get the user's cover data
         const response = await axios.get(`/api/cover/getCover?userId=${user._id}`)
         const coverData = response.data
-
         // Update the content state with cover data
         if (coverData && coverData.length > 0) {
-          const data = coverData[0] // Assuming you only expect one cover data for a user
+          const data = coverData[0]
           setTitle(data.title)
           setAuthor(data.author)
           setCoverImage(data.image)
         }
       } catch (error) {
-        // Handle any errors if the API request fails
         console.error('Failed to fetch cover data:', error)
       }
-    })()
+    }
+
+    if (user._id) {
+      fetchCoverData()
+    }
   }, [user._id])
 
-  let autoSaveTimeout: string | number | NodeJS.Timeout | undefined
+  let autoSaveTimeout: ReturnType<typeof setTimeout> | undefined
 
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newTitle = event.target.value
     setTitle(newTitle)
+
     clearTimeout(autoSaveTimeout)
     autoSaveTimeout = setTimeout(() => {
       handleAutoSave(newTitle, author, coverImage)
     }, 3000)
   }
 
-  const handleAuthorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAuthorChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newAuthor = event.target.value
     setAuthor(newAuthor)
+
     clearTimeout(autoSaveTimeout)
     autoSaveTimeout = setTimeout(() => {
       handleAutoSave(title, newAuthor, coverImage)
@@ -207,7 +211,7 @@ const Cover = () => {
                           alt={`Template ${template.item}`}
                           className="mb-2 max-h-32 w-auto rounded-md object-cover"
                         />
-                        {/*<span>{template.item}</span>*/}
+                        {<span>{template.item}</span>}
                       </div>
                     ))}
                   </div>
@@ -283,7 +287,7 @@ const Cover = () => {
                 <div className={selectedTemplate.divContainer}>
                   <div className={selectedTemplate.divContainer}>
                     <div className={selectedTemplate.divContainer}>
-                      {title && title.length > 20 ? (
+                      {title && title.length > 12 ? (
                         <h3 className={selectedTemplate.sTitle}>
                           {title.slice(0, 25) || 'A Happy Life'}
                         </h3>
