@@ -207,6 +207,7 @@ const Cover = () => {
                           alt={`Template ${template.item}`}
                           className="mb-2 max-h-32 w-auto rounded-md object-cover"
                         />
+                        {/*<span>{template.item}</span>*/}
                       </div>
                     ))}
                   </div>
@@ -272,16 +273,29 @@ const Cover = () => {
           </div>
           <div className="preview">
             <h1>Preview</h1>
-            <div className="cover">
+            <div className={selectedTemplate.coverStyle}>
               {coverImage ? (
-                <img src={coverImage} alt="Cover" />
+                <img className={selectedTemplate.imageStyle} src={coverImage} alt="Cover" />
               ) : (
                 <img src={defaultContent.image} alt="Default Cover" />
               )}
-              <div className="overlay">
-                <div className="info-container">
-                  <h3 className="title">{title || 'A Happy Life'}</h3>
-                  <h4 className="author">{author || 'Alex Green'}</h4>
+              <div className={selectedTemplate.backgroundOverlay}>
+                <div className={selectedTemplate.divContainer}>
+                  <div className={selectedTemplate.divContainer}>
+                    <div className={selectedTemplate.divContainer}>
+                      {title && title.length > 20 ? (
+                        <h3 className={selectedTemplate.sTitle}>
+                          {title.slice(0, 25) || 'A Happy Life'}
+                        </h3>
+                      ) : (
+                        <h3 className={selectedTemplate.title}>{title || 'A Happy Life'}</h3>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className={selectedTemplate.authorContainer}>
+                  <h4 className={selectedTemplate.author}>{author || 'Alex Green'}</h4>
                 </div>
               </div>
             </div>
