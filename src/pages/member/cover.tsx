@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
+import { book_templates, Props as BookTemplateProps } from '../../components/Lib/book_templates'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
 import '../../styles/CustomStyle.css'
@@ -23,41 +24,47 @@ const Cover = () => {
     image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783',
   })
 
+  const [selectedTemplate, setSelectedTemplate] = useState<BookTemplateProps>(book_templates[0])
+
   useEffect(() => {
-    ;(async () => {
+    // Fetch existing cover data when user changes
+    const fetchCoverData = async () => {
       try {
-        // Make an API request to get the user's cover data
         const response = await axios.get(`/api/cover/getCover?userId=${user._id}`)
         const coverData = response.data
-
         // Update the content state with cover data
         if (coverData && coverData.length > 0) {
-          const data = coverData[0] // Assuming you only expect one cover data for a user
+          const data = coverData[0]
           setTitle(data.title)
           setAuthor(data.author)
           setCoverImage(data.image)
         }
       } catch (error) {
-        // Handle any errors if the API request fails
         console.error('Failed to fetch cover data:', error)
       }
-    })()
+    }
+
+    if (user._id) {
+      fetchCoverData()
+    }
   }, [user._id])
 
-  let autoSaveTimeout: string | number | NodeJS.Timeout | undefined
+  let autoSaveTimeout: ReturnType<typeof setTimeout> | undefined
 
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newTitle = event.target.value
     setTitle(newTitle)
+
     clearTimeout(autoSaveTimeout)
     autoSaveTimeout = setTimeout(() => {
       handleAutoSave(newTitle, author, coverImage)
     }, 3000)
   }
 
-  const handleAuthorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAuthorChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newAuthor = event.target.value
     setAuthor(newAuthor)
+
     clearTimeout(autoSaveTimeout)
     autoSaveTimeout = setTimeout(() => {
       handleAutoSave(title, newAuthor, coverImage)
@@ -185,7 +192,32 @@ const Cover = () => {
     <>
       <MemberLayout>
         <div className="cover-container">
-          <div className="form-container">
+          <div className="form-group">
+            <>
+              <div className="form-group">
+                <label htmlFor="template">Choose a Template</label>
+                <div className="mt-3  max-h-80 overflow-auto">
+                  <div className="grid grid-cols-2 gap-1">
+                    {book_templates.map((template) => (
+                      <div
+                        key={template.id}
+                        className={`flex cursor-pointer flex-col items-start rounded-md border border-secondary-300 p-6 ${
+                          selectedTemplate.id === template.id ? 'bg-primary-100' : ''
+                        }`}
+                        onClick={() => setSelectedTemplate(template)}
+                      >
+                        <img
+                          src={template.showcaseImage}
+                          alt={`Template ${template.item}`}
+                          className="mb-2 max-h-32 w-auto rounded-md object-cover"
+                        />
+                        {<span>{template.item}</span>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <input
@@ -245,16 +277,29 @@ const Cover = () => {
           </div>
           <div className="preview">
             <h1>Preview</h1>
-            <div className="cover">
+            <div className={selectedTemplate.coverStyle}>
               {coverImage ? (
-                <img src={coverImage} alt="Cover" />
+                <img className={selectedTemplate.imageStyle} src={coverImage} alt="Cover" />
               ) : (
                 <img src={defaultContent.image} alt="Default Cover" />
               )}
-              <div className="overlay">
-                <div className="info-container">
-                  <h3 className="title">{title || 'A Happy Life'}</h3>
-                  <h4 className="author">{author || 'Alex Green'}</h4>
+              <div className={selectedTemplate.backgroundOverlay}>
+                <div className={selectedTemplate.divContainer}>
+                  <div className={selectedTemplate.divContainer}>
+                    <div className={selectedTemplate.divContainer}>
+                      {title && title.length > 12 ? (
+                        <h3 className={selectedTemplate.sTitle}>
+                          {title.slice(0, 25) || 'A Happy Life'}
+                        </h3>
+                      ) : (
+                        <h3 className={selectedTemplate.title}>{title || 'A Happy Life'}</h3>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className={selectedTemplate.authorContainer}>
+                  <h4 className={selectedTemplate.author}>{author || 'Alex Green'}</h4>
                 </div>
               </div>
             </div>

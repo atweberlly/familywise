@@ -31,6 +31,7 @@ const AdminList: NextPage = () => {
     bookReceiver: 'myself',
     roles: 'admin',
     status: false,
+    createdAt: '',
   }
 
   interface Post {
@@ -57,6 +58,25 @@ const AdminList: NextPage = () => {
   const [data, setData] = useState(initialState)
   const [showDelete, setShowDelete] = useState(false)
   const [selectedID, setSelectedID] = useState(null)
+  const [isEditing, setIsEditing] = useState(false)
+  const [isAdminEdit, setisAdminEdit] = useState(false)
+
+  const handleEditClick = async () => {
+    if (isAdminEdit) {
+      try {
+        // Send a request to update user data
+        await axios.put(`/api/users/${data._id}`, data)
+        toast.success('Saved!')
+        setisAdminEdit(false) // Disable editing mode after successful update
+      } catch (error) {
+        console.error(error)
+        toast.error('Server Not responding')
+        // Handle error appropriately
+      }
+    } else {
+      setisAdminEdit(true)
+    }
+  }
 
   const onSubmit = async (data: any) => {
     const url = !data._id ? `/api/admin` : `/api/users/${data._id}`
@@ -68,14 +88,13 @@ const AdminList: NextPage = () => {
       method: method,
       url: url,
       data: {
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
-        password: data.password,
-        cpassword: data.cpassword,
+        firstname: data?.firstname,
+        lastname: data?.lastname,
+        email: data?.email,
+        password: data?.password,
         country: selected,
-        bookReceiver: data.bookReceiver,
-        roles: data.roles,
+        bookReceiver: data?.bookReceiver,
+        roles: data?.roles,
         status: true,
       },
     }
@@ -115,6 +134,7 @@ const AdminList: NextPage = () => {
   const handlerAdd = () => {
     reset(initialState)
     setShowAddEdit(!showAddEdit)
+    setIsEditing(false)
   }
   //fetch all data
   useEffect(() => {
@@ -174,10 +194,6 @@ const AdminList: NextPage = () => {
         message: 'Password must have at least 8 characters',
       },
     })
-    register('cpassword', {
-      required: 'You must confirm your password',
-      validate: (val: string) => val === watch('password', '') || 'The passwords do not match',
-    })
   }, [register, watch])
 
   const onSelect = (code: string): void => {
@@ -185,6 +201,7 @@ const AdminList: NextPage = () => {
     setValue('country', code)
   }
 
+  //Admin Edit
   const handlerEdit = async (id: any) => {
     // set configurations
     const configuration = {
@@ -204,6 +221,7 @@ const AdminList: NextPage = () => {
       setValue('email', data?.email, { shouldValidate: true })
       setValue('country', data?.country, { shouldValidate: true })
       setValue('password', data?.password, { shouldValidate: true })
+      setIsEditing(true)
     } catch (error: any) {
       if (error.response && error.response.status === 404) {
         // Handle the 404 error by displaying a user-friendly message
@@ -289,7 +307,7 @@ const AdminList: NextPage = () => {
                                   href="#edit"
                                   onClick={() => handlerEdit(_id)}
                                 >
-                                  Edit
+                                  Info
                                 </Link>
                                 <Link
                                   href="#delete"
@@ -348,13 +366,14 @@ const AdminList: NextPage = () => {
           >
             <div className="flex items-center justify-between bg-white p-4 dark:bg-shark dark:text-white">
               <h4 className="text-lg font-bold tracking-tight">
-                {!getValues('_id') ? 'Add' : 'Edit'} Admin
+                {!getValues('_id') ? 'Add New Admin' : 'Admin Profile'}
               </h4>
               <button
                 className="flex items-center text-red-500"
                 type="button"
                 onClick={() => {
                   setShowAddEdit(false)
+                  setisAdminEdit(false)
                 }}
               >
                 <span className="text-sm font-semibold">Close</span>
@@ -365,123 +384,252 @@ const AdminList: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex h-full flex-col justify-between"
             >
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
-                <input type="hidden" {...register('_id')} />
-                <Input
-                  label={'First Name'}
-                  type={'text'}
-                  placeholder={'Ex: John'}
-                  defaultValue={data.firstname}
-                  {...register('firstname', { required: 'You must provide your first name' })}
-                  error={errors?.firstname?.message} //error={data.firstname ? '' : errors?.firstname?.message}
-                  onChange={(e) =>
-                    setValue('firstname', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                ></Input>
-                <Input
-                  label={'Last Name'}
-                  type={'text'}
-                  placeholder={'Ex: Doe'}
-                  defaultValue={data.lastname}
-                  {...register('lastname', { required: 'You must provide your last name' })}
-                  error={errors?.lastname?.message}
-                  onChange={(e) =>
-                    setValue('lastname', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }
-                ></Input>
-              </div>
-
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
-                <Input
-                  label={'Email Address'}
-                  type={'email'}
-                  placeholder={'johndoe@mail.com'}
-                  defaultValue={data.email}
-                  {...register('email', {
-                    required: 'You must provide an email address',
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: 'Please enter a valid email address',
-                    },
-                  })}
-                  error={errors?.email?.message}
-                  autoComplete={'email'}
-                  onChange={(e) => {
-                    setValue('email', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }}
-                ></Input>
-                <div>
-                  <p className="text-sm font-semibold ">Country</p>
-                  <ReactFlagsSelect
-                    selected={data.country}
-                    onSelect={onSelect}
-                    searchable={true}
-                    blacklistCountries={blacklistCountries}
-                    className="flag-select mt-3 block w-full"
-                  />
-                </div>
-              </div>
-              <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
-                <div className="flex w-full items-end justify-evenly">
-                  <Input
-                    label={'Password'}
-                    type={'password'}
-                    placeholder={'•••••••••'}
-                    defaultValue={data.password}
-                    {...register('password', {
-                      required: 'You must specify a password',
-                      minLength: {
-                        value: 8,
-                        message: 'Password must have at least 8 characters',
-                      },
-                    })}
-                    autoComplete={'current-password'}
-                    onChange={(e) =>
-                      setValue('password', (e.target as HTMLInputElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                    error={errors?.password?.message}
-                  ></Input>
-                </div>
-                <div className="flex w-full items-end justify-evenly">
-                  <Input
-                    label={'Confirm Password'}
-                    type={'password'}
-                    placeholder={'•••••••••'}
-                    defaultValue={data.password}
-                    {...register('cpassword', {
-                      required: 'You must confirm your password',
-                      validate: (val: string) =>
-                        val === watch('password', '') || 'The passwords do not match',
-                    })}
-                    autoComplete={'current-password'}
-                    onChange={(e) =>
-                      setValue('cpassword', (e.target as HTMLInputElement).value, {
-                        shouldValidate: true,
-                      })
-                    }
-                    error={errors?.cpassword?.message}
-                  ></Input>
-                </div>
-              </div>
-              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-shark ">
-                <button className="rounded-xl bg-primary-600 px-4 py-3 text-white" type="submit">
-                  {loadingBtn ? (
-                    <>
-                      <Spinner aria-label="loading" />
-                      <span className="pl-3">Saving...</span>
-                    </>
+              {isEditing ? ( //Admin Edit
+                <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
+                  {isAdminEdit ? (
+                    <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
+                      <label
+                        htmlFor="email"
+                        className="mb-1 block font-semibold text-gray-600 dark:text-white"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        value={data?.firstname}
+                        onChange={(e) => setData({ ...data, firstname: e.target.value })}
+                        placeholder="Enter your first name"
+                        className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring dark:text-black"
+                      />
+                      <label
+                        htmlFor="email"
+                        className="mb-1 block font-semibold text-gray-600 dark:text-white"
+                      >
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        id="lastname"
+                        value={data?.lastname}
+                        onChange={(e) => setData({ ...data, lastname: e.target.value })}
+                        placeholder="Enter your last name"
+                        className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring dark:text-black"
+                      />
+                      <label
+                        htmlFor="email"
+                        className="mb-1 block font-semibold text-gray-600 dark:text-white"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="text"
+                        id="email"
+                        value={data?.email}
+                        onChange={(e) => setData({ ...data, email: e.target.value })}
+                        placeholder="Enter your last name"
+                        className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring dark:text-black"
+                      />
+                      <label
+                        htmlFor="email"
+                        className="mb-1 block font-semibold text-gray-600 dark:text-white"
+                      >
+                        Set New Password
+                      </label>
+                      <input
+                        type="text"
+                        id="password"
+                        onChange={(e) => setData({ ...data, password: e.target.value })}
+                        placeholder={'•••••••••'}
+                        className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring dark:text-black"
+                      />
+                    </div>
                   ) : (
-                    'Save changes'
+                    //Display Profile
+                    <>
+                      <div className="mx-4 mt-4 rounded-lg bg-white p-6 shadow-md dark:bg-shark dark:text-white">
+                        <div className="mb-4">
+                          <label className="block text-sm font-semibold text-gray-600 dark:text-gray-300">
+                            ID:
+                          </label>
+                          <p className="text-lg font-bold">{data?._id}</p>
+                        </div>
+                        <div className="mb-4">
+                          <label className="block text-sm font-semibold text-gray-600 dark:text-gray-300">
+                            First Name:
+                          </label>
+                          {isAdminEdit ? (
+                            <input
+                              type="text"
+                              id="firstName"
+                              value={data?.firstname}
+                              onChange={(e) => setData({ ...data, firstname: e.target.value })}
+                              placeholder="Enter your first name"
+                              className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                            />
+                          ) : (
+                            <p className="text-lg font-bold">{data?.firstname}</p>
+                          )}
+                        </div>
+                        <div className="mb-4">
+                          <label className="block text-sm font-semibold text-gray-600 dark:text-gray-300">
+                            Last Name:
+                          </label>
+                          <p className="text-lg font-bold">{data?.lastname}</p>
+                        </div>
+                        <div className="mb-4">
+                          <label className="block text-sm font-semibold text-gray-600 dark:text-gray-300">
+                            Email Address:
+                          </label>
+                          <p className="text-lg font-bold">{data?.email}</p>
+                        </div>
+                      </div>
+                      <div className="mx-4 mt-4 rounded-lg bg-white p-6 shadow-md dark:bg-shark dark:text-white">
+                        <div className="mb-4">
+                          <label className="block text-sm font-semibold text-gray-600 dark:text-gray-300">
+                            Joined:
+                          </label>
+                          <p className="text-lg font-bold">
+                            {data?.createdAt
+                              ? new Date(data?.createdAt).toLocaleDateString(undefined, {
+                                  year: 'numeric',
+                                  month: 'short',
+                                  day: 'numeric',
+                                })
+                              : ''}
+                          </p>
+                        </div>
+                      </div>
+                    </>
                   )}
-                </button>
+                </div>
+              ) : (
+                //Admin Add
+                <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
+                  <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
+                    <input type="hidden" {...register('_id')} />
+                    <Input
+                      label={'First Name'}
+                      type={'text'}
+                      placeholder={'Ex: John'}
+                      {...register('firstname', { required: 'You must provide your first name' })}
+                      error={errors?.firstname?.message} //error={data.firstname ? '' : errors?.firstname?.message}
+                      onChange={(e) =>
+                        setValue('firstname', (e.target as HTMLInputElement).value, {
+                          shouldValidate: true,
+                        })
+                      }
+                    ></Input>
+                    <Input
+                      label={'Last Name'}
+                      type={'text'}
+                      placeholder={'Ex: Doe'}
+                      {...register('lastname', { required: 'You must provide your last name' })}
+                      error={errors?.lastname?.message}
+                      onChange={(e) =>
+                        setValue('lastname', (e.target as HTMLInputElement).value, {
+                          shouldValidate: true,
+                        })
+                      }
+                    ></Input>
+                  </div>
+
+                  <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
+                    <Input
+                      label={'Email Address'}
+                      type={'email'}
+                      placeholder={'johndoe@mail.com'}
+                      {...register('email', {
+                        required: 'You must provide an email address',
+                        pattern: {
+                          value: /^\S+@\S+$/i,
+                          message: 'Please enter a valid email address',
+                        },
+                      })}
+                      error={errors?.email?.message}
+                      autoComplete={'email'}
+                      onChange={(e) => {
+                        setValue('email', (e.target as HTMLInputElement).value, {
+                          shouldValidate: true,
+                        })
+                      }}
+                    ></Input>
+                    <div>
+                      <p className="text-sm font-semibold ">Country</p>
+                      <ReactFlagsSelect
+                        selected={data.country}
+                        onSelect={onSelect}
+                        searchable={true}
+                        blacklistCountries={blacklistCountries}
+                        className="flag-select mt-3 block w-full"
+                      />
+                    </div>
+                  </div>
+                  <div className="mx-4 mt-4 flex flex-col gap-6 rounded-lg bg-white p-4 dark:bg-shark dark:text-white">
+                    <div className="flex w-full items-end justify-evenly">
+                      <Input
+                        label={'Password'}
+                        type={'password'}
+                        placeholder={'•••••••••'}
+                        {...register('password', {
+                          required: 'You must specify a password',
+                          minLength: {
+                            value: 8,
+                            message: 'Password must have at least 8 characters',
+                          },
+                        })}
+                        autoComplete={'current-password'}
+                        onChange={(e) =>
+                          setValue('password', (e.target as HTMLInputElement).value, {
+                            shouldValidate: true,
+                          })
+                        }
+                        error={errors?.password?.message}
+                      ></Input>
+                    </div>
+                    <div className="flex w-full items-end justify-evenly">
+                      <Input
+                        label={'Confirm Password'}
+                        type={'password'}
+                        placeholder={'•••••••••'}
+                        {...register('cpassword', {
+                          required: 'You must confirm your password',
+                          validate: (val: string) =>
+                            val === watch('password', '') || 'The passwords do not match',
+                        })}
+                        autoComplete={'current-password'}
+                        onChange={(e) =>
+                          setValue('cpassword', (e.target as HTMLInputElement).value, {
+                            shouldValidate: true,
+                          })
+                        }
+                        error={errors?.cpassword?.message}
+                      ></Input>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-auto flex justify-center bg-white p-4 dark:bg-shark ">
+                {isEditing ? (
+                  <button
+                    className="rounded-xl bg-primary-600 px-4 py-3 text-white"
+                    onClick={handleEditClick}
+                  >
+                    {isAdminEdit ? 'Save' : 'Edit'}
+                  </button>
+                ) : (
+                  <button className="rounded-xl bg-primary-600 px-4 py-3 text-white" type="submit">
+                    {loadingBtn ? (
+                      <>
+                        <Spinner aria-label="loading" />
+                        <span className="pl-3">Saving...</span>
+                      </>
+                    ) : (
+                      'Save changes'
+                    )}
+                  </button>
+                )}
               </div>
             </form>
           </div>

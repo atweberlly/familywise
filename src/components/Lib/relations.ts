@@ -11,6 +11,10 @@ export const relationOptions: Array<Props> = [
   },
   {
     id: uniqueId(),
+    value: 'mum',
+  },
+  {
+    id: uniqueId(),
     value: 'dad',
   },
   {

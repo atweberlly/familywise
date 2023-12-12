@@ -5,7 +5,6 @@
     "dev": "next dev",
     "format": "prettier --write .",
     "lint": "next lint",
-    "prepare": "husky install",
     "preview": "next build && next start"
   },
   "browserslist": {
@@ -66,6 +65,7 @@
     "quill-to-pdf": "^1.0.7",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.3",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-flags-select": "^2.2.3",
@@ -82,6 +82,7 @@
     "react-scrollspy": "^3.4.3",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
+    "react-use": "^17.4.1",
     "redraft": "^0.10.2",
     "slick-carousel": "^1.8.1",
     "striptags": "^3.2.0",
@@ -117,8 +118,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
     "postcss": "^8.4.19",
     "postcss-import": "^15.1.0",
     "postcss-sort-media-queries": "^4.3.0",

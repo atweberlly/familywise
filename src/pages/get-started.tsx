@@ -11,6 +11,7 @@ import { occasionOptions } from '../components/Lib/occasions'
 import { relationOptions } from '../components/Lib/relations'
 import Link from '../components/Link'
 import Logo from '../components/Logo'
+import SmoothPrompt from '../components/SmoothPrompt'
 import Title from '../components/Title'
 import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
@@ -27,6 +28,9 @@ export default function JoinUs() {
   const [relationVisible, setRelationVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [showOtherField, setShowOtherField] = useState(false)
+  //Client Properties
+  const [showID, setshowID] = useState('')
+  const [showStatus, setshowStatus] = useState('')
 
   const destroyDatePicker = () => {
     const datepicker = document.getElementById('datepicker')
@@ -47,7 +51,7 @@ export default function JoinUs() {
     giftSender: '',
     giftSalutation: '',
     giftRelation: 'mom',
-    giftOccasion: 'merry christmas!',
+    giftOccasion: 'Merry Christmas!',
     giftMessage: '',
     planType: plan,
     reason: '',
@@ -90,9 +94,15 @@ export default function JoinUs() {
       })
       .catch((err) => {
         const { message } = err.response.data
-        toast.error(message, {
-          duration: 3000, // Specify the duration in milliseconds (3 seconds)
-        })
+        const { idValue } = err.response.data
+        const { currentStatus } = err.response.data
+        setshowID(idValue)
+        setshowStatus(currentStatus)
+        if (currentStatus === 'true') {
+          toast.error(message, {
+            duration: 3000, // Specify the duration in milliseconds (3 seconds)
+          })
+        }
         setLoading(false) //remove loader
       })
   }
@@ -144,6 +154,9 @@ export default function JoinUs() {
       register('giftSender', {
         required: 'You must provide your name',
       })
+      register('senderEmail', {
+        required: 'You must provide your name',
+      })
       register('giftMessage', {
         required: 'You must provide a gift message',
       })
@@ -180,6 +193,13 @@ export default function JoinUs() {
   return (
     <main className="flex min-h-screen justify-center bg-gray-100 text-black">
       <Title suffix="Family Wise">Get Started</Title>
+      <SmoothPrompt
+        description={
+          'We noticed that this email has not completed the registration. Would you like to finish the registration process?'
+        }
+        route={showID}
+        userStatus={showStatus}
+      />
       <section className="m-0 flex max-w-screen-2xl flex-1 justify-center bg-white shadow sm:m-20 sm:rounded-lg">
         <div className="p-6 sm:p-12 lg:w-1/2 xl:w-6/12">
           <Link href="/" className="!block lg:inline-block">
@@ -347,7 +367,7 @@ export default function JoinUs() {
                         <p className="text-sm font-semibold">Occasion</p>
                         <select
                           className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
-                          defaultValue={'merry christmas!'}
+                          defaultValue={'Merry Christmas!'}
                           name={'giftOccasion'}
                           onChange={(e) => {
                             if ((e.target as HTMLSelectElement).value === 'other') {
@@ -455,7 +475,7 @@ export default function JoinUs() {
             )}
             <p className="px-0 text-center text-sm font-light text-secondary-500 lg:px-5">
               Family Wise collects and uses personal data in accordance with our{' '}
-              <Link className="underline hover:text-primary-400" href="/privacy">
+              <Link className="underline hover:text-primary-400" href="/legal/privacy">
                 Privacy Policy
               </Link>
               . <br className="hidden md:block" /> By creating an account, you agree to our{' '}
