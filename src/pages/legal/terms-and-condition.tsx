@@ -312,8 +312,8 @@ export default function terms_and_condition() {
                 <li>
                   <p>
                     Family Wise takes your privacy seriously and any information provided through
-                    your use of the Website and/or Services are subject to Family Wise&apos;
-                    Privacy Policy, which is available on the Website.
+                    your use of the Website and/or Services are subject to Family Wise&apos; Privacy
+                    Policy, which is available on the Website.
                   </p>
                 </li>
               </ul>
