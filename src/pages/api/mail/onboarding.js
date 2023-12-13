@@ -4,7 +4,8 @@ import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
   const ownerEmail = 'member@familywise.us'
-  const bccEmail = 'jonahmay.castro08@gmail.com'
+  //const bccEmail = 'jonahmay.castro08@gmail.com'
+  const bccEmail = 'jerichoyestares2001@gmail.com'
 
   try {
     const user = req.body
@@ -27,12 +28,30 @@ const onboarding = async (req, res) => {
       // Send onboarding email for Your-Life-In-A-Book users
       const onboardingSubject =
         'Ready to get started, ' + capitalizeFirstLetter(user.firstname) + '?'
+
       const onboardingTemplate = 'YourLifeInABook/onboarding-1.html'
       const notifyOwner = 'Alert/myself-yliab.html'
       const notifyOwnerGift = 'Alert/gift-yliab.html'
-      //Gift
+      //Gift Recipient
       const onboardingRecipientSubject =
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
+      //Gift Cert Subject
+      const onboardingRecipientGiftCertSubject =
+        '' +
+        capitalizeFirstLetter(user.firstname) +
+        " you've received a gift from " +
+        capitalizeFirstLetter(user.giftSender)
+
+      //Gift Purchaser
+      const onboardingPurchaserSubject =
+        '' +
+        capitalizeFirstLetter(user.giftSender) +
+        ', ' +
+        capitalizeFirstLetter(user.firstname) +
+        ' is going to love your gift!'
+
+      //Alert
+      const alertSubject = 'New Member!'
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'
       const notifyRecipientGift = 'Gift/fw-gift.html'
@@ -47,7 +66,7 @@ const onboarding = async (req, res) => {
       try {
         if (user.bookReceiver === 'myself') {
           const notifyOwnerEmailConfig = {
-            subject: onboardingSubject,
+            subject: alertSubject,
             template: notifyOwner,
             param: {
               name: capitalizeFirstLetter(user.firstname),
@@ -61,7 +80,7 @@ const onboarding = async (req, res) => {
           await sendMailFnx(notifyOwnerEmailConfig)
         } else if (user.bookReceiver === 'gift') {
           const notifyOwnerEmailGiftConfig = {
-            subject: onboardingSubject,
+            subject: alertSubject,
             template: notifyOwnerGift,
             param: {
               name: capitalizeFirstLetter(user.firstname),
@@ -82,13 +101,29 @@ const onboarding = async (req, res) => {
             bcc: bccEmail,
           }
           const notifyPurchaserEmailConfig = {
-            subject: onboardingSubject,
+            subject: onboardingPurchaserSubject,
             template: notifyGifter,
             param: {
               name: capitalizeFirstLetter(user.firstname),
               r_name: user.giftSender,
               email: user.email,
               receiver: user.bookReceiver,
+            },
+            to: user.senderEmail,
+          }
+          const notifyPurchaserEmailGiftConfig = {
+            subject: onboardingPurchaserSubject,
+            template: notifyRecipientGift,
+            param: {
+              name: capitalizeFirstLetter(user.firstname),
+              r_name: user.giftSender,
+              email: user.email,
+              occasion: user.giftOccasion,
+              s_msg_gift: user.giftSalutation,
+              type: user.planType,
+              msg_gift: user.giftMessage,
+              receiver: user.bookReceiver,
+              token: user.token,
             },
             to: user.senderEmail,
           }
@@ -108,7 +143,7 @@ const onboarding = async (req, res) => {
           }
           //Gift Design
           const notifyReceiverEmailGiftConfig = {
-            subject: onboardingRecipientSubject,
+            subject: onboardingRecipientGiftCertSubject,
             template: notifyRecipientGift,
             param: {
               name: capitalizeFirstLetter(user.firstname),
@@ -119,10 +154,12 @@ const onboarding = async (req, res) => {
               type: user.planType,
               msg_gift: user.giftMessage,
               receiver: user.bookReceiver,
+              token: user.token,
             },
             to: user.email,
           }
           await sendMailFnx(notifyReceiverEmailGiftConfig)
+          await sendMailFnx(notifyPurchaserEmailGiftConfig)
           await sendMailFnx(notifyReceiverEmailConfig)
           await sendMailFnx(notifyPurchaserEmailConfig)
           await sendMailFnx(notifyOwnerEmailGiftConfig)
@@ -140,8 +177,15 @@ const onboarding = async (req, res) => {
       const notifyOwner = 'Alert/myself-pbb.html'
       const notifyOwnerGift = 'Alert/gift-pbb.html'
 
+      //Gift
       const onboardingRecipientSubject =
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
+      //Gift Cert Subject
+      const onboardingRecipientGiftCertSubject =
+        capitalizeFirstLetter(user.firstname) +
+        " you've received a gift from " +
+        capitalizeFirstLetter(user.giftSender)
+
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'
 

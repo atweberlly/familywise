@@ -13,6 +13,7 @@ import Link from '../components/Link'
 import Logo from '../components/Logo'
 import SmoothPrompt from '../components/SmoothPrompt'
 import Title from '../components/Title'
+import generateGiftPassword from '../utils/generateGiftPassword'
 import generateTemporaryPassword from '../utils/generateTempPassword'
 import axios from 'axios'
 import dateFormat from 'dateformat'
@@ -69,7 +70,7 @@ export default function JoinUs() {
   const onSubmit = async (data: any) => {
     //generate temporary password for gift recipient
     if (data.password === '') {
-      data.password = generateTemporaryPassword()
+      data.password = generateGiftPassword()
     }
 
     const configuration = {

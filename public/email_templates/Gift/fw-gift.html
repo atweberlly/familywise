@@ -81,7 +81,7 @@
                       color: #7084ae;
                     "
                   >
-                    Dear, ${name},
+                    Dear ${name},
                   </p>
                   <div style="margin-bottom: 16px"></div>
                   <p
@@ -469,12 +469,37 @@
                   </p>
                   <div style="margin-bottom: 16px"></div>
                   <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
-                    Login Link: <a href="${server_url}/sign-in">Direct</a>
+                    To sign in to your account:: <a href="${server_url}/sign-in">Click Here</a>
                   </p>
                   <div style="margin-bottom: 16px"></div>
                   <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
                     Email: ${email}
                   </p>
+                  <div style="margin-bottom: 16px"></div>
+                  <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
+                    Temporary Password: moFave844//
+                  </p>
+                  <div style="margin-bottom: 16px"></div>
+                  <span
+                    style="
+                      padding: 10px 30px;
+                      background-color: #9a825c;
+                      color: #f9f8f8;
+                      font-size: 12px;
+                      cursor: pointer;
+                      border-radius: 5px;
+                      max-width: 100%;
+                      display: inline-block;
+                      line-height: 15px;
+                      margin: 0;
+                      text-decoration: none;
+                      text-transform: none;
+                    "
+                  >
+                    <a href="${server_url}/reset-password?token=${token}" style="color: #ffffff"
+                      >Click Here To Reset Your Password</a
+                    >
+                  </span>
                 </td>
                 <td style="padding-top: 2px">
                   <img
