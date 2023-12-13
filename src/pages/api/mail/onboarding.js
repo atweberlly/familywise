@@ -31,7 +31,7 @@ const onboarding = async (req, res) => {
       const onboardingTemplate = 'YourLifeInABook/onboarding-1.html'
       const notifyOwner = 'Alert/myself-yliab.html'
       const notifyOwnerGift = 'Alert/gift-yliab.html'
-      //Gift
+      //Gift Recipient
       const onboardingRecipientSubject =
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
       //Gift Cert Subject
@@ -39,6 +39,13 @@ const onboarding = async (req, res) => {
         capitalizeFirstLetter(user.firstname) +
         " you've received a gift from " +
         capitalizeFirstLetter(user.giftSender)
+
+      //Gift [purchaser name], [recipient name] is going to love your gift!
+      const onboardingPurchaserSubject =
+        capitalizeFirstLetter(user.giftSender) +
+        ', ' +
+        capitalizeFirstLetter(user.firstname) +
+        ' is going to love your gift!'
 
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'
@@ -89,7 +96,7 @@ const onboarding = async (req, res) => {
             bcc: bccEmail,
           }
           const notifyPurchaserEmailConfig = {
-            subject: onboardingSubject,
+            subject: onboardingPurchaserSubject,
             template: notifyGifter,
             param: {
               name: capitalizeFirstLetter(user.firstname),
