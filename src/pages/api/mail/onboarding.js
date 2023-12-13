@@ -5,7 +5,7 @@ import { sendMailFnx } from '../sendMailFnx'
 const onboarding = async (req, res) => {
   const ownerEmail = 'member@familywise.us'
   //const bccEmail = 'jonahmay.castro08@gmail.com'
-  const bccEmaill = 'jerichoyestares2001@gmail.com'
+  const bccEmail = 'jerichoyestares2001@gmail.com'
 
   try {
     const user = req.body
@@ -37,12 +37,14 @@ const onboarding = async (req, res) => {
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
       //Gift Cert Subject
       const onboardingRecipientGiftCertSubject =
+        '' +
         capitalizeFirstLetter(user.firstname) +
         " you've received a gift from " +
         capitalizeFirstLetter(user.giftSender)
 
       //Gift Purchaser
       const onboardingPurchaserSubject =
+        '' +
         capitalizeFirstLetter(user.giftSender) +
         ', ' +
         capitalizeFirstLetter(user.firstname) +
@@ -109,6 +111,22 @@ const onboarding = async (req, res) => {
             },
             to: user.senderEmail,
           }
+          const notifyPurchaserEmailGiftConfig = {
+            subject: onboardingPurchaserSubject,
+            template: notifyRecipientGift,
+            param: {
+              name: capitalizeFirstLetter(user.firstname),
+              r_name: user.giftSender,
+              email: user.email,
+              occasion: user.giftOccasion,
+              s_msg_gift: user.giftSalutation,
+              type: user.planType,
+              msg_gift: user.giftMessage,
+              receiver: user.bookReceiver,
+              token: user.token,
+            },
+            to: user.senderEmail,
+          }
           const notifyReceiverEmailConfig = {
             subject: onboardingRecipientSubject,
             template: notifyRecipient,
@@ -136,10 +154,12 @@ const onboarding = async (req, res) => {
               type: user.planType,
               msg_gift: user.giftMessage,
               receiver: user.bookReceiver,
+              token: user.token,
             },
             to: user.email,
           }
           await sendMailFnx(notifyReceiverEmailGiftConfig)
+          await sendMailFnx(notifyPurchaserEmailGiftConfig)
           await sendMailFnx(notifyReceiverEmailConfig)
           await sendMailFnx(notifyPurchaserEmailConfig)
           await sendMailFnx(notifyOwnerEmailGiftConfig)
