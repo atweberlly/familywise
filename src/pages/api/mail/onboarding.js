@@ -4,8 +4,8 @@ import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
   const ownerEmail = 'member@familywise.us'
-  const bccEmail = 'jonahmay.castro08@gmail.com'
-  //const bccEmaill = 'jerichoyestares2001@gmail.com'
+  //const bccEmail = 'jonahmay.castro08@gmail.com'
+  const bccEmaill = 'jerichoyestares2001@gmail.com'
 
   try {
     const user = req.body
