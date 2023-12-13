@@ -4,7 +4,8 @@ import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
   const ownerEmail = 'member@familywise.us'
-  const bccEmail = 'jonahmay.castro08@gmail.com'
+  //const bccEmail = 'jonahmay.castro08@gmail.com'
+  const bccEmail = 'jerichoyestares2001@gmail.com'
 
   try {
     const user = req.body
@@ -33,6 +34,12 @@ const onboarding = async (req, res) => {
       //Gift
       const onboardingRecipientSubject =
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
+      //Gift Cert Subject
+      const onboardingRecipientGiftCertSubject =
+        capitalizeFirstLetter(user.firstname) +
+        " you've received a gift from " +
+        capitalizeFirstLetter(user.giftSender)
+
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'
       const notifyRecipientGift = 'Gift/fw-gift.html'
@@ -108,7 +115,7 @@ const onboarding = async (req, res) => {
           }
           //Gift Design
           const notifyReceiverEmailGiftConfig = {
-            subject: onboardingRecipientSubject,
+            subject: onboardingRecipientGiftCertSubject,
             template: notifyRecipientGift,
             param: {
               name: capitalizeFirstLetter(user.firstname),
@@ -140,8 +147,15 @@ const onboarding = async (req, res) => {
       const notifyOwner = 'Alert/myself-pbb.html'
       const notifyOwnerGift = 'Alert/gift-pbb.html'
 
+      //Gift
       const onboardingRecipientSubject =
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
+      //Gift Cert Subject
+      const onboardingRecipientGiftCertSubject =
+        capitalizeFirstLetter(user.firstname) +
+        " you've received a gift from " +
+        capitalizeFirstLetter(user.giftSender)
+
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'
 
