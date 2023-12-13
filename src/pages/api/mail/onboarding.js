@@ -40,7 +40,7 @@ const onboarding = async (req, res) => {
         " you've received a gift from " +
         capitalizeFirstLetter(user.giftSender)
 
-      //Gift [purchaser name], [recipient name] is going to love your gift!
+      //Gift Purchaser
       const onboardingPurchaserSubject =
         capitalizeFirstLetter(user.giftSender) +
         ', ' +
