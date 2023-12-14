@@ -28,6 +28,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
     giftSalutation: '',
     giftRelation: '',
     bookReceiver: '',
+    password: '',
     status: false,
   })
 
@@ -47,8 +48,12 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   const handleEditClick = async () => {
     if (isEditing) {
       try {
+        // Exclude password field from being updated
+        const { password, ...updatedUserData } = user
+
         // Send a request to update user data
-        await axios.put(`/api/users/${id}`, user)
+        await axios.put(`/api/users/${id}`, updatedUserData)
+
         setIsEditing(false) // Disable editing mode after successful update
       } catch (error) {
         console.error(error)
