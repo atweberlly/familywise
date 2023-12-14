@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import toast from 'react-hot-toast'
 import router from 'next/router'
 import { isSameDate } from '../utils/globalFnx'
 import { convertTimezone } from '../utils/userTimezone'
@@ -364,12 +363,6 @@ export const PaymentForm = (props: {
           }
 
           //show success notification
-          toast.success(
-            "Congratulations! You're on your way to reliving your memories & creating a record of your life to share with your family! You'll receive a series of emails shortly, with instructions for finding your way around your personal membership site, and your first question will arrive in your inbox very soon.",
-            {
-              duration: 3000, // Specify the duration in milliseconds (3 seconds)
-            }
-          )
           //redirect to sign in page
           router.push('/success')
         }

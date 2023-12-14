@@ -11,7 +11,8 @@ import axios from 'axios'
 import dateFormat from 'dateformat'
 import { LockClosedIcon, ReceiptRefundIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { occasionOptions } from '~/components/Lib/occasions'
+//import { occasionOptions } from '~/components/Lib/occasions'
+import { relationOptions } from '~/components/Lib/relations'
 
 export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   const [user, setUser] = useState({
@@ -24,6 +25,8 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
     giftSender: '',
     giftMessage: '',
     giftOccasion: '',
+    giftSalutation: '',
+    giftRelation: '',
     bookReceiver: '',
     status: false,
   })
@@ -35,7 +38,7 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
   const [originalPrice, setOriginalPrice] = useState(97)
   const [showDiscount, setShowDiscount] = useState(true)
   const [isEditing, setIsEditing] = useState(false)
-  const [showOtherField, setShowOtherField] = useState(false)
+  //const [showOtherField, setShowOtherField] = useState(false)
 
   const { ClientToken, ClientID } = props
   const router = useRouter()
@@ -202,6 +205,9 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     // Editable fields in editing mode for 'gift'
                     <div className="mt-2 flex flex-col text-xs text-black">
                       <div className="mb-3">
+                        <p className="mb-2 text-sm text-white-100">
+                          Gift Recipient&apos;s Information
+                        </p>
                         <label
                           htmlFor="firstName"
                           className="mb-1 block font-semibold text-gray-600"
@@ -248,7 +254,25 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                           className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
                         />
                       </div>
-
+                      <div className="mb-3">
+                        <label htmlFor="email" className="mb-1 block font-semibold text-gray-600">
+                          Who is my
+                        </label>
+                        <select
+                          id="small"
+                          className="mt-3 block w-full appearance-none rounded-xl border-2 px-4 py-3 capitalize text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100"
+                          value={user?.giftRelation}
+                          onChange={(e) => setUser({ ...user, giftRelation: e.target.value })}
+                          name={'giftRelation'}
+                        >
+                          {relationOptions.map(({ id, value }) => (
+                            <option key={id} value={value}>
+                              {value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <p className="mb-2 text-sm text-white-100">Purchaser Information</p>
                       <div className="mb-3">
                         <label
                           htmlFor="giftSender"
@@ -262,6 +286,22 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                           value={user?.giftSender}
                           onChange={(e) => setUser({ ...user, giftSender: e.target.value })}
                           placeholder="Your name & anyone else the gift is from"
+                          className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="salutation"
+                          className="mb-1 block font-semibold text-gray-600"
+                        >
+                          Salutation
+                        </label>
+                        <input
+                          type="text"
+                          id="giftMessage"
+                          value={user?.giftSalutation}
+                          onChange={(e) => setUser({ ...user, giftSalutation: e.target.value })}
+                          placeholder="You must provide a gift message"
                           className="w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
                         />
                       </div>
@@ -307,6 +347,15 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                     )}
                   </div>
                 )}
+
+                <Button
+                  className="w-20 shrink-0"
+                  type={'button'}
+                  color={'secondary'}
+                  onClick={handleEditClick}
+                >
+                  {isEditing ? 'Save' : 'Edit'}
+                </Button>
               </div>
             </div>
 
@@ -369,14 +418,6 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
                   }}
                 >
                   Apply
-                </Button>
-                <Button
-                  className="w-20 shrink-0"
-                  type={'button'}
-                  color={'secondary'}
-                  onClick={handleEditClick}
-                >
-                  {isEditing ? 'Save' : 'Edit'}
                 </Button>
               </div>
             </>

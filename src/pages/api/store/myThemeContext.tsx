@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, ReactElement, useEffect, useState } from 'react'
 
 interface ThemeContextValue {

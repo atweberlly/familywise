@@ -251,7 +251,11 @@ const Cover = () => {
                       className="mx-auto max-h-32 w-auto object-cover"
                     />
                   ) : coverImage ? (
-                    <img src={coverImage} className="mx-auto max-h-32 w-auto object-cover" />
+                    <img
+                      src={coverImage}
+                      alt={title}
+                      className="mx-auto max-h-32 w-auto object-cover"
+                    />
                   ) : (
                     <CloudArrowUpIcon className="mx-auto h-8 w-8 text-primary-600" />
                   )}
