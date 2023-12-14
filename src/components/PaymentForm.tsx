@@ -363,8 +363,13 @@ export const PaymentForm = (props: {
           }
 
           //show success notification
-          //redirect to sign in page
-          router.push('/success')
+          //redirect to success page
+          // Check if the user.bookReceiver is 'gift' or 'myself' and redirect accordingly
+          if (props.user.bookReceiver === 'gift') {
+            router.push('/success_gift')
+          } else {
+            router.push('/success')
+          }
         }
       })
     })
