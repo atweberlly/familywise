@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'

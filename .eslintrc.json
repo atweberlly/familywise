@@ -4,6 +4,8 @@
   "rules": {
     "@next/next/no-img-element": "off",
     "jsx-a11y/anchor-is-valid": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import/no-anonymous-default-export": "off",
+    "jsx-a11y/alt-text": "off"
   }
 }

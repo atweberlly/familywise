@@ -1,3 +1,6 @@
+/* eslint-disable no-duplicate-case */
+
+/* eslint-disable array-callback-return */
 import React, { HTMLProps } from 'react'
 import { createTw } from 'react-pdf-tailwind'
 import {

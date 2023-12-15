@@ -1,8 +1,5 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import Button from '../components/Button'
-import CheckIcon from './CheckIcon'
-import { Card } from 'flowbite-react'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid'
 

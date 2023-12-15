@@ -3,9 +3,9 @@ import { capitalizeFirstLetter } from '../../../utils/globalFnx'
 import { sendMailFnx } from '../sendMailFnx'
 
 const onboarding = async (req, res) => {
-  const ownerEmail = 'member@familywise.us'
+  const ownerEmail = 'familyfortunate@gmail.com'
   //const bccEmail = 'jonahmay.castro08@gmail.com'
-  const bccEmail = 'jerichoyestares2001@gmail.com'
+  const bccEmail = 'jonahmay.castro08@gmail.com'
 
   try {
     const user = req.body
@@ -181,10 +181,10 @@ const onboarding = async (req, res) => {
       const onboardingRecipientSubject =
         'Welcome to FamilyWise Stories, ' + capitalizeFirstLetter(user.firstname) + '!'
       //Gift Cert Subject
-      const onboardingRecipientGiftCertSubject =
+      /* const onboardingRecipientGiftCertSubject =
         capitalizeFirstLetter(user.firstname) +
         " you've received a gift from " +
-        capitalizeFirstLetter(user.giftSender)
+        capitalizeFirstLetter(user.giftSender) */
 
       const notifyGifter = 'Gift/purchaser.html'
       const notifyRecipient = 'Gift/recipient.html'

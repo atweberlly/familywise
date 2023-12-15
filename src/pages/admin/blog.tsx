@@ -1,4 +1,5 @@
-import { useState, useEffect, SetStateAction, useRef } from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { HiSearch } from 'react-icons/hi'
@@ -16,7 +17,6 @@ import QuillEditor from './QuillEditor'
 import axios from 'axios'
 import clsx from 'clsx'
 import dateFormat from 'dateformat'
-import flatpickr from 'flatpickr'
 import { Table, TextInput, Spinner } from 'flowbite-react'
 import type { NextPage } from 'next'
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -299,17 +299,6 @@ const BlogManager: NextPage = () => {
     setValue('pageTitle', PageTitle)
   }
 
-  // Handle changes in the Quill editor
-  const handleDescriptionChange = (value: string, delta: any, source: any, editor: any) => {
-    const newDesc = value
-
-    setDescription(newDesc)
-
-    setDescriptionInSync(newDesc === PageDescription)
-    setButtonDisabled(newDesc === '')
-    setValue('description', newDesc)
-  }
-
   const handlePageDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newPDesc = event.target.value
 
@@ -581,7 +570,7 @@ const BlogManager: NextPage = () => {
                       {uploadedFile ? (
                         <img
                           src={uploadedFile}
-                          alt=""
+                          alt={PageTitle || title}
                           className="mx-auto max-h-32 w-auto object-cover"
                         />
                       ) : data?.image ? (

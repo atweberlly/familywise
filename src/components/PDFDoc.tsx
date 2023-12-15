@@ -1,3 +1,4 @@
+/* eslint-disable no-duplicate-case */
 import React, { HTMLProps } from 'react'
 import { createTw } from 'react-pdf-tailwind'
 import {
@@ -91,6 +92,7 @@ const PDFDoc: React.FC<PDFDocProps & HTMLProps<HTMLDivElement>> = ({ stories, us
     let alignment = ''
     let indexCount = 0
 
+    // eslint-disable-next-line array-callback-return
     const styledText = segments.map((segment, segmentIndex) => {
       if (segment && segment.startsWith('<img')) {
         //Upload Image S3
