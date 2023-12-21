@@ -20,6 +20,7 @@ export default function DeleteModal({ showDelete, setShowDelete, table, id }: an
     setShowDelete(false)
     setInputValue('')
     setRemove(false)
+    document.body.style.overflow = false ? 'hidden' : 'auto'
   }
 
   const deleteFnx = async (e: { preventDefault: () => void }) => {
