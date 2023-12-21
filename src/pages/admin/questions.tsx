@@ -87,6 +87,7 @@ const QuestionManager: NextPage = () => {
           setShowAddEdit(false) //hide modal
           setLoadingBtn(false) //remove loader
           setAddEditMessage({ type: '', message: '' }) //reset delete message
+          document.body.style.overflow = false ? 'hidden' : 'auto'
         }, 3000)
       })
       .catch((error) => {
@@ -97,11 +98,15 @@ const QuestionManager: NextPage = () => {
   const handleClick = (id: any) => {
     setShowDelete((showDelete) => (showDelete === id ? null : id))
     setSelectedID((showDelete) => (showDelete === id ? null : id))
+    document.body.style.overflow = true ? 'hidden' : 'auto'
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }
 
   const handlerAdd = () => {
     reset(initialState)
     setShowAddEdit(!showAddEdit)
+    document.body.style.overflow = setShowAddEdit.toString() ? 'hidden' : 'auto'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handlerEdit = async (id: any) => {
@@ -128,6 +133,8 @@ const QuestionManager: NextPage = () => {
       })
 
     setShowAddEdit(!showAddEdit)
+    document.body.style.overflow = setShowAddEdit.toString() ? 'hidden' : 'auto'
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }
 
   useEffect(() => {
@@ -190,6 +197,7 @@ const QuestionManager: NextPage = () => {
       if (event.code === 'Escape') {
         setShowAddEdit(false)
         setShowDelete(false)
+        document.body.style.overflow = false ? 'hidden' : 'auto'
       }
     }
 

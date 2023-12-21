@@ -8,7 +8,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <title>Thank You!</title>
   </head>
 
   <body
@@ -73,29 +72,50 @@
                     text-align: center;
                   "
                 >
-                  <p
+                  <div
                     style="
-                      font-size: 23px;
-                      line-height: 24px;
-                      text-align: left;
-                      margin: 0;
-                      color: #7084ae;
+                      max-width: 300px; /* Set a max-width for the container */
+                      margin: 0 auto; /* Center the container */
+                      overflow: hidden;
+
+                      padding: 10px; /* Add padding for better aesthetics */
                     "
                   >
-                    Dear, ${name},
-                  </p>
-                  <div style="margin-bottom: 16px"></div>
-                  <p
+                    <p
+                      style="
+                        font-size: 23px;
+                        line-height: 24px;
+                        text-align: left;
+                        margin: 0;
+                        color: #7084ae;
+                        overflow: hidden; /* Hide overflow text */
+                      "
+                    >
+                      Dear ${name},
+                    </p>
+                  </div>
+                  <div
                     style="
-                      font-size: 23px;
-                      line-height: 24px;
-                      text-align: left;
-                      margin: 0;
-                      color: #7084ae;
+                      max-width: 300px; /* Set a max-width for the container */
+                      margin: 0 auto; /* Center the container */
+                      overflow: hidden;
+
+                      padding: 10px; /* Add padding for better aesthetics */
                     "
                   >
-                    ${occasion}
-                  </p>
+                    <p
+                      style="
+                        font-size: 23px;
+                        line-height: 24px;
+                        text-align: left;
+                        margin: 0;
+                        color: #7084ae;
+                        overflow: hidden; /* Hide overflow text */
+                      "
+                    >
+                      ${occasion}
+                    </p>
+                  </div>
                   <!-- Add space here -->
                   <div style="margin-bottom: 16px"></div>
                   <!-- Centered image -->
@@ -113,31 +133,51 @@
                     "
                   />
                   <!-- Add space here -->
-                  <div style="margin-bottom: 16px"></div>
-                  <p
+                  <div
                     style="
-                      font-size: 23px;
-                      line-height: 24px;
-                      text-align: left;
-                      margin: 0;
-                      color: #7084ae;
+                      max-width: 300px; /* Set a max-width for the container */
+                      margin: 0 auto; /* Center the container */
+                      overflow: hidden;
+
+                      padding: 10px; /* Add padding for better aesthetics */
                     "
                   >
-                    ${msg_gift}
-                  </p>
+                    <p
+                      style="
+                        font-size: 23px;
+                        line-height: 24px;
+                        text-align: left;
+                        margin: 0;
+                        color: #7084ae;
+                        overflow: hidden; /* Hide overflow text */
+                      "
+                    >
+                      ${msg_gift}
+                    </p>
+                  </div>
                   <!-- Add space here -->
-                  <div style="margin-bottom: 16px"></div>
-                  <p
+                  <div
                     style="
-                      font-size: 23px;
-                      line-height: 24px;
-                      text-align: left;
-                      margin: 0;
-                      color: #7084ae;
+                      max-width: 300px; /* Set a max-width for the container */
+                      margin: 0 auto; /* Center the container */
+                      overflow: hidden;
+
+                      padding: 10px; /* Add padding for better aesthetics */
                     "
                   >
-                    ${r_name}
-                  </p>
+                    <p
+                      style="
+                        font-size: 23px;
+                        line-height: 24px;
+                        text-align: left;
+                        margin: 0;
+                        color: #7084ae;
+                        overflow: hidden; /* Hide overflow text */
+                      "
+                    >
+                      - ${r_name}
+                    </p>
+                  </div>
                 </td>
               </tr>
             </table>
@@ -464,18 +504,43 @@
                   <p style="font-size: 20px; line-height: 24px; margin: 0; color: #7084ae">
                     Your account details
                   </p>
-                  <div style="margin-bottom: 10px"></div>
+                  <div style="margin-bottom: 16px"></div>
                   <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
-                    Website: <a href="www.familywise.us">www.familywise.us</a>
+                    Website: <a href="${server_url}/">www.familywise.us</a>
                   </p>
-                  <div style="margin-bottom: 10px"></div>
+                  <div style="margin-bottom: 16px"></div>
                   <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
-                    Login Link: <a href="www.familywise.us">Direct</a>
+                    To sign in to your account:: <a href="${server_url}/sign-in">Click Here</a>
                   </p>
-                  <div style="margin-bottom: 10px"></div>
+                  <div style="margin-bottom: 16px"></div>
                   <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
                     Email: ${email}
                   </p>
+                  <div style="margin-bottom: 16px"></div>
+                  <p style="font-size: 15px; line-height: 15px; margin: 0; color: #7084ae">
+                    Temporary Password: moFave844//
+                  </p>
+                  <div style="margin-bottom: 16px"></div>
+                  <span
+                    style="
+                      padding: 10px 30px;
+                      background-color: #9a825c;
+                      color: #f9f8f8;
+                      font-size: 12px;
+                      cursor: pointer;
+                      border-radius: 5px;
+                      max-width: 100%;
+                      display: inline-block;
+                      line-height: 15px;
+                      margin: 0;
+                      text-decoration: none;
+                      text-transform: none;
+                    "
+                  >
+                    <a href="../../reset-password?token=${token}" style="color: #ffffff"
+                      >Click Here To Reset Your Password</a
+                    >
+                  </span>
                 </td>
                 <td style="padding-top: 2px">
                   <img
@@ -516,10 +581,10 @@
                   "
                 >
                   <div style="margin-bottom: 15px"></div>
-                  <a
-                    href="${server_url}/"
-                    style="font-size: 24px; line-height: 5px; margin: 0; color: #fff"
-                    ><p>www.familywise.us</p></a
+                  <a href="${server_url}/"
+                    ><p style="font-size: 24px; line-height: 5px; margin: 0; color: #fff">
+                      www.familywise.us
+                    </p></a
                   >
 
                   <div style="margin-bottom: 40px"></div>
@@ -580,7 +645,7 @@
                 </td>
                 <td style="padding-top: 2px">
                   <img
-                    alt="Family Wise Logo"
+                    alt="Family Wise Logo White"
                     src="../../images/familywise-logotype-white.png"
                     width="150"
                     height="80"

@@ -170,7 +170,9 @@ export default function Plans({
         <div className="flex flex-col">
           <Link
             className="rounded-lg bg-orange-500 px-5 py-3 text-center font-semibold text-white transition-colors hover:bg-orange-600"
-            href={`/get-started?plan=${package_tag}`}
+            href={
+              package_tag === 'Free-Trial' ? '/start-trial' : `/get-started?plan=${package_tag}`
+            }
           >
             Get started
           </Link>

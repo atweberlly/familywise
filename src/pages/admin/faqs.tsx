@@ -1,5 +1,6 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import { HiSearch } from 'react-icons/hi'
 import Button from '../../components/Button'
 import DeleteModal from '../../components/DeleteModal'
@@ -84,6 +85,7 @@ const FAQManager: NextPage = () => {
           setShowAddEdit(false) //hide modal
           setLoadingBtn(false) //remove loader
           setAddEditMessage({ type: '', message: '' }) //reset delete message
+          document.body.style.overflow = false ? 'hidden' : 'auto'
         }, 3000)
       })
       .catch((error) => {
@@ -94,11 +96,15 @@ const FAQManager: NextPage = () => {
   const handleClick = (id: any) => {
     setShowDelete((showDelete) => (showDelete === id ? null : id))
     setSelectedID((showDelete) => (showDelete === id ? null : id))
+    document.body.style.overflow = true ? 'hidden' : 'auto'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handlerAdd = () => {
     reset(initialState)
     setShowAddEdit(!showAddEdit)
+    document.body.style.overflow = setShowAddEdit.toString() ? 'hidden' : 'auto'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handlerEdit = async (id: any) => {
@@ -124,6 +130,8 @@ const FAQManager: NextPage = () => {
       })
 
     setShowAddEdit(!showAddEdit)
+    document.body.style.overflow = setShowAddEdit.toString() ? 'hidden' : 'auto'
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }
 
   useEffect(() => {
@@ -186,6 +194,7 @@ const FAQManager: NextPage = () => {
       if (event.code === 'Escape') {
         setShowAddEdit(false)
         setShowDelete(false)
+        document.body.style.overflow = false ? 'hidden' : 'auto' //Set False
       }
     }
 
@@ -304,7 +313,10 @@ const FAQManager: NextPage = () => {
             )}
             aria-hidden="true"
             aria-label="Overlay"
-            onClick={() => setShowAddEdit(false)}
+            onClick={() => {
+              setShowAddEdit(false)
+              document.body.style.overflow = false ? 'hidden' : 'auto'
+            }}
           />
           <div
             className={clsx(
@@ -319,7 +331,10 @@ const FAQManager: NextPage = () => {
               <button
                 className="flex items-center text-red-500"
                 type="button"
-                onClick={() => setShowAddEdit(false)}
+                onClick={() => {
+                  setShowAddEdit(false)
+                  document.body.style.overflow = false ? 'hidden' : 'auto'
+                }}
               >
                 <span className="text-sm font-semibold">Close</span>
                 <XMarkIcon className="h-6 w-6" />
