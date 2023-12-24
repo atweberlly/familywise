@@ -121,7 +121,13 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
           </div>
 
           {ClientToken && (
-            <PaymentForm clientToken={ClientToken} clientID={ClientID} user={user} price={price} />
+            <PaymentForm
+              clientToken={ClientToken}
+              clientID={ClientID}
+              user={user}
+              price={price}
+              coupon={price}
+            />
           )}
           <hr className="mt-16 w-full lg:mt-20" />
           <ul className="my-5 flex space-x-3">

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import router from 'next/router'
 import { isSameDate } from '../utils/globalFnx'
 import { convertTimezone } from '../utils/userTimezone'
+import Button from './Button'
 import Heading from './Heading'
 import type { FUNDING_SOURCE } from '@paypal/paypal-js'
 import {
@@ -18,6 +19,7 @@ export const PaymentForm = (props: {
   clientToken: any
   user: any
   price: number
+  coupon: any
 }) => {
   const amount = props.price
   const currency = 'USD'
@@ -320,6 +322,53 @@ export const PaymentForm = (props: {
       })
   }
 
+  const handleClaimFreeAccountDirectly = async () => {
+    try {
+      const configuration = {
+        method: 'put',
+        url: '/api/users/' + props.user._id,
+        data: {
+          orderId: '100% Discount Holder',
+          status: true,
+          type: 'onboarding',
+        },
+      }
+
+      const response = await axios(configuration)
+
+      if (response) {
+        //send onboarding
+        //Check if the user has set a gift date and use that as the schedule, otherwise use today's date
+        const schedule =
+          props.user.bookReceiver === 'gift' ? new Date(props.user.giftDate) : new Date()
+        // Convert schedule date to the specified timezone
+        const emailSchedule = convertTimezone(schedule, props.user.timezone, props.user.timezone)
+        // Convert today to the specified timezone
+        const today = convertTimezone(new Date(), props.user.timezone, props.user.timezone)
+        // Check if today's date is the same as the scheduled email date
+        if (isSameDate(emailSchedule, today)) {
+          // Send the onboarding email
+          await axios.post('/api/mail/onboarding', props.user)
+          // Delay the email sending for 1 minute
+          setTimeout(async () => {
+            // Get the first question for the user and send it to them
+            await axios.post('/api/questions/getFirstQuestion', props.user)
+          }, 60000)
+        }
+
+        // Show success notification and redirect
+        if (props.user.bookReceiver === 'gift') {
+          router.push('/success_gift')
+        } else {
+          router.push('/success')
+        }
+      }
+    } catch (error) {
+      console.error(error)
+      // Handle errors or show error messages as needed
+    }
+  }
+
   const onApprove = async (
     /*data: { subscriptionID: any },*/
     /*actions: { order: { capture: () => Promise<any> } }*/
@@ -385,27 +434,68 @@ export const PaymentForm = (props: {
     setSelectedFundingSource(event.target.value)
   }
 
-  return (
-    <>
-      <div className="relative flex items-center py-5">
-        <div className="flex-grow border-t border-gray-400"></div>
-        <span className="mx-4 flex-shrink text-gray-400">Contact Information</span>
-        <div className="flex-grow border-t border-gray-400"></div>
-      </div>
+  // Render PayPal form only if the coupon is not zero
+  const renderPayPalForm = () => {
+    if (props.coupon === 0) {
+      // Render only the button to create the account without going to PayPal
+      return (
+        <>
+          <div className="relative flex items-center py-5">
+            <div className="flex-grow border-t border-gray-400"></div>
+            <span className="mx-4 flex-shrink text-gray-400">Contact Information</span>
+            <div className="flex-grow border-t border-gray-400"></div>
+          </div>
 
-      <div className="mb-10 flex flex-col rounded-lg border">
-        <div className="flex space-x-16 p-4">
-          <p className="text-sm capitalize text-secondary-600">Full name</p>
-          <p className="text-sm">
-            {props.user.firstname} {props.user.lastname}
+          <div className="mb-10 flex flex-col rounded-lg border">
+            <div className="flex space-x-16 p-4">
+              <p className="text-sm capitalize text-secondary-600">Full name</p>
+              <p className="text-sm">
+                {props.user.firstname} {props.user.lastname}
+              </p>
+            </div>
+            <div className="flex space-x-10 border-y p-4">
+              <p className="text-sm capitalize text-secondary-600">Email Address</p>
+              <p className="text-sm">{props.user.email}</p>
+            </div>
+          </div>
+
+          <Heading size={5}>Payment</Heading>
+          <p className="mb-4 mt-2 text-sm text-secondary-600">
+            All transactions are secure and encrypted.
           </p>
+          <Button
+            className="w-auto shrink-0"
+            type={'button'}
+            color={'yellow'}
+            onClick={handleClaimFreeAccountDirectly}
+          >
+            START NOW
+          </Button>
+        </>
+      )
+    }
+
+    return (
+      <>
+        <div className="relative flex items-center py-5">
+          <div className="flex-grow border-t border-gray-400"></div>
+          <span className="mx-4 flex-shrink text-gray-400">Contact Information</span>
+          <div className="flex-grow border-t border-gray-400"></div>
         </div>
-        <div className="flex space-x-10 border-y p-4">
-          <p className="text-sm capitalize text-secondary-600">Email Address</p>
-          <p className="text-sm">{props.user.email}</p>
+
+        <div className="mb-10 flex flex-col rounded-lg border">
+          <div className="flex space-x-16 p-4">
+            <p className="text-sm capitalize text-secondary-600">Full name</p>
+            <p className="text-sm">
+              {props.user.firstname} {props.user.lastname}
+            </p>
+          </div>
+          <div className="flex space-x-10 border-y p-4">
+            <p className="text-sm capitalize text-secondary-600">Email Address</p>
+            <p className="text-sm">{props.user.email}</p>
+          </div>
         </div>
-      </div>
-      {/*  <PayPalScriptProvider
+        {/*  <PayPalScriptProvider
         options={{
           'client-id': props.clientID,
           'data-client-token': props.clientToken,
@@ -418,12 +508,12 @@ export const PaymentForm = (props: {
         <ButtonWrapper currency={currency} showSpinner={false} />
       </PayPalScriptProvider>  */}
 
-      <Heading size={5}>Payment</Heading>
-      <p className="mb-4 mt-2 text-sm text-secondary-600">
-        All transactions are secure and encrypted.
-      </p>
+        <Heading size={5}>Payment</Heading>
+        <p className="mb-4 mt-2 text-sm text-secondary-600">
+          All transactions are secure and encrypted.
+        </p>
 
-      {/* <PayPalScriptProvider
+        {/* <PayPalScriptProvider
         options={{
           'client-id': props.clientID,
           'data-client-token': props.clientToken,
@@ -512,52 +602,55 @@ export const PaymentForm = (props: {
         </PayPalHostedFieldsProvider>
       </PayPalScriptProvider> */}
 
-      <PayPalScriptProvider
-        options={{
-          'client-id': props.clientID,
-          'data-client-token': props.clientToken,
-          components: 'buttons,marks,funding-eligibility',
-        }}
-      >
-        <form className="flex flex-col rounded-lg border">
-          {fundingSources.map((fundingSource) => (
-            <label
-              className={`flex cursor-pointer items-center justify-between p-2 ${
-                fundingSource === 'card' && 'border-y'
-              }`}
-              key={fundingSource}
-            >
-              <div className="flex space-x-4">
-                <input
-                  defaultChecked={fundingSource === selectedFundingSource}
-                  onChange={onChange}
-                  className="checked:bg-radio checked:bg-half hover:border-lemon-curry-500 inline-block h-5 w-5 flex-shrink-0 select-none appearance-none rounded-full border-2 bg-white bg-origin-border align-middle transition checked:bg-lemon-curry checked:bg-center checked:bg-no-repeat checked:ring-2 checked:ring-white"
-                  type="radio"
-                  name="fundingSource"
-                  value={fundingSource}
-                />
-                <p className="font-bold capitalize">
-                  {fundingSource === 'card'
-                    ? 'Credit or debit card'
-                    : fundingSource === 'paylater'
-                    ? 'Pay In 4'
-                    : fundingSource}
-                </p>
-              </div>
-              <PayPalMarks fundingSource={fundingSource} />
-            </label>
-          ))}
-        </form>
-        <br />
+        <PayPalScriptProvider
+          options={{
+            'client-id': props.clientID,
+            'data-client-token': props.clientToken,
+            components: 'buttons,marks,funding-eligibility',
+          }}
+        >
+          <form className="flex flex-col rounded-lg border">
+            {fundingSources.map((fundingSource) => (
+              <label
+                className={`flex cursor-pointer items-center justify-between p-2 ${
+                  fundingSource === 'card' && 'border-y'
+                }`}
+                key={fundingSource}
+              >
+                <div className="flex space-x-4">
+                  <input
+                    defaultChecked={fundingSource === selectedFundingSource}
+                    onChange={onChange}
+                    className="checked:bg-radio checked:bg-half hover:border-lemon-curry-500 inline-block h-5 w-5 flex-shrink-0 select-none appearance-none rounded-full border-2 bg-white bg-origin-border align-middle transition checked:bg-lemon-curry checked:bg-center checked:bg-no-repeat checked:ring-2 checked:ring-white"
+                    type="radio"
+                    name="fundingSource"
+                    value={fundingSource}
+                  />
+                  <p className="font-bold capitalize">
+                    {fundingSource === 'card'
+                      ? 'Credit or debit card'
+                      : fundingSource === 'paylater'
+                      ? 'Pay In 4'
+                      : fundingSource}
+                  </p>
+                </div>
+                <PayPalMarks fundingSource={fundingSource} />
+              </label>
+            ))}
+          </form>
+          <br />
 
-        <PayPalButtons
-          style={{ color: 'black' }}
-          fundingSource={selectedFundingSource as FUNDING_SOURCE}
-          forceReRender={[selectedFundingSource, style, amount, currency]}
-          createOrder={createOrder}
-          onApprove={onApprove}
-        />
-      </PayPalScriptProvider>
-    </>
-  )
+          <PayPalButtons
+            style={{ color: 'black' }}
+            fundingSource={selectedFundingSource as FUNDING_SOURCE}
+            forceReRender={[selectedFundingSource, style, amount, currency]}
+            createOrder={createOrder}
+            onApprove={onApprove}
+          />
+        </PayPalScriptProvider>
+      </>
+    )
+  }
+
+  return <>{renderPayPalForm()}</>
 }
