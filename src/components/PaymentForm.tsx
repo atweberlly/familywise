@@ -469,7 +469,7 @@ export const PaymentForm = (props: {
             color={'yellow'}
             onClick={handleClaimFreeAccountDirectly}
           >
-            Claim Free Account!
+            START NOW
           </Button>
         </>
       )
