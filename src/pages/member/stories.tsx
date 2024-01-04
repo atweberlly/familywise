@@ -12,6 +12,7 @@ import StoryTable from './Table/StoryTableV2'
 import Edit from './edit'
 import axios from 'axios'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import { BarLoader, PropagateLoader } from 'react-spinners'
 
 const Stories = () => {
   const [edit, setEdit] = useState(false)
@@ -24,6 +25,10 @@ const Stories = () => {
   const editClick = () => {
     setEdit(true)
   }
+
+  //print ID
+  const [printID, setprintID] = useState('')
+  const [printPath, setprintPath] = useState('')
 
   const dispatch = useAppDispatch()
   const user = useAppSelector((state: RootState) => state.userSlice.user)
@@ -94,24 +99,24 @@ const Stories = () => {
   const [isUploading, setIsUploading] = useState(false)
 
   const handlePublishClick = async (user: any) => {
-    setIsUploading(true)
-
-    // Fetch stories data before uploading PDF
+    setIsUploading(true);
+  
     try {
       const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
       if (storiesResponse.status === 200) {
         const storiesData =
           user.planType === 'Free-Trial' ? storiesResponse.data.slice(0, 10) : storiesResponse.data
-
+  
         const data = {
           title: title,
           pages: totalPages,
+          email: user.email,
           user,
-          name: user._id + '.pdf',
+          name: user.firstname + '.pdf',
           type: 'application/pdf',
-          stories: storiesData, // Include stories data in the request
-        }
-
+          stories: storiesData,
+        };
+  
         try {
           const response = await fetch('/api/s3/uploadPDF', {
             method: 'POST',
@@ -119,24 +124,33 @@ const Stories = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-          })
+          }
+          
+          );
+
+          console.log('Response status code:', response.status);
 
           if (response.ok) {
             const responseData = await response.json()
             console.log('PDF uploaded to S3:', responseData.location)
+            setprintID(responseData.printJobId)
+            setprintPath(responseData.location)
             toast.success('PDF upload successful!')
           } else {
-            console.error('Failed to upload PDF to S3')
-            toast.error('Failed to upload PDF')
+            const errorText = await response.text()
+            console.error('Failed to upload PDF to S3. Server response:', errorText)
+            toast.error(`Failed to upload PDF: ${errorText}`)
           }
         } catch (error) {
-          console.error('Error:', error)
+          console.error('Error during PDF upload:', error)
+          toast.error('Failed to upload PDF')
         } finally {
-          setIsUploading(false)
+          setIsUploading(false);
         }
       } else {
         console.error('Unexpected status code:', storiesResponse.status)
-        setIsUploading(false)
+        setIsUploading(false);
+        toast.error('Failed to fetch stories data')
       }
     } catch (error: any) {
       if (error.code === 'ECONNREFUSED') {
@@ -144,10 +158,11 @@ const Stories = () => {
       } else {
         console.error('Error fetching stories data:', error.message)
       }
-      setIsUploading(false)
+      setIsUploading(false);
+      toast.error('Failed to fetch stories data')
     }
-  }
-
+  };
+  
   // Simulate upload progress for demonstration purposes
   const simulateUpload = () => {
     setIsUploading(true)
@@ -177,58 +192,36 @@ const Stories = () => {
 
   return (
     <MemberLayout>
-      <div className="flex gap-4 pb-[67px] pt-[43px]">
+      <div className="flex gap-4 pt-[43px]">
         <Heading className="pb-[17px]" size={3}>
           Your Stories
         </Heading>
-        {isUploading ? (
-          // Show a loading indicator or progress bar
-          <div>
-            Uploading...
-            <div className="progress-bar">
-              <div className="progress" style={{ width: uploadProgress + '%' }}></div>
-            </div>
-          </div>
-        ) : totalPages === null ? (
-          <div></div>
-        ) : totalPages < 50 ? (
-          <div></div>
-        ) : storiesExist ? (
-          <ButtonV2
-            text="Publish"
-            className="inline-flex !rounded-full dark:text-gray-200"
-            disabled={isUploading || totalPages < 50}
-            onClick={() => handlePublishClick(user)}
-          />
-        ) : (
-          <div></div>
-        )}
-        {/*
+        
           {isUploading ? (
           // Show a loading indicator or progress bar
           <div>
             Uploading...
-            <div className="progress-bar">
-              <div className="progress" style={{ width: uploadProgress + '%' }}></div>
-            </div>
+            <BarLoader/>
           </div>
         ) : (
           <ButtonV2
-            text={
-              totalPages === null
-                ? 'Rendering your Stories'
-                : totalPages < 50
-                ? 'You cannot publish yet. You should have 50 pages before publishing.'
-                : 'Publish'
+            text={'Publish'
             }
             className="inline-flex !rounded-full dark:text-gray-200"
-            disabled={isUploading || totalPages === null || totalPages < 50}
             onClick={() => handlePublishClick(user)}
           />
         )}
-        */}
+        
       </div>
-
+      { //Debug use only
+        <div className='pb-[67px]'>
+          <h1 className='text-danger-400'>Debug Use Only</h1>
+          <p>Current Order ID: {printID}</p>
+          <p>Path: {printPath}</p>
+        </div>
+      }
+      
+      
       {!edit && (
         <div>
           <div className="flex w-full flex-col rounded-[5px] bg-white px-[24px] dark:bg-shark">
