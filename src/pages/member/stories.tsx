@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { BarLoader } from 'react-spinners'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Heading from '../../components/Heading'
@@ -12,7 +13,6 @@ import StoryTable from './Table/StoryTableV2'
 import Edit from './edit'
 import axios from 'axios'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
-import { BarLoader, PropagateLoader } from 'react-spinners'
 
 const Stories = () => {
   const [edit, setEdit] = useState(false)
@@ -99,14 +99,14 @@ const Stories = () => {
   const [isUploading, setIsUploading] = useState(false)
 
   const handlePublishClick = async (user: any) => {
-    setIsUploading(true);
-  
+    setIsUploading(true)
+
     try {
       const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
       if (storiesResponse.status === 200) {
         const storiesData =
           user.planType === 'Free-Trial' ? storiesResponse.data.slice(0, 10) : storiesResponse.data
-  
+
         const data = {
           title: title,
           pages: totalPages,
@@ -115,8 +115,8 @@ const Stories = () => {
           name: user.firstname + '.pdf',
           type: 'application/pdf',
           stories: storiesData,
-        };
-  
+        }
+
         try {
           const response = await fetch('/api/s3/uploadPDF', {
             method: 'POST',
@@ -124,11 +124,9 @@ const Stories = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-          }
-          
-          );
+          })
 
-          console.log('Response status code:', response.status);
+          console.log('Response status code:', response.status)
 
           if (response.ok) {
             const responseData = await response.json()
@@ -145,11 +143,11 @@ const Stories = () => {
           console.error('Error during PDF upload:', error)
           toast.error('Failed to upload PDF')
         } finally {
-          setIsUploading(false);
+          setIsUploading(false)
         }
       } else {
         console.error('Unexpected status code:', storiesResponse.status)
-        setIsUploading(false);
+        setIsUploading(false)
         toast.error('Failed to fetch stories data')
       }
     } catch (error: any) {
@@ -158,11 +156,11 @@ const Stories = () => {
       } else {
         console.error('Error fetching stories data:', error.message)
       }
-      setIsUploading(false);
+      setIsUploading(false)
       toast.error('Failed to fetch stories data')
     }
-  };
-  
+  }
+
   // Simulate upload progress for demonstration purposes
   const simulateUpload = () => {
     setIsUploading(true)
@@ -196,32 +194,30 @@ const Stories = () => {
         <Heading className="pb-[17px]" size={3}>
           Your Stories
         </Heading>
-        
-          {isUploading ? (
+
+        {isUploading ? (
           // Show a loading indicator or progress bar
           <div>
             Uploading...
-            <BarLoader/>
+            <BarLoader />
           </div>
         ) : (
           <ButtonV2
-            text={'Publish'
-            }
+            text={'Publish'}
             className="inline-flex !rounded-full dark:text-gray-200"
             onClick={() => handlePublishClick(user)}
           />
         )}
-        
       </div>
-      { //Debug use only
-        <div className='pb-[67px]'>
-          <h1 className='text-danger-400'>Debug Use Only</h1>
+      {
+        //Debug use only
+        <div className="pb-[67px]">
+          <h1 className="text-danger-400">Debug Use Only</h1>
           <p>Current Order ID: {printID}</p>
           <p>Path: {printPath}</p>
         </div>
       }
-      
-      
+
       {!edit && (
         <div>
           <div className="flex w-full flex-col rounded-[5px] bg-white px-[24px] dark:bg-shark">
