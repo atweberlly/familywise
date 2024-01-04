@@ -18,7 +18,7 @@ export default async (req, res) => {
     const { user, title, author, coverImage } = req.body
 
     // Generate a unique file name for the PDF cover
-    const fileName = `Cover_${user._id}.pdf`
+    const fileName = `Cover_${user.firstname}.pdf`
 
     await page.setViewport({
       width: Math.round((305.54 * 96) / 25.4),
