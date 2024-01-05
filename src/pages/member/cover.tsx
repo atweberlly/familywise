@@ -17,6 +17,10 @@ const Cover = () => {
   const [author, setAuthor] = useState('')
   const [coverImage, setCoverImage] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+
+  //Debug 
+  const [printPath, setprintPath] = useState('')
+
   const [uploadedFile, setUploadedFile] = useState<any>()
   const [defaultContent] = useState({
     title: 'A Happy Life',
@@ -165,9 +169,13 @@ const Cover = () => {
       // Create the data object for the cover image upload
       const data = {
         user: { _id: user._id },
+        firstname: user.firstname,
         title: title,
+        email: user.email,
         author: author,
+        name: user.firstname + '_Cover.pdf',
         coverImage: coverImage,
+        selectedTemplate: selectedTemplate, // Include selectedTemplate
       }
 
       // Perform the cover image upload
@@ -181,16 +189,25 @@ const Cover = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data.message)
+          setprintPath(data.location)
         })
         .catch((error) => {
           console.error('Error:', error)
         })
     }
-  }, [user._id, title, author, coverImage])
+  }, [user._id, title, author, coverImage, selectedTemplate])
 
   return (
     <>
       <MemberLayout>
+      {
+        //Debug use only
+        <div className="pb-[67px]">
+          <h1 className="text-danger-400">Debug Use Only</h1>
+          <p>User Email: {user.email}</p>
+          <p>Path: {printPath}</p>
+        </div>
+      }
         <div className="cover-container">
           <div className="form-group">
             <>

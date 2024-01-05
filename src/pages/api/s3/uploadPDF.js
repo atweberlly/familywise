@@ -26,7 +26,7 @@ export default async (req, res) => {
     const { title, pages, user, name, email, type, stories } = req.body
 
     // Create a dynamic folder name by there Email
-    const folderName = `${email.split('.')[0]}_Folder`
+    const folderName = `${email.split('.')[0]}`
 
     // Create the folder if it doesn't exist
     await createFolderIfNotExists(folderName)

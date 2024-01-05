@@ -112,7 +112,7 @@ const Stories = () => {
           pages: totalPages,
           email: user.email,
           user,
-          name: user.firstname + '.pdf',
+          name: user.firstname + '_Book.pdf',
           type: 'application/pdf',
           stories: storiesData,
         }
