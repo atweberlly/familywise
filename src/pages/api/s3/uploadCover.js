@@ -1,6 +1,10 @@
+//save local
+//
 import ReactDOMServer from 'react-dom/server'
 import PdfGen from '../../../components/CoverPDF'
 import S3 from 'aws-sdk/clients/s3'
+import fs from 'fs'
+import path from 'path'
 import puppeteer from 'puppeteer'
 
 const s3 = new S3({
@@ -66,6 +70,18 @@ export default async (req, res) => {
         res.status(500).json({ error: 'Error uploading to S3' })
       } else {
         console.log('Cover uploaded and PDF generated successfully', data.Location)
+
+        //Debug Use Only
+        {
+          /*
+          // Save a local copy on your PC
+          const localFilePath = 'C:/Users/jeric/Desktop/Test' // Update this path to your desired directory
+          const fullLocalFilePath = path.join(localFilePath, `${name}.pdf`)
+
+          fs.writeFileSync(fullLocalFilePath, pdfBuffer)
+      */
+        }
+
         res.status(200).json({ location: data.Location })
       }
     })

@@ -28,7 +28,11 @@ const Cover = () => {
     image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783',
   })
 
-  const [selectedTemplate, setSelectedTemplate] = useState<BookTemplateProps>(book_templates[0])
+  const [selectedTemplate, setSelectedTemplate] = useState<BookTemplateProps>(() => {
+    // Initialize with the selected template from local storage or use the default one
+    const storedTemplate = localStorage.getItem('selectedTemplate')
+    return storedTemplate ? JSON.parse(storedTemplate) : book_templates[0]
+  })
 
   useEffect(() => {
     // Fetch existing cover data when user changes
@@ -190,11 +194,16 @@ const Cover = () => {
         .then((data) => {
           console.log(data.message)
           setprintPath(data.location)
+          toast.success('Selected Template Applied!', {
+            position: 'bottom-right',
+          })
         })
         .catch((error) => {
           console.error('Error:', error)
         })
     }
+    // Save the selected template to local storage
+    localStorage.setItem('selectedTemplate', JSON.stringify(selectedTemplate))
   }, [user._id, title, author, coverImage, selectedTemplate])
 
   return (
@@ -228,7 +237,7 @@ const Cover = () => {
                           alt={`Template ${template.item}`}
                           className="mb-2 max-h-32 w-auto rounded-md object-cover"
                         />
-                        {<span>{template.item}</span>}
+                        {/*<span>{template.item}</span>*/}
                       </div>
                     ))}
                   </div>
