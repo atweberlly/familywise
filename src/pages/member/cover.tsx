@@ -178,25 +178,54 @@ const Cover = () => {
         selectedTemplate: selectedTemplate, // Include selectedTemplate
       }
 
-      // Perform the cover image upload
-      fetch('/api/s3/uploadCover', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.message)
-          setprintPath(data.location)
-          toast.success('Selected Template Applied!', {
-            position: 'bottom-right',
+      // Wrap the asynchronous operation in a promise
+      const uploadCoverPromise = new Promise((resolve, reject) => {
+        fetch('/api/s3/uploadCover', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message)
+            setprintPath(data.location)
+            resolve(data) // Resolve the promise with the data
           })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
+          .catch((error) => {
+            console.error('Error:', error)
+            reject(error) // Reject the promise with the error
+          })
+      })
+
+      // Use toast.promise to display notifications based on promise state.
+      const promise = toast.promise(
+        uploadCoverPromise,
+        {
+          loading: 'Applying cover, please wait...',
+          success: 'Selected Template Applied!',
+          error: 'Failed to apply template.',
+        },
+        {
+          //I used primary-600 / #9e7558
+          position: 'bottom-right',
+          style: {
+            border: '4px solid #9e7558',
+            padding: '16px',
+            color: '#9e7558',
+          },
+          iconTheme: {
+            primary: '#713200',
+            secondary: '#9e7558',
+          },
+        }
+      )
+
+      promise.then((result) => {
+        // Handle the result if needed
+        console.log('Promise resolved:', result)
+      })
     }
   }, [user._id, title, author, coverImage, selectedTemplate])
 
