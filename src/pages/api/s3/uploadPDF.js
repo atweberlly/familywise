@@ -10,10 +10,26 @@ const s3 = new S3({
   signatureVersion: 'v4',
 })
 
+// Function to create a folder in S3 if it doesn't exist
+const createFolderIfNotExists = async (folderName) => {
+  try {
+    await s3.headObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: `${folderName}/` }).promise()
+  } catch (err) {
+    // Folder doesn't exist, create it
+    await s3.putObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: `${folderName}/` }).promise()
+  }
+}
+
 export default async (req, res) => {
   try {
     // Retrieve the user data from the request body sent by handlePublish
-    const { title, pages, user, name, type, stories } = req.body
+    const { title, pages, user, name, email, type, stories } = req.body
+
+    // Create a dynamic folder name by there Email
+    const folderName = `${email.split('.')[0]}`
+
+    // Create the folder if it doesn't exist
+    await createFolderIfNotExists(folderName)
 
     const pdfBuffer = await renderToBuffer(
       <PdfGen user_id={user._id} user={user} stories={stories} />
@@ -22,7 +38,7 @@ export default async (req, res) => {
     // Set S3 parameters
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
-      Key: name,
+      Key: `pdf-inventory/${folderName}/${name}`,
       Body: pdfBuffer,
       Expires: 600,
       ContentType: type,

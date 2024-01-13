@@ -1,6 +1,10 @@
+//save local
+//
 import ReactDOMServer from 'react-dom/server'
 import PdfGen from '../../../components/CoverPDF'
 import S3 from 'aws-sdk/clients/s3'
+import fs from 'fs'
+import path from 'path'
 import puppeteer from 'puppeteer'
 
 const s3 = new S3({
@@ -14,11 +18,12 @@ export default async (req, res) => {
   try {
     const browser = await puppeteer.launch({ headless: 'new' })
     const page = await browser.newPage()
+
     // Retrieve user, title, author, and cover image data from the request
-    const { user, title, author, coverImage } = req.body
+    const { user, title, email, name, author, coverImage, selectedTemplate } = req.body
 
     // Generate a unique file name for the PDF cover
-    const fileName = `Cover_${user._id}.pdf`
+    const folderName = `${email.split('.')[0]}`
 
     await page.setViewport({
       width: Math.round((305.54 * 96) / 25.4),
@@ -27,7 +32,13 @@ export default async (req, res) => {
 
     // Generate the PDF cover using the PdfGen component
     const content = (
-      <PdfGen user={user} newTitle={title} newAuthor={author} newCoverImage={coverImage} />
+      <PdfGen
+        user={user}
+        newTitle={title}
+        newAuthor={author}
+        newCoverImage={coverImage}
+        selectedTemplate={selectedTemplate}
+      />
     )
 
     const html = ReactDOMServer.renderToString(content)
@@ -47,7 +58,7 @@ export default async (req, res) => {
     // Set S3 parameters
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
-      Key: fileName,
+      Key: `pdf-inventory/${folderName}/${name}`,
       Body: pdfBuffer,
       ContentType: 'application/pdf',
     }
@@ -59,6 +70,18 @@ export default async (req, res) => {
         res.status(500).json({ error: 'Error uploading to S3' })
       } else {
         console.log('Cover uploaded and PDF generated successfully', data.Location)
+
+        //Debug Use Only
+        {
+          /*
+          // Save a local copy on your PC
+          const localFilePath = 'C:/Users/jeric/Desktop/Test' // Update this path to your desired directory
+          const fullLocalFilePath = path.join(localFilePath, `${name}.pdf`)
+
+          fs.writeFileSync(fullLocalFilePath, pdfBuffer)
+      */
+        }
+
         res.status(200).json({ location: data.Location })
       }
     })

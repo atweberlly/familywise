@@ -17,6 +17,10 @@ const Cover = () => {
   const [author, setAuthor] = useState('')
   const [coverImage, setCoverImage] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+
+  //Debug
+  const [printPath, setprintPath] = useState('')
+
   const [uploadedFile, setUploadedFile] = useState<any>()
   const [defaultContent] = useState({
     title: 'A Happy Life',
@@ -137,18 +141,29 @@ const Cover = () => {
 
       if (response.status === 200) {
         // Show a success toast
+        {
+          /*
         toast.success('Cover data saved successfully', {
           position: 'bottom-right',
         })
+      */
+        }
       } else {
         // Show an error toast
-        toast.error('Failed to save cover data')
+        {
+          /*
+      toast.error('Failed to save cover data')
+    */
+        }
       }
     } catch (error) {
       // Show an error toast if saving fails
+      {
+        /*
       toast.error('Failed to save cover data: ' + error, {
         position: 'bottom-right',
-      })
+      })*/
+      }
     }
   }
 
@@ -165,32 +180,77 @@ const Cover = () => {
       // Create the data object for the cover image upload
       const data = {
         user: { _id: user._id },
+        firstname: user.firstname,
         title: title,
+        email: user.email,
         author: author,
+        name: user.firstname + '_Cover.pdf',
         coverImage: coverImage,
+        selectedTemplate: selectedTemplate, // Include selectedTemplate
       }
 
-      // Perform the cover image upload
-      fetch('/api/s3/uploadCover', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+      // Wrap the asynchronous operation in a promise
+      const uploadCoverPromise = new Promise((resolve, reject) => {
+        fetch('/api/s3/uploadCover', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message)
+            setprintPath(data.location)
+            resolve(data) // Resolve the promise with the data
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+            reject(error) // Reject the promise with the error
+          })
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.message)
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
+
+      // Use toast.promise to display notifications based on promise state.
+      const promise = toast.promise(
+        uploadCoverPromise,
+        {
+          loading: 'Applying, please wait...',
+          success: 'Saved!',
+          error: 'Oops! Failed to apply changes.',
+        },
+        {
+          //I used primary-600 / #9e7558
+          position: 'bottom-right',
+          style: {
+            border: '4px solid #9e7558',
+            padding: '16px',
+            color: '#9e7558',
+          },
+          iconTheme: {
+            primary: '#713200',
+            secondary: '#9e7558',
+          },
+        }
+      )
+
+      promise.then((result) => {
+        // Handle the result if needed
+        console.log('Promise resolved:', result)
+      })
     }
-  }, [user._id, title, author, coverImage])
+  }, [user._id, title, author, coverImage, selectedTemplate])
 
   return (
     <>
       <MemberLayout>
+        {/*
+          //Debug use only
+          <div className="pb-[67px]">
+            <h1 className="text-danger-400">Debug Use Only</h1>
+            <p>User Email: {user.email}</p>
+            <p>Path: {printPath}</p>
+          </div>
+      */}
         <div className="cover-container">
           <div className="form-group">
             <>
@@ -211,7 +271,7 @@ const Cover = () => {
                           alt={`Template ${template.item}`}
                           className="mb-2 max-h-32 w-auto rounded-md object-cover"
                         />
-                        {<span>{template.item}</span>}
+                        {/*<span>{template.item}</span>*/}
                       </div>
                     ))}
                   </div>
