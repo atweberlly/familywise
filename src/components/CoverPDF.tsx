@@ -28,7 +28,7 @@ const PdfGen: React.FC<MyComponentProps> = ({
 }: MyComponentProps) => {
   return (
     <Document>
-      <Page size="A4">
+      <Page size="A5">
         <View style={tw(`w-full h-full flex flex-column justify-center`)}>
           {/* Back Cover */}
           <View>
