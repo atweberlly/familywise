@@ -17,19 +17,26 @@ const createPrintJob = async (user, title, totalPages) => {
       data: {
         contact_email: user.email,
         external_id: user._id,
+        userfname: user.firstname,
         line_items: [
           {
             external_id: 'item-reference-1',
             printable_normalization: {
               cover: {
                 source_url:
-                  'https://familyfortunate.s3.ap-southeast-2.amazonaws.com/Cover_' +
+                  'https://familyfortunate.s3.ap-southeast-2.amazonaws.com/pdf-inventory/' +
                   user._id +
-                  '.pdf', //https://www.dropbox.com/s/7bv6mg2tj0h3l0r/lulu_trade_perfect_template.pdf?dl=1&raw=1
+                  '/' +
+                  user.firstname +
+                  '_Cover.pdf', //https://www.dropbox.com/s/7bv6mg2tj0h3l0r/lulu_trade_perfect_template.pdf?dl=1&raw=1
               },
               interior: {
                 source_url:
-                  'https://familyfortunate.s3.ap-southeast-2.amazonaws.com/' + user._id + '.pdf',
+                  'https://familyfortunate.s3.ap-southeast-2.amazonaws.com/pdf-inventory/' +
+                  user._id +
+                  '/' +
+                  user.firstname +
+                  '_Book.pdf',
               },
               pod_package_id: '0583X0827FCSTDPB080CW444MXX', //0583X0827FCSTDPB080CW444MXX //0600X0900BWSTDPB060UW444MXX
             },
