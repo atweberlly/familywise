@@ -142,27 +142,22 @@ const Cover = () => {
       if (response.status === 200) {
         // Show a success toast
         {
-          /*
-        toast.success('Cover data saved successfully', {
-          position: 'bottom-right',
-        })
-      */
+          toast.success('Cover data saved successfully', {
+            position: 'bottom-right',
+          })
         }
       } else {
         // Show an error toast
         {
-          /*
-      toast.error('Failed to save cover data')
-    */
+          toast.error('Failed to save cover data')
         }
       }
     } catch (error) {
       // Show an error toast if saving fails
       {
-        /*
-      toast.error('Failed to save cover data: ' + error, {
-        position: 'bottom-right',
-      })*/
+        toast.error('Failed to save cover data: ' + error, {
+          position: 'bottom-right',
+        })
       }
     }
   }
@@ -243,14 +238,14 @@ const Cover = () => {
   return (
     <>
       <MemberLayout>
-        {/*
+        {
           //Debug use only
           <div className="pb-[67px]">
             <h1 className="text-danger-400">Debug Use Only</h1>
             <p>User Email: {user.email}</p>
             <p>Path: {printPath}</p>
           </div>
-      */}
+        }
         <div className="cover-container">
           <div className="form-group">
             <>
