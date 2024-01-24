@@ -29,6 +29,9 @@ const Stories = () => {
   //print ID
   const [printID, setprintID] = useState('')
   const [printPath, setprintPath] = useState('')
+  //Publish Properties
+  const [publishError, setpublishError] = useState('Publish')
+  const [errorPresent, setErrorPresent] = useState(false)
 
   const dispatch = useAppDispatch()
   const user = useAppSelector((state: RootState) => state.userSlice.user)
@@ -202,11 +205,23 @@ const Stories = () => {
             <BarLoader />
           </div>
         ) : (
-          <ButtonV2
-            text={'Publish'}
-            className="inline-flex !rounded-full dark:text-gray-200"
-            onClick={() => handlePublishClick(user)}
-          />
+          <div>
+            <ButtonV2
+              text={publishError}
+              className={`inline-flex !rounded-full dark:text-gray-200`}
+              disabled={errorPresent}
+              onClick={() => {
+                if (totalPages !== null && totalPages !== undefined && totalPages < 40) {
+                  setpublishError('Total pages must be 32 or more.')
+                  setErrorPresent(true)
+                } else {
+                  handlePublishClick(user)
+                  setpublishError('Publish')
+                  setErrorPresent(false)
+                }
+              }}
+            />
+          </div>
         )}
       </div>
       {
