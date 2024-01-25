@@ -141,6 +141,33 @@ const UserSchema = new mongoose.Schema(
       required: false,
       unique: false,
     },
+
+    // Additional information fields
+    city: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+    phoneNumber: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+    postcode: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+    stateCode: {
+      type: String,
+      required: false,
+      unique: false,
+    },
+    street: {
+      type: String,
+      required: false,
+      unique: false,
+    },
   },
   {
     timestamps: true,

@@ -45,6 +45,11 @@ export default function JoinUs() {
     giftMessage: '', //this can be empty
     planType: plan,
     freeTrialEnd: '',
+    city: '',
+    phoneNumber: '',
+    postCode: '',
+    stateCode: '',
+    street: '',
     reason: '',
   }
 

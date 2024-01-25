@@ -29,6 +29,11 @@ export default function Checkout(props: { ClientToken: any; ClientID: any }) {
     giftRelation: '',
     bookReceiver: '',
     password: '',
+    city: '',
+    phoneNumber: '',
+    postCode: '',
+    stateCode: '',
+    street: '',
     status: false,
   })
 

@@ -136,6 +136,38 @@ const Settings = () => {
                 <PencilIcon className="mr-2 inline-block w-4" />
               </ButtonV2>
             </div>
+            <div>
+              <Heading size={5}>Publish</Heading>
+              <div className="mt-4 flex items-center justify-between rounded-xl p-4 shadow-sm">
+                <div className="flex items-center gap-2 lg:gap-6">
+                  <div className="rounded-full p-2 ring-1 ring-primary-600 dark:ring-primary-600 ">
+                    <p className="text-xs font-medium text-primary-600 dark:text-primary-600 lg:text-lg">
+                      {String(user.firstname).charAt(0)}.{String(user.lastname).charAt(0)}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-light lg:text-lg">
+                      Shipping and Delivery Preferences
+                    </h4>
+                    <p className="text-xm text-secondary-500">
+                      Personalize how you want to receive your book by customizing the shipping and
+                      delivery settings.
+                    </p>
+                  </div>
+                </div>
+                <ButtonV2
+                  text={'Setting'}
+                  isActive={false}
+                  className="inline-flex !rounded-full"
+                  onClick={() => {
+                    router.push('/member/publish')
+                  }}
+                >
+                  {' '}
+                  <PencilIcon className="mr-2 inline-block w-4" />
+                </ButtonV2>
+              </div>
+            </div>
           </div>
           <div>
             <Heading size={5}>Activity Log</Heading>

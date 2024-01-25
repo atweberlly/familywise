@@ -55,6 +55,11 @@ export default function JoinUs() {
     giftOccasion: 'Merry Christmas!',
     giftMessage: '',
     planType: plan,
+    city: '',
+    phoneNumber: '',
+    postCode: '',
+    stateCode: '',
+    street: '',
     reason: '',
   }
 

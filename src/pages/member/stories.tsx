@@ -211,7 +211,7 @@ const Stories = () => {
               className={`inline-flex !rounded-full dark:text-gray-200`}
               disabled={errorPresent}
               onClick={() => {
-                if (totalPages !== null && totalPages !== undefined && totalPages < 40) {
+                if (totalPages !== null && totalPages !== undefined && totalPages < 32) {
                   setpublishError('Total pages must be 32 or more.')
                   setErrorPresent(true)
                 } else {

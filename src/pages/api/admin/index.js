@@ -40,6 +40,11 @@ export default async function handler(request, response) {
           roles: request.body.roles,
           orderId: request.body.orderId,
           timezone: userTimezone,
+          city: request.body.city,
+          phoneNumber: request.body.phoneNumber,
+          postCode: request.body.postCode,
+          stateCode: request.body.stateCode,
+          street: request.body.street,
           status: request.body.status,
           token: resetToken,
         }
