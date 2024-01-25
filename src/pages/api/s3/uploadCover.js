@@ -58,7 +58,7 @@ export default async (req, res) => {
     // Set S3 parameters
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
-      Key: `pdf-inventory/${folderName}/${name}`,
+      Key: `pdf-inventory/${user._id}/${name}`,
       Body: pdfBuffer,
       ContentType: 'application/pdf',
     }
