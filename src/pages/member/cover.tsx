@@ -238,14 +238,14 @@ const Cover = () => {
   return (
     <>
       <MemberLayout>
-        {
+        {/*
           //Debug use only
           <div className="pb-[67px]">
             <h1 className="text-danger-400">Debug Use Only</h1>
             <p>User Email: {user.email}</p>
             <p>Path: {printPath}</p>
           </div>
-        }
+  */}
         <div className="cover-container">
           <div className="form-group">
             <>
