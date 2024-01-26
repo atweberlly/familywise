@@ -522,7 +522,7 @@ const Cover = () => {
                   <ButtonV2
                     text={publishError}
                     className={`my-4 inline-flex w-[50%] justify-center !rounded-md bg-primary-600 px-6 py-3 text-black transition-all dark:text-gray-200 ${
-                      errorPresent || isApplying ? 'cursor-not-allowed opacity-50' : ''
+                      errorPresent || isApplying ? 'cursor-not-allowed' : ''
                     }`}
                     disabled={errorPresent || isApplying}
                     onClick={() => {
