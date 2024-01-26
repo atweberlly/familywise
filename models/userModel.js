@@ -153,7 +153,7 @@ const UserSchema = new mongoose.Schema(
       required: false,
       unique: false,
     },
-    postcode: {
+    postCode: {
       type: String,
       required: false,
       unique: false,
