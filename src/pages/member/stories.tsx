@@ -5,7 +5,6 @@ import { BarLoader } from 'react-spinners'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import Heading from '../../components/Heading'
-import ButtonV2 from '../../components/_member/Button'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
 import '../../styles/CustomStyle.css'
@@ -197,41 +196,16 @@ const Stories = () => {
         <Heading className="pb-[17px]" size={3}>
           Your Stories
         </Heading>
-
-        {isUploading ? (
-          // Show a loading indicator or progress bar
-          <div>
-            Uploading...
-            <BarLoader />
-          </div>
-        ) : (
-          <div>
-            <ButtonV2
-              text={publishError}
-              className={`inline-flex !rounded-full dark:text-gray-200`}
-              disabled={errorPresent}
-              onClick={() => {
-                if (totalPages !== null && totalPages !== undefined && totalPages < 1) {
-                  setpublishError('Total pages must be 32 or more.')
-                  setErrorPresent(true)
-                } else {
-                  handlePublishClick(user)
-                  setpublishError('Publish')
-                  setErrorPresent(false)
-                }
-              }}
-            />
-          </div>
-        )}
       </div>
       {/*
         //Debug use only
         <div className="pb-[67px]">
           <h1 className="text-danger-400">Debug Use Only</h1>
           <p>Current Order ID: {printID}</p>
+          <p>Pages: {totalPages}</p>
           <p>Path: {printPath}</p>
         </div>
-            */}
+      */}
 
       {!edit && (
         <div>
