@@ -573,8 +573,8 @@ const Cover = () => {
                         className="description"
                         style={{ fontSize: '1rem', color: '#555', marginBottom: '16px' }}
                       >
-                        Oops! Looks like you haven't set up your preferences yet. Let's take care of
-                        that now.
+                        Oops! Looks like you haven&apos;t set up your preferences yet. Let&apos;s
+                        take care of that now.
                         <div
                           className="mt-4 rounded-md border border-gray-500 p-4"
                           style={{ fontFamily: 'monospace', color: '#ff0000' }}
