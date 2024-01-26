@@ -161,32 +161,29 @@ const Publish = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="grid grid-cols-1 gap-x-20 md:grid-cols-2 ">
+                <label className="block w-full">
+                  <p className="text-sm font-semibold">{'Full Name'}</p>
+                  <input
+                    className="peer mt-3 block w-full rounded-xl border-2 px-4 py-3 text-secondary-600 outline-none transition-all placeholder:text-secondary-300 invalid:border-danger-500 hover:border-secondary-500 focus:border-primary-300 disabled:border-secondary-200 disabled:bg-primary-100 dark:bg-dark dark:text-white"
+                    placeholder={'First Name'}
+                    type={'text'}
+                    defaultValue={user?.firstname + ' ' + user?.lastname}
+                    disabled={true}
+                  />
+                </label>
                 <Input
                   className="dark:bg-dark dark:text-white"
-                  label={'First name'}
+                  label={'Phone or Telephone Number'}
                   type={'text'}
-                  placeholder={'Ex: John'}
-                  name={'firstname'}
-                  error={errors?.firstname?.message}
-                  defaultValue={user?.firstname}
+                  placeholder={'Ex: +844-212-0689'}
+                  name={'phoneNumber'}
+                  defaultValue={user?.phoneNumber}
+                  error={errors?.phoneNumber?.message}
                   onChange={(e) => {
                     setDisabled(false)
-                    setValue('firstname', (e.target as HTMLInputElement).value, {
+                    setValue('phoneNumber', (e.target as HTMLInputElement).value, {
                       shouldValidate: true,
                     })
-                  }}
-                ></Input>
-                <Input
-                  className="dark:bg-dark dark:text-white"
-                  label={'Last name'}
-                  type={'text'}
-                  placeholder={'Ex: Doe'}
-                  name={'lastname'}
-                  error={errors?.lastname?.message}
-                  defaultValue={user?.lastname}
-                  onChange={(e) => {
-                    setDisabled(false)
-                    setValue('lastname', (e.target as HTMLInputElement).value)
                   }}
                 ></Input>
               </div>
@@ -230,15 +227,15 @@ const Publish = () => {
                 ></Input>
                 <Input
                   className="dark:bg-dark dark:text-white"
-                  label={'Phone or Telephone Number'}
+                  label={'Street, Blk, Lot..'}
                   type={'text'}
-                  placeholder={'Ex: +844-212-0689'}
-                  name={'phoneNumber'}
-                  defaultValue={user?.phoneNumber}
-                  error={errors?.phoneNumber?.message}
+                  placeholder={'Ex: Opera Nevada-171'}
+                  name={'street'}
+                  defaultValue={user?.street}
+                  error={errors?.street?.message}
                   onChange={(e) => {
                     setDisabled(false)
-                    setValue('phoneNumber', (e.target as HTMLInputElement).value, {
+                    setValue('street', (e.target as HTMLInputElement).value, {
                       shouldValidate: true,
                     })
                   }}
@@ -276,23 +273,7 @@ const Publish = () => {
                   }}
                 ></Input>
               </div>
-              <div className="grid grid-cols-1 gap-x-20 md:grid-cols-2 ">
-                <Input
-                  className="dark:bg-dark dark:text-white"
-                  label={'Street, Blk, Lot..'}
-                  type={'text'}
-                  placeholder={'Ex: Opera Nevada-171'}
-                  name={'street'}
-                  defaultValue={user?.street}
-                  error={errors?.street?.message}
-                  onChange={(e) => {
-                    setDisabled(false)
-                    setValue('street', (e.target as HTMLInputElement).value, {
-                      shouldValidate: true,
-                    })
-                  }}
-                ></Input>
-              </div>
+
               <Button
                 className="mt-2 w-full dark:bg-primary-600 dark:text-white dark:hover:bg-primary-400 lg:w-72"
                 type={'submit'}
