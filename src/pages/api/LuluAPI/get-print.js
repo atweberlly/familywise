@@ -7,7 +7,7 @@ const getPrintJobs = async () => {
 
     const options = {
       method: 'GET',
-      url: 'https://api.sandbox.lulu.com/print-jobs/',
+      url: 'https://api.lulu.com/print-jobs/',
       headers: {
         'Cache-Control': 'no-cache',
         Authorization: 'Bearer ' + accessToken,
