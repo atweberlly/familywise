@@ -481,7 +481,7 @@ const Cover = () => {
               </div>
             </div>
           </div>
-          <div className="preview">
+          <div className="preview dark:bg-woodsmoke">
             <h1>Preview</h1>
             <div className={selectedTemplate.coverStyle}>
               {coverImage ? (
@@ -510,12 +510,12 @@ const Cover = () => {
               </div>
             </div>
             <div className="mx-auto mt-20 text-center">
-              <h2 className="mb-4 text-2xl font-bold">Ready to Publish?</h2>
+              <h2 className="mb-4 text-2xl font-bold dark:text-white">Ready to Publish?</h2>
               {isUploading ? (
                 // Show a loading indicator or progress bar
                 <div className="text-primary-600">
                   Uploading...
-                  <BarLoader className="py-auto mx-auto items-center" />
+                  <BarLoader className="py-auto mx-auto items-center dark:bg-white" />
                 </div>
               ) : (
                 <div>
@@ -548,7 +548,7 @@ const Cover = () => {
                   <Ariakit.Dialog
                     open={open}
                     onClose={() => setOpen(false)}
-                    className="dialog"
+                    className="dialog dark:bg-black"
                     style={{
                       position: 'fixed',
                       top: '50%',
@@ -562,7 +562,7 @@ const Cover = () => {
                       zIndex: '1000',
                     }}
                   >
-                    <div style={{ padding: '16px' }}>
+                    <div style={{ padding: '16px' }} className="dark:bg-woodsmoke">
                       <Ariakit.DialogHeading
                         className="heading"
                         style={{ fontSize: '1.5rem', marginBottom: '8px' }}
