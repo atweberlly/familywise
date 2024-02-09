@@ -1,13 +1,18 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { BarLoader } from 'react-spinners'
+import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import { book_templates, Props as BookTemplateProps } from '../../components/Lib/book_templates'
 import MemberLayout from '../../layouts/MemberLayout'
 import { setUser } from '../../slices/slice'
 import '../../styles/CustomStyle.css'
+import * as Ariakit from '@ariakit/react'
 import axios from 'axios'
+import { push } from 'files'
 import { CloudArrowUpIcon } from '@heroicons/react/24/solid'
+import ButtonV2 from '~/components/_member/Button'
 
 const Cover = () => {
   const dispatch = useAppDispatch()
@@ -17,9 +22,21 @@ const Cover = () => {
   const [author, setAuthor] = useState('')
   const [coverImage, setCoverImage] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const router = useRouter()
 
   //Debug
+  const [printID, setprintID] = useState('')
   const [printPath, setprintPath] = useState('')
+  const [open, setOpen] = useState(false)
+
+  const [isUploading, setIsUploading] = useState(false)
+  const [totalPages, setTotalPages] = useState(null)
+  const [storiesExist, setStoriesExist] = useState(true)
+
+  //Publish Properties
+  const [publishError, setpublishError] = useState('Publish')
+  const [errorPresent, setErrorPresent] = useState(false)
+  const [isApplying, setisApplying] = useState(false)
 
   const [uploadedFile, setUploadedFile] = useState<any>()
   const [defaultContent] = useState({
@@ -27,6 +44,128 @@ const Cover = () => {
     author: 'Alex Green',
     image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783',
   })
+
+  //Publish
+
+  const handlePublishClick = async (user: any) => {
+    setIsUploading(true)
+
+    try {
+      const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
+      if (storiesResponse.status === 200) {
+        const storiesData =
+          user.planType === 'Free-Trial' ? storiesResponse.data.slice(0, 10) : storiesResponse.data
+
+        const data = {
+          title: title,
+          pages: totalPages,
+          email: user.email,
+          user,
+          name: user.firstname + '_Book.pdf',
+          type: 'application/pdf',
+          stories: storiesData,
+        }
+
+        try {
+          const response = await fetch('/api/s3/uploadPDF', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+
+          console.log('Response status code:', response.status)
+
+          if (response.ok) {
+            const responseData = await response.json()
+            console.log('PDF uploaded to S3:', responseData.location)
+            setprintID(responseData.printJobId)
+            setprintPath(responseData.location)
+            toast.success('PDF upload successful!')
+          } else {
+            const errorText = await response.text()
+            console.error('Failed to upload PDF to S3. Server response:', errorText)
+            toast.error(`Failed to upload PDF: ${errorText}`)
+          }
+        } catch (error) {
+          console.error('Error during PDF upload:', error)
+          toast.error('Failed to upload PDF')
+        } finally {
+          setIsUploading(false)
+        }
+      } else {
+        console.error('Unexpected status code:', storiesResponse.status)
+        setIsUploading(false)
+        toast.error('Failed to fetch stories data')
+      }
+    } catch (error: any) {
+      if (error.code === 'ECONNREFUSED') {
+        console.error('Connection refused. Make sure the server is running.')
+      } else {
+        console.error('Error fetching stories data:', error.message)
+      }
+      setIsUploading(false)
+      toast.error('Failed to fetch stories data')
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const coverResponse = await axios.get(`/api/cover/getCover?userId=${user._id}`)
+        const coverData = coverResponse.data
+
+        if (coverData && coverData.length > 0) {
+          const data = coverData[0]
+          setTitle(data.title)
+        } else {
+          return // No cover data, exit useEffect
+        }
+
+        const storiesResponse = await axios.get(`/api/stories/getStories?user_id=${user._id}`)
+        if (storiesResponse.status === 200) {
+          const storiesData =
+            user.planType === 'Free-Trial'
+              ? storiesResponse.data.slice(0, 10)
+              : storiesResponse.data
+
+          if (storiesData && storiesData.length > 0) {
+            setStoriesExist(true)
+            const totalPagesResponse = await fetch('/api/totalPages', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ user, stories: storiesData }),
+            })
+
+            if (totalPagesResponse.ok) {
+              const data = await totalPagesResponse.json()
+              const totalPages = data.totalPages
+              setTotalPages(totalPages)
+            } else {
+              console.error('Error getting total pages:', totalPagesResponse.statusText)
+            }
+          } else {
+            setStoriesExist(false)
+          }
+        } else {
+          console.error('Unexpected status code:', storiesResponse.status)
+        }
+      } catch (error: any) {
+        if (error.code === 'ECONNREFUSED') {
+          console.error('Connection refused. Make sure the server is running.')
+        } else {
+          console.error('Error fetching data:', error.message)
+        }
+      }
+    }
+
+    if (user._id) {
+      fetchData()
+    }
+  }, [user._id, user.planType])
 
   const [selectedTemplate, setSelectedTemplate] = useState<BookTemplateProps>(book_templates[0])
 
@@ -186,6 +325,8 @@ const Cover = () => {
 
       // Wrap the asynchronous operation in a promise
       const uploadCoverPromise = new Promise((resolve, reject) => {
+        setisApplying(true)
+        setpublishError('Please Wait')
         fetch('/api/s3/uploadCover', {
           method: 'POST',
           headers: {
@@ -202,6 +343,10 @@ const Cover = () => {
           .catch((error) => {
             console.error('Error:', error)
             reject(error) // Reject the promise with the error
+          })
+          .finally(() => {
+            setisApplying(false) // Reset loading after the cover upload is complete
+            setpublishError('Publish')
           })
       })
 
@@ -242,10 +387,12 @@ const Cover = () => {
           //Debug use only
           <div className="pb-[67px]">
             <h1 className="text-danger-400">Debug Use Only</h1>
-            <p>User Email: {user.email}</p>
+            <p>Current Order ID: {printID}</p>
+            <p>Pages: {totalPages}</p>
             <p>Path: {printPath}</p>
           </div>
   */}
+
         <div className="cover-container">
           <div className="form-group">
             <>
@@ -334,7 +481,7 @@ const Cover = () => {
               </div>
             </div>
           </div>
-          <div className="preview">
+          <div className="preview dark:bg-woodsmoke">
             <h1>Preview</h1>
             <div className={selectedTemplate.coverStyle}>
               {coverImage ? (
@@ -362,8 +509,138 @@ const Cover = () => {
                 </div>
               </div>
             </div>
+            <div className="mx-auto mt-20 text-center">
+              <h2 className="mb-4 text-2xl font-bold dark:text-white">Ready to Publish?</h2>
+              {isUploading ? (
+                // Show a loading indicator or progress bar
+                <div className="text-primary-600">
+                  Uploading...
+                  <BarLoader className="py-auto mx-auto items-center dark:bg-white" />
+                </div>
+              ) : (
+                <div>
+                  <ButtonV2
+                    text={publishError}
+                    className={`my-4 inline-flex w-[50%] justify-center !rounded-md bg-primary-600 px-6 py-3 text-black transition-all dark:text-gray-200 ${
+                      errorPresent || isApplying ? 'cursor-not-allowed' : ''
+                    }`}
+                    disabled={errorPresent || isApplying}
+                    onClick={() => {
+                      if (totalPages !== null && totalPages !== undefined && totalPages < 32) {
+                        setpublishError('Total pages must be 32 or more.')
+                        setErrorPresent(true)
+                      } else if (
+                        user.city === '' ||
+                        user.phoneNumber === '' ||
+                        user.stateCode === '' ||
+                        user.postCode === '' ||
+                        user.street === ''
+                      ) {
+                        setpublishError('Oh Snap! 🥲')
+                        setOpen(true)
+                      } else {
+                        handlePublishClick(user)
+                        setpublishError('Publish')
+                        setErrorPresent(false)
+                      }
+                    }}
+                  />
+                  <Ariakit.Dialog
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    className="dialog dark:bg-black"
+                    style={{
+                      position: 'fixed',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      borderRadius: '8px',
+                      maxWidth: '400px',
+                      width: '100%',
+                      backgroundColor: '#fff',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                      zIndex: '1000',
+                    }}
+                  >
+                    <div style={{ padding: '16px' }} className="dark:bg-woodsmoke">
+                      <Ariakit.DialogHeading
+                        className="heading"
+                        style={{ fontSize: '1.5rem', marginBottom: '8px' }}
+                      >
+                        Failed
+                      </Ariakit.DialogHeading>
+                      <p
+                        className="description"
+                        style={{ fontSize: '1rem', color: '#555', marginBottom: '16px' }}
+                      >
+                        Oops! Looks like you haven&apos;t set up your preferences yet. Let&apos;s
+                        take care of that now.
+                        <div
+                          className="mt-4 rounded-md border border-gray-500 p-4"
+                          style={{ fontFamily: 'monospace', color: '#ff0000' }}
+                        >
+                          <code>
+                            {/* Display errors in a code-like format */}
+                            {user.city === '' && (
+                              <div>
+                                ❌ <span className="text-danger-400"> Error:</span> City field
+                                empty.
+                              </div>
+                            )}
+                            {user.phoneNumber === '' && (
+                              <div>
+                                ❌ <span className="text-danger-400"> Error:</span> Phone number
+                                missing.
+                              </div>
+                            )}
+                            {user.stateCode === '' && (
+                              <div>
+                                ❌ <span className="text-danger-400"> Error:</span> State code not
+                                provided.
+                              </div>
+                            )}
+                            {user.postCode === '' && (
+                              <div>
+                                ❌ <span className="text-danger-400"> Error:</span> Post code
+                                absent.
+                              </div>
+                            )}
+                            {user.street === '' && (
+                              <div>
+                                ❌ <span className="text-danger-400"> Error:</span> Street
+                                information not available.
+                              </div>
+                            )}
+                          </code>
+                        </div>
+                      </p>
+                      <div style={{ textAlign: 'right' }}>
+                        <Ariakit.DialogDismiss
+                          className="button cursor-pointer rounded-md bg-primary-400 px-4 py-2 text-white hover:bg-primary-600"
+                          type={'button'}
+                          onClick={() => {
+                            setOpen(false)
+                            router.push('/member/publish')
+                          }}
+                        >
+                          Sure
+                        </Ariakit.DialogDismiss>
+                      </div>
+                    </div>
+                  </Ariakit.Dialog>
+
+                  {isApplying && (
+                    <div className="text-primary-600">
+                      <p>Setting up. Just a moment...</p>
+                      <BarLoader className="py-auto mx-auto items-center" />
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
+
         {isSaving && (
           <div className="saving-toast">
             <p>Saving...</p>

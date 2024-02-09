@@ -8,7 +8,7 @@ const createPrintJob = async (user, title, totalPages) => {
 
     const options = {
       method: 'POST',
-      url: 'https://api.sandbox.lulu.com/print-jobs/',
+      url: 'https://api.lulu.com/print-jobs/',
       headers: {
         'Cache-Control': 'no-cache',
         Authorization: 'Bearer ' + accessToken,
